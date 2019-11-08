@@ -226,6 +226,8 @@ void OdeSystemInformation<Dynamicbeeler_reuter_model_1977FromCellML>::Initialise
 }
 
 
+#ifndef CHASTE_EXPORT_
+#define CHASTE_EXPORT_
 // Serialization for Boost >= 1.36
 #include "SerializationExportWrapperForCpp.hpp"
 CHASTE_CLASS_EXPORT(Dynamichodgkin_huxley_squid_axon_model_1952_modifiedFromCellML)
@@ -239,4 +241,4 @@ extern "C"
     }
     
 }
-
+#endif // CHASTE_EXPORT_
