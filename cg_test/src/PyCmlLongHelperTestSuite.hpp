@@ -248,7 +248,7 @@ private:
 		boost::shared_ptr<AbstractStimulusFunction> p_stimulus(new SimpleStimulus(magnitude, duration, when));
 		boost::shared_ptr<AbstractIvpOdeSolver> p_solver(new EulerIvpOdeSolver);
 		if (rModelName == "hodgkin_huxley_squid_axon_model_1952_modified"){
-			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Dynamichodgkin_huxley_squid_axon_model_1952_modifiedFromCellML(p_solver, p_stimulus));
+			 boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Dynamichodgkin_huxley_squid_axon_model_1952_modifiedFromCellML(p_solver, p_stimulus));
 			return p_cell;
 		}else if(rModelName == "aslanidi_model_2009"){
 			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Dynamicaslanidi_model_2009FromCellML(p_solver, p_stimulus));
