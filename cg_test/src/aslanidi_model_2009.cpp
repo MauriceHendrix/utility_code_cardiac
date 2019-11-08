@@ -574,14 +574,14 @@ void OdeSystemInformation<Dynamicaslanidi_model_2009FromCellML>::Initialise(void
 #define CHASTE_EXPORT_
 // Serialization for Boost >= 1.36
 #include "SerializationExportWrapperForCpp.hpp"
-CHASTE_CLASS_EXPORT(Dynamichodgkin_huxley_squid_axon_model_1952_modifiedFromCellML)
+CHASTE_CLASS_EXPORT(Dynamicaslanidi_model_2009FromCellML)
 extern "C"
 {
     AbstractCardiacCellInterface* MakeCardiacCell(
             boost::shared_ptr<AbstractIvpOdeSolver> pSolver,
             boost::shared_ptr<AbstractStimulusFunction> pStimulus)
     {
-        return new Dynamichodgkin_huxley_squid_axon_model_1952_modifiedFromCellML(pSolver, pStimulus);
+        return new Dynamicaslanidi_model_2009FromCellML(pSolver, pStimulus);
     }
     
 }
