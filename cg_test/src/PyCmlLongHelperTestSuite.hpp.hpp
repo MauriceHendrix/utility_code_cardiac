@@ -74,7 +74,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /**
  * Helper class to allow us to split the PyCmlLong tests into multiple test suites.
  */
-class ManualTestSuiteForPycmlCompare : public CxxTest::TestSuite
+class PyCmlLongHelperTestSuite.hpp : public CxxTest::TestSuite
 {
 
 private:

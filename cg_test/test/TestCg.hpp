@@ -1,7 +1,7 @@
 #ifndef TESTCG_HPP_
 #define TESTCG_HPP_
 
-#include "ManualTestSuiteForPycmlCompare.hpp"
+#include "PyCmlLongHelperTestSuite.hpp"
 
 #include <boost/foreach.hpp>
 #include <vector>
@@ -17,7 +17,7 @@
  * May need a test-suite setup or similar to define model-specific parameters?
  * Should we pick up the list of models by reading the folder heart/test/data/cellml?
  */
-class TestCg : public ManualTestSuiteForPycmlCompare
+class TestCg : public PyCmlLongHelperTestSuite
 {
 public:
     void TestNormalCells()
