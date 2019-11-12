@@ -185,6 +185,8 @@ private:
         // Do the conversion
         FileFinder copied_file(rOutputDirName + "/" + rModelName + ".cellml", RelativeTo::ChasteTestOutput);
         DynamicCellModelLoaderPtr p_loader = converter.Convert(copied_file);
+		std::remove(rOutputDirName + "/" + rModelName + ".cpp");
+		std::remove(rOutputDirName + "/" + rModelName + ".hpp");
         FileFinder cpp_file("projects/cg_test/src/" + rModelName + ".cpp", RelativeTo::ChasteSourceRoot);
 		handler.CopyFileTo(cpp_file);
 		FileFinder hpp_file("projects/cg_test/src/" + rModelName + ".hpp", RelativeTo::ChasteSourceRoot);
