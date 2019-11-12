@@ -66,10 +66,10 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "HeartConfig.hpp"
 #include "RunAndCheckIonicModels.hpp"
 #include "Warnings.hpp"
-#include "hodgkin_huxley_squid_axon_model_1952_modified.cpp"
-#include "beeler_reuter_model_1977.cpp"
-#include "aslanidi_model_2009.cpp"
-#include "bondarenko_model_2004_apex.cpp"
+#include "hodgkin_huxley_squid_axon_model_1952_modified.hpp"
+#include "beeler_reuter_model_1977.hpp"
+#include "aslanidi_model_2009.hpp"
+#include "bondarenko_model_2004_apex.hpp"
 
 /**
  * Helper class to allow us to split the PyCmlLong tests into multiple test suites.
