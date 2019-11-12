@@ -21,7 +21,7 @@
 #include "IsNan.hpp"
 #include "MathsCustomFunctions.hpp"
 	
-    Dynamichodgkin_huxley_squid_axon_model_1952_modifiedFromCellML::Dynamichodgkin_huxley_squid_axon_model_1952_modifiedFromCellML(boost::shared_ptr<AbstractIvpOdeSolver> pSolver, boost::shared_ptr<AbstractStimulusFunction> pIntracellularStimulus)
+    TestManualhodgkin_huxley_squid_axon_model_1952_modifiedFromCellML::TestManualhodgkin_huxley_squid_axon_model_1952_modifiedFromCellML(boost::shared_ptr<AbstractIvpOdeSolver> pSolver, boost::shared_ptr<AbstractStimulusFunction> pIntracellularStimulus)
         : AbstractCardiacCell(
                 pSolver,
                 4,
@@ -30,15 +30,15 @@
     {
         // Time units: millisecond
         // 
-        this->mpSystemInfo = OdeSystemInformation<Dynamichodgkin_huxley_squid_axon_model_1952_modifiedFromCellML>::Instance();
+        this->mpSystemInfo = OdeSystemInformation<TestManualhodgkin_huxley_squid_axon_model_1952_modifiedFromCellML>::Instance();
         Init();
     }
     
-    Dynamichodgkin_huxley_squid_axon_model_1952_modifiedFromCellML::~Dynamichodgkin_huxley_squid_axon_model_1952_modifiedFromCellML()
+    TestManualhodgkin_huxley_squid_axon_model_1952_modifiedFromCellML::~TestManualhodgkin_huxley_squid_axon_model_1952_modifiedFromCellML()
     {
     }
     
-    double Dynamichodgkin_huxley_squid_axon_model_1952_modifiedFromCellML::GetIIonic(const std::vector<double>* pStateVariables)
+    double TestManualhodgkin_huxley_squid_axon_model_1952_modifiedFromCellML::GetIIonic(const std::vector<double>* pStateVariables)
     {
         // For state variable interpolation (SVI) we read in interpolated state variables,
         // otherwise for ionic current interpolation (ICI) we use the state variables of this model (node).
@@ -70,7 +70,7 @@
         return i_ionic;
     }
     
-    void Dynamichodgkin_huxley_squid_axon_model_1952_modifiedFromCellML::EvaluateYDerivatives(double var_chaste_interface__environment__time, const std::vector<double>& rY, std::vector<double>& rDY)
+    void TestManualhodgkin_huxley_squid_axon_model_1952_modifiedFromCellML::EvaluateYDerivatives(double var_chaste_interface__environment__time, const std::vector<double>& rY, std::vector<double>& rDY)
     {
         // Inputs:
         // Time units: millisecond
@@ -123,7 +123,7 @@
     }
     
 template<>
-void OdeSystemInformation<Dynamichodgkin_huxley_squid_axon_model_1952_modifiedFromCellML>::Initialise(void)
+void OdeSystemInformation<TestManualhodgkin_huxley_squid_axon_model_1952_modifiedFromCellML>::Initialise(void)
 {
     this->mSystemName = "hodgkin_huxley_squid_axon_model_1952_modified";
     this->mFreeVariableName = "environment__time";

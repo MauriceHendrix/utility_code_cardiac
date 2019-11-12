@@ -249,10 +249,7 @@ private:
 		double when = 50.0; // ms
 		boost::shared_ptr<AbstractStimulusFunction> p_stimulus(new SimpleStimulus(magnitude, duration, when));
 		boost::shared_ptr<AbstractIvpOdeSolver> p_solver(new EulerIvpOdeSolver);
-		if (rModelName == "hodgkin_huxley_squid_axon_model_1952_modified"){
-			 boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualhodgkin_huxley_squid_axon_model_1952_modifiedFromCellML(p_solver, p_stimulus));
-			return p_cell;
-		}else if(rModelName == "aslanidi_model_2009"){
+		if(rModelName == "aslanidi_model_2009"){
 			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualaslanidi_model_2009FromCellML(p_solver, p_stimulus));
 			return p_cell;
 		}else if(rModelName == "beeler_reuter_model_1977"){
@@ -260,7 +257,10 @@ private:
 			return p_cell;
 		}else if(rModelName == "bondarenko_model_2004_apex"){
 			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualbondarenko_model_2004_apexFromCellML(p_solver, p_stimulus));
-			return p_cell;			
+			return p_cell;
+		}else if(rModelName == "hodgkin_huxley_squid_axon_model_1952_modified"){
+			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualhodgkin_huxley_squid_axon_model_1952_modifiedFromCellML(p_solver, p_stimulus));
+			return p_cell;
 		}else{
 			return NULL;
 		}
