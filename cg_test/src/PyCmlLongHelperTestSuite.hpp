@@ -66,6 +66,9 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "RunAndCheckIonicModels.hpp"
 #include "Warnings.hpp"
 
+#include <fstream>
+#include <cstdio>
+
 
 /**
  * Helper class to allow us to split the PyCmlLong tests into multiple test suites.
