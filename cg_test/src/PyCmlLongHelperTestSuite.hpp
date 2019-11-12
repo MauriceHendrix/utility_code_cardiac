@@ -68,6 +68,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "hodgkin_huxley_squid_axon_model_1952_modified.cpp"
 #include "beeler_reuter_model_1977.cpp"
 #include "aslanidi_model_2009.cpp"
+#include "bondarenko_model_2004_apex.cpp"
 
 /**
  * Helper class to allow us to split the PyCmlLong tests into multiple test suites.
