@@ -256,6 +256,9 @@ private:
 		}else if(rModelName == "beeler_reuter_model_1977"){
 			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Dynamicbeeler_reuter_model_1977FromCellML(p_solver, p_stimulus));
 			return p_cell;
+		}else if(rModelName == "bondarenko_model_2004_apex"){
+			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Dynamicbondarenko_model_2004_apexFromCellML(p_solver, p_stimulus));
+			return p_cell;			
 		}else{
 			return NULL;
 		}
@@ -326,7 +329,7 @@ public:
     {
         rModels.emplace_back("aslanidi_model_2009");
         rModels.emplace_back("beeler_reuter_model_1977");
-        //rModels.emplace_back("bondarenko_model_2004_apex");
+        rModels.emplace_back("bondarenko_model_2004_apex");
         //rModels.emplace_back("courtemanche_ramirez_nattel_model_1998");
         //rModels.emplace_back("decker_2009");
         //rModels.emplace_back("demir_model_1994");

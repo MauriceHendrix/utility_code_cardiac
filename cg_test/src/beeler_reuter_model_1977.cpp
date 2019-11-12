@@ -226,18 +226,3 @@ void OdeSystemInformation<Dynamicbeeler_reuter_model_1977FromCellML>::Initialise
 	this->mInitialised = true;
 }
 
-
-// Serialization for Boost >= 1.36
-#include "SerializationExportWrapperForCpp.hpp"
-CHASTE_CLASS_EXPORT(Dynamicbeeler_reuter_model_1977FromCellML)
-extern "C"
-{
-    AbstractCardiacCellInterface* MakeCardiacCell(
-            boost::shared_ptr<AbstractIvpOdeSolver> pSolver,
-            boost::shared_ptr<AbstractStimulusFunction> pStimulus)
-    {
-        return new Dynamicbeeler_reuter_model_1977FromCellML(pSolver, pStimulus);
-    }
-    
-}
-

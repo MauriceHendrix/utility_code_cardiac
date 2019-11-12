@@ -1039,18 +1039,3 @@ void OdeSystemInformation<Dynamicbondarenko_model_2004_apexFromCellML>::Initiali
     this->mInitialised = true;
 }
 
-
-// Serialization for Boost >= 1.36
-#include "SerializationExportWrapperForCpp.hpp"
-CHASTE_CLASS_EXPORT(Dynamicbondarenko_model_2004_apexFromCellML)
-extern "C"
-{
-    AbstractCardiacCellInterface* MakeCardiacCell(
-            boost::shared_ptr<AbstractIvpOdeSolver> pSolver,
-            boost::shared_ptr<AbstractStimulusFunction> pStimulus)
-    {
-        return new Dynamicbondarenko_model_2004_apexFromCellML(pSolver, pStimulus);
-    }
-    
-}
-
