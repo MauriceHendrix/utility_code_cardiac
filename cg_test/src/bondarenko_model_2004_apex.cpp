@@ -21,7 +21,7 @@
 #include "IsNan.hpp"
 #include "MathsCustomFunctions.hpp"
 
-    boost::shared_ptr<RegularStimulus> Dynamicbondarenko_model_2004_apexFromCellML::UseCellMLDefaultStimulus()
+    boost::shared_ptr<RegularStimulus> TestManualbondarenko_model_2004_apexFromCellML::UseCellMLDefaultStimulus()
     {
         // Use the default stimulus specified by CellML metadata
         const double var_chaste_interface__membrane__stim_start = 20.0; // millisecond
@@ -40,7 +40,7 @@
         return p_cellml_stim;
     }
     
-    Dynamicbondarenko_model_2004_apexFromCellML::Dynamicbondarenko_model_2004_apexFromCellML(boost::shared_ptr<AbstractIvpOdeSolver> pSolver, boost::shared_ptr<AbstractStimulusFunction> pIntracellularStimulus)
+    TestManualbondarenko_model_2004_apexFromCellML::TestManualbondarenko_model_2004_apexFromCellML(boost::shared_ptr<AbstractIvpOdeSolver> pSolver, boost::shared_ptr<AbstractStimulusFunction> pIntracellularStimulus)
         : AbstractCardiacCell(
                 pSolver,
                 41,
@@ -49,18 +49,18 @@
     {
         // Time units: millisecond
         // 
-        this->mpSystemInfo = OdeSystemInformation<Dynamicbondarenko_model_2004_apexFromCellML>::Instance();
+        this->mpSystemInfo = OdeSystemInformation<TestManualbondarenko_model_2004_apexFromCellML>::Instance();
         Init();
 
         // We have a default stimulus specified in the CellML file metadata
         this->mHasDefaultStimulusFromCellML = true;
     }
     
-    Dynamicbondarenko_model_2004_apexFromCellML::~Dynamicbondarenko_model_2004_apexFromCellML()
+    TestManualbondarenko_model_2004_apexFromCellML::~TestManualbondarenko_model_2004_apexFromCellML()
     {
     }
     
-    double Dynamicbondarenko_model_2004_apexFromCellML::GetIIonic(const std::vector<double>* pStateVariables)
+    double TestManualbondarenko_model_2004_apexFromCellML::GetIIonic(const std::vector<double>* pStateVariables)
     {
         // For state variable interpolation (SVI) we read in interpolated state variables,
         // otherwise for ionic current interpolation (ICI) we use the state variables of this model (node).
@@ -244,7 +244,7 @@
         return i_ionic;
     }
     
-    void Dynamicbondarenko_model_2004_apexFromCellML::EvaluateYDerivatives(double var_chaste_interface__environment__time, const std::vector<double>& rY, std::vector<double>& rDY)
+    void TestManualbondarenko_model_2004_apexFromCellML::EvaluateYDerivatives(double var_chaste_interface__environment__time, const std::vector<double>& rY, std::vector<double>& rDY)
     {
         // Inputs:
         // Time units: millisecond
@@ -823,7 +823,7 @@
     }
     
 template<>
-void OdeSystemInformation<Dynamicbondarenko_model_2004_apexFromCellML>::Initialise(void)
+void OdeSystemInformation<TestManualbondarenko_model_2004_apexFromCellML>::Initialise(void)
 {
     this->mSystemName = "bondarenko_model_2004_apex";
     this->mFreeVariableName = "environment__time";

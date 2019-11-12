@@ -33,8 +33,8 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 */
 
-#ifndef PYCMLLONGHELPERCLASS_HPP_
-#define PYCMLLONGHELPERCLASS_HPP_
+#ifndef PYCMLLONGHELPERCLASS_MANUAL_HPP_
+#define PYCMLLONGHELPERCLASS_MANUAL_HPP_
 
 #include <cxxtest/TestSuite.h>
 
@@ -53,7 +53,8 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "AbstractRushLarsenCardiacCell.hpp"
 #include "Timer.hpp"
 
-#include "DynamicLoadingHelperFunctions.hpp"
+#include "SimpleStimulus.hpp"
+#include "EulerIvpOdeSolver.hpp"
 
 #include "CellMLToSharedLibraryConverter.hpp"
 #include "DynamicCellModelLoader.hpp"
@@ -73,7 +74,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /**
  * Helper class to allow us to split the PyCmlLong tests into multiple test suites.
  */
-class PyCmlLongHelperTestSuite : public CxxTest::TestSuite
+class ManualTestSuiteForPycmlCompare : public CxxTest::TestSuite
 {
 
 private:
@@ -190,7 +191,7 @@ private:
 //        DynamicCellModelLoaderPtr p_loader = converter.Convert(copied_file);
 //        // Apply a stimulus of -40 uA/cm^2 - should work for all models
 //        boost::shared_ptr<AbstractCardiacCellInterface> p_cell(CreateCellWithStandardStimulus(*p_loader, -40.0));
-		boost::shared_ptr<AbstractCardiacCellInterface> p_cell = getModel(rModelName, rArgs);
+		boost::shared_ptr<AbstractCardiacCellInterface> p_cell = GetModel(rModelName, rArgs);
 
         // Check that the default stimulus units are correct
         if (p_cell->HasCellMLDefaultStimulus())
@@ -242,23 +243,23 @@ private:
         Simulate(rOutputDirName, rModelName, p_cell);
     }
 
-	boost::shared_ptr<AbstractCardiacCellInterface> getModel(std::string rModelName, std::vector<std::string> rArgs){
+	boost::shared_ptr<AbstractCardiacCellInterface> GetModel(std::string rModelName, std::vector<std::string> rArgs){
 		double magnitude=-40.0;
 		double duration = 2.0; // ms
 		double when = 50.0; // ms
 		boost::shared_ptr<AbstractStimulusFunction> p_stimulus(new SimpleStimulus(magnitude, duration, when));
 		boost::shared_ptr<AbstractIvpOdeSolver> p_solver(new EulerIvpOdeSolver);
 		if (rModelName == "hodgkin_huxley_squid_axon_model_1952_modified"){
-			 boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Dynamichodgkin_huxley_squid_axon_model_1952_modifiedFromCellML(p_solver, p_stimulus));
+			 boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualhodgkin_huxley_squid_axon_model_1952_modifiedFromCellML(p_solver, p_stimulus));
 			return p_cell;
 		}else if(rModelName == "aslanidi_model_2009"){
-			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Dynamicaslanidi_model_2009FromCellML(p_solver, p_stimulus));
+			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualaslanidi_model_2009FromCellML(p_solver, p_stimulus));
 			return p_cell;
 		}else if(rModelName == "beeler_reuter_model_1977"){
-			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Dynamicbeeler_reuter_model_1977FromCellML(p_solver, p_stimulus));
+			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualbeeler_reuter_model_1977FromCellML(p_solver, p_stimulus));
 			return p_cell;
 		}else if(rModelName == "bondarenko_model_2004_apex"){
-			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Dynamicbondarenko_model_2004_apexFromCellML(p_solver, p_stimulus));
+			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualbondarenko_model_2004_apexFromCellML(p_solver, p_stimulus));
 			return p_cell;			
 		}else{
 			return NULL;
@@ -376,4 +377,4 @@ public:
     }
 };
 
-#endif // PYCMLLONGHELPERCLASS_HPP_
+#endif // PYCMLLONGHELPERCLASS_MANUAL_HPP_

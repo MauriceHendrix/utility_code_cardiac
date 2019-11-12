@@ -1,5 +1,5 @@
-#ifndef DYNAMICASLANIDI_MODEL_2009FROMCELLML_HPP_
-#define DYNAMICASLANIDI_MODEL_2009FROMCELLML_HPP_
+#ifndef TESTMANUALASLANIDI_MODEL_2009FROMCELLML_HPP_
+#define TESTMANUALASLANIDI_MODEL_2009FROMCELLML_HPP_
 
 //! @file
 //! 
@@ -19,7 +19,7 @@
 #include "AbstractDynamicallyLoadableEntity.hpp"
 #include "AbstractStimulusFunction.hpp"
 
-class Dynamicaslanidi_model_2009FromCellML : public AbstractCardiacCell, public AbstractDynamicallyLoadableEntity
+class TestManualaslanidi_model_2009FromCellML : public AbstractCardiacCell, public AbstractDynamicallyLoadableEntity
 {
     friend class boost::serialization::access;
     template<class Archive>
@@ -35,8 +35,8 @@ class Dynamicaslanidi_model_2009FromCellML : public AbstractCardiacCell, public 
     
 public:
     boost::shared_ptr<RegularStimulus> UseCellMLDefaultStimulus();
-    Dynamicaslanidi_model_2009FromCellML(boost::shared_ptr<AbstractIvpOdeSolver> pSolver, boost::shared_ptr<AbstractStimulusFunction> pIntracellularStimulus);
-    ~Dynamicaslanidi_model_2009FromCellML();
+    TestManualaslanidi_model_2009FromCellML(boost::shared_ptr<AbstractIvpOdeSolver> pSolver, boost::shared_ptr<AbstractStimulusFunction> pIntracellularStimulus);
+    ~TestManualaslanidi_model_2009FromCellML();
     double GetIIonic(const std::vector<double>* pStateVariables=NULL);
     void EvaluateYDerivatives(double var_chaste_interface__environment__time, const std::vector<double>& rY, std::vector<double>& rDY);
 };
@@ -44,7 +44,7 @@ public:
 
 // Needs to be included last
 #include "SerializationExportWrapper.hpp"
-CHASTE_CLASS_EXPORT(Dynamicaslanidi_model_2009FromCellML)
+CHASTE_CLASS_EXPORT(TestManualaslanidi_model_2009FromCellML)
 
 namespace boost
 {
@@ -52,7 +52,7 @@ namespace boost
     {
         template<class Archive>
         inline void save_construct_data(
-            Archive & ar, const Dynamicaslanidi_model_2009FromCellML * t, const unsigned int fileVersion)
+            Archive & ar, const TestManualaslanidi_model_2009FromCellML * t, const unsigned int fileVersion)
         {
             const boost::shared_ptr<AbstractIvpOdeSolver> p_solver = t->GetSolver();
             const boost::shared_ptr<AbstractStimulusFunction> p_stimulus = t->GetStimulusFunction();
@@ -62,17 +62,17 @@ namespace boost
         
         template<class Archive>
         inline void load_construct_data(
-            Archive & ar, Dynamicaslanidi_model_2009FromCellML * t, const unsigned int fileVersion)
+            Archive & ar, TestManualaslanidi_model_2009FromCellML * t, const unsigned int fileVersion)
         {
             boost::shared_ptr<AbstractIvpOdeSolver> p_solver;
             boost::shared_ptr<AbstractStimulusFunction> p_stimulus;
             ar >> p_solver;
             ar >> p_stimulus;
-            ::new(t)Dynamicaslanidi_model_2009FromCellML(p_solver, p_stimulus);
+            ::new(t)TestManualaslanidi_model_2009FromCellML(p_solver, p_stimulus);
         }
         
     }
     
 }
 
-#endif // DYNAMICASLANIDI_MODEL_2009FROMCELLML_HPP_
+#endif // TESTMANUALASLANIDI_MODEL_2009FROMCELLML_HPP_

@@ -1,7 +1,7 @@
 #ifndef TESTCG_HPP_
 #define TESTCG_HPP_
 
-#include "PyCmlLongHelperTestSuite.hpp"
+#include "ManualTestSuiteForPycmlCompare.hpp"
 
 #include <boost/foreach.hpp>
 #include <vector>
