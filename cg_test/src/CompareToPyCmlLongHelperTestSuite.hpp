@@ -33,8 +33,8 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 */
 
-#ifndef PYCMLLONGHELPERCLASS_MANUAL_HPP_
-#define PYCMLLONGHELPERCLASS_MANUAL_HPP_
+#ifndef COMPARETOPYCMLLONGHELPERCLASS_MANUAL_HPP_
+#define COMPARETOPYCMLLONGHELPERCLASS_MANUAL_HPP_
 
 #include <cxxtest/TestSuite.h>
 
@@ -74,7 +74,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /**
  * Helper class to allow us to split the PyCmlLong tests into multiple test suites.
  */
-class PyCmlLongHelperTestSuite : public CxxTest::TestSuite
+class CompareToPyCmlLongHelperTestSuite : public CxxTest::TestSuite
 {
 
 private:
@@ -377,4 +377,4 @@ public:
     }
 };
 
-#endif // PYCMLLONGHELPERCLASS_MANUAL_HPP_
+#endif // COMPARETOPYCMLLONGHELPERCLASS_MANUAL_HPP_

@@ -8,7 +8,7 @@
 
 #include "HeartConfig.hpp"
 
-#include "PetscSetupAndFinalize.hpp"
+#include "CompareToPyCmlLongHelperTestSuite.hpp"
 
 /**
  * Test PyCml functionality by dynamically loading (and hence converting) a wide
@@ -17,7 +17,7 @@
  * May need a test-suite setup or similar to define model-specific parameters?
  * Should we pick up the list of models by reading the folder heart/test/data/cellml?
  */
-class TestCg : public PyCmlLongHelperTestSuite
+class TestCg : public CompareToPyCmlLongHelperTestSuite
 {
 public:
     void TestNormalCells()
