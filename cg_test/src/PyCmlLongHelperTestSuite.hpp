@@ -65,9 +65,10 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "HeartConfig.hpp"
 #include "RunAndCheckIonicModels.hpp"
 #include "Warnings.hpp"
-
-#include<stdio.h>
-
+#include "hodgkin_huxley_squid_axon_model_1952_modified.cpp"
+#include "beeler_reuter_model_1977.cpp"
+#include "aslanidi_model_2009.cpp"
+#include "bondarenko_model_2004_apex.cpp"
 
 /**
  * Helper class to allow us to split the PyCmlLong tests into multiple test suites.
@@ -186,17 +187,10 @@ private:
 
         // Do the conversion
         FileFinder copied_file(rOutputDirName + "/" + rModelName + ".cellml", RelativeTo::ChasteTestOutput);
-        DynamicCellModelLoaderPtr p_loader = converter.Convert(copied_file);
-		std::string cpp_name = rOutputDirName + "/" + rModelName + ".cpp";
-		std::string hpp_name = rOutputDirName + "/" + rModelName + ".cpp";
-		remove(cpp_name.c_str());
-		remove(hpp_name.c_str());
-        //FileFinder cpp_file("projects/cg_test/src/" + rModelName + ".cpp", RelativeTo::ChasteSourceRoot);
-		//FileFinder hpp_file("projects/cg_test/src/" + rModelName + ".hpp", RelativeTo::ChasteSourceRoot);
-		//handler.CopyFileTo(cpp_file);		
-		//handler.CopyFileTo(cpp_file);
-        // Apply a stimulus of -40 uA/cm^2 - should work for all models
-        boost::shared_ptr<AbstractCardiacCellInterface> p_cell(CreateCellWithStandardStimulus(*p_loader, -40.0));
+//        DynamicCellModelLoaderPtr p_loader = converter.Convert(copied_file);
+//        // Apply a stimulus of -40 uA/cm^2 - should work for all models
+//        boost::shared_ptr<AbstractCardiacCellInterface> p_cell(CreateCellWithStandardStimulus(*p_loader, -40.0));
+		boost::shared_ptr<AbstractCardiacCellInterface> p_cell = getModel(rModelName, rArgs);
 
         // Check that the default stimulus units are correct
         if (p_cell->HasCellMLDefaultStimulus())
@@ -247,6 +241,29 @@ private:
                   << std::flush;
         Simulate(rOutputDirName, rModelName, p_cell);
     }
+
+	boost::shared_ptr<AbstractCardiacCellInterface> getModel(std::string rModelName, std::vector<std::string> rArgs){
+		double magnitude=-40.0;
+		double duration = 2.0; // ms
+		double when = 50.0; // ms
+		boost::shared_ptr<AbstractStimulusFunction> p_stimulus(new SimpleStimulus(magnitude, duration, when));
+		boost::shared_ptr<AbstractIvpOdeSolver> p_solver(new EulerIvpOdeSolver);
+		if (rModelName == "hodgkin_huxley_squid_axon_model_1952_modified"){
+			 boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Dynamichodgkin_huxley_squid_axon_model_1952_modifiedFromCellML(p_solver, p_stimulus));
+			return p_cell;
+		}else if(rModelName == "aslanidi_model_2009"){
+			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Dynamicaslanidi_model_2009FromCellML(p_solver, p_stimulus));
+			return p_cell;
+		}else if(rModelName == "beeler_reuter_model_1977"){
+			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Dynamicbeeler_reuter_model_1977FromCellML(p_solver, p_stimulus));
+			return p_cell;
+		}else if(rModelName == "bondarenko_model_2004_apex"){
+			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Dynamicbondarenko_model_2004_apexFromCellML(p_solver, p_stimulus));
+			return p_cell;			
+		}else{
+			return NULL;
+		}
+	}
 
 public:
     void RunTests(const std::string& rOutputDirName,
