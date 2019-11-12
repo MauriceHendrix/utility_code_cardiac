@@ -65,10 +65,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "HeartConfig.hpp"
 #include "RunAndCheckIonicModels.hpp"
 #include "Warnings.hpp"
-#include "hodgkin_huxley_squid_axon_model_1952_modified.cpp"
-#include "beeler_reuter_model_1977.cpp"
-#include "aslanidi_model_2009.cpp"
-#include "bondarenko_model_2004_apex.cpp"
+
 
 /**
  * Helper class to allow us to split the PyCmlLong tests into multiple test suites.
@@ -187,10 +184,13 @@ private:
 
         // Do the conversion
         FileFinder copied_file(rOutputDirName + "/" + rModelName + ".cellml", RelativeTo::ChasteTestOutput);
-//        DynamicCellModelLoaderPtr p_loader = converter.Convert(copied_file);
-//        // Apply a stimulus of -40 uA/cm^2 - should work for all models
-//        boost::shared_ptr<AbstractCardiacCellInterface> p_cell(CreateCellWithStandardStimulus(*p_loader, -40.0));
-		boost::shared_ptr<AbstractCardiacCellInterface> p_cell = getModel(rModelName, rArgs);
+        DynamicCellModelLoaderPtr p_loader = converter.Convert(copied_file);
+        FileFinder cellml_file("projects/cg_test/src/" + rModelName + ".cpp", RelativeTo::ChasteSourceRoot);
+		FileFinder cellml_file("projects/cg_test/src/" + rModelName + ".hpp", RelativeTo::ChasteSourceRoot);
+        handler.CopyFileTo(cellml_file);		
+        // Apply a stimulus of -40 uA/cm^2 - should work for all models
+        boost::shared_ptr<AbstractCardiacCellInterface> p_cell(CreateCellWithStandardStimulus(*p_loader, -40.0));
+//		boost::shared_ptr<AbstractCardiacCellInterface> p_cell = getModel(rModelName, rArgs);
 
         // Check that the default stimulus units are correct
         if (p_cell->HasCellMLDefaultStimulus())
