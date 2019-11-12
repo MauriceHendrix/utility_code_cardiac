@@ -190,7 +190,6 @@ private:
         handler.CopyFileTo(cellml_file);		
         // Apply a stimulus of -40 uA/cm^2 - should work for all models
         boost::shared_ptr<AbstractCardiacCellInterface> p_cell(CreateCellWithStandardStimulus(*p_loader, -40.0));
-//		boost::shared_ptr<AbstractCardiacCellInterface> p_cell = getModel(rModelName, rArgs);
 
         // Check that the default stimulus units are correct
         if (p_cell->HasCellMLDefaultStimulus())
@@ -241,29 +240,6 @@ private:
                   << std::flush;
         Simulate(rOutputDirName, rModelName, p_cell);
     }
-
-	boost::shared_ptr<AbstractCardiacCellInterface> getModel(std::string rModelName, std::vector<std::string> rArgs){
-		double magnitude=-40.0;
-		double duration = 2.0; // ms
-		double when = 50.0; // ms
-		boost::shared_ptr<AbstractStimulusFunction> p_stimulus(new SimpleStimulus(magnitude, duration, when));
-		boost::shared_ptr<AbstractIvpOdeSolver> p_solver(new EulerIvpOdeSolver);
-		if (rModelName == "hodgkin_huxley_squid_axon_model_1952_modified"){
-			 boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Dynamichodgkin_huxley_squid_axon_model_1952_modifiedFromCellML(p_solver, p_stimulus));
-			return p_cell;
-		}else if(rModelName == "aslanidi_model_2009"){
-			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Dynamicaslanidi_model_2009FromCellML(p_solver, p_stimulus));
-			return p_cell;
-		}else if(rModelName == "beeler_reuter_model_1977"){
-			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Dynamicbeeler_reuter_model_1977FromCellML(p_solver, p_stimulus));
-			return p_cell;
-		}else if(rModelName == "bondarenko_model_2004_apex"){
-			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Dynamicbondarenko_model_2004_apexFromCellML(p_solver, p_stimulus));
-			return p_cell;			
-		}else{
-			return NULL;
-		}
-	}
 
 public:
     void RunTests(const std::string& rOutputDirName,
