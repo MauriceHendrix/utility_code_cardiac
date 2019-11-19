@@ -71,6 +71,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "TestManualbeeler_reuter_model_1977.hpp"
 #include "TestManualbondarenko_model_2004_apex.hpp"
 #include "TestManualhodgkin_huxley_squid_axon_model_1952_modified.hpp"
+#include "TestManualmahajan_2008.hpp"
 
 /**
  * Helper class to allow us to split the PyCmlLong tests into multiple test suites.
@@ -259,6 +260,9 @@ private:
 		}else if(rModelName == "bondarenko_model_2004_apex"){
 			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualbondarenko_model_2004_apexFromCellML(p_solver, p_stimulus));
 			return p_cell;
+		}else if(rModelName == "mahajan_2008"){
+			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualmahajan_2008FromCellML(p_solver, p_stimulus));
+			return p_cell;
 		}else if(rModelName == "hodgkin_huxley_squid_axon_model_1952_modified"){
 			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualhodgkin_huxley_squid_axon_model_1952_modifiedFromCellML(p_solver, p_stimulus));
 			return p_cell;
@@ -351,7 +355,7 @@ public:
         //rModels.emplace_back("kurata_model_2002");
         //rModels.emplace_back("livshitz_rudy_2007");
         //rModels.emplace_back("luo_rudy_1994");
-        //rModels.emplace_back("mahajan_2008");
+        rModels.emplace_back("mahajan_2008");
         //rModels.emplace_back("matsuoka_model_2003");
         //rModels.emplace_back("noble_model_1991");
         //rModels.emplace_back("noble_model_1998");
