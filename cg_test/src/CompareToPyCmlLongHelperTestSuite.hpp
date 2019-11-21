@@ -380,7 +380,7 @@ public:
         rModels.emplace_back("aslanidi_model_2009");
         rModels.emplace_back("beeler_reuter_model_1977");
         rModels.emplace_back("bondarenko_model_2004_apex");
-        rModels.emplace_back(rModels.emplace_back("courtemanche_ramirez_nattel_model_1998");
+        rModels.emplace_back("courtemanche_ramirez_nattel_model_1998");
         //rModels.emplace_back("decker_2009");
         //rModels.emplace_back("demir_model_1994");
         //rModels.emplace_back("dokos_model_1996");
