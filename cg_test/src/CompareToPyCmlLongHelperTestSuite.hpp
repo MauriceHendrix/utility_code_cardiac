@@ -67,11 +67,11 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "RunAndCheckIonicModels.hpp"
 #include "Warnings.hpp"
 
-#include "TestManualaslanidi_model_2009.hpp"
-#include "TestManualbeeler_reuter_model_1977.hpp"
-#include "TestManualbondarenko_model_2004_apex.hpp"
-#include "TestManualhodgkin_huxley_squid_axon_model_1952_modified.hpp"
-#include "TestManualmahajan_2008.hpp"
+#include "aslanidi_model_2009.hpp"
+#include "beeler_reuter_model_1977.hpp"
+#include "bondarenko_model_2004_apex.hpp"
+#include "hodgkin_huxley_squid_axon_model_1952_modified.hpp"
+#include "mahajan_2008.hpp"
 
 /**
  * Helper class to allow us to split the PyCmlLong tests into multiple test suites.
