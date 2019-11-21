@@ -73,6 +73,49 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "hodgkin_huxley_squid_axon_model_1952_modified.hpp"
 #include "mahajan_2008.hpp"
 
+
+#include "aslanidi_model_2009"
+#include "beeler_reuter_model_1977"
+#include "bondarenko_model_2004_apex"
+#include "courtemanche_ramirez_nattel_model_1998"
+//#include "decker_2009"
+//#include demir_model_1994"
+//#include dokos_model_1996"
+//#include earm_noble_model_1990"
+//#include espinosa_model_1998_normal"
+//#include fink_noble_giles_model_2008"
+//#include grandi2010ss"
+//#include hilgemann_noble_model_1987"
+#include "hodgkin_huxley_squid_axon_model_1952_modified"
+//#include hund_rudy_2004_a"
+//#include iribe_model_2006_without_otherwise_section"
+//#include iyer_model_2004"
+//#include iyer_model_2007"
+//#include jafri_rice_winslow_model_1998"
+//#include kurata_model_2002"
+//#include livshitz_rudy_2007"
+#include "luo_rudy_1994"
+#include "mahajan_2008"
+//#include matsuoka_model_2003"
+//#include noble_model_1991"
+//#include noble_model_1998"
+//#include noble_noble_SAN_model_1984"
+//#include noble_SAN_model_1989"
+//#include nygren_atrial_model_1998"
+//#include pandit_model_2001_epi"
+//#include priebe_beuckelmann_model_1998"
+//#include sakmann_model_2000_epi"
+//#include Shannon2004"
+//#include stewart_zhang_model_2008_ss"
+//#include ten_tusscher_model_2004_endo"
+//#include ten_tusscher_model_2004_epi"
+//#include ten_tusscher_model_2006_epi"
+//#include viswanathan_model_1999_epi"
+//#include winslow_model_1999"
+//#include zhang_SAN_model_2000_0D_capable"
+//#include zhang_SAN_model_2000_all"
+
+
 /**
  * Helper class to allow us to split the PyCmlLong tests into multiple test suites.
  */
@@ -337,7 +380,7 @@ public:
         rModels.emplace_back("aslanidi_model_2009");
         rModels.emplace_back("beeler_reuter_model_1977");
         rModels.emplace_back("bondarenko_model_2004_apex");
-        //rModels.emplace_back("courtemanche_ramirez_nattel_model_1998");
+        rModels.emplace_back(rModels.emplace_back("courtemanche_ramirez_nattel_model_1998");
         //rModels.emplace_back("decker_2009");
         //rModels.emplace_back("demir_model_1994");
         //rModels.emplace_back("dokos_model_1996");
@@ -354,7 +397,7 @@ public:
         //rModels.emplace_back("jafri_rice_winslow_model_1998");
         //rModels.emplace_back("kurata_model_2002");
         //rModels.emplace_back("livshitz_rudy_2007");
-        //rModels.emplace_back("luo_rudy_1994");
+        rModels.emplace_back("luo_rudy_1994");
         rModels.emplace_back("mahajan_2008");
         //rModels.emplace_back("matsuoka_model_2003");
         //rModels.emplace_back("noble_model_1991");
