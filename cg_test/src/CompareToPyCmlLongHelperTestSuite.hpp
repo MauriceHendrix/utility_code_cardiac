@@ -79,7 +79,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "bondarenko_model_2004_apex.hpp"
 #include "courtemanche_ramirez_nattel_model_1998.hpp"
 //#include "decker_2009.hpp"
-//#include "demir_model_1994.hpp"
+#include "demir_model_1994.hpp"
 //#include "dokos_model_1996.hpp"
 //#include "earm_noble_model_1990.hpp"
 //#include "espinosa_model_1998_normal.hpp"
@@ -311,9 +311,9 @@ private:
 //		}else if(rModelName == "decker_2009"){
 //			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualdecker_2009FromCellML(p_solver, p_stimulus));
 //			return p_cell;
-//		}else if(rModelName == "demir_model_1994"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualdemir_model_1994FromCellML(p_solver, p_stimulus));
-//			return p_cell;
+		}else if(rModelName == "demir_model_1994"){
+			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualdemir_model_1994FromCellML(p_solver, p_stimulus));
+			return p_cell;
 //		}else if(rModelName == "dokos_model_1996"){
 //			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualdokos_model_1996FromCellML(p_solver, p_stimulus));
 //			return p_cell;
@@ -489,7 +489,7 @@ public:
         rModels.emplace_back("bondarenko_model_2004_apex");
         rModels.emplace_back("courtemanche_ramirez_nattel_model_1998");
         //rModels.emplace_back("decker_2009");
-        //rModels.emplace_back("demir_model_1994");
+        rModels.emplace_back("demir_model_1994");
         //rModels.emplace_back("dokos_model_1996");
         //rModels.emplace_back("earm_noble_model_1990");
         //rModels.emplace_back("espinosa_model_1998_normal");
