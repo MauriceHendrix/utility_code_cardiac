@@ -82,13 +82,13 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "demir_model_1994.hpp"
 #include "dokos_model_1996.hpp"
 #include "earm_noble_model_1990.hpp"
-//#include "espinosa_model_1998_normal.hpp"
+#include "espinosa_model_1998_normal.hpp"
 //#include "fink_noble_giles_model_2008.hpp"
 //#include "grandi2010ss.hpp"
 //#include "hilgemann_noble_model_1987.hpp"
 #include "hodgkin_huxley_squid_axon_model_1952_modified.hpp"
 //#include "hund_rudy_2004_a.hpp"
-//#include "iribe_model_2006_without_otherwise_section.hpp"
+#include "iribe_model_2006_without_otherwise_section.hpp"
 #include "iyer_model_2004.hpp"
 //#include "iyer_model_2007.hpp"
 //#include "jafri_rice_winslow_model_1998.hpp"
@@ -320,9 +320,9 @@ private:
 		}else if(rModelName == "earm_noble_model_1990"){
 			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellearm_noble_model_1990FromCellML(p_solver, p_stimulus));
 			return p_cell;
-//		}else if(rModelName == "espinosa_model_1998_normal"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellespinosa_model_1998_normalFromCellML(p_solver, p_stimulus));
-//			return p_cell;
+		}else if(rModelName == "espinosa_model_1998_normal"){
+			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellespinosa_model_1998_normalFromCellML(p_solver, p_stimulus));
+			return p_cell;
 //		}else if(rModelName == "fink_noble_giles_model_2008"){
 //			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellfink_noble_giles_model_2008FromCellML(p_solver, p_stimulus));
 //			return p_cell;
@@ -338,9 +338,9 @@ private:
 //		}else if(rModelName == "hund_rudy_2004_a"){
 //			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellhund_rudy_2004_aFromCellML(p_solver, p_stimulus));
 //			return p_cell;
-//		}else if(rModelName == "iribe_model_2006_without_otherwise_section"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Celliribe_model_2006_without_otherwise_sectionFromCellML(p_solver, p_stimulus));
-//			return p_cell;
+		}else if(rModelName == "iribe_model_2006_without_otherwise_section"){
+			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Celliribe_model_2006_without_otherwise_sectionFromCellML(p_solver, p_stimulus));
+			return p_cell;
 		}else if(rModelName == "iyer_model_2004"){
 			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Celliyer_model_2004FromCellML(p_solver, p_stimulus));
 			return p_cell;
@@ -492,13 +492,13 @@ public:
         rModels.emplace_back("demir_model_1994");
         rModels.emplace_back("dokos_model_1996");
         rModels.emplace_back("earm_noble_model_1990");
-        //rModels.emplace_back("espinosa_model_1998_normal");
+        rModels.emplace_back("espinosa_model_1998_normal");
         //rModels.emplace_back("fink_noble_giles_model_2008");
         //rModels.emplace_back("grandi2010ss");
         //rModels.emplace_back("hilgemann_noble_model_1987");
         rModels.emplace_back("hodgkin_huxley_squid_axon_model_1952_modified");
         //rModels.emplace_back("hund_rudy_2004_a");
-        //rModels.emplace_back("iribe_model_2006_without_otherwise_section");
+        rModels.emplace_back("iribe_model_2006_without_otherwise_section");
         rModels.emplace_back("iyer_model_2004");
         //rModels.emplace_back("iyer_model_2007");
         //rModels.emplace_back("jafri_rice_winslow_model_1998");
