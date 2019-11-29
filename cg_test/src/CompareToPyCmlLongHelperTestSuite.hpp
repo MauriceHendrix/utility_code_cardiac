@@ -78,7 +78,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "beeler_reuter_model_1977.hpp"
 #include "bondarenko_model_2004_apex.hpp"
 #include "courtemanche_ramirez_nattel_model_1998.hpp"
-//#include "decker_2009.hpp"
+#include "decker_2009.hpp"
 #include "demir_model_1994.hpp"
 //#include "dokos_model_1996.hpp"
 //#include "earm_noble_model_1990.hpp"
@@ -297,124 +297,124 @@ private:
 
         
 		if(rModelName == "aslanidi_model_2009"){
-			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualaslanidi_model_2009FromCellML(p_solver, p_stimulus));
+			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellaslanidi_model_2009FromCellML(p_solver, p_stimulus));
 			return p_cell;
 		}else if(rModelName == "beeler_reuter_model_1977"){
-			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualbeeler_reuter_model_1977FromCellML(p_solver, p_stimulus));
+			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellbeeler_reuter_model_1977FromCellML(p_solver, p_stimulus));
 			return p_cell;
 		}else if(rModelName == "bondarenko_model_2004_apex"){
-			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualbondarenko_model_2004_apexFromCellML(p_solver, p_stimulus));
+			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellbondarenko_model_2004_apexFromCellML(p_solver, p_stimulus));
 			return p_cell;
 		}else if(rModelName == "courtemanche_ramirez_nattel_model_1998"){
-			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualcourtemanche_ramirez_nattel_model_1998FromCellML(p_solver, p_stimulus));
+			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellcourtemanche_ramirez_nattel_model_1998FromCellML(p_solver, p_stimulus));
 			return p_cell;
-//		}else if(rModelName == "decker_2009"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualdecker_2009FromCellML(p_solver, p_stimulus));
-//			return p_cell;
+		}else if(rModelName == "decker_2009"){
+			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Celldecker_2009FromCellML(p_solver, p_stimulus));
+			return p_cell;
 		}else if(rModelName == "demir_model_1994"){
-			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualdemir_model_1994FromCellML(p_solver, p_stimulus));
+			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Celldemir_model_1994FromCellML(p_solver, p_stimulus));
 			return p_cell;
 //		}else if(rModelName == "dokos_model_1996"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualdokos_model_1996FromCellML(p_solver, p_stimulus));
+//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Celldokos_model_1996FromCellML(p_solver, p_stimulus));
 //			return p_cell;
 //		}else if(rModelName == "earm_noble_model_1990"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualearm_noble_model_1990FromCellML(p_solver, p_stimulus));
+//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellearm_noble_model_1990FromCellML(p_solver, p_stimulus));
 //			return p_cell;
 //		}else if(rModelName == "espinosa_model_1998_normal"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualespinosa_model_1998_normalFromCellML(p_solver, p_stimulus));
+//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellespinosa_model_1998_normalFromCellML(p_solver, p_stimulus));
 //			return p_cell;
 //		}else if(rModelName == "fink_noble_giles_model_2008"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualfink_noble_giles_model_2008FromCellML(p_solver, p_stimulus));
+//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellfink_noble_giles_model_2008FromCellML(p_solver, p_stimulus));
 //			return p_cell;
 //		}else if(rModelName == "grandi2010ss"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualgrandi2010ssFromCellML(p_solver, p_stimulus));
+//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellgrandi2010ssFromCellML(p_solver, p_stimulus));
 //			return p_cell;
 //		}else if(rModelName == "hilgemann_noble_model_1987"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualhilgemann_noble_model_1987FromCellML(p_solver, p_stimulus));
+//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellhilgemann_noble_model_1987FromCellML(p_solver, p_stimulus));
 //			return p_cell;
 		}else if(rModelName == "hodgkin_huxley_squid_axon_model_1952_modified"){
-			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualhodgkin_huxley_squid_axon_model_1952_modifiedFromCellML(p_solver, p_stimulus));
+			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellhodgkin_huxley_squid_axon_model_1952_modifiedFromCellML(p_solver, p_stimulus));
 			return p_cell;
 //		}else if(rModelName == "hund_rudy_2004_a"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualhund_rudy_2004_aFromCellML(p_solver, p_stimulus));
+//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellhund_rudy_2004_aFromCellML(p_solver, p_stimulus));
 //			return p_cell;
 //		}else if(rModelName == "iribe_model_2006_without_otherwise_section"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualiribe_model_2006_without_otherwise_sectionFromCellML(p_solver, p_stimulus));
+//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Celliribe_model_2006_without_otherwise_sectionFromCellML(p_solver, p_stimulus));
 //			return p_cell;
 //		}else if(rModelName == "iyer_model_2004"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualiyer_model_2004FromCellML(p_solver, p_stimulus));
+//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Celliyer_model_2004FromCellML(p_solver, p_stimulus));
 //			return p_cell;
 //		}else if(rModelName == "iyer_model_2007"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualiyer_model_2007FromCellML(p_solver, p_stimulus));
+//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Celliyer_model_2007FromCellML(p_solver, p_stimulus));
 //			return p_cell;
 //		}else if(rModelName == "jafri_rice_winslow_model_1998"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualjafri_rice_winslow_model_1998FromCellML(p_solver, p_stimulus));
+//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Celljafri_rice_winslow_model_1998FromCellML(p_solver, p_stimulus));
 //			return p_cell;
 //		}else if(rModelName == "kurata_model_2002"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualkurata_model_2002FromCellML(p_solver, p_stimulus));
+//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellkurata_model_2002FromCellML(p_solver, p_stimulus));
 //			return p_cell;
 //		}else if(rModelName == "livshitz_rudy_2007"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManuallivshitz_rudy_2007FromCellML(p_solver, p_stimulus));
+//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Celllivshitz_rudy_2007FromCellML(p_solver, p_stimulus));
 //			return p_cell;
 		}else if(rModelName == "luo_rudy_1994"){
-			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualluo_rudy_1994FromCellML(p_solver, p_stimulus));
+			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellluo_rudy_1994FromCellML(p_solver, p_stimulus));
 			return p_cell;
 		}else if(rModelName == "mahajan_2008"){
-			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualmahajan_2008FromCellML(p_solver, p_stimulus));
+			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellmahajan_2008FromCellML(p_solver, p_stimulus));
 			return p_cell;
 //		}else if(rModelName == "matsuoka_model_2003"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualmatsuoka_model_2003romCellML(p_solver, p_stimulus));
+//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellmatsuoka_model_2003romCellML(p_solver, p_stimulus));
 //			return p_cell;
 //		}else if(rModelName == "noble_model_1991"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManual aslanidi_model_2009FromCellML(p_solver, p_stimulus));
+//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cell aslanidi_model_2009FromCellML(p_solver, p_stimulus));
 //			return p_cell;
 //		}else if(rModelName == "noble_model_1998"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualnoble_model_1991FromCellML(p_solver, p_stimulus));
+//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellnoble_model_1991FromCellML(p_solver, p_stimulus));
 //			return p_cell;
 //		}else if(rModelName == "noble_noble_SAN_model_1984"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualnoble_noble_SAN_model_1984FromCellML(p_solver, p_stimulus));
+//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellnoble_noble_SAN_model_1984FromCellML(p_solver, p_stimulus));
 //			return p_cell;
 //		}else if(rModelName == "noble_SAN_model_1989"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualnoble_SAN_model_1989FromCellML(p_solver, p_stimulus));
+//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellnoble_SAN_model_1989FromCellML(p_solver, p_stimulus));
 //			return p_cell;
 //		}else if(rModelName == "nygren_atrial_model_1998"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualnygren_atrial_model_1998FromCellML(p_solver, p_stimulus));
+//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellnygren_atrial_model_1998FromCellML(p_solver, p_stimulus));
 //			return p_cell;
 //		}else if(rModelName == "pandit_model_2001_epi"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualpandit_model_2001_epiFromCellML(p_solver, p_stimulus));
+//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellpandit_model_2001_epiFromCellML(p_solver, p_stimulus));
 //			return p_cell;
 //		}else if(rModelName == "priebe_beuckelmann_model_1998"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualpriebe_beuckelmann_model_1998FromCellML(p_solver, p_stimulus));
+//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellpriebe_beuckelmann_model_1998FromCellML(p_solver, p_stimulus));
 //			return p_cell;
 //		}else if(rModelName == "sakmann_model_2000_epi"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualsakmann_model_2000_epiFromCellML(p_solver, p_stimulus));
+//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellsakmann_model_2000_epiFromCellML(p_solver, p_stimulus));
 //			return p_cell;
 //		}else if(rModelName == "Shannon2004"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualShannon2004FromCellML(p_solver, p_stimulus));
+//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new CellShannon2004FromCellML(p_solver, p_stimulus));
 //			return p_cell;
 //		}else if(rModelName == "stewart_zhang_model_2008_ss"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualstewart_zhang_model_2008_ssFromCellML(p_solver, p_stimulus));
+//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellstewart_zhang_model_2008_ssFromCellML(p_solver, p_stimulus));
 //			return p_cell;
 //		}else if(rModelName == "ten_tusscher_model_2004_endo"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualten_tusscher_model_2004_endoFromCellML(p_solver, p_stimulus));
+//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellten_tusscher_model_2004_endoFromCellML(p_solver, p_stimulus));
 //			return p_cell;
 //		}else if(rModelName == "ten_tusscher_model_2004_epi"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualten_tusscher_model_2004_epiFromCellML(p_solver, p_stimulus));
+//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellten_tusscher_model_2004_epiFromCellML(p_solver, p_stimulus));
 //			return p_cell;
 //		}else if(rModelName == "ten_tusscher_model_2006_epi"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualten_tusscher_model_2006_epiFromCellML(p_solver, p_stimulus));
+//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellten_tusscher_model_2006_epiFromCellML(p_solver, p_stimulus));
 //			return p_cell;
 //		}else if(rModelName == "viswanathan_model_1999_epi"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualviswanathan_model_1999_epiFromCellML(p_solver, p_stimulus));
+//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellviswanathan_model_1999_epiFromCellML(p_solver, p_stimulus));
 //			return p_cell;
 //		}else if(rModelName == "winslow_model_1999"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualwinslow_model_1999FromCellML(p_solver, p_stimulus));
+//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellwinslow_model_1999FromCellML(p_solver, p_stimulus));
 //			return p_cell;
 //		}else if(rModelName == "zhang_SAN_model_2000_0D_capable"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualzhang_SAN_model_2000_0D_capableFromCellML(p_solver, p_stimulus));
+//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellzhang_SAN_model_2000_0D_capableFromCellML(p_solver, p_stimulus));
 //			return p_cell;
 //		}else if(rModelName == "zhang_SAN_model_2000_all"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new TestManualzhang_SAN_model_2000_allFromCellML(p_solver, p_stimulus));
+//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellzhang_SAN_model_2000_allFromCellML(p_solver, p_stimulus));
 //			return p_cell;
 		}else{
 			return NULL;
@@ -488,7 +488,7 @@ public:
         rModels.emplace_back("beeler_reuter_model_1977");
         rModels.emplace_back("bondarenko_model_2004_apex");
         rModels.emplace_back("courtemanche_ramirez_nattel_model_1998");
-        //rModels.emplace_back("decker_2009");
+        rModels.emplace_back("decker_2009");
         rModels.emplace_back("demir_model_1994");
         //rModels.emplace_back("dokos_model_1996");
         //rModels.emplace_back("earm_noble_model_1990");
