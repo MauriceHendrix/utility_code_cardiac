@@ -82,7 +82,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "demir_model_1994.hpp"
 #include "dokos_model_1996.hpp"
 #include "earm_noble_model_1990.hpp"
-#include "espinosa_model_1998_normal.hpp"
+//#include "espinosa_model_1998_normal.hpp"
 #include "fink_noble_giles_model_2008.hpp"
 //#include "grandi2010ss.hpp"
 //#include "hilgemann_noble_model_1987.hpp"
@@ -320,9 +320,9 @@ private:
 		}else if(rModelName == "earm_noble_model_1990"){
 			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellearm_noble_model_1990FromCellML(p_solver, p_stimulus));
 			return p_cell;
-		}else if(rModelName == "espinosa_model_1998_normal"){
-			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellespinosa_model_1998_normalFromCellML(p_solver, p_stimulus));
-			return p_cell;
+//		}else if(rModelName == "espinosa_model_1998_normal"){
+//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellespinosa_model_1998_normalFromCellML(p_solver, p_stimulus));
+//			return p_cell;
 		}else if(rModelName == "fink_noble_giles_model_2008"){
 			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellfink_noble_giles_model_2008FromCellML(p_solver, p_stimulus));
 			return p_cell;
