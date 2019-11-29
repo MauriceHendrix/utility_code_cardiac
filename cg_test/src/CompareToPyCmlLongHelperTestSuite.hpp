@@ -81,9 +81,9 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "decker_2009.hpp"
 #include "demir_model_1994.hpp"
 #include "dokos_model_1996.hpp"
-//#include "earm_noble_model_1990.hpp"
-//#include "espinosa_model_1998_normal.hpp"
-//#include "fink_noble_giles_model_2008.hpp"
+#include "earm_noble_model_1990.hpp"
+#include "espinosa_model_1998_normal.hpp"
+#include "fink_noble_giles_model_2008.hpp"
 //#include "grandi2010ss.hpp"
 //#include "hilgemann_noble_model_1987.hpp"
 #include "hodgkin_huxley_squid_axon_model_1952_modified.hpp"
@@ -317,15 +317,15 @@ private:
 		}else if(rModelName == "dokos_model_1996"){
 			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Celldokos_model_1996FromCellML(p_solver, p_stimulus));
 			return p_cell;
-//		}else if(rModelName == "earm_noble_model_1990"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellearm_noble_model_1990FromCellML(p_solver, p_stimulus));
-//			return p_cell;
-//		}else if(rModelName == "espinosa_model_1998_normal"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellespinosa_model_1998_normalFromCellML(p_solver, p_stimulus));
-//			return p_cell;
-//		}else if(rModelName == "fink_noble_giles_model_2008"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellfink_noble_giles_model_2008FromCellML(p_solver, p_stimulus));
-//			return p_cell;
+		}else if(rModelName == "earm_noble_model_1990"){
+			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellearm_noble_model_1990FromCellML(p_solver, p_stimulus));
+			return p_cell;
+		}else if(rModelName == "espinosa_model_1998_normal"){
+			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellespinosa_model_1998_normalFromCellML(p_solver, p_stimulus));
+			return p_cell;
+		}else if(rModelName == "fink_noble_giles_model_2008"){
+			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellfink_noble_giles_model_2008FromCellML(p_solver, p_stimulus));
+			return p_cell;
 //		}else if(rModelName == "grandi2010ss"){
 //			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellgrandi2010ssFromCellML(p_solver, p_stimulus));
 //			return p_cell;
@@ -491,9 +491,9 @@ public:
         rModels.emplace_back("decker_2009");
         rModels.emplace_back("demir_model_1994");
         rModels.emplace_back("dokos_model_1996");
-        //rModels.emplace_back("earm_noble_model_1990");
-        //rModels.emplace_back("espinosa_model_1998_normal");
-        //rModels.emplace_back("fink_noble_giles_model_2008");
+        rModels.emplace_back("earm_noble_model_1990");
+        rModels.emplace_back("espinosa_model_1998_normal");
+        rModels.emplace_back("fink_noble_giles_model_2008");
         //rModels.emplace_back("grandi2010ss");
         //rModels.emplace_back("hilgemann_noble_model_1987");
         rModels.emplace_back("hodgkin_huxley_squid_axon_model_1952_modified");
