@@ -21,7 +21,7 @@
 #include "IsNan.hpp"
 #include "MathsCustomFunctions.hpp"
 
-    boost::shared_ptr<RegularStimulus> Dynamicgrandi2010ssFromCellML::UseCellMLDefaultStimulus()
+    boost::shared_ptr<RegularStimulus> Cellgrandi2010ssFromCellML::UseCellMLDefaultStimulus()
     {
         // Use the default stimulus specified by CellML metadata
         const double var_chaste_interface__cell__stim_amplitude = -15.0 * HeartConfig::Instance()->GetCapacitance(); // uA_per_uF
@@ -38,12 +38,12 @@
         return p_cellml_stim;
     }
     
-    double Dynamicgrandi2010ssFromCellML::GetIntracellularCalciumConcentration()
+    double Cellgrandi2010ssFromCellML::GetIntracellularCalciumConcentration()
     {
         return mStateVariables[37];
     }
     
-    Dynamicgrandi2010ssFromCellML::Dynamicgrandi2010ssFromCellML(boost::shared_ptr<AbstractIvpOdeSolver> pSolver, boost::shared_ptr<AbstractStimulusFunction> pIntracellularStimulus)
+    Cellgrandi2010ssFromCellML::Cellgrandi2010ssFromCellML(boost::shared_ptr<AbstractIvpOdeSolver> pSolver, boost::shared_ptr<AbstractStimulusFunction> pIntracellularStimulus)
         : AbstractCardiacCell(
                 pSolver,
                 38,
@@ -52,7 +52,7 @@
     {
         // Time units: millisecond
         // 
-        this->mpSystemInfo = OdeSystemInformation<Dynamicgrandi2010ssFromCellML>::Instance();
+        this->mpSystemInfo = OdeSystemInformation<Cellgrandi2010ssFromCellML>::Instance();
         Init();
         
         // We have a default stimulus specified in the CellML file metadata
@@ -60,11 +60,11 @@
         
     }
     
-    Dynamicgrandi2010ssFromCellML::~Dynamicgrandi2010ssFromCellML()
+    Cellgrandi2010ssFromCellML::~Cellgrandi2010ssFromCellML()
     {
     }
     
-    double Dynamicgrandi2010ssFromCellML::GetIIonic(const std::vector<double>* pStateVariables)
+    double Cellgrandi2010ssFromCellML::GetIIonic(const std::vector<double>* pStateVariables)
     {
         // For state variable interpolation (SVI) we read in interpolated state variables,
         // otherwise for ionic current interpolation (ICI) we use the state variables of this model (node).
@@ -236,7 +236,7 @@
         return i_ionic;
     }
     
-    void Dynamicgrandi2010ssFromCellML::EvaluateYDerivatives(double var_chaste_interface__cell__time, const std::vector<double>& rY, std::vector<double>& rDY)
+    void Cellgrandi2010ssFromCellML::EvaluateYDerivatives(double var_chaste_interface__cell__time, const std::vector<double>& rY, std::vector<double>& rDY)
     {
         // Inputs:
         // Time units: millisecond
@@ -622,7 +622,7 @@
     }
     
 template<>
-void OdeSystemInformation<Dynamicgrandi2010ssFromCellML>::Initialise(void)
+void OdeSystemInformation<Cellgrandi2010ssFromCellML>::Initialise(void)
 {
     this->mSystemName = "grandi2010";
     this->mFreeVariableName = "cell__time";
@@ -824,14 +824,4 @@ void OdeSystemInformation<Dynamicgrandi2010ssFromCellML>::Initialise(void)
 
 // Serialization for Boost >= 1.36
 #include "SerializationExportWrapperForCpp.hpp"
-CHASTE_CLASS_EXPORT(Dynamicgrandi2010ssFromCellML)
-extern "C"
-{
-    AbstractCardiacCellInterface* MakeCardiacCell(
-            boost::shared_ptr<AbstractIvpOdeSolver> pSolver,
-            boost::shared_ptr<AbstractStimulusFunction> pStimulus)
-    {
-        return new Dynamicgrandi2010ssFromCellML(pSolver, pStimulus);
-    }
-    
-}
+CHASTE_CLASS_EXPORT(Cellgrandi2010ssFromCellML)

@@ -1,5 +1,5 @@
-#ifndef DYNAMICGRANDI2010SSFROMCELLML_HPP_
-#define DYNAMICGRANDI2010SSFROMCELLML_HPP_
+#ifndef CELLGRANDI2010SSFROMCELLML_HPP_
+#define CELLGRANDI2010SSFROMCELLML_HPP_
 
 //! @file
 //! 
@@ -19,7 +19,7 @@
 #include "AbstractDynamicallyLoadableEntity.hpp"
 #include "AbstractStimulusFunction.hpp"
 
-class Dynamicgrandi2010ssFromCellML : public AbstractCardiacCell, public AbstractDynamicallyLoadableEntity
+class Cellgrandi2010ssFromCellML : public AbstractCardiacCell, public AbstractDynamicallyLoadableEntity
 {
     friend class boost::serialization::access;
     template<class Archive>
@@ -36,8 +36,8 @@ class Dynamicgrandi2010ssFromCellML : public AbstractCardiacCell, public Abstrac
 public:
     boost::shared_ptr<RegularStimulus> UseCellMLDefaultStimulus();
     double GetIntracellularCalciumConcentration();
-    Dynamicgrandi2010ssFromCellML(boost::shared_ptr<AbstractIvpOdeSolver> pSolver, boost::shared_ptr<AbstractStimulusFunction> pIntracellularStimulus);
-    ~Dynamicgrandi2010ssFromCellML();
+    Cellgrandi2010ssFromCellML(boost::shared_ptr<AbstractIvpOdeSolver> pSolver, boost::shared_ptr<AbstractStimulusFunction> pIntracellularStimulus);
+    ~Cellgrandi2010ssFromCellML();
     double GetIIonic(const std::vector<double>* pStateVariables=NULL);
     void EvaluateYDerivatives(double var_chaste_interface__cell__time, const std::vector<double>& rY, std::vector<double>& rDY);
 };
@@ -45,7 +45,7 @@ public:
 
 // Needs to be included last
 #include "SerializationExportWrapper.hpp"
-CHASTE_CLASS_EXPORT(Dynamicgrandi2010ssFromCellML)
+CHASTE_CLASS_EXPORT(Cellgrandi2010ssFromCellML)
 
 namespace boost
 {
@@ -53,7 +53,7 @@ namespace boost
     {
         template<class Archive>
         inline void save_construct_data(
-            Archive & ar, const Dynamicgrandi2010ssFromCellML * t, const unsigned int fileVersion)
+            Archive & ar, const Cellgrandi2010ssFromCellML * t, const unsigned int fileVersion)
         {
             const boost::shared_ptr<AbstractIvpOdeSolver> p_solver = t->GetSolver();
             const boost::shared_ptr<AbstractStimulusFunction> p_stimulus = t->GetStimulusFunction();
@@ -63,17 +63,17 @@ namespace boost
         
         template<class Archive>
         inline void load_construct_data(
-            Archive & ar, Dynamicgrandi2010ssFromCellML * t, const unsigned int fileVersion)
+            Archive & ar, Cellgrandi2010ssFromCellML * t, const unsigned int fileVersion)
         {
             boost::shared_ptr<AbstractIvpOdeSolver> p_solver;
             boost::shared_ptr<AbstractStimulusFunction> p_stimulus;
             ar >> p_solver;
             ar >> p_stimulus;
-            ::new(t)Dynamicgrandi2010ssFromCellML(p_solver, p_stimulus);
+            ::new(t)Cellgrandi2010ssFromCellML(p_solver, p_stimulus);
         }
         
     }
     
 }
 
-#endif // DYNAMICGRANDI2010SSFROMCELLML_HPP_
+#endif // CELLGRANDI2010SSFROMCELLML_HPP_
