@@ -366,7 +366,7 @@ private:
 //			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellmatsuoka_model_2003romCellML(p_solver, p_stimulus));
 //			return p_cell;
 		}else if(rModelName == "noble_model_1991"){
-			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cell aslanidi_model_2009FromCellML(p_solver, p_stimulus));
+			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellaslanidi_model_2009FromCellML(p_solver, p_stimulus));
 			return p_cell;
 //		}else if(rModelName == "noble_model_1998"){
 //			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellnoble_model_1991FromCellML(p_solver, p_stimulus));
