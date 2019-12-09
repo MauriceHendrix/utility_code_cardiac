@@ -102,7 +102,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "noble_noble_SAN_model_1984.hpp"
 #include "noble_SAN_model_1989.hpp"
 #include "nygren_atrial_model_1998.hpp"
-//#include "pandit_model_2001_epi.hpp"
+#include "pandit_model_2001_epi.hpp"
 //#include "priebe_beuckelmann_model_1998.hpp"
 //#include "sakmann_model_2000_epi.hpp"
 //#include "Shannon2004.hpp"
@@ -380,9 +380,9 @@ private:
 		}else if(rModelName == "nygren_atrial_model_1998"){
 			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellnygren_atrial_model_1998FromCellML(p_solver, p_stimulus));
 			return p_cell;
-//		}else if(rModelName == "pandit_model_2001_epi"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellpandit_model_2001_epiFromCellML(p_solver, p_stimulus));
-//			return p_cell;
+		}else if(rModelName == "pandit_model_2001_epi"){
+			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellpandit_model_2001_epiFromCellML(p_solver, p_stimulus));
+			return p_cell;
 //		}else if(rModelName == "priebe_beuckelmann_model_1998"){
 //			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellpriebe_beuckelmann_model_1998FromCellML(p_solver, p_stimulus));
 //			return p_cell;
@@ -512,7 +512,7 @@ public:
         rModels.emplace_back("noble_noble_SAN_model_1984");
         rModels.emplace_back("noble_SAN_model_1989");
         rModels.emplace_back("nygren_atrial_model_1998");
-        //rModels.emplace_back("pandit_model_2001_epi");
+        rModels.emplace_back("pandit_model_2001_epi");
         //rModels.emplace_back("priebe_beuckelmann_model_1998");
         //rModels.emplace_back("sakmann_model_2000_epi");
         //rModels.emplace_back("Shannon2004");
