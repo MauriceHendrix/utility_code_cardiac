@@ -108,12 +108,12 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "Shannon2004.hpp"
 #include "stewart_zhang_model_2008_ss.hpp"
 #include "ten_tusscher_model_2004_endo.hpp"
-//#include "ten_tusscher_model_2004_epi.hpp"
-//#include "ten_tusscher_model_2006_epi.hpp"
-//#include "viswanathan_model_1999_epi.hpp"
-//#include "winslow_model_1999.hpp"
-//#include "zhang_SAN_model_2000_0D_capable.hpp"
-//#include "zhang_SAN_model_2000_all.hpp"
+#include "ten_tusscher_model_2004_epi.hpp"
+#include "ten_tusscher_model_2006_epi.hpp"
+#include "viswanathan_model_1999_epi.hpp"
+#include "winslow_model_1999.hpp"
+#include "zhang_SAN_model_2000_0D_capable.hpp"
+#include "zhang_SAN_model_2000_all.hpp"
 
 
 /**
@@ -398,24 +398,24 @@ private:
 		}else if(rModelName == "ten_tusscher_model_2004_endo"){
 			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellten_tusscher_model_2004_endoFromCellML(p_solver, p_stimulus));
 			return p_cell;
-//		}else if(rModelName == "ten_tusscher_model_2004_epi"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellten_tusscher_model_2004_epiFromCellML(p_solver, p_stimulus));
-//			return p_cell;
-//		}else if(rModelName == "ten_tusscher_model_2006_epi"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellten_tusscher_model_2006_epiFromCellML(p_solver, p_stimulus));
-//			return p_cell;
-//		}else if(rModelName == "viswanathan_model_1999_epi"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellviswanathan_model_1999_epiFromCellML(p_solver, p_stimulus));
-//			return p_cell;
-//		}else if(rModelName == "winslow_model_1999"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellwinslow_model_1999FromCellML(p_solver, p_stimulus));
-//			return p_cell;
-//		}else if(rModelName == "zhang_SAN_model_2000_0D_capable"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellzhang_SAN_model_2000_0D_capableFromCellML(p_solver, p_stimulus));
-//			return p_cell;
-//		}else if(rModelName == "zhang_SAN_model_2000_all"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellzhang_SAN_model_2000_allFromCellML(p_solver, p_stimulus));
-//			return p_cell;
+		}else if(rModelName == "ten_tusscher_model_2004_epi"){
+			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellten_tusscher_model_2004_epiFromCellML(p_solver, p_stimulus));
+			return p_cell;
+		}else if(rModelName == "ten_tusscher_model_2006_epi"){
+			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellten_tusscher_model_2006_epiFromCellML(p_solver, p_stimulus));
+			return p_cell;
+		}else if(rModelName == "viswanathan_model_1999_epi"){
+			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellviswanathan_model_1999_epiFromCellML(p_solver, p_stimulus));
+			return p_cell;
+		}else if(rModelName == "winslow_model_1999"){
+			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellwinslow_model_1999FromCellML(p_solver, p_stimulus));
+			return p_cell;
+		}else if(rModelName == "zhang_SAN_model_2000_0D_capable"){
+			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellzhang_SAN_model_2000_0D_capableFromCellML(p_solver, p_stimulus));
+			return p_cell;
+		}else if(rModelName == "zhang_SAN_model_2000_all"){
+			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellzhang_SAN_model_2000_allFromCellML(p_solver, p_stimulus));
+			return p_cell;
 		}else{
 			return NULL;
 		}
@@ -518,12 +518,12 @@ public:
         rModels.emplace_back("Shannon2004");
         rModels.emplace_back("stewart_zhang_model_2008_ss");
         rModels.emplace_back("ten_tusscher_model_2004_endo");
-        //rModels.emplace_back("ten_tusscher_model_2004_epi");
-        //rModels.emplace_back("ten_tusscher_model_2006_epi");
-        //rModels.emplace_back("viswanathan_model_1999_epi");
-        //rModels.emplace_back("winslow_model_1999");
-        //rModels.emplace_back("zhang_SAN_model_2000_0D_capable");
-        //rModels.emplace_back("zhang_SAN_model_2000_all");
+        rModels.emplace_back("ten_tusscher_model_2004_epi");
+        rModels.emplace_back("ten_tusscher_model_2006_epi");
+        rModels.emplace_back("viswanathan_model_1999_epi");
+        rModels.emplace_back("winslow_model_1999");
+        rModels.emplace_back("zhang_SAN_model_2000_0D_capable");
+        rModels.emplace_back("zhang_SAN_model_2000_all");
     }
 
     void SetUseCvodeJacobian(bool useCvodeJacobian)
