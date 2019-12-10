@@ -103,8 +103,8 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "noble_SAN_model_1989.hpp"
 #include "nygren_atrial_model_1998.hpp"
 #include "pandit_model_2001_epi.hpp"
-//#include "priebe_beuckelmann_model_1998.hpp"
-//#include "sakmann_model_2000_epi.hpp"
+#include "priebe_beuckelmann_model_1998.hpp"
+#include "sakmann_model_2000_epi.hpp"
 //#include "Shannon2004.hpp"
 //#include "stewart_zhang_model_2008_ss.hpp"
 //#include "ten_tusscher_model_2004_endo.hpp"
@@ -383,12 +383,12 @@ private:
 		}else if(rModelName == "pandit_model_2001_epi"){
 			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellpandit_model_2001_epiFromCellML(p_solver, p_stimulus));
 			return p_cell;
-//		}else if(rModelName == "priebe_beuckelmann_model_1998"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellpriebe_beuckelmann_model_1998FromCellML(p_solver, p_stimulus));
-//			return p_cell;
-//		}else if(rModelName == "sakmann_model_2000_epi"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellsakmann_model_2000_epiFromCellML(p_solver, p_stimulus));
-//			return p_cell;
+		}else if(rModelName == "priebe_beuckelmann_model_1998"){
+			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellpriebe_beuckelmann_model_1998FromCellML(p_solver, p_stimulus));
+			return p_cell;
+		}else if(rModelName == "sakmann_model_2000_epi"){
+			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellsakmann_model_2000_epiFromCellML(p_solver, p_stimulus));
+			return p_cell;
 //		}else if(rModelName == "Shannon2004"){
 //			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new CellShannon2004FromCellML(p_solver, p_stimulus));
 //			return p_cell;
@@ -513,8 +513,8 @@ public:
         rModels.emplace_back("noble_SAN_model_1989");
         rModels.emplace_back("nygren_atrial_model_1998");
         rModels.emplace_back("pandit_model_2001_epi");
-        //rModels.emplace_back("priebe_beuckelmann_model_1998");
-        //rModels.emplace_back("sakmann_model_2000_epi");
+        rModels.emplace_back("priebe_beuckelmann_model_1998");
+        rModels.emplace_back("sakmann_model_2000_epi");
         //rModels.emplace_back("Shannon2004");
         //rModels.emplace_back("stewart_zhang_model_2008_ss");
         //rModels.emplace_back("ten_tusscher_model_2004_endo");
