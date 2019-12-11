@@ -517,11 +517,11 @@ public:
         rModels.emplace_back("sakmann_model_2000_epi");
         rModels.emplace_back("Shannon2004");
         rModels.emplace_back("stewart_zhang_model_2008_ss");
-        rModels.emplace_back("ten_tusscher_model_2004_endo");
-        rModels.emplace_back("ten_tusscher_model_2004_epi");
-        rModels.emplace_back("ten_tusscher_model_2006_epi");
+        //rModels.emplace_back("ten_tusscher_model_2004_endo");
+        //rModels.emplace_back("ten_tusscher_model_2004_epi");
+        //rModels.emplace_back("ten_tusscher_model_2006_epi");
         rModels.emplace_back("viswanathan_model_1999_epi");
-        rModels.emplace_back("winslow_model_1999");
+        //rModels.emplace_back("winslow_model_1999");
         rModels.emplace_back("zhang_SAN_model_2000_0D_capable");
         rModels.emplace_back("zhang_SAN_model_2000_all");
     }
