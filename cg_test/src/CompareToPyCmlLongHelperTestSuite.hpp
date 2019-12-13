@@ -96,7 +96,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //#include "livshitz_rudy_2007.hpp"
 #include "luo_rudy_1994.hpp"
 #include "mahajan_2008.hpp"
-//#include "matsuoka_model_2003.hpp"
+#include "matsuoka_model_2003.hpp"
 #include "noble_model_1991.hpp"
 #include "noble_model_1998.hpp"
 #include "noble_noble_SAN_model_1984.hpp"
@@ -362,9 +362,9 @@ private:
 		}else if(rModelName == "mahajan_2008"){
 			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellmahajan_2008FromCellML(p_solver, p_stimulus));
 			return p_cell;
-//		}else if(rModelName == "matsuoka_model_2003"){
-//			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellmatsuoka_model_2003romCellML(p_solver, p_stimulus));
-//			return p_cell;
+		}else if(rModelName == "matsuoka_model_2003"){
+			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellmatsuoka_model_2003FromCellML(p_solver, p_stimulus));
+			return p_cell;
 		}else if(rModelName == "noble_model_1991"){
 			boost::shared_ptr<AbstractCardiacCellInterface> p_cell(new Cellnoble_model_1991FromCellML(p_solver, p_stimulus));
 			return p_cell;
@@ -506,7 +506,7 @@ public:
         //rModels.emplace_back("livshitz_rudy_2007");
         rModels.emplace_back("luo_rudy_1994");
         rModels.emplace_back("mahajan_2008");
-        //rModels.emplace_back("matsuoka_model_2003");
+        rModels.emplace_back("matsuoka_model_2003");
         rModels.emplace_back("noble_model_1991");
         rModels.emplace_back("noble_model_1998");
         rModels.emplace_back("noble_noble_SAN_model_1984");
