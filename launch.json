@@ -1,0 +1,19 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "args" : ["/home/uczmh2/ticket_2809/bondarenko_model_2004_apex.cellml","-d","-A","-p","--Wu","--conf=/home/uczmh2/ticket_2809/chaste_source/python/pycml/config.xml","--use-chaste-stimulus","--convert-interfaces","--warn-on-unit-conversions","-y","-j","/home/uczmh2/ticket_2809/bondarenko_model_2004_apex.out","-p","-l","--backward-euler","-c","Dynamicbondarenko_model_2004_apexFromCellMLBackwardEuler","-o", "/home/uczmh2/ticket_2809/bondarenko_model_2004_apex.cpp"]
+        }
+    ]
+}
+
+//            "args": ["--Wu", "--use-chaste-stimulus", "--convert-interfaces", "-d", "/home/uczmh2/Mahajan2008.cellml"]
+//            "args" : ["--backward-euler", "-o", "/home/uczmh2/ticket_2809/bondarenko_model_2004_apex.cpp", "--conf=config.xml", "--warn-on-unit-conversions", "--Wu", "--use-chaste-stimulus", "--convert-interfaces", "-d", "-j", "/home/uczmh2/ticket_2809/bondarenko_model_2004_apex.out", "/home/uczmh2/ticket_2809/bondarenko_model_2004_apex.cellml"]
