@@ -1,1 +1,2 @@
-weblab_cg/data/tests/*/*.* linguist-generated
+*.cpp linguist-generated
+*.hpp linguist-generated
