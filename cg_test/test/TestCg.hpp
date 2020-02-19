@@ -31,6 +31,46 @@ public:
         RunTests(dirname, models, args);
     }
 
+    void TestCvodeCells()
+    {
+#ifdef CHASTE_CVODE
+        std::string dirname("TestPyCmlLongCvodeNumericalJ");
+        std::vector<std::string> args;
+        args.push_back("--Wu");
+        args.push_back("--cvode");
+        std::vector<std::string> models;
+        AddAllModels(models);
+
+	SetModelType("Cvode");
+        SetUseCvodeJacobian(false);
+        RunTests(dirname, models, args);
+        SetUseCvodeJacobian(true);
+#endif
+    }
+
+    void TestAnalyticCvodeCells()
+    {
+#ifdef CHASTE_CVODE
+        std::string dirname("TestPyCmlLongCvodeAnalyticJ");
+        std::vector<std::string> args;
+        args.push_back("--Wu");
+        args.push_back("--cvode");
+        std::vector<std::string> models;
+	SetModelType("Cvode");
+        AddAllModels(models);
+
+        // These have NaN in the jacobian due to massive exponentials
+        std::vector<std::string> bad_models = boost::assign::list_of("aslanidi_model_2009")("hund_rudy_2004_a")("livshitz_rudy_2007");
+        BOOST_FOREACH (std::string bad_model, bad_models)
+        {
+            models.erase(std::find(models.begin(), models.end(), bad_model));
+        }
+
+        RunTests(dirname, models, args);
+#endif
+    }
+
+
 
 };
 
