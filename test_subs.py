@@ -504,7 +504,7 @@ print('replace took:' + str(time.process_time() - t3 ))
 t4 = time.process_time()
 
 for i in range(10):
-    x4 = partial_eval(equations, required_equations, replace_func)
+    x4 = partial_eval(equations, required_equations, xreplace_func)
 
 print('xreplace func took:' + str(time.process_time() - t4 ))
 
