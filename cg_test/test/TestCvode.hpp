@@ -1,6 +1,8 @@
 #ifndef TESTCGCVODE_HPP_
 #define TESTCGCVODE_HPP_
 
+#include <iomanip>
+#include <cmath>
 #include <boost/foreach.hpp>
 #include <vector>
 
@@ -44,6 +46,7 @@ public:
     boost::shared_ptr<AbstractIvpOdeSolver> p_solver;
 
     void setUp() {
+	std::setprecision(13);
         std::cout << "Setup...\n";
 	p_stimulus = boost::shared_ptr<AbstractStimulusFunction>(new SimpleStimulus(0.0, 0.0, 0.0));
 	p_solver = boost::shared_ptr<AbstractIvpOdeSolver>(new EulerIvpOdeSolver);
@@ -356,22 +359,19 @@ public:
 	for(unsigned int i=0; i< times.size(); i++){
 		// populate state vector
 
-		N_Vector rY = MakeNVector(*new std::vector<double>(num_state_vars));
-		N_Vector rY2 = MakeNVector(*new std::vector<double>(num_state_vars));
+		const N_Vector rY = MakeNVector(*new std::vector<double>(num_state_vars));
 		for (int l=0; l< num_state_vars; l++){
 			NV_Ith_S(rY, l) = state_vector[l][i];
-			NV_Ith_S(rY2, l) = state_vector[l][i];
+			TS_ASSERT(!isnan(state_vector[l][i]));
+			TS_ASSERT(!isinf(state_vector[l][i]));
+
 		}
 
 		// create new empty parameters
-		N_Vector rDY = MakeNVector(*new std::vector<double>());
-		N_Vector rDY2 = MakeNVector(*new std::vector<double>());
-		N_Vector rTmp1 = MakeNVector(*new std::vector<double>());
-		N_Vector rTmp12 = MakeNVector(*new std::vector<double>());
-		N_Vector rTmp2 = MakeNVector(*new std::vector<double>());
-		N_Vector rTmp22 = MakeNVector(*new std::vector<double>());
-		N_Vector rTmp3 = MakeNVector(*new std::vector<double>());
-		N_Vector rTmp32 = MakeNVector(*new std::vector<double>());
+		const N_Vector rDY = MakeNVector(*new std::vector<double>());
+		const N_Vector rTmp1 = MakeNVector(*new std::vector<double>());
+		const N_Vector rTmp2 = MakeNVector(*new std::vector<double>());
+		const N_Vector rTmp3 = MakeNVector(*new std::vector<double>());
 
 		//call jacobian method
 		CHASTE_CVODE_DENSE_MATRIX rJacobian = NewDenseMat(num_state_vars, num_state_vars);
@@ -384,14 +384,22 @@ public:
 		}
 
 		pCell->EvaluateAnalyticJacobian(times[i], rY, rDY, rJacobian, rTmp1, rTmp2, rTmp3);
-		pCell2->EvaluateAnalyticJacobian(times[i], rY2, rDY2, rJacobian2, rTmp12, rTmp22, rTmp32);
+		pCell2->EvaluateAnalyticJacobian(times[i], rY, rDY, rJacobian2, rTmp1, rTmp2, rTmp3);
 
 		for (int j=0; j< num_state_vars; j++){
 			for (int k=0; k< num_state_vars; k++){
+				if(k==6 && j ==0 ){
+//						std::cout<< "(time, i,j): ("<<times[i]<< ", " << k <<", " <<j <<")"<<std::endl;
+//						std::cout<< IJth(rJacobian, k, j)<< ", "<< IJth(rJacobian2, k, j)<<std::endl;
+				}
+
 				if (isnan(IJth(rJacobian, k, j)) && isnan(IJth(rJacobian2, k, j))){
 					TS_WARN("NaN in both versions");
+				}else if(isinf(IJth(rJacobian, k, j)) && isinf(IJth(rJacobian2, k, j)) && isinf(IJth(rJacobian, k, j)) == isinf(IJth(rJacobian2, k, j))){
+					TS_WARN("INF in both versions");
 				}else{
-					if (!CompareDoubles::WithinRelativeTolerance(IJth(rJacobian, k, j), IJth(rJacobian2, k, j), 0.01)){ // 1%
+					if (abs(IJth(rJacobian, k, j) - IJth(rJacobian2, k, j)) > tolerance){
+						std::cout<< "(time, i,j): ("<<times[i]<< ", " << k <<", " <<j <<")"<<std::endl;
 						TS_ASSERT_DELTA(IJth(rJacobian, k, j), IJth(rJacobian2, k, j), tolerance);
 					}
 		                }
