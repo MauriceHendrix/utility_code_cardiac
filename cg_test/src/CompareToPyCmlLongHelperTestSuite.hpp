@@ -191,7 +191,7 @@ private:
 //        DynamicCellModelLoaderPtr p_loader = converter.Convert(copied_file);
 //        // Apply a stimulus of -40 uA/cm^2 - should work for all models
 //        boost::shared_ptr<AbstractCardiacCellInterface> p_cell(CreateCellWithStandardStimulus(*p_loader, -40.0));
-		boost::shared_ptr<AbstractCardiacCellInterface> p_cell = GetModel(rModelName, rArgs);
+        boost::shared_ptr<AbstractCardiacCellInterface> p_cell = GetModel(rModelName, rArgs);
 
         // Check that the default stimulus units are correct
         if (p_cell->HasCellMLDefaultStimulus())
@@ -243,24 +243,24 @@ private:
         Simulate(rOutputDirName, rModelName, p_cell);
     }
 
-	boost::shared_ptr<AbstractCardiacCellInterface> GetModel(std::string rModelName, std::vector<std::string> rArgs){
-		double magnitude=-40.0;
-		double duration = 2.0; // ms
-		double when = 50.0; // ms
-		boost::shared_ptr<AbstractStimulusFunction> p_stimulus(new SimpleStimulus(magnitude, duration, when));
-		boost::shared_ptr<AbstractIvpOdeSolver> p_solver(new EulerIvpOdeSolver);
+    boost::shared_ptr<AbstractCardiacCellInterface> GetModel(std::string rModelName, std::vector<std::string> rArgs){
+        double magnitude=-40.0;
+        double duration = 2.0; // ms
+        double when = 50.0; // ms
+        boost::shared_ptr<AbstractStimulusFunction> p_stimulus(new SimpleStimulus(magnitude, duration, when));
+        boost::shared_ptr<AbstractIvpOdeSolver> p_solver(new EulerIvpOdeSolver);
 
         boost::shared_ptr<AbstractCardiacCellInterface> p_cell;
-		if(rModelName == "aslanidi_model_2009"){
+        if(rModelName == "aslanidi_model_2009"){
             if (modelType =="Normal"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellaslanidi_model_2009FromCellML(p_solver, p_stimulus));
             } else if (modelType =="Cvode"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellaslanidi_model_2009FromCellMLCvode(p_solver, p_stimulus));
             } else if (modelType =="BE"){
-                p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Celldemir_model_1994FromCellMLBackwardEuler(p_solver, p_stimulus));
+                p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellaslanidi_model_2009FromCellMLBackwardEuler(p_solver, p_stimulus));
             }
-			return p_cell;
-		}else if(rModelName == "beeler_reuter_model_1977"){
+            return p_cell;
+        }else if(rModelName == "beeler_reuter_model_1977"){
             if (modelType =="Normal"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellbeeler_reuter_model_1977FromCellML(p_solver, p_stimulus));
             } else if (modelType =="Cvode"){
@@ -268,8 +268,8 @@ private:
             } else if (modelType =="BE"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellbeeler_reuter_model_1977FromCellMLBackwardEuler(p_solver, p_stimulus));
             }
-			return p_cell;
-		}else if(rModelName == "bondarenko_model_2004_apex"){
+            return p_cell;
+        }else if(rModelName == "bondarenko_model_2004_apex"){
             if (modelType =="Normal"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellbondarenko_model_2004_apexFromCellML(p_solver, p_stimulus));
             } else if (modelType =="Cvode"){
@@ -277,8 +277,8 @@ private:
             } else if (modelType =="BE"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellbondarenko_model_2004_apexFromCellMLBackwardEuler(p_solver, p_stimulus));
             }
-			return p_cell;
-		}else if(rModelName == "courtemanche_ramirez_nattel_model_1998"){
+            return p_cell;
+        }else if(rModelName == "courtemanche_ramirez_nattel_model_1998"){
             if (modelType =="Normal"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellcourtemanche_ramirez_nattel_model_1998FromCellML(p_solver, p_stimulus));
             } else if (modelType =="Cvode"){
@@ -286,8 +286,8 @@ private:
             } else if (modelType =="BE"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellcourtemanche_ramirez_nattel_model_1998FromCellMLBackwardEuler(p_solver, p_stimulus));
             }
-			return p_cell;
-		}else if(rModelName == "decker_2009"){
+            return p_cell;
+        }else if(rModelName == "decker_2009"){
             if (modelType =="Normal"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Celldecker_2009FromCellML(p_solver, p_stimulus));
             } else if (modelType =="Cvode"){
@@ -295,8 +295,8 @@ private:
             } else if (modelType =="BE"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Celldecker_2009FromCellMLBackwardEuler(p_solver, p_stimulus));
             }
-			return p_cell;
-		}else if(rModelName == "demir_model_1994"){
+            return p_cell;
+        }else if(rModelName == "demir_model_1994"){
             if (modelType =="Normal"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Celldemir_model_1994FromCellML(p_solver, p_stimulus));
             } else if (modelType =="Cvode"){
@@ -304,8 +304,8 @@ private:
             } else if (modelType =="BE"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Celldemir_model_1994FromCellMLBackwardEuler(p_solver, p_stimulus));
             }
-			return p_cell;
-		}else if(rModelName == "dokos_model_1996"){
+            return p_cell;
+        }else if(rModelName == "dokos_model_1996"){
             if (modelType =="Normal"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Celldokos_model_1996FromCellML(p_solver, p_stimulus));
             } else if (modelType =="Cvode"){
@@ -313,8 +313,8 @@ private:
             } else if (modelType =="BE"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Celldokos_model_1996FromCellMLBackwardEuler(p_solver, p_stimulus));
             }
-			return p_cell;
-		}else if(rModelName == "earm_noble_model_1990"){
+            return p_cell;
+        }else if(rModelName == "earm_noble_model_1990"){
             if (modelType =="Normal"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellearm_noble_model_1990FromCellML(p_solver, p_stimulus));
             } else if (modelType =="Cvode"){
@@ -322,8 +322,8 @@ private:
             } else if (modelType =="BE"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellearm_noble_model_1990FromCellMLBackwardEuler(p_solver, p_stimulus));
             }
-			return p_cell;
-		}else if(rModelName == "espinosa_model_1998_normal"){
+            return p_cell;
+        }else if(rModelName == "espinosa_model_1998_normal"){
             if (modelType =="Normal"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellespinosa_model_1998_normalFromCellML(p_solver, p_stimulus));
             } else if (modelType =="Cvode"){
@@ -331,8 +331,8 @@ private:
             } else if (modelType =="BE"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellespinosa_model_1998_normalFromCellMLBackwardEuler(p_solver, p_stimulus));
             }
-			return p_cell;
-		}else if(rModelName == "fink_noble_giles_model_2008"){
+            return p_cell;
+        }else if(rModelName == "fink_noble_giles_model_2008"){
             if (modelType =="Normal"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellfink_noble_giles_model_2008FromCellML(p_solver, p_stimulus));
             } else if (modelType =="Cvode"){
@@ -340,8 +340,8 @@ private:
             } else if (modelType =="BE"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellfink_noble_giles_model_2008FromCellMLBackwardEuler(p_solver, p_stimulus));
             }
-			return p_cell;
-		}else if(rModelName == "grandi2010ss"){
+            return p_cell;
+        }else if(rModelName == "grandi2010ss"){
             if (modelType =="Normal"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellgrandi2010ssFromCellML(p_solver, p_stimulus));
             } else if (modelType =="Cvode"){
@@ -349,8 +349,8 @@ private:
             } else if (modelType =="BE"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellgrandi2010ssFromCellMLBackwardEuler(p_solver, p_stimulus));
             }
-			return p_cell;
-		}else if(rModelName == "hilgemann_noble_model_1987"){
+            return p_cell;
+        }else if(rModelName == "hilgemann_noble_model_1987"){
             if (modelType =="Normal"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellhilgemann_noble_model_1987FromCellML(p_solver, p_stimulus));
             } else if (modelType =="Cvode"){
@@ -358,8 +358,8 @@ private:
             } else if (modelType =="BE"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellhilgemann_noble_model_1987FromCellMLBackwardEuler(p_solver, p_stimulus));
             }
-			return p_cell;
-		}else if(rModelName == "hodgkin_huxley_squid_axon_model_1952_modified"){
+            return p_cell;
+        }else if(rModelName == "hodgkin_huxley_squid_axon_model_1952_modified"){
             if (modelType =="Normal"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellhodgkin_huxley_squid_axon_model_1952_modifiedFromCellML(p_solver, p_stimulus));
             } else if (modelType =="Cvode"){
@@ -367,8 +367,8 @@ private:
             } else if (modelType =="BE"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellhodgkin_huxley_squid_axon_model_1952_modifiedFromCellMLBackwardEuler(p_solver, p_stimulus));
             }
-			return p_cell;
-		}else if(rModelName == "hund_rudy_2004_a"){
+            return p_cell;
+        }else if(rModelName == "hund_rudy_2004_a"){
             if (modelType =="Normal"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellhund_rudy_2004_aFromCellML(p_solver, p_stimulus));
             } else if (modelType =="Cvode"){
@@ -376,8 +376,8 @@ private:
             } else if (modelType =="BE"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellhund_rudy_2004_aFromCellMLBackwardEuler(p_solver, p_stimulus));
             }
-			return p_cell;
-		}else if(rModelName == "iribe_model_2006_without_otherwise_section"){
+            return p_cell;
+        }else if(rModelName == "iribe_model_2006_without_otherwise_section"){
             if (modelType =="Normal"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Celliribe_model_2006_without_otherwise_sectionFromCellML(p_solver, p_stimulus));
             } else if (modelType =="Cvode"){
@@ -385,8 +385,8 @@ private:
             } else if (modelType =="BE"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Celliribe_model_2006_without_otherwise_sectionFromCellMLBackwardEuler(p_solver, p_stimulus));
             }
-			return p_cell;
-		}else if(rModelName == "iyer_model_2004"){
+            return p_cell;
+        }else if(rModelName == "iyer_model_2004"){
             if (modelType =="Normal"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Celliyer_model_2004FromCellML(p_solver, p_stimulus));
             } else if (modelType =="Cvode"){
@@ -394,8 +394,8 @@ private:
             } else if (modelType =="BE"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Celliyer_model_2004FromCellMLBackwardEuler(p_solver, p_stimulus));
             }
-			return p_cell;
-		}else if(rModelName == "iyer_model_2007"){
+            return p_cell;
+        }else if(rModelName == "iyer_model_2007"){
             if (modelType =="Normal"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Celliyer_model_2007FromCellML(p_solver, p_stimulus));
             } else if (modelType =="Cvode"){
@@ -403,8 +403,8 @@ private:
             } else if (modelType =="BE"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Celliyer_model_2007FromCellMLBackwardEuler(p_solver, p_stimulus));
             }
-			return p_cell;
-		}else if(rModelName == "jafri_rice_winslow_model_1998"){
+            return p_cell;
+        }else if(rModelName == "jafri_rice_winslow_model_1998"){
             if (modelType =="Normal"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Celljafri_rice_winslow_model_1998FromCellML(p_solver, p_stimulus));
             } else if (modelType =="Cvode"){
@@ -412,8 +412,8 @@ private:
             } else if (modelType =="BE"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Celljafri_rice_winslow_model_1998FromCellMLBackwardEuler(p_solver, p_stimulus));
             }
-			return p_cell;
-		}else if(rModelName == "kurata_model_2002"){
+            return p_cell;
+        }else if(rModelName == "kurata_model_2002"){
             if (modelType =="Normal"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellkurata_model_2002FromCellML(p_solver, p_stimulus));
             } else if (modelType =="Cvode"){
@@ -421,8 +421,8 @@ private:
             } else if (modelType =="BE"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellkurata_model_2002FromCellMLBackwardEuler(p_solver, p_stimulus));
             }
-			return p_cell;
-		}else if(rModelName == "livshitz_rudy_2007"){
+            return p_cell;
+        }else if(rModelName == "livshitz_rudy_2007"){
             if (modelType =="Normal"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Celllivshitz_rudy_2007FromCellML(p_solver, p_stimulus));
             } else if (modelType =="Cvode"){
@@ -430,8 +430,8 @@ private:
             } else if (modelType =="BE"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Celllivshitz_rudy_2007FromCellMLBackwardEuler(p_solver, p_stimulus));
             }
-			return p_cell;
-		}else if(rModelName == "luo_rudy_1994"){
+            return p_cell;
+        }else if(rModelName == "luo_rudy_1994"){
             if (modelType =="Normal"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellluo_rudy_1994FromCellML(p_solver, p_stimulus));
             } else if (modelType =="Cvode"){
@@ -439,8 +439,8 @@ private:
             } else if (modelType =="BE"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellluo_rudy_1994FromCellMLBackwardEuler(p_solver, p_stimulus));
             }
-			return p_cell;
-		}else if(rModelName == "mahajan_2008"){
+            return p_cell;
+        }else if(rModelName == "mahajan_2008"){
             if (modelType =="Normal"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellmahajan_2008FromCellML(p_solver, p_stimulus));
             } else if (modelType =="Cvode"){
@@ -448,8 +448,8 @@ private:
             } else if (modelType =="BE"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellmahajan_2008FromCellMLBackwardEuler(p_solver, p_stimulus));
             }
-			return p_cell;
-		}else if(rModelName == "matsuoka_model_2003"){
+            return p_cell;
+        }else if(rModelName == "matsuoka_model_2003"){
             if (modelType =="Normal"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellmatsuoka_model_2003FromCellML(p_solver, p_stimulus));
             } else if (modelType =="Cvode"){
@@ -457,8 +457,8 @@ private:
             } else if (modelType =="BE"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellmatsuoka_model_2003FromCellMLBackwardEuler(p_solver, p_stimulus));
             }
-			return p_cell;
-		}else if(rModelName == "noble_model_1991"){
+            return p_cell;
+        }else if(rModelName == "noble_model_1991"){
             if (modelType =="Normal"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellnoble_model_1991FromCellML(p_solver, p_stimulus));
             } else if (modelType =="Cvode"){
@@ -466,8 +466,8 @@ private:
             } else if (modelType =="BE"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellnoble_model_1991FromCellMLBackwardEuler(p_solver, p_stimulus));
             }
-			return p_cell;
-		}else if(rModelName == "noble_model_1998"){
+            return p_cell;
+        }else if(rModelName == "noble_model_1998"){
             if (modelType =="Normal"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellnoble_model_1998FromCellML(p_solver, p_stimulus));
             } else if (modelType =="Cvode"){
@@ -475,8 +475,8 @@ private:
             } else if (modelType =="BE"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellnoble_model_1998FromCellMLBackwardEuler(p_solver, p_stimulus));
             }
-			return p_cell;
-		}else if(rModelName == "noble_noble_SAN_model_1984"){
+            return p_cell;
+        }else if(rModelName == "noble_noble_SAN_model_1984"){
             if (modelType =="Normal"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellnoble_noble_SAN_model_1984FromCellML(p_solver, p_stimulus));
             } else if (modelType =="Cvode"){
@@ -484,8 +484,8 @@ private:
             } else if (modelType =="BE"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellnoble_noble_SAN_model_1984FromCellMLBackwardEuler(p_solver, p_stimulus));
             }
-			return p_cell;
-		}else if(rModelName == "noble_SAN_model_1989"){
+            return p_cell;
+        }else if(rModelName == "noble_SAN_model_1989"){
             if (modelType =="Normal"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellnoble_SAN_model_1989FromCellML(p_solver, p_stimulus));
             } else if (modelType =="Cvode"){
@@ -493,8 +493,8 @@ private:
             } else if (modelType =="BE"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellnoble_SAN_model_1989FromCellMLBackwardEuler(p_solver, p_stimulus));
             }
-			return p_cell;
-		}else if(rModelName == "nygren_atrial_model_1998"){
+            return p_cell;
+        }else if(rModelName == "nygren_atrial_model_1998"){
             if (modelType =="Normal"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellnygren_atrial_model_1998FromCellML(p_solver, p_stimulus));
             } else if (modelType =="Cvode"){
@@ -502,8 +502,8 @@ private:
             } else if (modelType =="BE"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellnygren_atrial_model_1998FromCellMLBackwardEuler(p_solver, p_stimulus));
             }
-			return p_cell;
-		}else if(rModelName == "pandit_model_2001_epi"){
+            return p_cell;
+        }else if(rModelName == "pandit_model_2001_epi"){
             if (modelType =="Normal"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellpandit_model_2001_epiFromCellML(p_solver, p_stimulus));
             } else if (modelType =="Cvode"){
@@ -511,8 +511,8 @@ private:
             } else if (modelType =="BE"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellpandit_model_2001_epiFromCellMLBackwardEuler(p_solver, p_stimulus));
             }
-			return p_cell;
-		}else if(rModelName == "priebe_beuckelmann_model_1998"){
+            return p_cell;
+        }else if(rModelName == "priebe_beuckelmann_model_1998"){
             if (modelType =="Normal"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellpriebe_beuckelmann_model_1998FromCellML(p_solver, p_stimulus));
             } else if (modelType =="Cvode"){
@@ -520,8 +520,8 @@ private:
             } else if (modelType =="BE"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellpriebe_beuckelmann_model_1998FromCellMLBackwardEuler(p_solver, p_stimulus));
             }
-			return p_cell;
-		}else if(rModelName == "sakmann_model_2000_epi"){
+            return p_cell;
+        }else if(rModelName == "sakmann_model_2000_epi"){
             if (modelType =="Normal"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellsakmann_model_2000_epiFromCellML(p_solver, p_stimulus));
             } else if (modelType =="Cvode"){
@@ -529,8 +529,8 @@ private:
             } else if (modelType =="BE"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellsakmann_model_2000_epiFromCellMLBackwardEuler(p_solver, p_stimulus));
             }
-			return p_cell;
-		}else if(rModelName == "Shannon2004"){
+            return p_cell;
+        }else if(rModelName == "Shannon2004"){
             if (modelType =="Normal"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new CellShannon2004FromCellML(p_solver, p_stimulus));
             } else if (modelType =="Cvode"){
@@ -538,8 +538,8 @@ private:
             } else if (modelType =="BE"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new CellShannon2004FromCellMLBackwardEuler(p_solver, p_stimulus));
             }
-			return p_cell;
-		}else if(rModelName == "stewart_zhang_model_2008_ss"){
+            return p_cell;
+        }else if(rModelName == "stewart_zhang_model_2008_ss"){
             if (modelType =="Normal"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellstewart_zhang_model_2008_ssFromCellML(p_solver, p_stimulus));
             } else if (modelType =="Cvode"){
@@ -547,8 +547,8 @@ private:
             } else if (modelType =="BE"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellstewart_zhang_model_2008_ssFromCellMLBackwardEuler(p_solver, p_stimulus));
             }
-			return p_cell;
-		}else if(rModelName == "ten_tusscher_model_2004_endo"){
+            return p_cell;
+        }else if(rModelName == "ten_tusscher_model_2004_endo"){
             if (modelType =="Normal"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellten_tusscher_model_2004_endoFromCellML(p_solver, p_stimulus));
             } else if (modelType =="Cvode"){
@@ -556,8 +556,8 @@ private:
             } else if (modelType =="BE"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellten_tusscher_model_2004_endoFromCellMLBackwardEuler(p_solver, p_stimulus));
             }
-			return p_cell;
-		}else if(rModelName == "ten_tusscher_model_2004_epi"){
+            return p_cell;
+        }else if(rModelName == "ten_tusscher_model_2004_epi"){
             if (modelType =="Normal"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellten_tusscher_model_2004_epiFromCellML(p_solver, p_stimulus));
             } else if (modelType =="Cvode"){
@@ -565,8 +565,8 @@ private:
             } else if (modelType =="BE"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellten_tusscher_model_2004_epiFromCellMLBackwardEuler(p_solver, p_stimulus));
             }
-			return p_cell;
-		}else if(rModelName == "ten_tusscher_model_2006_epi"){
+            return p_cell;
+        }else if(rModelName == "ten_tusscher_model_2006_epi"){
             if (modelType =="Normal"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellten_tusscher_model_2006_epiFromCellML(p_solver, p_stimulus));
             } else if (modelType =="Cvode"){
@@ -574,8 +574,8 @@ private:
             } else if (modelType =="BE"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellten_tusscher_model_2006_epiFromCellMLBackwardEuler(p_solver, p_stimulus));
             }
-			return p_cell;
-		}else if(rModelName == "viswanathan_model_1999_epi"){
+            return p_cell;
+        }else if(rModelName == "viswanathan_model_1999_epi"){
             if (modelType =="Normal"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellviswanathan_model_1999_epiFromCellML(p_solver, p_stimulus));
             } else if (modelType =="Cvode"){
@@ -583,8 +583,8 @@ private:
             } else if (modelType =="BE"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellviswanathan_model_1999_epiFromCellMLBackwardEuler(p_solver, p_stimulus));
             }
-			return p_cell;
-		}else if(rModelName == "winslow_model_1999"){
+            return p_cell;
+        }else if(rModelName == "winslow_model_1999"){
             if (modelType =="Normal"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellwinslow_model_1999FromCellML(p_solver, p_stimulus));
             } else if (modelType =="Cvode"){
@@ -592,8 +592,8 @@ private:
             } else if (modelType =="BE"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellwinslow_model_1999FromCellMLBackwardEuler(p_solver, p_stimulus));
             }
-			return p_cell;
-		}else if(rModelName == "zhang_SAN_model_2000_0D_capable"){
+            return p_cell;
+        }else if(rModelName == "zhang_SAN_model_2000_0D_capable"){
             if (modelType =="Normal"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellzhang_SAN_model_2000_0D_capableFromCellML(p_solver, p_stimulus));
             } else if (modelType =="Cvode"){
@@ -601,8 +601,8 @@ private:
             } else if (modelType =="BE"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellzhang_SAN_model_2000_0D_capableFromCellMLBackwardEuler(p_solver, p_stimulus));
             }
-			return p_cell;
-		}else if(rModelName == "zhang_SAN_model_2000_all"){
+            return p_cell;
+        }else if(rModelName == "zhang_SAN_model_2000_all"){
             if (modelType =="Normal"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellzhang_SAN_model_2000_allFromCellML(p_solver, p_stimulus));
             } else if (modelType =="Cvode"){
@@ -610,11 +610,11 @@ private:
             } else if (modelType =="BE"){
                 p_cell = boost::shared_ptr<AbstractCardiacCellInterface>(new Cellzhang_SAN_model_2000_allFromCellMLBackwardEuler(p_solver, p_stimulus));
             }
-			return p_cell;
-		}else{
-			return NULL;
-		}
-	}
+            return p_cell;
+        }else{
+            return NULL;
+        }
+    }
 
 public:
     void RunTests(const std::string& rOutputDirName,
