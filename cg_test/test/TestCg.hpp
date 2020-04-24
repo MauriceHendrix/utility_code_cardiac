@@ -18,18 +18,18 @@
 class TestCg : public CompareToPyCmlLongHelperTestSuite
 {
 public:
-//    void TestNormalCells()
-//    {
-//        std::cout << "Search for 'Failure', ': ***', 'Error', or 'Failed' to find problems." << std::endl;
-//
-//        std::string dirname("TestCgLongNormal");
-//        std::vector<std::string> args;
-//      args.push_back("--Wu");
-//        std::vector<std::string> models;
-//        AddAllModels(models);
-//        HeartConfig::Instance()->SetOdePdeAndPrintingTimeSteps(0.005, 0.1, 1.0);
-//        RunTests(dirname, models, args);
-//    }
+    void TestNormalCells()
+    {
+        std::cout << "Search for 'Failure', ': ***', 'Error', or 'Failed' to find problems." << std::endl;
+
+        std::string dirname("TestCgLongNormal");
+        std::vector<std::string> args;
+      args.push_back("--Wu");
+        std::vector<std::string> models;
+        AddAllModels(models);
+        HeartConfig::Instance()->SetOdePdeAndPrintingTimeSteps(0.005, 0.1, 1.0);
+        RunTests(dirname, models, args);
+    }
 //
 //    void TestCvodeCells()
 //    {
@@ -185,21 +185,21 @@ public:
 //        HeartConfig::Instance()->SetOdePdeAndPrintingTimeSteps(0.0001, 0.1, 1.0);
 //        RunTests(dirname, models, args, false, 0, false);
 //    }
-
-    void TestGeneralizedRushLarsenSecondOrderOpt()
-    {
-        std::string dirname("TestPyCmlLongGeneralizedRushLarsen2Opt");
-        std::vector<std::string> args;
-        args.push_back("--Wu");
-        args.push_back("--grl2");
-        args.push_back("--opt");
-        SetModelType("GRL2");
-        std::vector<std::string> models;
-        AddAllModels(models);
-        // Winslow model needs a smaller timestep
-        HeartConfig::Instance()->SetOdePdeAndPrintingTimeSteps(0.0001, 0.1, 1.0);
-        RunTests(dirname, models, args, true, -1000, false);
-    }
+//
+//    void TestGeneralizedRushLarsenSecondOrderOpt()
+//    {
+//        std::string dirname("TestPyCmlLongGeneralizedRushLarsen2Opt");
+//        std::vector<std::string> args;
+//        args.push_back("--Wu");
+//        args.push_back("--grl2");
+//        args.push_back("--opt");
+//        SetModelType("GRL2");
+//        std::vector<std::string> models;
+//        AddAllModels(models);
+//        // Winslow model needs a smaller timestep
+//        HeartConfig::Instance()->SetOdePdeAndPrintingTimeSteps(0.0001, 0.1, 1.0);
+//        RunTests(dirname, models, args, true, -1000, false);
+//    }
 };
 
 #endif /*TESTCG_HPP_*/
