@@ -18,18 +18,18 @@
 class TestCg : public CompareToPyCmlLongHelperTestSuite
 {
 public:
-    void TestNormalCells()
-    {
-        std::cout << "Search for 'Failure', ': ***', 'Error', or 'Failed' to find problems." << std::endl;
-
-        std::string dirname("TestCgLongNormal");
-        std::vector<std::string> args;
-      args.push_back("--Wu");
-        std::vector<std::string> models;
-        AddAllModels(models);
-        HeartConfig::Instance()->SetOdePdeAndPrintingTimeSteps(0.005, 0.1, 1.0);
-        RunTests(dirname, models, args);
-    }
+//    void TestNormalCells()
+//    {
+//        std::cout << "Search for 'Failure', ': ***', 'Error', or 'Failed' to find problems." << std::endl;
+//
+//        std::string dirname("TestCgLongNormal");
+//        std::vector<std::string> args;
+//      args.push_back("--Wu");
+//        std::vector<std::string> models;
+//        AddAllModels(models);
+//        HeartConfig::Instance()->SetOdePdeAndPrintingTimeSteps(0.005, 0.1, 1.0);
+//        RunTests(dirname, models, args);
+//    }
 //
 //    void TestCvodeCells()
 //    {
@@ -48,30 +48,30 @@ public:
 //        SetUseCvodeJacobian(true);
 //#endif
 //    }
-//
-//    void TestAnalyticCvodeCells()
-//    {
-//       std::cout << "CVODE with JACOBIAN-----" << std::endl;
-//#ifdef CHASTE_CVODE
-//       std::string dirname("TestPyCmlLongCvodeAnalyticJ");
-//       std::vector<std::string> args;
-//       args.push_back("--Wu");
-//       args.push_back("--cvode");
-//       std::vector<std::string> models;
-//       SetModelType("Cvode");
-//	   SetUseCvodeJacobian(true);
-//       AddAllModels(models);
-//        // These have NaN in the jacobian due to massive exponentials
-//       std::vector<std::string> bad_models = boost::assign::list_of("aslanidi_model_2009")("hund_rudy_2004_a")("livshitz_rudy_2007");
-//       BOOST_FOREACH (std::string bad_model, bad_models)
-//       {
-//           models.erase(std::find(models.begin(), models.end(), bad_model));
-//       }
-//
-//       RunTests(dirname, models, args);
-//#endif
-//    }
-//
+
+    void TestAnalyticCvodeCells()
+    {
+       std::cout << "CVODE with JACOBIAN-----" << std::endl;
+#ifdef CHASTE_CVODE
+       std::string dirname("TestPyCmlLongCvodeAnalyticJ");
+       std::vector<std::string> args;
+       args.push_back("--Wu");
+       args.push_back("--cvode");
+       std::vector<std::string> models;
+       SetModelType("Cvode");
+	   SetUseCvodeJacobian(true);
+       AddAllModels(models);
+        // These have NaN in the jacobian due to massive exponentials
+       std::vector<std::string> bad_models = boost::assign::list_of("aslanidi_model_2009")("hund_rudy_2004_a")("livshitz_rudy_2007");
+       BOOST_FOREACH (std::string bad_model, bad_models)
+       {
+           models.erase(std::find(models.begin(), models.end(), bad_model));
+       }
+
+       RunTests(dirname, models, args);
+#endif
+    }
+
 //    void TestBackwardEulerCells()
 //    {
 //        std::string dirname("TestPyCmlLongBE");
@@ -110,8 +110,8 @@ public:
 //        HeartConfig::Instance()->SetOdePdeAndPrintingTimeSteps(0.001, 0.1, 1.0);
 //        RunTests(dirname, diff_models, args, true);
 //    }
-//
-//
+
+
 //    void TestRushLarsenCells()
 //    {
 //        std::string dirname("TestPyCmlLongRushLarsen");
@@ -126,7 +126,7 @@ public:
 //        HeartConfig::Instance()->SetOdePdeAndPrintingTimeSteps(0.001, 0.1, 1.0);
 //        RunTests(dirname, models, args, false, 0, false);
 //    }
-//
+
 //    void TestRushLarsenOptCells()
 //    {
 //        std::string dirname("TestPyCmlLongRushLarsenOpt");
@@ -140,51 +140,51 @@ public:
 //        RunTests(dirname, models, args, true, -1000, false);
 //    }
 //
-//    void TestGeneralizedRushLarsenFirstOrder()
-//    {
-//        std::string dirname("TestPyCmlLongGeneralizedRushLarsen1");
-//        std::vector<std::string> args;
-//        args.push_back("--Wu");
-//        args.push_back("--grl1");
-//        SetModelType("GRL1");
-//        std::vector<std::string> models;
-//        AddAllModels(models);
-//        models.erase(std::find(models.begin(), models.end(), "iyer_model_2004"));
-//        // Winslow model needs a smaller timestep
-//        HeartConfig::Instance()->SetOdePdeAndPrintingTimeSteps(0.0001, 0.1, 1.0);
-//        RunTests(dirname, models, args, false, 0, false);
-//    }
-//
-
-    void TestGeneralizedRushLarsenFirstOrderOpt()
+    void TestGeneralizedRushLarsenFirstOrder()
     {
-        std::string dirname("TestPyCmlLongGeneralizedRushLarsen1Opt");
+        std::string dirname("TestPyCmlLongGeneralizedRushLarsen1");
         std::vector<std::string> args;
         args.push_back("--Wu");
         args.push_back("--grl1");
-        args.push_back("--opt");
         SetModelType("GRL1");
         std::vector<std::string> models;
         AddAllModels(models);
         models.erase(std::find(models.begin(), models.end(), "iyer_model_2004"));
         // Winslow model needs a smaller timestep
         HeartConfig::Instance()->SetOdePdeAndPrintingTimeSteps(0.0001, 0.1, 1.0);
-        RunTests(dirname, models, args, true, -1000, false);
+        RunTests(dirname, models, args, false, 0, false);
     }
 
-//    void TestGeneralizedRushLarsenSecondOrder()
+
+//    void TestGeneralizedRushLarsenFirstOrderOpt()
 //    {
-//        std::string dirname("TestPyCmlLongGeneralizedRushLarsen2");
+//        std::string dirname("TestPyCmlLongGeneralizedRushLarsen1Opt");
 //        std::vector<std::string> args;
 //        args.push_back("--Wu");
-//        args.push_back("--grl2");
-//        SetModelType("GRL2");
+//        args.push_back("--grl1");
+//        args.push_back("--opt");
+//        SetModelType("GRL1");
 //        std::vector<std::string> models;
 //        AddAllModels(models);
+//        models.erase(std::find(models.begin(), models.end(), "iyer_model_2004"));
 //        // Winslow model needs a smaller timestep
 //        HeartConfig::Instance()->SetOdePdeAndPrintingTimeSteps(0.0001, 0.1, 1.0);
-//        RunTests(dirname, models, args, false, 0, false);
+//        RunTests(dirname, models, args, true, -1000, false);
 //    }
+//
+    void TestGeneralizedRushLarsenSecondOrder()
+    {
+        std::string dirname("TestPyCmlLongGeneralizedRushLarsen2");
+        std::vector<std::string> args;
+        args.push_back("--Wu");
+        args.push_back("--grl2");
+        SetModelType("GRL2");
+        std::vector<std::string> models;
+        AddAllModels(models);
+        // Winslow model needs a smaller timestep
+        HeartConfig::Instance()->SetOdePdeAndPrintingTimeSteps(0.0001, 0.1, 1.0);
+        RunTests(dirname, models, args, false, 0, false);
+    }
 //
 //    void TestGeneralizedRushLarsenSecondOrderOpt()
 //    {
