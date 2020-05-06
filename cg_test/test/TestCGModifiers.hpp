@@ -33,8 +33,8 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 */
 
-#ifndef _TESTMODIFIERS_HPP_
-#define _TESTMODIFIERS_HPP_
+#ifndef _TESTCGMODIFIERS_HPP_
+#define _TESTCGMODIFIERS_HPP_
 
 #include <cxxtest/TestSuite.h>
 
@@ -48,7 +48,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "Exception.hpp"
 #include "EulerIvpOdeSolver.hpp"
 #include "ZeroStimulus.hpp"
-#include "Shannon2004.hpp"
+#include "Normal/Shannon2004.hpp"
 
 #include "OutputFileHandler.hpp"
 #include "CheckpointArchiveTypes.hpp"
@@ -56,7 +56,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "PetscSetupAndFinalize.hpp"
 
-class TestModifiers : public CxxTest::TestSuite
+class TestCGModifiers : public CxxTest::TestSuite
 {
 public:
     void TestAccessingParametersWithoutModifiers()
@@ -210,4 +210,4 @@ public:
      }
 };
 
-#endif //_TESTMODIFIERS_HPP_
+#endif //_TESTCGMODIFIERS_HPP_
