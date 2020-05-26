@@ -39,7 +39,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <cxxtest/TestSuite.h>
 
 #include "AbstractCvodeCellWithDataClamp.hpp"
-#include "Shannon2004DataClamp.hpp"
+#include "Shannon2004_with_modifiers.hpp"
 #include "RandomNumberGenerator.hpp"
 #include "CheckpointArchiveTypes.hpp"
 #include "ArchiveLocationInfo.hpp"

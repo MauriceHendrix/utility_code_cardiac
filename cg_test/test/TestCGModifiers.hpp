@@ -48,7 +48,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "Exception.hpp"
 #include "EulerIvpOdeSolver.hpp"
 #include "ZeroStimulus.hpp"
-#include "Normal/Shannon2004.hpp"
+#include "Shannon2004_with_modifiers.hpp"
 
 #include "OutputFileHandler.hpp"
 #include "CheckpointArchiveTypes.hpp"
@@ -63,7 +63,7 @@ public:
     {
         boost::shared_ptr<ZeroStimulus> p_stimulus(new ZeroStimulus());
         boost::shared_ptr<EulerIvpOdeSolver> p_solver(new EulerIvpOdeSolver);
-        CellShannon2004FromCellML* p_shannon = new CellShannon2004FromCellML(p_solver, p_stimulus);
+        CellShannon2004FromCellMLCvodeDataClamp* p_shannon = new CellShannon2004FromCellMLCvodeDataClamp(p_solver, p_stimulus);
 
         // We should now have all of the following methods available as an alternative to using 'modifiers'
         TS_ASSERT_DELTA(p_shannon->GetParameter("membrane_fast_sodium_current_conductance"),16.0,1e-5);
@@ -78,7 +78,7 @@ public:
     {
         boost::shared_ptr<ZeroStimulus> p_stimulus(new ZeroStimulus());
         boost::shared_ptr<EulerIvpOdeSolver> p_solver(new EulerIvpOdeSolver);
-        CellShannon2004FromCellML* p_shannon = new CellShannon2004FromCellML(p_solver, p_stimulus);
+        CellShannon2004FromCellMLCvodeDataClamp* p_shannon = new CellShannon2004FromCellMLCvodeDataClamp(p_solver, p_stimulus);
 
         TS_ASSERT_EQUALS(p_shannon->HasModifier("Alan"), false);
         TS_ASSERT_THROWS_THIS(p_shannon->GetModifier("Alan"), "There is no modifier called Alan in this model.");
