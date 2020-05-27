@@ -36,18 +36,6 @@ git push
 
 
 
-cd /home/uczmh2/covid/
-source /home/uczmh2/covid/bin/activate
-cd /home/uczmh2/covid/covid19-sp/python
-git pull
-python ons_download_deaths_data.py
-cd ../data
-git add ONS_data.csv
-git add ONS_excess_deaths.csv
-git commit -m "auto update ons data"
-git push
-
-
 cd /data/shared/ons_xlsx
 for year in 2020 
 do
@@ -66,3 +54,26 @@ git add data
 git commit -m "ons spreadsheet auto update"
 git push
 
+
+
+cd /home/uczmh2/covid/
+source /home/uczmh2/covid/bin/activate
+cd /home/uczmh2/covid/covid19-sp/python
+git pull
+python ons_download_deaths_data.py
+cd ../data
+git add ONS_data.csv
+git add ONS_excess_deaths.csv
+git commit -m "auto update ons data from API"
+git push
+
+
+cd /home/uczmh2/covid/
+source /home/uczmh2/covid/bin/activate
+cd /home/uczmh2/covid/covid19-sp/python
+git pull
+python  ons_process_spreadsheet.py
+cd ../data
+git add ONS_daily_deaths.csv
+git commit -m "auto update ONS daily deaths CSV from spreadsheet"
+git push
