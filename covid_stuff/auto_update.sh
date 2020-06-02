@@ -42,8 +42,8 @@ git pull
 pip uninstall nottingham_covid_modelling -y
 pip install -r requirements.txt
 pip install -e .
-download_ons_data --output /home/uczmh2/covid/covid19-sp/data/ONS_daily_deaths.csv
-cd ../data
+download_ons_data	
+cd /home/uczmh2/covid/covid19-sp/data
 git add ONS_daily_deaths.csv
 git commit -m "auto update ons data"
 git push
