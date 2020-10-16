@@ -6,5 +6,7 @@ ICaL__ibarca = 3.5108651860830804 * (-15.0 + cell__V) * (-0.61380000000000001 + 
 
 ### Singulariy points detected:
 {15.000000000000000}
+
 *Singularity point: 15.000000000000000*
+
 ![point](diagrams/davies_isap_2012/eq1-sing0.png)
