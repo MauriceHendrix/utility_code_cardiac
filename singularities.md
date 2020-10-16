@@ -6,7 +6,6 @@ ICaL__ibarca = 4.0 * (-15.0 + cell__V) * (-Environment__Ca_o * ICaL__gacao + Ca_
 ### Partially evaluated to: 
 ```
 ICaL__ibarca = 3.5108651860830804 * (-15.0 + cell__V) * (-0.61380000000000001 + 7.3230071611651398e-5 * exp(0.074871767015599999 * cell__V)) / (-1.0 + 0.32527753564515088 * exp(0.074871767015599999 * cell__V))
-
 ```
 ### Singulariy points detected:
 {15.000000000000000}
@@ -2506,7 +2505,6 @@ L_type_Ca_current__i_CaL = 1.485367413663972e-5 * (-2.0 + 2.9276728334721234e-5 
 
 *Singularity point: 15.000000000000000*
 
-<<<<<<< HEAD
  
 
 ![point](diagrams/tentusscher_panfilov_2006_epi/eq1-sing1.png)
@@ -2862,6 +2860,3 @@ sodium_current__i_Na = 0
 
 ![point](diagrams/zhang_SAN_model_2000_all/eq4-sing1.png)
 
-=======
-![point](diagrams/davies_isap_2012/eq1-sing0.png)
->>>>>>> 4886894fca087044cd81974dd4ceabd738d6a410
