@@ -7,22 +7,21 @@ ICaL__ibarca = 4.0 * (-15.0 + cell__V) * (-Environment__Ca_o * ICaL__gacao + Ca_
 ```
 ICaL__ibarca = 3.5108651860830804 * (-15.0 + cell__V) * (-0.61380000000000001 + 7.3230071611651398e-5 * exp(0.074871767015599999 * cell__V)) / (-1.0 + 0.32527753564515088 * exp(0.074871767015599999 * cell__V))
 ```
+### Singulariy points detected:
+{15.000000000000000}
 *U*
 `-1.1230765052339999 + 0.074871767015599999 * cell__V`
 
 *V for 1e-07 range* 
 `14.999998664383064 - 15.000001335616936`
-### Singulariy points detected:
-{15.000000000000000}
 
 *Singularity point: 15.000000000000000*
 
-*Left limit:* -28.771574818311906 == Right limit:* -28.771574818311906
+*Left limit:* -28.771574818311906 == *Right limit:* -28.771574818311906
 
 *Has piecewise: * False
 
 ![point](diagrams/u/davies_isap_2012/eq1-sing1.png)
-
 ## Equation 2:
 ```
 ICab__ICab = (-0.34100000000000003 * Environment__Ca_o + Ca__Ca_i * exp(2.0 * Environment__FonRT * cell__V)) * Environment__F * Environment__FonRT * ICab__GCab * cell__V / (-1.0 + exp(2.0 * Environment__FonRT * cell__V))
@@ -31,22 +30,21 @@ ICab__ICab = (-0.34100000000000003 * Environment__Ca_o + Ca__Ca_i * exp(2.0 * En
 ```
 ICab__ICab = 0.0028824983370005666 * (-0.61380000000000001 + 0.00022376833123175801 * exp(0.074871767015599999 * cell__V)) * cell__V / (-1.0 + exp(0.074871767015599999 * cell__V))
 ```
+### Singulariy points detected:
+{0}
 *U*
 `0.074871767015599999 * cell__V`
 
 *V for 1e-07 range* 
 `-1.3356169352750065e-6 - 1.3356169352750065e-6`
-### Singulariy points detected:
-{0}
 
 *Singularity point: 0*
 
-*Left limit:* -0.023622154757477455 == Right limit:* -0.023622154757477455
+*Left limit:* -0.023622154757477455 == *Right limit:* -0.023622154757477455
 
 *Has piecewise: * False
 
 ![point](diagrams/u/davies_isap_2012/eq2-sing1.png)
-
 ## Equation 3:
 ```
 IKs__tauxs = 1 / (7.6100000000000007e-5 * (44.600000000000001 + cell__V) / (1.0 - 7.6868266637773744e-194 * exp(-9.9700000000000006 * cell__V)) + 0.00036000000000000002 * (-0.55000000000000004 + cell__V) / (-1.0 + 0.93202093695954691 * exp(0.128 * cell__V)))
@@ -56,8 +54,41 @@ IKs__tauxs = 1 / (7.6100000000000007e-5 * (44.600000000000001 + cell__V) / (1.0 
 IKs__tauxs = 1 / (7.6100000000000007e-5 * (44.600000000000001 + cell__V) / (1.0 - 7.6868266637773744e-194 * exp(-9.9700000000000006 * cell__V)) + 0.00036000000000000002 * (-0.55000000000000004 + cell__V) / (-1.0 + 0.93202093695954691 * exp(0.128 * cell__V)))
 ```
 ### Singulariy points detected:
-{0.55000000000000005, -44.600000000000001}
+{-44.600000000000001, 0.55000000000000005}
+####1 * A
 
+####1 / A
+
+####A + B:
+`7.6100000000000007e-5 * (44.600000000000001 + cell__V) / (1.0 - 7.6868266637773744e-194 * exp(-9.9700000000000006 * cell__V))`
+`0.00036000000000000002 * (-0.55000000000000004 + cell__V) / (-1.0 + 0.93202093695954691 * exp(0.128 * cell__V))`
+
+*U*
+`-444.66200000000003 - 9.9700000000000006 * cell__V`
+
+*V for 1e-07 range* 
+`-44.599999989969909 - -44.600000010030094`
+
+*Singularity point: -44.600000000000001*
+
+*Left limit:* 61.304437586446907 == *Right limit:* 61.304437586446907
+
+*Has piecewise: * False
+
+![point](diagrams/u/davies_isap_2012/eq3-sing1.png)
+*U*
+`-0.070400000000000004 + 0.128 * cell__V`
+
+*V for 1e-07 range* 
+`0.54999921875000002 - 0.55000078125000007`
+
+*Singularity point: 0.55000000000000005*
+
+*Left limit:* 0 == *Right limit:* 0
+
+*Has piecewise: * False
+
+![point](diagrams/u/davies_isap_2012/eq3-sing2.png)
 ## Equation 4:
 ```
 INa__am = 0.32000000000000001 * (47.130000000000003 + cell__V) / (1.0 - 0.00897780373069724 * exp(-0.10000000000000001 * cell__V))
@@ -66,22 +97,21 @@ INa__am = 0.32000000000000001 * (47.130000000000003 + cell__V) / (1.0 - 0.008977
 ```
 INa__am = 0.32000000000000001 * (47.130000000000003 + cell__V) / (1.0 - 0.00897780373069724 * exp(-0.10000000000000001 * cell__V))
 ```
-*U for -exp(U)+1* 
+### Singulariy points detected:
+{-47.130000000000003}
+*U*
 `-4.7130000000000001 - 0.10000000000000001 * cell__V`
 
 *V for 1e-07 range* 
 `-47.129999000000005 - -47.130001`
-### Singulariy points detected:
-{-47.130000000000003}
 
 *Singularity point: -47.130000000000003*
 
-*Left limit:* 3.1999999999999999 == Right limit:* 3.1999999999999999
+*Left limit:* 3.1999999999999999 == *Right limit:* 3.1999999999999999
 
 *Has piecewise: * False
 
 ![point](diagrams/u/davies_isap_2012/eq4-sing1.png)
-
 ## Equation 5:
 ```
 INal__amL = 0.32000000000000001 * (47.130000000000003 + cell__V) / (1.0 - 0.00897780373069724 * exp(-0.10000000000000001 * cell__V))
@@ -90,22 +120,21 @@ INal__amL = 0.32000000000000001 * (47.130000000000003 + cell__V) / (1.0 - 0.0089
 ```
 INal__amL = 0.32000000000000001 * (47.130000000000003 + cell__V) / (1.0 - 0.00897780373069724 * exp(-0.10000000000000001 * cell__V))
 ```
-*U for -exp(U)+1* 
+### Singulariy points detected:
+{-47.130000000000003}
+*U*
 `-4.7130000000000001 - 0.10000000000000001 * cell__V`
 
 *V for 1e-07 range* 
 `-47.129999000000005 - -47.130001`
-### Singulariy points detected:
-{-47.130000000000003}
 
 *Singularity point: -47.130000000000003*
 
-*Left limit:* 3.1999999999999999 == Right limit:* 3.1999999999999999
+*Left limit:* 3.1999999999999999 == *Right limit:* 3.1999999999999999
 
 *Has piecewise: * False
 
 ![point](diagrams/u/davies_isap_2012/eq5-sing1.png)
-
 ## Equation 6:
 ```
 Ito2__Ito2_max = (-Environment__Cl_o * exp(Environment__FonRT * cell__V) + Cl__Cl_i) * Environment__F * Environment__FonRT * Ito2__PCl * cell__V / (1.0 - exp(Environment__FonRT * cell__V))
@@ -114,22 +143,21 @@ Ito2__Ito2_max = (-Environment__Cl_o * exp(Environment__FonRT * cell__V) + Cl__C
 ```
 Ito2__Ito2_max = 0.001444800488100033 * (20.154379247109599 - 154.59999999999999 * exp(0.0374358835078 * cell__V)) * cell__V / (1.0 - exp(0.0374358835078 * cell__V))
 ```
-*U for -exp(U)+1* 
+### Singulariy points detected:
+{0}
+*U*
 `0.0374358835078 * cell__V`
 
 *V for 1e-07 range* 
 `-2.671233870550013e-6 - 2.671233870550013e-6`
-### Singulariy points detected:
-{0}
 
 *Singularity point: 0*
 
-*Left limit:* 5.1887942873370517 == Right limit:* 5.1887942873370517
+*Left limit:* 5.1887942873370517 == *Right limit:* 5.1887942873370517
 
 *Has piecewise: * False
 
 ![point](diagrams/u/davies_isap_2012/eq6-sing1.png)
-
 # Model: aslanidi_model_2009
 ## Equation 1:
 ```
@@ -139,22 +167,21 @@ sodium_current__i_Na = pow(membrane__F, 2) * pow(sodium_current_m_gate__m, 3) * 
 ```
 sodium_current__i_Na = 1.075255537963801e-6 * (-1.0 + 0.060000000000000005 * exp(0.037679754693225945 * membrane__V)) * membrane__V / (-1.0 + exp(0.037679754693225945 * membrane__V))
 ```
+### Singulariy points detected:
+{0}
 *U*
 `0.037679754693225945 * membrane__V`
 
 *V for 1e-07 range* 
 `-2.6539450910485349e-6 - 2.6539450910485349e-6`
-### Singulariy points detected:
-{0}
 
 *Singularity point: 0*
 
-*Left limit:* -2.6824490072056741e-5 == Right limit:* -2.6824490072056741e-5
+*Left limit:* -2.6824490072056741e-5 == *Right limit:* -2.6824490072056741e-5
 
 *Has piecewise: * False
 
 ![point](diagrams/u/aslanidi_model_2009/eq1-sing1.png)
-
 # Model: beeler_reuter_model_1977
 ## Equation 1:
 ```
@@ -164,22 +191,21 @@ sodium_current_m_gate__alpha_m = -(47.0 + membrane__V) / (-1.0 + 0.0090952771016
 ```
 sodium_current_m_gate__alpha_m = -(47.0 + membrane__V) / (-1.0 + 0.0090952771016958155 * exp(-0.10000000000000001 * membrane__V))
 ```
+### Singulariy points detected:
+{-47.000000000000000}
 *U*
 `-4.7000000000000002 - 0.10000000000000001 * membrane__V`
 
 *V for 1e-07 range* 
 `-46.999999000000003 - -47.000000999999997`
-### Singulariy points detected:
-{-47.000000000000000}
 
 *Singularity point: -47.000000000000000*
 
-*Left limit:* 9.9999999999999994 == Right limit:* 9.9999999999999994
+*Left limit:* 9.9999999999999994 == *Right limit:* 9.9999999999999994
 
 *Has piecewise: * False
 
 ![point](diagrams/u/beeler_reuter_model_1977/eq1-sing1.png)
-
 ## Equation 2:
 ```
 time_independent_outward_current__i_K1 = 0.014 * (-1.0 + 29.964100047397014 * exp(0.040000000000000001 * membrane__V)) / (8.3311374876876929 * exp(0.040000000000000001 * membrane__V) + 69.407851838755192 * exp(0.080000000000000002 * membrane__V)) + 0.0007000000000000001 * (23.0 + membrane__V) / (1.0 - 0.39851904108451419 * exp(-0.040000000000000001 * membrane__V))
@@ -190,7 +216,6 @@ time_independent_outward_current__i_K1 = 0.014 * (-1.0 + 29.964100047397014 * ex
 ```
 ### Singulariy points detected:
 {-23.000000000000000}
-
 # Model: bondarenko_model_2004_apex
 ## Equation 1:
 ```
@@ -200,22 +225,21 @@ slow_delayed_rectifier_potassium_current__alpha_n = 4.8133299999999997e-6 * (26.
 ```
 slow_delayed_rectifier_potassium_current__alpha_n = 4.8133299999999997e-6 * (26.5 + membrane__V) / (1.0 - 0.033641326918204616 * exp(-0.128 * membrane__V))
 ```
-*U for -exp(U)+1* 
+### Singulariy points detected:
+{-26.500000000000000}
+*U*
 `-3.3919999999999999 - 0.128 * membrane__V`
 
 *V for 1e-07 range* 
 `-26.499999218749998 - -26.500000781250002`
-### Singulariy points detected:
-{-26.500000000000000}
 
 *Singularity point: -26.500000000000000*
 
-*Left limit:* 3.7604140624999997e-5 == Right limit:* 3.7604140624999997e-5
+*Left limit:* 3.7604140624999997e-5 == *Right limit:* 3.7604140624999997e-5
 
 *Has piecewise: * False
 
 ![point](diagrams/u/bondarenko_model_2004_apex/eq1-sing1.png)
-
 # Model: bondarenko_2004_apical
 ## Equation 1:
 ```
@@ -225,22 +249,21 @@ slow_delayed_rectifier_potassium_current__alpha_n = 4.8133299999999997e-6 * (26.
 ```
 slow_delayed_rectifier_potassium_current__alpha_n = 4.8133299999999997e-6 * (26.5 + membrane__V) / (1.0 - 0.033641326918204616 * exp(-0.128 * membrane__V))
 ```
-*U for -exp(U)+1* 
+### Singulariy points detected:
+{-26.500000000000000}
+*U*
 `-3.3919999999999999 - 0.128 * membrane__V`
 
 *V for 1e-07 range* 
 `-26.499999218749998 - -26.500000781250002`
-### Singulariy points detected:
-{-26.500000000000000}
 
 *Singularity point: -26.500000000000000*
 
-*Left limit:* 3.7604140624999997e-5 == Right limit:* 3.7604140624999997e-5
+*Left limit:* 3.7604140624999997e-5 == *Right limit:* 3.7604140624999997e-5
 
 *Has piecewise: * False
 
 ![point](diagrams/u/bondarenko_2004_apical/eq1-sing1.png)
-
 # Model: courtemanche_ramirez_nattel_model_1998
 ## Equation 1:
 ```
@@ -252,7 +275,6 @@ Ca_release_current_from_JSR_w_gate__tau_w = ((fabs(-7.9000000000000004 + membran
 ```
 ### Singulariy points detected:
 {7.9000000000000004}
-
 ## Equation 2:
 ```
 L_type_Ca_channel_d_gate__tau_d = ((fabs(10.0 + membrane__V) < 1.0e-10) ? (4.5789999999999997 / (1.0 + 0.20137949774492364 * exp(-0.16025641025641024 * membrane__V))) : (28.571428571428569 * (1.0 - 0.20137949774492364 * exp(-0.16025641025641024 * membrane__V)) / ((1.0 + 0.20137949774492364 * exp(-0.16025641025641024 * membrane__V)) * (10.0 + membrane__V))))
@@ -263,7 +285,6 @@ L_type_Ca_channel_d_gate__tau_d = ((fabs(10.0 + membrane__V) < 1.0e-10) ? (4.578
 ```
 ### Singulariy points detected:
 {-10.000000000000000}
-
 ## Equation 3:
 ```
 fast_sodium_current_m_gate__alpha_m = ((membrane__V == (-47.130000000000003)) ? (3.2000000000000002) : (0.32000000000000001 * (47.130000000000003 + membrane__V) / (1.0 - 0.00897780373069724 * exp(-0.10000000000000001 * membrane__V))))
@@ -274,7 +295,6 @@ fast_sodium_current_m_gate__alpha_m = ((membrane__V == (-47.130000000000003)) ? 
 ```
 ### Singulariy points detected:
 {-47.130000000000003}
-
 ## Equation 4:
 ```
 rapid_delayed_rectifier_K_current_xr_gate__alpha_xr = ((fabs(14.1 + membrane__V) < 1.0e-10) ? (0.0015) : (0.00029999999999999997 * (14.1 + membrane__V) / (1.0 - 0.059605942708939361 * exp(-0.20000000000000001 * membrane__V))))
@@ -285,7 +305,6 @@ rapid_delayed_rectifier_K_current_xr_gate__alpha_xr = ((fabs(14.1 + membrane__V)
 ```
 ### Singulariy points detected:
 {-14.100000000000000}
-
 ## Equation 5:
 ```
 rapid_delayed_rectifier_K_current_xr_gate__beta_xr = ((fabs(-3.3328000000000002 + membrane__V) < 1.0e-10) ? (0.00037836118) : (7.3898000000000003e-5 * (-3.3328000000000002 + membrane__V) / (-1.0 + 0.52180181098168432 * exp(0.19517145812596365 * membrane__V))))
@@ -296,7 +315,6 @@ rapid_delayed_rectifier_K_current_xr_gate__beta_xr = ((fabs(-3.3328000000000002 
 ```
 ### Singulariy points detected:
 {3.3328000000000002}
-
 ## Equation 6:
 ```
 slow_delayed_rectifier_K_current_xs_gate__alpha_xs = ((fabs(-19.899999999999999 + membrane__V) < 1.0e-10) ? (0.00068000000000000005) : (4.0000000000000003e-5 * (-19.899999999999999 + membrane__V) / (1.0 - 3.2238884858633599 * exp(-0.058823529411764705 * membrane__V))))
@@ -307,7 +325,6 @@ slow_delayed_rectifier_K_current_xs_gate__alpha_xs = ((fabs(-19.899999999999999 
 ```
 ### Singulariy points detected:
 {19.899999999999999}
-
 ## Equation 7:
 ```
 slow_delayed_rectifier_K_current_xs_gate__beta_xs = ((fabs(-19.899999999999999 + membrane__V) < 1.0e-10) ? (0.00031500000000000001) : (3.4999999999999997e-5 * (-19.899999999999999 + membrane__V) / (-1.0 + 0.10957882659742624 * exp(0.1111111111111111 * membrane__V))))
@@ -318,7 +335,6 @@ slow_delayed_rectifier_K_current_xs_gate__beta_xs = ((fabs(-19.899999999999999 +
 ```
 ### Singulariy points detected:
 {19.899999999999999}
-
 # Model: decker_2009
 ## Equation 1:
 ```
@@ -330,7 +346,6 @@ IKr_xr_gate__tau_xr = 1 / (0.00029999999999999997 * (38.360799999999998 + membra
 ```
 ### Singulariy points detected:
 {-38.360799999999998}
-
 ## Equation 2:
 ```
 INaL_mL_gate__amL = 0.32000000000000001 * (47.130000000000003 + membrane__Vm) / (1.0 - 0.00897780373069724 * exp(-0.10000000000000001 * membrane__Vm))
@@ -339,22 +354,21 @@ INaL_mL_gate__amL = 0.32000000000000001 * (47.130000000000003 + membrane__Vm) / 
 ```
 INaL_mL_gate__amL = 0.32000000000000001 * (47.130000000000003 + membrane__Vm) / (1.0 - 0.00897780373069724 * exp(-0.10000000000000001 * membrane__Vm))
 ```
-*U for -exp(U)+1* 
+### Singulariy points detected:
+{-47.130000000000003}
+*U*
 `-4.7130000000000001 - 0.10000000000000001 * membrane__Vm`
 
 *V for 1e-07 range* 
 `-47.129999000000005 - -47.130001`
-### Singulariy points detected:
-{-47.130000000000003}
 
 *Singularity point: -47.130000000000003*
 
-*Left limit:* 3.1999999999999999 == Right limit:* 3.1999999999999999
+*Left limit:* 3.1999999999999999 == *Right limit:* 3.1999999999999999
 
 *Has piecewise: * False
 
 ![point](diagrams/u/decker_2009/eq2-sing1.png)
-
 ## Equation 3:
 ```
 INa_m_gate__am = 0.32000000000000001 * (47.130000000000003 + membrane__Vm) / (1.0 - 0.00897780373069724 * exp(-0.10000000000000001 * membrane__Vm))
@@ -363,22 +377,21 @@ INa_m_gate__am = 0.32000000000000001 * (47.130000000000003 + membrane__Vm) / (1.
 ```
 INa_m_gate__am = 0.32000000000000001 * (47.130000000000003 + membrane__Vm) / (1.0 - 0.00897780373069724 * exp(-0.10000000000000001 * membrane__Vm))
 ```
-*U for -exp(U)+1* 
+### Singulariy points detected:
+{-47.130000000000003}
+*U*
 `-4.7130000000000001 - 0.10000000000000001 * membrane__Vm`
 
 *V for 1e-07 range* 
 `-47.129999000000005 - -47.130001`
-### Singulariy points detected:
-{-47.130000000000003}
 
 *Singularity point: -47.130000000000003*
 
-*Left limit:* 3.1999999999999999 == Right limit:* 3.1999999999999999
+*Left limit:* 3.1999999999999999 == *Right limit:* 3.1999999999999999
 
 *Has piecewise: * False
 
 ![point](diagrams/u/decker_2009/eq3-sing1.png)
-
 ## Equation 4:
 ```
 ICaL__ICaL_max = 4.0 * pow(model_parameters__F, 2) * (-ICaL__gamma_Cao * model_parameters__Ca_o + Ca__Ca_ss_CaL * ICaL__gamma_Cai * exp(2.0 * membrane__Vm * model_parameters__F / (model_parameters__R * model_parameters__T))) * ICaL__PCa * membrane__Vm / ((-1.0 + exp(2.0 * membrane__Vm * model_parameters__F / (model_parameters__R * model_parameters__T))) * model_parameters__R * model_parameters__T)
@@ -387,22 +400,21 @@ ICaL__ICaL_max = 4.0 * pow(model_parameters__F, 2) * (-ICaL__gamma_Cao * model_p
 ```
 ICaL__ICaL_max = 2.2470468725164396 * (-0.61380000000000001 + 9.6154499999999996e-5 * exp(0.074873319003313496 * membrane__Vm)) * membrane__Vm / (-1.0 + exp(0.074873319003313496 * membrane__Vm))
 ```
+### Singulariy points detected:
+{0}
 *U*
 `0.074873319003313496 * membrane__Vm`
 
 *V for 1e-07 range* 
 `-1.3355892503653341e-6 - 1.3355892503653341e-6`
-### Singulariy points detected:
-{0}
 
 *Singularity point: 0*
 
-*Left limit:* -18.418060332293526 == Right limit:* -18.418060332293526
+*Left limit:* -18.418060332293526 == *Right limit:* -18.418060332293526
 
 *Has piecewise: * False
 
 ![point](diagrams/u/decker_2009/eq4-sing1.png)
-
 ## Equation 5:
 ```
 ICab__ICab = 4.0 * pow(model_parameters__F, 2) * (-ICab__gamma_Ca_o * model_parameters__Ca_o + Ca__Ca_i * ICab__gamma_Ca_i * exp(2.0 * membrane__Vm * model_parameters__F / (model_parameters__R * model_parameters__T))) * ICab__PCab * membrane__Vm / ((-1.0 + exp(2.0 * membrane__Vm * model_parameters__F / (model_parameters__R * model_parameters__T))) * model_parameters__R * model_parameters__T)
@@ -411,22 +423,21 @@ ICab__ICab = 4.0 * pow(model_parameters__F, 2) * (-ICab__gamma_Ca_o * model_para
 ```
 ICab__ICab = 0.0028826178386108462 * (-0.61380000000000001 + 7.0994499999999999e-5 * exp(0.074873319003313496 * membrane__Vm)) * membrane__Vm / (-1.0 + exp(0.074873319003313496 * membrane__Vm))
 ```
+### Singulariy points detected:
+{0}
 *U*
 `0.074873319003313496 * membrane__Vm`
 
 *V for 1e-07 range* 
 `-1.3355892503653341e-6 - 1.3355892503653341e-6`
-### Singulariy points detected:
-{0}
 
 *Singularity point: 0*
 
-*Left limit:* -0.023628526194343027 == Right limit:* -0.023628526194343027
+*Left limit:* -0.023628526194343027 == *Right limit:* -0.023628526194343027
 
 *Has piecewise: * False
 
 ![point](diagrams/u/decker_2009/eq5-sing1.png)
-
 ## Equation 6:
 ```
 Ito2__Ito2_max = pow(Ito2__zCl, 2) * pow(model_parameters__F, 2) * (-model_parameters__Cl_o * exp(membrane__Vm * model_parameters__F / (model_parameters__R * model_parameters__T)) + Cl__Cl_i) * Ito2__PCl * membrane__Vm / ((1.0 - exp(membrane__Vm * model_parameters__F / (model_parameters__R * model_parameters__T))) * model_parameters__R * model_parameters__T)
@@ -435,22 +446,21 @@ Ito2__Ito2_max = pow(Ito2__zCl, 2) * pow(model_parameters__F, 2) * (-model_param
 ```
 Ito2__Ito2_max = 0.0032509358688027189 * (20.268419999999999 - 100.0 * exp(0.037436659501656748 * membrane__Vm)) * membrane__Vm / (1.0 - exp(0.037436659501656748 * membrane__Vm))
 ```
-*U for -exp(U)+1* 
+### Singulariy points detected:
+{0}
+*U*
 `0.037436659501656748 * membrane__Vm`
 
 *V for 1e-07 range* 
 `-2.6711785007306683e-6 - 2.6711785007306683e-6`
-### Singulariy points detected:
-{0}
 
 *Singularity point: 0*
 
-*Left limit:* 6.9237548635139998 == Right limit:* 6.9237548635139998
+*Left limit:* 6.9237548635139998 == *Right limit:* 6.9237548635139998
 
 *Has piecewise: * False
 
 ![point](diagrams/u/decker_2009/eq6-sing1.png)
-
 # Model: demir_model_1994
 ## Equation 1:
 ```
@@ -462,7 +472,36 @@ L_type_Ca_channel_d_gate__alpha_d_L = -28.390000000000001 * (35.0 + membrane__V)
 ```
 ### Singulariy points detected:
 {0, -35.000000000000000}
+####A + B:
+`84.900000000000006 * membrane__V / (1.0 - exp(-0.20799999999999999 * membrane__V))`
+`-28.390000000000001 * (35.0 + membrane__V) / (-1.0 + 8.3152871910356788e-7 * exp(-0.40000000000000002 * membrane__V))`
 
+*U*
+`-0.20799999999999999 * membrane__V`
+
+*V for 1e-07 range* 
+`4.8076923076923074e-7 - -4.8076923076923074e-7`
+
+*Singularity point: 0*
+
+*Left limit:* 1401.8239031722758 == *Right limit:* 1401.8239031722758
+
+*Has piecewise: * False
+
+![point](diagrams/u/demir_model_1994/eq1-sing1.png)
+*U*
+`-14.0 - 0.40000000000000002 * membrane__V`
+
+*V for 1e-07 range* 
+`-34.999999750000001 - -35.000000249999999`
+
+*Singularity point: -35.000000000000000*
+
+*Left limit:* 73.024327269282409 == *Right limit:* 73.024327269282409
+
+*Has piecewise: * False
+
+![point](diagrams/u/demir_model_1994/eq1-sing2.png)
 ## Equation 2:
 ```
 L_type_Ca_channel_d_gate__beta_d_L = 11.43 * (-5.0 + membrane__V) / (-1.0 + 0.13533528323661267 * exp(0.40000000000000002 * membrane__V))
@@ -471,22 +510,21 @@ L_type_Ca_channel_d_gate__beta_d_L = 11.43 * (-5.0 + membrane__V) / (-1.0 + 0.13
 ```
 L_type_Ca_channel_d_gate__beta_d_L = 11.43 * (-5.0 + membrane__V) / (-1.0 + 0.13533528323661267 * exp(0.40000000000000002 * membrane__V))
 ```
+### Singulariy points detected:
+{5.0000000000000000}
 *U*
 `-2.0 + 0.40000000000000002 * membrane__V`
 
 *V for 1e-07 range* 
 `4.9999997499999997 - 5.0000002500000003`
-### Singulariy points detected:
-{5.0000000000000000}
 
 *Singularity point: 5.0000000000000000*
 
-*Left limit:* 28.574999999999998 == Right limit:* 28.574999999999998
+*Left limit:* 28.574999999999998 == *Right limit:* 28.574999999999998
 
 *Has piecewise: * False
 
 ![point](diagrams/u/demir_model_1994/eq2-sing1.png)
-
 ## Equation 3:
 ```
 L_type_Ca_channel_f_gate__alpha_f_L = 3.75 * (28.0 + membrane__V) / (-1.0 + 1096.6331584284585 * exp(0.25 * membrane__V))
@@ -495,22 +533,21 @@ L_type_Ca_channel_f_gate__alpha_f_L = 3.75 * (28.0 + membrane__V) / (-1.0 + 1096
 ```
 L_type_Ca_channel_f_gate__alpha_f_L = 3.75 * (28.0 + membrane__V) / (-1.0 + 1096.6331584284585 * exp(0.25 * membrane__V))
 ```
+### Singulariy points detected:
+{-28.000000000000000}
 *U*
 `7.0 + 0.25 * membrane__V`
 
 *V for 1e-07 range* 
 `-28.000000400000001 - -27.999999599999999`
-### Singulariy points detected:
-{-28.000000000000000}
 
 *Singularity point: -28.000000000000000*
 
-*Left limit:* 0 == Right limit:* 0
+*Left limit:* 0 == *Right limit:* 0
 
 *Has piecewise: * False
 
 ![point](diagrams/u/demir_model_1994/eq3-sing1.png)
-
 ## Equation 4:
 ```
 sodium_current_m_gate__alpha_m = -824.0 * (51.899999999999999 + membrane__V) / (-1.0 + 0.0029337885398758403 * exp(-0.11235955056179775 * membrane__V))
@@ -519,22 +556,21 @@ sodium_current_m_gate__alpha_m = -824.0 * (51.899999999999999 + membrane__V) / (
 ```
 sodium_current_m_gate__alpha_m = -824.0 * (51.899999999999999 + membrane__V) / (-1.0 + 0.0029337885398758403 * exp(-0.11235955056179775 * membrane__V))
 ```
+### Singulariy points detected:
+{-51.899999999999999}
 *U*
 `-5.8314606741573032 - 0.11235955056179775 * membrane__V`
 
 *V for 1e-07 range* 
 `-51.899999109999996 - -51.900000890000001`
-### Singulariy points detected:
-{-51.899999999999999}
 
 *Singularity point: -51.899999999999999*
 
-*Left limit:* -oo == Right limit:* -oo
+*Left limit:* -oo == *Right limit:* -oo
 
 *Has piecewise: * False
 
 ![point](diagrams/u/demir_model_1994/eq4-sing1.png)
-
 ## Equation 5:
 ```
 sodium_current__i_Na = pow(membrane__F, 2) * pow(sodium_current_m_gate__m, 3) * (-1.0 + exp((-reversal_potentials__E_Na + membrane__V) * membrane__F / (membrane__R * membrane__T))) * cleft_space_equations__Na_c * membrane__V * sodium_current__P_Na * sodium_current_h_gate__h1 * sodium_current_h_gate__h2 / ((-1.0 + exp(membrane__F * membrane__V / (membrane__R * membrane__T))) * membrane__R * membrane__T)
@@ -543,22 +579,21 @@ sodium_current__i_Na = pow(membrane__F, 2) * pow(sodium_current_m_gate__m, 3) * 
 ```
 sodium_current__i_Na = 7.7961374618353206e-5 * (-1.0 + 0.069297886839030043 * exp(0.037433890822745473 * membrane__V)) * membrane__V / (-1.0 + exp(0.037433890822745473 * membrane__V))
 ```
+### Singulariy points detected:
+{0}
 *U*
 `0.037433890822745473 * membrane__V`
 
 *V for 1e-07 range* 
 `-2.671376065969565e-6 - 2.671376065969565e-6`
-### Singulariy points detected:
-{0}
 
 *Singularity point: 0*
 
-*Left limit:* -0.0019383188471059856 == Right limit:* -0.0019383188471059856
+*Left limit:* -0.0019383188471059856 == *Right limit:* -0.0019383188471059856
 
 *Has piecewise: * False
 
 ![point](diagrams/u/demir_model_1994/eq5-sing1.png)
-
 # Model: difrancesco_noble_model_1985
 ## Equation 1:
 ```
@@ -568,22 +603,21 @@ intracellular_calcium_concentration__alpha_p = 0.625 * (34.0 + membrane__V) / (-
 ```
 intracellular_calcium_concentration__alpha_p = 0.625 * (34.0 + membrane__V) / (-1.0 + 4914.7688402991344 * exp(0.25 * membrane__V))
 ```
+### Singulariy points detected:
+{-34.000000000000000}
 *U*
 `8.5 + 0.25 * membrane__V`
 
 *V for 1e-07 range* 
 `-34.000000399999998 - -33.999999600000002`
-### Singulariy points detected:
-{-34.000000000000000}
 
 *Singularity point: -34.000000000000000*
 
-*Left limit:* 2.5000000000000000 == Right limit:* 2.5000000000000000
+*Left limit:* 2.5000000000000000 == *Right limit:* 2.5000000000000000
 
 *Has piecewise: * False
 
 ![point](diagrams/u/difrancesco_noble_model_1985/eq1-sing1.png)
-
 ## Equation 2:
 ```
 second_inward_current__i_siCa = 4.0 * (-50.0 + membrane__V) * (intracellular_calcium_concentration__Cai * exp(100.0 / membrane__RTONF) - extracellular_calcium_concentration__Cao * exp(-2.0 * (-50.0 + membrane__V) / membrane__RTONF)) * second_inward_current__P_si * second_inward_current_d_gate__d * second_inward_current_f2_gate__f2 * second_inward_current_f_gate__f / ((1.0 - exp(-2.0 * (-50.0 + membrane__V) / membrane__RTONF)) * membrane__RTONF)
@@ -592,22 +626,21 @@ second_inward_current__i_siCa = 4.0 * (-50.0 + membrane__V) * (intracellular_cal
 ```
 second_inward_current__i_siCa = 0.011230167246823642 * (0.002112045287840804 - 84.481811513632152 * exp(-0.074867781645490947 * membrane__V)) * (-50.0 + membrane__V) / (1.0 - 42.240905756816076 * exp(-0.074867781645490947 * membrane__V))
 ```
-*U for -exp(U)+1* 
+### Singulariy points detected:
+{50.000000000000000}
+*U*
 `3.7433890822745473 - 0.074867781645490947 * membrane__V`
 
 *V for 1e-07 range* 
 `50.000001335688033 - 49.999998664311967`
-### Singulariy points detected:
-{50.000000000000000}
 
 *Singularity point: 50.000000000000000*
 
-*Left limit:* -0.29968319320682389 == Right limit:* -0.29968319320682389
+*Left limit:* -0.29968319320682389 == *Right limit:* -0.29968319320682389
 
 *Has piecewise: * False
 
 ![point](diagrams/u/difrancesco_noble_model_1985/eq2-sing1.png)
-
 ## Equation 3:
 ```
 second_inward_current__i_siK = 0.01 * (-50.0 + membrane__V) * (intracellular_potassium_concentration__Ki * exp(50.0 / membrane__RTONF) - extracellular_potassium_concentration__Kc * exp(-(-50.0 + membrane__V) / membrane__RTONF)) * second_inward_current__P_si * second_inward_current_d_gate__d * second_inward_current_f2_gate__f2 * second_inward_current_f_gate__f / ((1.0 - exp(-(-50.0 + membrane__V) / membrane__RTONF)) * membrane__RTONF)
@@ -616,22 +649,21 @@ second_inward_current__i_siK = 0.01 * (-50.0 + membrane__V) * (intracellular_pot
 ```
 second_inward_current__i_siK = 2.8075418117059104e-5 * (909.90205672566492 - 25.997201620733282 * exp(-0.037433890822745473 * membrane__V)) * (-50.0 + membrane__V) / (1.0 - 6.4993004051833205 * exp(-0.037433890822745473 * membrane__V))
 ```
-*U for -exp(U)+1* 
+### Singulariy points detected:
+{50.000000000000000}
+*U*
 `1.8716945411372736 - 0.037433890822745473 * membrane__V`
 
 *V for 1e-07 range* 
 `50.000002671376066 - 49.999997328623934`
-### Singulariy points detected:
-{50.000000000000000}
 
 *Singularity point: 50.000000000000000*
 
-*Left limit:* 0.67942654254424871 == Right limit:* 0.67942654254424871
+*Left limit:* 0.67942654254424871 == *Right limit:* 0.67942654254424871
 
 *Has piecewise: * False
 
 ![point](diagrams/u/difrancesco_noble_model_1985/eq3-sing1.png)
-
 ## Equation 4:
 ```
 second_inward_current__i_siNa = 0.01 * (-50.0 + membrane__V) * (intracellular_sodium_concentration__Nai * exp(50.0 / membrane__RTONF) - extracellular_sodium_concentration__Nao * exp(-(-50.0 + membrane__V) / membrane__RTONF)) * second_inward_current__P_si * second_inward_current_d_gate__d * second_inward_current_f2_gate__f2 * second_inward_current_f_gate__f / ((1.0 - exp(-(-50.0 + membrane__V) / membrane__RTONF)) * membrane__RTONF)
@@ -640,22 +672,21 @@ second_inward_current__i_siNa = 0.01 * (-50.0 + membrane__V) * (intracellular_so
 ```
 second_inward_current__i_siNa = 2.8075418117059104e-5 * (51.994403241466564 - 909.90205672566492 * exp(-0.037433890822745473 * membrane__V)) * (-50.0 + membrane__V) / (1.0 - 6.4993004051833205 * exp(-0.037433890822745473 * membrane__V))
 ```
-*U for -exp(U)+1* 
+### Singulariy points detected:
+{50.000000000000000}
+*U*
 `1.8716945411372736 - 0.037433890822745473 * membrane__V`
 
 *V for 1e-07 range* 
 `50.000002671376066 - 49.999997328623934`
-### Singulariy points detected:
-{50.000000000000000}
 
 *Singularity point: 50.000000000000000*
 
-*Left limit:* -0.066004197568900078 == Right limit:* -0.066004197568900078
+*Left limit:* -0.066004197568900078 == *Right limit:* -0.066004197568900078
 
 *Has piecewise: * False
 
 ![point](diagrams/u/difrancesco_noble_model_1985/eq4-sing1.png)
-
 ## Equation 5:
 ```
 transient_outward_current__i_to = (10.0 + membrane__V) * (0.20000000000000001 + extracellular_potassium_concentration__Kc / (extracellular_potassium_concentration__Kc + transient_outward_current__Km_to)) * (intracellular_potassium_concentration__Ki * exp(0.5 * membrane__V / membrane__RTONF) - extracellular_potassium_concentration__Kc * exp(-0.5 * membrane__V / membrane__RTONF)) * intracellular_calcium_concentration__Cai * transient_outward_current__g_to * transient_outward_current_s_gate__s / ((1.0 - 0.13533528323661267 * exp(-0.20000000000000001 * membrane__V)) * (intracellular_calcium_concentration__Cai + transient_outward_current__Km_Ca))
@@ -666,7 +697,6 @@ transient_outward_current__i_to = 0.012363636363636365 * (10.0 + membrane__V) * 
 ```
 ### Singulariy points detected:
 {-10.000000000000000}
-
 # Model: dokos_model_1996
 ## Equation 1:
 ```
@@ -676,22 +706,21 @@ fast_sodium_current_m_gate__alpha_m = 200.0 * (34.299999999999997 + membrane__E)
 ```
 fast_sodium_current_m_gate__alpha_m = 200.0 * (34.299999999999997 + membrane__E) / (1.0 - 0.045638665231542724 * exp(-0.089999999999999997 * membrane__E))
 ```
-*U for -exp(U)+1* 
+### Singulariy points detected:
+{-34.299999999999997}
+*U*
 `-3.0869999999999997 - 0.089999999999999997 * membrane__E`
 
 *V for 1e-07 range* 
 `-34.299998888888886 - -34.300001111111108`
-### Singulariy points detected:
-{-34.299999999999997}
 
 *Singularity point: -34.299999999999997*
 
-*Left limit:* 2222.2222222222223 == Right limit:* 2222.2222222222223
+*Left limit:* 2222.2222222222223 == *Right limit:* 2222.2222222222223
 
 *Has piecewise: * False
 
 ![point](diagrams/u/dokos_model_1996/eq1-sing1.png)
-
 ## Equation 2:
 ```
 hyperpolarising_activated_current_y_gate__alpha_y = 0.35999999999999999 * (137.80000000000001 + membrane__E) / (-1.0 + 8908.846047390005 * exp(0.066000000000000003 * membrane__E))
@@ -700,22 +729,21 @@ hyperpolarising_activated_current_y_gate__alpha_y = 0.35999999999999999 * (137.8
 ```
 hyperpolarising_activated_current_y_gate__alpha_y = 0.35999999999999999 * (137.80000000000001 + membrane__E) / (-1.0 + 8908.846047390005 * exp(0.066000000000000003 * membrane__E))
 ```
+### Singulariy points detected:
+{-137.80000000000001}
 *U*
 `9.0948000000000011 + 0.066000000000000003 * membrane__E`
 
 *V for 1e-07 range* 
 `-137.80000151515154 - -137.79999848484849`
-### Singulariy points detected:
-{-137.80000000000001}
 
 *Singularity point: -137.80000000000001*
 
-*Left limit:* 0 == Right limit:* 0
+*Left limit:* 0 == *Right limit:* 0
 
 *Has piecewise: * False
 
 ![point](diagrams/u/dokos_model_1996/eq2-sing1.png)
-
 ## Equation 3:
 ```
 hyperpolarising_activated_current_y_gate__beta_y = 0.10000000000000001 * (76.299999999999997 + membrane__E) / (1.0 - 1.0997640435800299e-7 * exp(-0.20999999999999999 * membrane__E))
@@ -724,22 +752,21 @@ hyperpolarising_activated_current_y_gate__beta_y = 0.10000000000000001 * (76.299
 ```
 hyperpolarising_activated_current_y_gate__beta_y = 0.10000000000000001 * (76.299999999999997 + membrane__E) / (1.0 - 1.0997640435800299e-7 * exp(-0.20999999999999999 * membrane__E))
 ```
-*U for -exp(U)+1* 
+### Singulariy points detected:
+{-76.299999999999997}
+*U*
 `-16.023 - 0.20999999999999999 * membrane__E`
 
 *V for 1e-07 range* 
 `-76.299999523809518 - -76.300000476190476`
-### Singulariy points detected:
-{-76.299999999999997}
 
 *Singularity point: -76.299999999999997*
 
-*Left limit:* -oo == Right limit:* -oo
+*Left limit:* -oo == *Right limit:* -oo
 
 *Has piecewise: * False
 
 ![point](diagrams/u/dokos_model_1996/eq3-sing1.png)
-
 # Model: earm_noble_model_1990
 ## Equation 1:
 ```
@@ -749,22 +776,21 @@ L_type_calcium_current__i_Ca_L_Ca = 4.0 * (-50.0 + membrane__V) * (intracellular
 ```
 L_type_calcium_current__i_Ca_L_Ca = 1.753092114768179e-6 * (0.0004224090575681608 - 84.481811513632152 * exp(-0.074867781645490947 * membrane__V)) * (-50.0 + membrane__V) / (1.0 - 42.240905756816076 * exp(-0.074867781645490947 * membrane__V))
 ```
-*U for -exp(U)+1* 
+### Singulariy points detected:
+{50.000000000000000}
+*U*
 `3.7433890822745473 - 0.074867781645490947 * membrane__V`
 
 *V for 1e-07 range* 
 `50.000001335688033 - 49.999998664311967`
-### Singulariy points detected:
-{50.000000000000000}
 
 *Singularity point: 50.000000000000000*
 
-*Left limit:* -4.6821792104741101e-5 == Right limit:* -4.6821792104741101e-5
+*Left limit:* -4.6821792104741101e-5 == *Right limit:* -4.6821792104741101e-5
 
 *Has piecewise: * False
 
 ![point](diagrams/u/earm_noble_model_1990/eq1-sing1.png)
-
 ## Equation 2:
 ```
 L_type_calcium_current__i_Ca_L_K = 0.002 * (-50.0 + membrane__V) * (intracellular_potassium_concentration__K_i * exp(50.0 / membrane__RTONF) - extracellular_potassium_concentration__K_c * exp((50.0 - membrane__V) / membrane__RTONF)) * L_type_calcium_current__P_Ca_L * L_type_calcium_current_d_gate__d * L_type_calcium_current_f_Ca_gate__CaChon / ((1.0 - exp((50.0 - membrane__V) / membrane__RTONF)) * membrane__RTONF)
@@ -773,22 +799,21 @@ L_type_calcium_current__i_Ca_L_K = 0.002 * (-50.0 + membrane__V) * (intracellula
 ```
 L_type_calcium_current__i_Ca_L_K = 8.7654605738408946e-10 * (909.90205672566492 - 25.997201620733282 * exp(-0.037433890822745473 * membrane__V)) * (-50.0 + membrane__V) / (1.0 - 6.4993004051833205 * exp(-0.037433890822745473 * membrane__V))
 ```
-*U for -exp(U)+1* 
+### Singulariy points detected:
+{50.000000000000000}
+*U*
 `1.8716945411372736 - 0.037433890822745473 * membrane__V`
 
 *V for 1e-07 range* 
 `50.000002671376066 - 49.999997328623934`
-### Singulariy points detected:
-{50.000000000000000}
 
 *Singularity point: 50.000000000000000*
 
-*Left limit:* 2.1212459051051460e-5 == Right limit:* 2.1212459051051460e-5
+*Left limit:* 2.1212459051051460e-5 == *Right limit:* 2.1212459051051460e-5
 
 *Has piecewise: * False
 
 ![point](diagrams/u/earm_noble_model_1990/eq2-sing1.png)
-
 ## Equation 3:
 ```
 L_type_calcium_current__i_Ca_L_Na = 0.01 * (-50.0 + membrane__V) * (intracellular_sodium_concentration__Na_i * exp(50.0 / membrane__RTONF) - extracellular_sodium_concentration__Na_o * exp((50.0 - membrane__V) / membrane__RTONF)) * L_type_calcium_current__P_Ca_L * L_type_calcium_current_d_gate__d * L_type_calcium_current_f_Ca_gate__CaChon / ((1.0 - exp((50.0 - membrane__V) / membrane__RTONF)) * membrane__RTONF)
@@ -797,22 +822,21 @@ L_type_calcium_current__i_Ca_L_Na = 0.01 * (-50.0 + membrane__V) * (intracellula
 ```
 L_type_calcium_current__i_Ca_L_Na = 4.3827302869204476e-9 * (42.115466625587921 - 909.90205672566492 * exp(-0.037433890822745473 * membrane__V)) * (-50.0 + membrane__V) / (1.0 - 6.4993004051833205 * exp(-0.037433890822745473 * membrane__V))
 ```
-*U for -exp(U)+1* 
+### Singulariy points detected:
+{50.000000000000000}
+*U*
 `1.8716945411372736 - 0.037433890822745473 * membrane__V`
 
 *V for 1e-07 range* 
 `50.000002671376066 - 49.999997328623934`
-### Singulariy points detected:
-{50.000000000000000}
 
 *Singularity point: 50.000000000000000*
 
-*Left limit:* -1.1460243635172503e-5 == Right limit:* -1.1460243635172503e-5
+*Left limit:* -1.1460243635172503e-5 == *Right limit:* -1.1460243635172503e-5
 
 *Has piecewise: * False
 
 ![point](diagrams/u/earm_noble_model_1990/eq3-sing1.png)
-
 # Model: espinosa_model_1998_normal
 ## Equation 1:
 ```
@@ -824,7 +848,6 @@ L_type_Ca_channel__i_Ca_L_Ca_cyt = 0
 ```
 ### Singulariy points detected:
 {50.000000000000000}
-
 ## Equation 2:
 ```
 L_type_Ca_channel__i_Ca_L_Ca_ds = 4.0 * (-50.0 + membrane__V) * (intracellular_calcium_concentration__Ca_i * exp(100.0 * membrane__F / (membrane__R * membrane__T)) - extracellular_calcium_concentration__Ca_o * exp(2.0 * (50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * L_type_Ca_channel__FrICa * L_type_Ca_channel__P_Ca_L * L_type_Ca_channel_d_gate__d * L_type_Ca_channel_f2ds_gate__f2ds * L_type_Ca_channel_f_gate__f * membrane__F / ((1.0 - exp(2.0 * (50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * membrane__R * membrane__T)
@@ -833,22 +856,21 @@ L_type_Ca_channel__i_Ca_L_Ca_ds = 4.0 * (-50.0 + membrane__V) * (intracellular_c
 ```
 L_type_Ca_channel__i_Ca_L_Ca_ds = 1.2097697357220065e-14 * (0.0029903731135140078 - 105.6022643920402 * exp(-0.074867781645490947 * membrane__V)) * (-50.0 + membrane__V) / (1.0 - 42.240905756816076 * exp(-0.074867781645490947 * membrane__V))
 ```
-*U for -exp(U)+1* 
+### Singulariy points detected:
+{50.000000000000000}
+*U*
 `3.7433890822745473 - 0.074867781645490947 * membrane__V`
 
 *V for 1e-07 range* 
 `50.000001335688033 - 49.999998664311967`
-### Singulariy points detected:
-{50.000000000000000}
 
 *Singularity point: 50.000000000000000*
 
-*Left limit:* -4.0348553276464073e-13 == Right limit:* -4.0348553276464073e-13
+*Left limit:* -4.0348553276464073e-13 == *Right limit:* -4.0348553276464073e-13
 
 *Has piecewise: * False
 
 ![point](diagrams/u/espinosa_model_1998_normal/eq2-sing1.png)
-
 ## Equation 3:
 ```
 L_type_Ca_channel__i_Ca_L_K_cyt = (1.0 - L_type_Ca_channel__FrICa) * (-50.0 + membrane__V) * (intracellular_potassium_concentration__K_i * exp(50.0 * membrane__F / (membrane__R * membrane__T)) - extracellular_potassium_concentration__K_o * exp((50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * L_type_Ca_channel__P_CaK * L_type_Ca_channel__P_Ca_L * L_type_Ca_channel_d_gate__d * L_type_Ca_channel_f2_gate__f2 * L_type_Ca_channel_f_gate__f * membrane__F / ((1.0 - exp((50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * membrane__R * membrane__T)
@@ -859,7 +881,6 @@ L_type_Ca_channel__i_Ca_L_K_cyt = 0
 ```
 ### Singulariy points detected:
 {50.000000000000000}
-
 ## Equation 4:
 ```
 L_type_Ca_channel__i_Ca_L_K_ds = (-50.0 + membrane__V) * (intracellular_potassium_concentration__K_i * exp(50.0 * membrane__F / (membrane__R * membrane__T)) - extracellular_potassium_concentration__K_o * exp((50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * L_type_Ca_channel__FrICa * L_type_Ca_channel__P_CaK * L_type_Ca_channel__P_Ca_L * L_type_Ca_channel_d_gate__d * L_type_Ca_channel_f2ds_gate__f2ds * L_type_Ca_channel_f_gate__f * membrane__F / ((1.0 - exp((50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * membrane__R * membrane__T)
@@ -868,22 +889,21 @@ L_type_Ca_channel__i_Ca_L_K_ds = (-50.0 + membrane__V) * (intracellular_potassiu
 ```
 L_type_Ca_channel__i_Ca_L_K_ds = 9.0732730179150498e-18 * (910.76841346967581 - 34.576946283656916 * exp(-0.037433890822745473 * membrane__V)) * (-50.0 + membrane__V) / (1.0 - 6.4993004051833205 * exp(-0.037433890822745473 * membrane__V))
 ```
-*U for -exp(U)+1* 
+### Singulariy points detected:
+{50.000000000000000}
+*U*
 `1.8716945411372736 - 0.037433890822745473 * membrane__V`
 
 *V for 1e-07 range* 
 `50.000002671376066 - 49.999997328623934`
-### Singulariy points detected:
-{50.000000000000000}
 
 *Singularity point: 50.000000000000000*
 
-*Left limit:* 0 == Right limit:* 0
+*Left limit:* 0 == *Right limit:* 0
 
 *Has piecewise: * False
 
 ![point](diagrams/u/espinosa_model_1998_normal/eq4-sing1.png)
-
 ## Equation 5:
 ```
 L_type_Ca_channel__i_Ca_L_Na_cyt = (1.0 - L_type_Ca_channel__FrICa) * (-50.0 + membrane__V) * (intracellular_sodium_concentration__Na_i * exp(50.0 * membrane__F / (membrane__R * membrane__T)) - extracellular_sodium_concentration__Na_o * exp((50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * L_type_Ca_channel__P_CaNa * L_type_Ca_channel__P_Ca_L * L_type_Ca_channel_d_gate__d * L_type_Ca_channel_f2_gate__f2 * L_type_Ca_channel_f_gate__f * membrane__F / ((1.0 - exp((50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * membrane__R * membrane__T)
@@ -894,7 +914,6 @@ L_type_Ca_channel__i_Ca_L_Na_cyt = 0
 ```
 ### Singulariy points detected:
 {50.000000000000000}
-
 ## Equation 6:
 ```
 L_type_Ca_channel__i_Ca_L_Na_ds = (-50.0 + membrane__V) * (intracellular_sodium_concentration__Na_i * exp(50.0 * membrane__F / (membrane__R * membrane__T)) - extracellular_sodium_concentration__Na_o * exp((50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * L_type_Ca_channel__FrICa * L_type_Ca_channel__P_CaNa * L_type_Ca_channel__P_Ca_L * L_type_Ca_channel_d_gate__d * L_type_Ca_channel_f2ds_gate__f2ds * L_type_Ca_channel_f_gate__f * membrane__F / ((1.0 - exp((50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * membrane__R * membrane__T)
@@ -903,22 +922,21 @@ L_type_Ca_channel__i_Ca_L_Na_ds = (-50.0 + membrane__V) * (intracellular_sodium_
 ```
 L_type_Ca_channel__i_Ca_L_Na_ds = 3.0244243393050165e-17 * (44.422718269427996 - 965.1461101697231 * exp(-0.037433890822745473 * membrane__V)) * (-50.0 + membrane__V) / (1.0 - 6.4993004051833205 * exp(-0.037433890822745473 * membrane__V))
 ```
-*U for -exp(U)+1* 
+### Singulariy points detected:
+{50.000000000000000}
+*U*
 `1.8716945411372736 - 0.037433890822745473 * membrane__V`
 
 *V for 1e-07 range* 
 `50.000002671376066 - 49.999997328623934`
-### Singulariy points detected:
-{50.000000000000000}
 
 *Singularity point: 50.000000000000000*
 
-*Left limit:* 0 == Right limit:* 0
+*Left limit:* 0 == *Right limit:* 0
 
 *Has piecewise: * False
 
 ![point](diagrams/u/espinosa_model_1998_normal/eq6-sing1.png)
-
 # Model: LR_Dynamic_model_2000
 ## Equation 1:
 ```
@@ -928,22 +946,21 @@ L_type_Ca_channel__I_CaCa = 4.0 * pow(membrane__F, 2) * (-L_type_Ca_channel__gam
 ```
 L_type_Ca_channel__I_CaCa = 7.8019226357407252 * (-0.61380000000000001 + 6.0000000000000002e-5 * exp(0.074871767015605231 * membrane__V)) * membrane__V / (-1.0 + exp(0.074871767015605231 * membrane__V))
 ```
+### Singulariy points detected:
+{0}
 *U*
 `0.074871767015605231 * membrane__V`
 
 *V for 1e-07 range* 
 `-1.3356169352749131e-6 - 1.3356169352749131e-6`
-### Singulariy points detected:
-{0}
 
 *Singularity point: 0*
 
-*Left limit:* -63.954040212000007 == Right limit:* -63.954040212000007
+*Left limit:* -63.954040212000007 == *Right limit:* -63.954040212000007
 
 *Has piecewise: * False
 
 ![point](diagrams/u/LR_Dynamic_model_2000/eq1-sing1.png)
-
 ## Equation 2:
 ```
 L_type_Ca_channel__I_CaK = pow(membrane__F, 2) * (-L_type_Ca_channel__gamma_Ko * ionic_concentrations__Ko + L_type_Ca_channel__gamma_Ki * ionic_concentrations__Ki * exp(membrane__F * membrane__V / (membrane__R * membrane__T))) * L_type_Ca_channel__P_K * membrane__V / ((-1.0 + exp(membrane__F * membrane__V / (membrane__R * membrane__T))) * membrane__R * membrane__T)
@@ -954,7 +971,6 @@ L_type_Ca_channel__I_CaK = 0.00069711623550831479 * (-3.375 + 105.89999999999999
 ```
 ### Singulariy points detected:
 {0}
-
 ## Equation 3:
 ```
 L_type_Ca_channel__I_CaNa = pow(membrane__F, 2) * (-L_type_Ca_channel__gamma_Nao * ionic_concentrations__Nao + L_type_Ca_channel__gamma_Nai * ionic_concentrations__Nai * exp(membrane__F * membrane__V / (membrane__R * membrane__T))) * L_type_Ca_channel__P_Na * membrane__V / ((-1.0 + exp(membrane__F * membrane__V / (membrane__R * membrane__T))) * membrane__R * membrane__T)
@@ -965,7 +981,6 @@ L_type_Ca_channel__I_CaNa = 0.0024381008236689767 * (-99.0 + 6.75 * exp(0.037435
 ```
 ### Singulariy points detected:
 {0}
-
 ## Equation 4:
 ```
 non_specific_calcium_activated_current__I_ns_K = pow(membrane__F, 2) * (-L_type_Ca_channel__gamma_Ko * ionic_concentrations__Ko + L_type_Ca_channel__gamma_Ki * ionic_concentrations__Ki * exp(membrane__F * membrane__V / (membrane__R * membrane__T))) * membrane__V * non_specific_calcium_activated_current__P_ns_Ca / ((-1.0 + exp(membrane__F * membrane__V / (membrane__R * membrane__T))) * membrane__R * membrane__T)
@@ -976,7 +991,6 @@ non_specific_calcium_activated_current__I_ns_K = 0
 ```
 ### Singulariy points detected:
 {0}
-
 ## Equation 5:
 ```
 non_specific_calcium_activated_current__I_ns_Na = pow(membrane__F, 2) * (-L_type_Ca_channel__gamma_Nao * ionic_concentrations__Nao + L_type_Ca_channel__gamma_Nai * ionic_concentrations__Nai * exp(membrane__F * membrane__V / (membrane__R * membrane__T))) * membrane__V * non_specific_calcium_activated_current__P_ns_Ca / ((-1.0 + exp(membrane__F * membrane__V / (membrane__R * membrane__T))) * membrane__R * membrane__T)
@@ -987,7 +1001,6 @@ non_specific_calcium_activated_current__I_ns_Na = 0
 ```
 ### Singulariy points detected:
 {0}
-
 ## Equation 6:
 ```
 rapid_delayed_rectifier_potassium_current_xr_gate__tau_xr = 0.001 / (0.00060999999999999997 * (38.899999999999999 + membrane__V) / (-1.0 + 281.60348502322194 * exp(0.14499999999999999 * membrane__V)) + 0.0013799999999999999 * (14.199999999999999 + membrane__V) / (1.0 - 0.17436578041087322 * exp(-0.123 * membrane__V)))
@@ -998,7 +1011,9 @@ rapid_delayed_rectifier_potassium_current_xr_gate__tau_xr = 0.001 / (0.000609999
 ```
 ### Singulariy points detected:
 {-14.199999999999999, -38.899999999999999}
-
+####Failed!
+<class 'sympy.core.mul.Mul'>
+0.001/(0.00060999999999999997*(_membrane$V + 38.899999999999999)/(281.60348502322194*exp(0.14499999999999999*_membrane$V) - 1.0) + 0.0013799999999999999*(_membrane$V + 14.199999999999999)/(1.0 - 0.17436578041087323*exp(-0.123*_membrane$V)))
 ## Equation 7:
 ```
 slow_delayed_rectifier_potassium_current_xs1_gate__tau_xs1 = 0.001 / (0.00013100000000000001 * (30.0 + membrane__V) / (-1.0 + 7.8538197044216602 * exp(0.068699999999999997 * membrane__V)) + 7.1899999999999999e-5 * (30.0 + membrane__V) / (1.0 - 0.011795938519751569 * exp(-0.14799999999999999 * membrane__V)))
@@ -1009,7 +1024,6 @@ slow_delayed_rectifier_potassium_current_xs1_gate__tau_xs1 = 0.001 / (0.00013100
 ```
 ### Singulariy points detected:
 {-30.000000000000000}
-
 ## Equation 8:
 ```
 slow_delayed_rectifier_potassium_current_xs2_gate__tau_xs2 = 0.0040000000000000001 / (0.00013100000000000001 * (30.0 + membrane__V) / (-1.0 + 7.8538197044216602 * exp(0.068699999999999997 * membrane__V)) + 7.1899999999999999e-5 * (30.0 + membrane__V) / (1.0 - 0.011795938519751569 * exp(-0.14799999999999999 * membrane__V)))
@@ -1020,7 +1034,6 @@ slow_delayed_rectifier_potassium_current_xs2_gate__tau_xs2 = 0.00400000000000000
 ```
 ### Singulariy points detected:
 {-30.000000000000000}
-
 # Model: fink_noble_giles_model_2008
 ## Equation 1:
 ```
@@ -1030,22 +1043,21 @@ ICaL__i_CaL = pow(Environment__F, 2) * pow(ICaL__z, 2) * (-15.0 + cell__V) * (-E
 ```
 ICaL__i_CaL = 1.4611882740722476e-6 * (-2.0 + 1.5394679649340915e-5 * exp(0.074867781645490947 * cell__V)) * (-15.0 + cell__V) / (-1.0 + 0.32529698149690262 * exp(0.074867781645490947 * cell__V))
 ```
+### Singulariy points detected:
+{15.000000000000000}
 *U*
 `-1.1230167246823641 + 0.074867781645490947 * cell__V`
 
 *V for 1e-07 range* 
 `14.999998664311967 - 15.000001335688033`
-### Singulariy points detected:
-{15.000000000000000}
 
 *Singularity point: 15.000000000000000*
 
-*Left limit:* -3.9032910194226737e-5 == Right limit:* -3.9032910194226737e-5
+*Left limit:* -3.9032910194226737e-5 == *Right limit:* -3.9032910194226737e-5
 
 *Has piecewise: * False
 
 ![point](diagrams/u/fink_noble_giles_model_2008/eq1-sing1.png)
-
 # Model: grandi2010
 ## Equation 1:
 ```
@@ -1055,22 +1067,21 @@ cell__ibarca_j = 4.0 * (-0.34100000000000003 * cell__Cao + 0.34100000000000003 *
 ```
 cell__ibarca_j = 3.9009613178703626 * (-0.61380000000000001 + 5.9896099577487976e-5 * exp(0.074871767015605231 * cell__sVm)) * cell__sVm / (-1.0 + exp(0.074871767015605231 * cell__sVm))
 ```
+### Singulariy points detected:
+{0}
 *U*
 `0.074871767015605231 * cell__sVm`
 
 *V for 1e-07 range* 
 `-1.3356169352749131e-6 - 1.3356169352749131e-6`
-### Singulariy points detected:
-{0}
 
 *Singularity point: 0*
 
-*Left limit:* -31.977025519409427 == Right limit:* -31.977025519409427
+*Left limit:* -31.977025519409427 == *Right limit:* -31.977025519409427
 
 *Has piecewise: * False
 
 ![point](diagrams/u/grandi2010/eq1-sing1.png)
-
 ## Equation 2:
 ```
 cell__ibarca_sl = 4.0 * (-0.34100000000000003 * cell__Cao + 0.34100000000000003 * cell__sCasl * exp(2.0 * cell__FoRT * cell__sVm)) * cell__FoRT * cell__Frdy * cell__pCa * cell__sVm / (-1.0 + exp(2.0 * cell__FoRT * cell__sVm))
@@ -1079,22 +1090,21 @@ cell__ibarca_sl = 4.0 * (-0.34100000000000003 * cell__Cao + 0.34100000000000003 
 ```
 cell__ibarca_sl = 3.9009613178703626 * (-0.61380000000000001 + 3.6014568509600627e-5 * exp(0.074871767015605231 * cell__sVm)) * cell__sVm / (-1.0 + exp(0.074871767015605231 * cell__sVm))
 ```
+### Singulariy points detected:
+{0}
 *U*
 `0.074871767015605231 * cell__sVm`
 
 *V for 1e-07 range* 
 `-1.3356169352749131e-6 - 1.3356169352749131e-6`
-### Singulariy points detected:
-{0}
 
 *Singularity point: 0*
 
-*Left limit:* -31.978269792552973 == Right limit:* -31.978269792552973
+*Left limit:* -31.978269792552973 == *Right limit:* -31.978269792552973
 
 *Has piecewise: * False
 
 ![point](diagrams/u/grandi2010/eq2-sing1.png)
-
 ## Equation 3:
 ```
 cell__ibark = (-0.75 * cell__Ko + 0.75 * cell__sKi * exp(cell__FoRT * cell__sVm)) * cell__FoRT * cell__Frdy * cell__pK * cell__sVm / (-1.0 + exp(cell__FoRT * cell__sVm))
@@ -1105,7 +1115,6 @@ cell__ibark = 0.00048762016473379531 * (-4.0500000000000007 + 90.0 * exp(0.03743
 ```
 ### Singulariy points detected:
 {0}
-
 ## Equation 4:
 ```
 cell__ibarna_j = (-0.75 * cell__Nao + 0.75 * cell__sNaj * exp(cell__FoRT * cell__sVm)) * cell__FoRT * cell__Frdy * cell__pNa * cell__sVm / (-1.0 + exp(cell__FoRT * cell__sVm))
@@ -1116,7 +1125,6 @@ cell__ibarna_j = 2.7090009151877515e-5 * (-105.0 + 6.1605827729220159 * exp(0.03
 ```
 ### Singulariy points detected:
 {0}
-
 ## Equation 5:
 ```
 cell__ibarna_sl = (-0.75 * cell__Nao + 0.75 * cell__sNasl * exp(cell__FoRT * cell__sVm)) * cell__FoRT * cell__Frdy * cell__pNa * cell__sVm / (-1.0 + exp(cell__FoRT * cell__sVm))
@@ -1127,7 +1135,6 @@ cell__ibarna_sl = 2.7090009151877515e-5 * (-105.0 + 6.159920956184167 * exp(0.03
 ```
 ### Singulariy points detected:
 {0}
-
 ## Equation 6:
 ```
 cell__taud = 28.571428571428569 * (1.0 - 0.4345982085070782 * exp(-0.16666666666666666 * cell__sVm)) * cell__dss / (5.0 + cell__sVm)
@@ -1138,7 +1145,6 @@ cell__taud = 28.571428571428569 * (1.0 - 0.4345982085070782 * exp(-0.16666666666
 ```
 ### Singulariy points detected:
 {-5.0000000000000000}
-
 # Model: hilgemann_noble_model_1987
 ## Equation 1:
 ```
@@ -1148,22 +1154,21 @@ second_inward_calcium_current__i_siCa = 4.0 * (-50.0 + membrane__V) * (intracell
 ```
 second_inward_calcium_current__i_siCa = 0.00017530921147681789 * (0.0004224090575681608 - 84.481811513632152 * exp(-0.074867781645490947 * membrane__V)) * (-50.0 + membrane__V) / (1.0 - 42.240905756816076 * exp(-0.074867781645490947 * membrane__V))
 ```
-*U for -exp(U)+1* 
+### Singulariy points detected:
+{50.000000000000000}
+*U*
 `3.7433890822745473 - 0.074867781645490947 * membrane__V`
 
 *V for 1e-07 range* 
 `50.000001335688033 - 49.999998664311967`
-### Singulariy points detected:
-{50.000000000000000}
 
 *Singularity point: 50.000000000000000*
 
-*Left limit:* -0.0046821792104741098 == Right limit:* -0.0046821792104741098
+*Left limit:* -0.0046821792104741098 == *Right limit:* -0.0046821792104741098
 
 *Has piecewise: * False
 
 ![point](diagrams/u/hilgemann_noble_model_1987/eq1-sing1.png)
-
 ## Equation 2:
 ```
 second_inward_calcium_current__i_siK = 0.002 * (-50.0 + membrane__V) * (intracellular_potassium_concentration__K_i * exp(50.0 / membrane__RTONF) - extracellular_potassium_concentration__K_c * exp(-(-50.0 + membrane__V) / membrane__RTONF)) * second_inward_calcium_current__P_si * second_inward_calcium_current_d_gate__d * second_inward_calcium_current_f_Ca_gate__CaChon / ((1.0 - exp(-(-50.0 + membrane__V) / membrane__RTONF)) * membrane__RTONF)
@@ -1172,22 +1177,21 @@ second_inward_calcium_current__i_siK = 0.002 * (-50.0 + membrane__V) * (intracel
 ```
 second_inward_calcium_current__i_siK = 8.7654605738408949e-8 * (909.90205672566492 - 25.997201620733282 * exp(-0.037433890822745473 * membrane__V)) * (-50.0 + membrane__V) / (1.0 - 6.4993004051833205 * exp(-0.037433890822745473 * membrane__V))
 ```
-*U for -exp(U)+1* 
+### Singulariy points detected:
+{50.000000000000000}
+*U*
 `1.8716945411372736 - 0.037433890822745473 * membrane__V`
 
 *V for 1e-07 range* 
 `50.000002671376066 - 49.999997328623934`
-### Singulariy points detected:
-{50.000000000000000}
 
 *Singularity point: 50.000000000000000*
 
-*Left limit:* 0.0021212459051051459 == Right limit:* 0.0021212459051051459
+*Left limit:* 0.0021212459051051459 == *Right limit:* 0.0021212459051051459
 
 *Has piecewise: * False
 
 ![point](diagrams/u/hilgemann_noble_model_1987/eq2-sing1.png)
-
 ## Equation 3:
 ```
 second_inward_calcium_current__i_siNa = 0.01 * (-50.0 + membrane__V) * (intracellular_sodium_concentration__Na_i * exp(50.0 / membrane__RTONF) - extracellular_sodium_concentration__Na_o * exp(-(-50.0 + membrane__V) / membrane__RTONF)) * second_inward_calcium_current__P_si * second_inward_calcium_current_d_gate__d * second_inward_calcium_current_f_Ca_gate__CaChon / ((1.0 - exp(-(-50.0 + membrane__V) / membrane__RTONF)) * membrane__RTONF)
@@ -1196,22 +1200,21 @@ second_inward_calcium_current__i_siNa = 0.01 * (-50.0 + membrane__V) * (intracel
 ```
 second_inward_calcium_current__i_siNa = 4.382730286920447e-7 * (42.245452633691585 - 909.90205672566492 * exp(-0.037433890822745473 * membrane__V)) * (-50.0 + membrane__V) / (1.0 - 6.4993004051833205 * exp(-0.037433890822745473 * membrane__V))
 ```
-*U for -exp(U)+1* 
+### Singulariy points detected:
+{50.000000000000000}
+*U*
 `1.8716945411372736 - 0.037433890822745473 * membrane__V`
 
 *V for 1e-07 range* 
 `50.000002671376066 - 49.999997328623934`
-### Singulariy points detected:
-{50.000000000000000}
 
 *Singularity point: 50.000000000000000*
 
-*Left limit:* -0.0011445024976302940 == Right limit:* -0.0011445024976302940
+*Left limit:* -0.0011445024976302940 == *Right limit:* -0.0011445024976302940
 
 *Has piecewise: * False
 
 ![point](diagrams/u/hilgemann_noble_model_1987/eq3-sing1.png)
-
 # Model: hodgkin_huxley_squid_axon_model_1952_modified
 ## Equation 1:
 ```
@@ -1221,22 +1224,21 @@ potassium_channel_n_gate__alpha_n = -0.01 * (65.0 + membrane__V) / (-1.0 + 0.001
 ```
 potassium_channel_n_gate__alpha_n = -0.01 * (65.0 + membrane__V) / (-1.0 + 0.0015034391929775724 * exp(-0.10000000000000001 * membrane__V))
 ```
+### Singulariy points detected:
+{-65.000000000000000}
 *U*
 `-6.5 - 0.10000000000000001 * membrane__V`
 
 *V for 1e-07 range* 
 `-64.999999000000003 - -65.000000999999997`
-### Singulariy points detected:
-{-65.000000000000000}
 
 *Singularity point: -65.000000000000000*
 
-*Left limit:* 0.10000000000000000 == Right limit:* 0.10000000000000000
+*Left limit:* 0.10000000000000000 == *Right limit:* 0.10000000000000000
 
 *Has piecewise: * False
 
 ![point](diagrams/u/hodgkin_huxley_squid_axon_model_1952_modified/eq1-sing1.png)
-
 ## Equation 2:
 ```
 sodium_channel_m_gate__alpha_m = -0.10000000000000001 * (50.0 + membrane__V) / (-1.0 + 0.006737946999085467 * exp(-0.10000000000000001 * membrane__V))
@@ -1245,22 +1247,21 @@ sodium_channel_m_gate__alpha_m = -0.10000000000000001 * (50.0 + membrane__V) / (
 ```
 sodium_channel_m_gate__alpha_m = -0.10000000000000001 * (50.0 + membrane__V) / (-1.0 + 0.006737946999085467 * exp(-0.10000000000000001 * membrane__V))
 ```
+### Singulariy points detected:
+{-50.000000000000000}
 *U*
 `-5.0 - 0.10000000000000001 * membrane__V`
 
 *V for 1e-07 range* 
 `-49.999999000000003 - -50.000000999999997`
-### Singulariy points detected:
-{-50.000000000000000}
 
 *Singularity point: -50.000000000000000*
 
-*Left limit:* 1.0000000000000001 == Right limit:* 1.0000000000000001
+*Left limit:* 1.0000000000000001 == *Right limit:* 1.0000000000000001
 
 *Has piecewise: * False
 
 ![point](diagrams/u/hodgkin_huxley_squid_axon_model_1952_modified/eq2-sing1.png)
-
 # Model: hund_rudy_2004
 ## Equation 1:
 ```
@@ -1270,22 +1271,21 @@ ICaL__ibarca = 4.0 * (-15.0 + cell__V) * (-Environment__Ca_o * ICaL__gacao + Ca_
 ```
 ICaL__ibarca = 3.5108651860830804 * (-15.0 + cell__V) * (-0.61380000000000001 + 3.9915668384485928e-5 * exp(0.074871767015599999 * cell__V)) / (-1.0 + 0.32527753564515088 * exp(0.074871767015599999 * cell__V))
 ```
+### Singulariy points detected:
+{15.000000000000000}
 *U*
 `-1.1230765052339999 + 0.074871767015599999 * cell__V`
 
 *V for 1e-07 range* 
 `14.999998664383064 - 15.000001335616936`
-### Singulariy points detected:
-{15.000000000000000}
 
 *Singularity point: 15.000000000000000*
 
-*Left limit:* -28.776377392002871 == Right limit:* -28.776377392002871
+*Left limit:* -28.776377392002871 == *Right limit:* -28.776377392002871
 
 *Has piecewise: * False
 
 ![point](diagrams/u/hund_rudy_2004/eq1-sing1.png)
-
 ## Equation 2:
 ```
 ICab__ICab = 7.9803360000000004e-7 * (-0.34100000000000003 * Environment__Ca_o + Ca__Ca_i * exp(2.0 * Environment__FonRT * cell__V)) * Environment__F * Environment__FonRT * cell__V / (-1.0 + exp(2.0 * Environment__FonRT * cell__V))
@@ -1294,22 +1294,21 @@ ICab__ICab = 7.9803360000000004e-7 * (-0.34100000000000003 * Environment__Ca_o +
 ```
 ICab__ICab = 0.0028824983370005666 * (-0.61380000000000001 + 0.00012131665999999999 * exp(0.074871767015599999 * cell__V)) * cell__V / (-1.0 + exp(0.074871767015599999 * cell__V))
 ```
+### Singulariy points detected:
+{0}
 *U*
 `0.074871767015599999 * cell__V`
 
 *V for 1e-07 range* 
 `-1.3356169352750065e-6 - 1.3356169352750065e-6`
-### Singulariy points detected:
-{0}
 
 *Singularity point: 0*
 
-*Left limit:* -0.023626099058296306 == Right limit:* -0.023626099058296306
+*Left limit:* -0.023626099058296306 == *Right limit:* -0.023626099058296306
 
 *Has piecewise: * False
 
 ![point](diagrams/u/hund_rudy_2004/eq2-sing1.png)
-
 ## Equation 3:
 ```
 IKr__tauxr = 1 / (0.00029999999999999997 * (38.360799999999998 + cell__V) / (-1.0 + 343.26878155836141 * exp(0.1522 * cell__V)) + 0.00059999999999999995 * (-1.7383999999999999 + cell__V) / (1.0 - 1.2667092551679247 * exp(-0.13600000000000001 * cell__V)))
@@ -1320,7 +1319,6 @@ IKr__tauxr = 1 / (0.00029999999999999997 * (38.360799999999998 + cell__V) / (-1.
 ```
 ### Singulariy points detected:
 {-38.360799999999998}
-
 ## Equation 4:
 ```
 IKs__tauxs = 1 / (7.6100000000000007e-5 * (44.600000000000001 + cell__V) / (1.0 - 7.6868266637773744e-194 * exp(-9.9700000000000006 * cell__V)) + 0.00036000000000000002 * (-0.55000000000000004 + cell__V) / (-1.0 + 0.93202093695954691 * exp(0.128 * cell__V)))
@@ -1330,8 +1328,41 @@ IKs__tauxs = 1 / (7.6100000000000007e-5 * (44.600000000000001 + cell__V) / (1.0 
 IKs__tauxs = 1 / (7.6100000000000007e-5 * (44.600000000000001 + cell__V) / (1.0 - 7.6868266637773744e-194 * exp(-9.9700000000000006 * cell__V)) + 0.00036000000000000002 * (-0.55000000000000004 + cell__V) / (-1.0 + 0.93202093695954691 * exp(0.128 * cell__V)))
 ```
 ### Singulariy points detected:
-{0.55000000000000005, -44.600000000000001}
+{-44.600000000000001, 0.55000000000000005}
+####1 * A
 
+####1 / A
+
+####A + B:
+`7.6100000000000007e-5 * (44.600000000000001 + cell__V) / (1.0 - 7.6868266637773744e-194 * exp(-9.9700000000000006 * cell__V))`
+`0.00036000000000000002 * (-0.55000000000000004 + cell__V) / (-1.0 + 0.93202093695954691 * exp(0.128 * cell__V))`
+
+*U*
+`-444.66200000000003 - 9.9700000000000006 * cell__V`
+
+*V for 1e-07 range* 
+`-44.599999989969909 - -44.600000010030094`
+
+*Singularity point: -44.600000000000001*
+
+*Left limit:* 61.304437586446907 == *Right limit:* 61.304437586446907
+
+*Has piecewise: * False
+
+![point](diagrams/u/hund_rudy_2004/eq4-sing1.png)
+*U*
+`-0.070400000000000004 + 0.128 * cell__V`
+
+*V for 1e-07 range* 
+`0.54999921875000002 - 0.55000078125000007`
+
+*Singularity point: 0.55000000000000005*
+
+*Left limit:* 0 == *Right limit:* 0
+
+*Has piecewise: * False
+
+![point](diagrams/u/hund_rudy_2004/eq4-sing2.png)
 ## Equation 5:
 ```
 INa__am = 0.32000000000000001 * (47.130000000000003 + cell__V) / (1.0 - 0.00897780373069724 * exp(-0.10000000000000001 * cell__V))
@@ -1340,22 +1371,21 @@ INa__am = 0.32000000000000001 * (47.130000000000003 + cell__V) / (1.0 - 0.008977
 ```
 INa__am = 0.32000000000000001 * (47.130000000000003 + cell__V) / (1.0 - 0.00897780373069724 * exp(-0.10000000000000001 * cell__V))
 ```
-*U for -exp(U)+1* 
+### Singulariy points detected:
+{-47.130000000000003}
+*U*
 `-4.7130000000000001 - 0.10000000000000001 * cell__V`
 
 *V for 1e-07 range* 
 `-47.129999000000005 - -47.130001`
-### Singulariy points detected:
-{-47.130000000000003}
 
 *Singularity point: -47.130000000000003*
 
-*Left limit:* 3.1999999999999999 == Right limit:* 3.1999999999999999
+*Left limit:* 3.1999999999999999 == *Right limit:* 3.1999999999999999
 
 *Has piecewise: * False
 
 ![point](diagrams/u/hund_rudy_2004/eq5-sing1.png)
-
 ## Equation 6:
 ```
 INal__amL = 0.32000000000000001 * (47.130000000000003 + cell__V) / (1.0 - 0.00897780373069724 * exp(-0.10000000000000001 * cell__V))
@@ -1364,22 +1394,21 @@ INal__amL = 0.32000000000000001 * (47.130000000000003 + cell__V) / (1.0 - 0.0089
 ```
 INal__amL = 0.32000000000000001 * (47.130000000000003 + cell__V) / (1.0 - 0.00897780373069724 * exp(-0.10000000000000001 * cell__V))
 ```
-*U for -exp(U)+1* 
+### Singulariy points detected:
+{-47.130000000000003}
+*U*
 `-4.7130000000000001 - 0.10000000000000001 * cell__V`
 
 *V for 1e-07 range* 
 `-47.129999000000005 - -47.130001`
-### Singulariy points detected:
-{-47.130000000000003}
 
 *Singularity point: -47.130000000000003*
 
-*Left limit:* 3.1999999999999999 == Right limit:* 3.1999999999999999
+*Left limit:* 3.1999999999999999 == *Right limit:* 3.1999999999999999
 
 *Has piecewise: * False
 
 ![point](diagrams/u/hund_rudy_2004/eq6-sing1.png)
-
 ## Equation 7:
 ```
 Ito2__Ito2_max = (-Environment__Cl_o * exp(Environment__FonRT * cell__V) + Cl__Cl_i) * Environment__F * Environment__FonRT * Ito2__PCl * cell__V / (1.0 - exp(Environment__FonRT * cell__V))
@@ -1388,22 +1417,21 @@ Ito2__Ito2_max = (-Environment__Cl_o * exp(Environment__FonRT * cell__V) + Cl__C
 ```
 Ito2__Ito2_max = 0.001444800488100033 * (15.59207157178 - 100.0 * exp(0.0374358835078 * cell__V)) * cell__V / (1.0 - exp(0.0374358835078 * cell__V))
 ```
-*U for -exp(U)+1* 
+### Singulariy points detected:
+{0}
+*U*
 `0.0374358835078 * cell__V`
 
 *V for 1e-07 range* 
 `-2.671233870550013e-6 - 2.671233870550013e-6`
-### Singulariy points detected:
-{0}
 
 *Singularity point: 0*
 
-*Left limit:* 3.2576395897587225 == Right limit:* 3.2576395897587225
+*Left limit:* 3.2576395897587225 == *Right limit:* 3.2576395897587225
 
 *Has piecewise: * False
 
 ![point](diagrams/u/hund_rudy_2004/eq7-sing1.png)
-
 # Model: iribe_model_2006
 ## Equation 1:
 ```
@@ -1413,22 +1441,21 @@ L_type_Ca_channel__i_Ca_L_Ca = 4.0 * (-50.0 + membrane_potential__V) * (intracel
 ```
 L_type_Ca_channel__i_Ca_L_Ca = 6.7036611685372591e-10 * (0.00041860737605004732 - 84.481811513632152 * exp(-0.074867781645490947 * membrane_potential__V)) * (-50.0 + membrane_potential__V) / (1.0 - 42.240905756816076 * exp(-0.074867781645490947 * membrane_potential__V))
 ```
-*U for -exp(U)+1* 
+### Singulariy points detected:
+{50.000000000000000}
+*U*
 `3.7433890822745473 - 0.074867781645490947 * membrane_potential__V`
 
 *V for 1e-07 range* 
 `50.000001335688033 - 49.999998664311967`
-### Singulariy points detected:
-{50.000000000000000}
 
 *Singularity point: 50.000000000000000*
 
-*Left limit:* -1.7904251789554848e-8 == Right limit:* -1.7904251789554848e-8
+*Left limit:* -1.7904251789554848e-8 == *Right limit:* -1.7904251789554848e-8
 
 *Has piecewise: * False
 
 ![point](diagrams/u/iribe_model_2006/eq1-sing1.png)
-
 ## Equation 2:
 ```
 L_type_Ca_channel__i_Ca_L_K = 0.002 * (-50.0 + membrane_potential__V) * (intracellular_potassium_concentration__K_i * exp(50.0 * cell_parameters__F / (cell_parameters__R * cell_parameters__T)) - cell_parameters__K_o * exp((50.0 - membrane_potential__V) * cell_parameters__F / (cell_parameters__R * cell_parameters__T))) * L_type_Ca_channel__P_Ca_L_Ca * L_type_Ca_channel_d_gate__d * L_type_Ca_channel_f_gate__f * cell_parameters__F / ((1.0 - exp((50.0 - membrane_potential__V) * cell_parameters__F / (cell_parameters__R * cell_parameters__T))) * cell_parameters__R * cell_parameters__T)
@@ -1437,22 +1464,21 @@ L_type_Ca_channel__i_Ca_L_K = 0.002 * (-50.0 + membrane_potential__V) * (intrace
 ```
 L_type_Ca_channel__i_Ca_L_K = 3.3518305842686299e-13 * (898.33330200443856 - 25.997201620733282 * exp(-0.037433890822745473 * membrane_potential__V)) * (-50.0 + membrane_potential__V) / (1.0 - 6.4993004051833205 * exp(-0.037433890822745473 * membrane_potential__V))
 ```
-*U for -exp(U)+1* 
+### Singulariy points detected:
+{50.000000000000000}
+*U*
 `1.8716945411372736 - 0.037433890822745473 * membrane_potential__V`
 
 *V for 1e-07 range* 
 `50.000002671376066 - 49.999997328623934`
-### Singulariy points detected:
-{50.000000000000000}
 
 *Singularity point: 50.000000000000000*
 
-*Left limit:* 0 == Right limit:* 0
+*Left limit:* 0 == *Right limit:* 0
 
 *Has piecewise: * False
 
 ![point](diagrams/u/iribe_model_2006/eq2-sing1.png)
-
 ## Equation 3:
 ```
 L_type_Ca_channel__i_Ca_L_Na = 0.01 * (-50.0 + membrane_potential__V) * (intracellular_sodium_concentration__Na_i * exp(50.0 * cell_parameters__F / (cell_parameters__R * cell_parameters__T)) - cell_parameters__Na_o * exp((50.0 - membrane_potential__V) * cell_parameters__F / (cell_parameters__R * cell_parameters__T))) * L_type_Ca_channel__P_Ca_L_Ca * L_type_Ca_channel_d_gate__d * L_type_Ca_channel_f_gate__f * cell_parameters__F / ((1.0 - exp((50.0 - membrane_potential__V) * cell_parameters__F / (cell_parameters__R * cell_parameters__T))) * cell_parameters__R * cell_parameters__T)
@@ -1461,22 +1487,21 @@ L_type_Ca_channel__i_Ca_L_Na = 0.01 * (-50.0 + membrane_potential__V) * (intrace
 ```
 L_type_Ca_channel__i_Ca_L_Na = 1.6759152921343148e-12 * (37.722589481724512 - 909.90205672566492 * exp(-0.037433890822745473 * membrane_potential__V)) * (-50.0 + membrane_potential__V) / (1.0 - 6.4993004051833205 * exp(-0.037433890822745473 * membrane_potential__V))
 ```
-*U for -exp(U)+1* 
+### Singulariy points detected:
+{50.000000000000000}
+*U*
 `1.8716945411372736 - 0.037433890822745473 * membrane_potential__V`
 
 *V for 1e-07 range* 
 `50.000002671376066 - 49.999997328623934`
-### Singulariy points detected:
-{50.000000000000000}
 
 *Singularity point: 50.000000000000000*
 
-*Left limit:* 0 == Right limit:* 0
+*Left limit:* 0 == *Right limit:* 0
 
 *Has piecewise: * False
 
 ![point](diagrams/u/iribe_model_2006/eq3-sing1.png)
-
 # Model: iyer_model_2004
 # Model: iyer_model_2007
 # Model: jafri_rice_winslow_1998
@@ -1488,22 +1513,21 @@ L_type_Ca_channel__i_Ca_L_Ca_max = 4.0 * pow(membrane__F, 2) * (0.001 * exp(2.0 
 ```
 L_type_Ca_channel__i_Ca_L_Ca_max = 0.49123617829520522 * (-0.61380000000000001 + 0.001 * exp(0.075146605522028176 * membrane__V)) * membrane__V / (-1.0 + exp(0.075146605522028176 * membrane__V))
 ```
+### Singulariy points detected:
+{0}
 *U*
 `0.075146605522028176 * membrane__V`
 
 *V for 1e-07 range* 
 `-1.3307320976818627e-6 - 1.3307320976818627e-6`
-### Singulariy points detected:
-{0}
 
 *Singularity point: 0*
 
-*Left limit:* -4.0058965800000004 == Right limit:* -4.0058965800000004
+*Left limit:* -4.0058965800000004 == *Right limit:* -4.0058965800000004
 
 *Has piecewise: * False
 
 ![point](diagrams/u/jafri_rice_winslow_1998/eq1-sing1.png)
-
 ## Equation 2:
 ```
 L_type_Ca_channel__i_Ca_L_K = pow(membrane__F, 2) * (-ionic_concentrations__Ko + ionic_concentrations__Ki * exp(membrane__F * membrane__V / (membrane__R * membrane__T))) * (L_type_Ca_channel__O + L_type_Ca_channel__O_Ca) * L_type_Ca_channel__p_k * L_type_Ca_channel_y_gate__y * membrane__V / ((-1.0 + exp(membrane__F * membrane__V / (membrane__R * membrane__T))) * membrane__R * membrane__T)
@@ -1514,7 +1538,6 @@ L_type_Ca_channel__i_Ca_L_K = 3.5789092431332635e-26 * (-5.4000000000000004 + 14
 ```
 ### Singulariy points detected:
 {0}
-
 ## Equation 3:
 ```
 fast_sodium_current_m_gate__alpha_m = 0.32000000000000001 * (47.130000000000003 + membrane__V) / (1.0 - 0.00897780373069724 * exp(-0.10000000000000001 * membrane__V))
@@ -1523,22 +1546,21 @@ fast_sodium_current_m_gate__alpha_m = 0.32000000000000001 * (47.130000000000003 
 ```
 fast_sodium_current_m_gate__alpha_m = 0.32000000000000001 * (47.130000000000003 + membrane__V) / (1.0 - 0.00897780373069724 * exp(-0.10000000000000001 * membrane__V))
 ```
-*U for -exp(U)+1* 
+### Singulariy points detected:
+{-47.130000000000003}
+*U*
 `-4.7130000000000001 - 0.10000000000000001 * membrane__V`
 
 *V for 1e-07 range* 
 `-47.129999000000005 - -47.130001`
-### Singulariy points detected:
-{-47.130000000000003}
 
 *Singularity point: -47.130000000000003*
 
-*Left limit:* 3.1999999999999999 == Right limit:* 3.1999999999999999
+*Left limit:* 3.1999999999999999 == *Right limit:* 3.1999999999999999
 
 *Has piecewise: * False
 
 ![point](diagrams/u/jafri_rice_winslow_1998/eq3-sing1.png)
-
 ## Equation 4:
 ```
 time_dependent_potassium_current_X_gate__alpha_X = 7.1899999999999999e-5 * (30.0 + membrane__V) / (1.0 - 0.011795938519751569 * exp(-0.14799999999999999 * membrane__V))
@@ -1547,22 +1569,21 @@ time_dependent_potassium_current_X_gate__alpha_X = 7.1899999999999999e-5 * (30.0
 ```
 time_dependent_potassium_current_X_gate__alpha_X = 7.1899999999999999e-5 * (30.0 + membrane__V) / (1.0 - 0.011795938519751569 * exp(-0.14799999999999999 * membrane__V))
 ```
-*U for -exp(U)+1* 
+### Singulariy points detected:
+{-30.000000000000000}
+*U*
 `-4.4399999999999995 - 0.14799999999999999 * membrane__V`
 
 *V for 1e-07 range* 
 `-29.999999324324325 - -30.000000675675675`
-### Singulariy points detected:
-{-30.000000000000000}
 
 *Singularity point: -30.000000000000000*
 
-*Left limit:* 0 == Right limit:* 0
+*Left limit:* 0 == *Right limit:* 0
 
 *Has piecewise: * False
 
 ![point](diagrams/u/jafri_rice_winslow_1998/eq4-sing1.png)
-
 ## Equation 5:
 ```
 time_dependent_potassium_current_X_gate__beta_X = 0.00013100000000000001 * (30.0 + membrane__V) / (-1.0 + 7.8538197044216602 * exp(0.068699999999999997 * membrane__V))
@@ -1571,22 +1592,21 @@ time_dependent_potassium_current_X_gate__beta_X = 0.00013100000000000001 * (30.0
 ```
 time_dependent_potassium_current_X_gate__beta_X = 0.00013100000000000001 * (30.0 + membrane__V) / (-1.0 + 7.8538197044216602 * exp(0.068699999999999997 * membrane__V))
 ```
+### Singulariy points detected:
+{-30.000000000000000}
 *U*
 `2.0609999999999999 + 0.068699999999999997 * membrane__V`
 
 *V for 1e-07 range* 
 `-30.000001455604075 - -29.999998544395925`
-### Singulariy points detected:
-{-30.000000000000000}
 
 *Singularity point: -30.000000000000000*
 
-*Left limit:* 0 == Right limit:* 0
+*Left limit:* 0 == *Right limit:* 0
 
 *Has piecewise: * False
 
 ![point](diagrams/u/jafri_rice_winslow_1998/eq5-sing1.png)
-
 # Model: kurata_model_2002
 ## Equation 1:
 ```
@@ -1598,7 +1618,36 @@ L_type_calcium_channel_current_d_gate__alpha_d = -0.028389999999999999 * (35.0 +
 ```
 ### Singulariy points detected:
 {0, -35.000000000000000}
+####A + B:
+`0.084900000000000003 * membrane__V / (1.0 - exp(-0.20798668885191349 * membrane__V))`
+`-0.028389999999999999 * (35.0 + membrane__V) / (-1.0 + 8.3152871910356788e-7 * exp(-0.40000000000000002 * membrane__V))`
 
+*U*
+`-0.20798668885191349 * membrane__V`
+
+*V for 1e-07 range* 
+`4.8079999999999991e-7 - -4.8079999999999991e-7`
+
+*Singularity point: 0*
+
+*Left limit:* 1.4018500262491987 == *Right limit:* 1.4018500262491987
+
+*Has piecewise: * False
+
+![point](diagrams/u/kurata_model_2002/eq1-sing1.png)
+*U*
+`-14.0 - 0.40000000000000002 * membrane__V`
+
+*V for 1e-07 range* 
+`-34.999999750000001 - -35.000000249999999`
+
+*Singularity point: -35.000000000000000*
+
+*Left limit:* 0.073025282912102661 == *Right limit:* 0.073025282912102661
+
+*Has piecewise: * False
+
+![point](diagrams/u/kurata_model_2002/eq1-sing2.png)
 ## Equation 2:
 ```
 L_type_calcium_channel_current_d_gate__beta_d = 0.011429999999999999 * (-5.0 + membrane__V) / (-1.0 + 0.1353352832366127 * exp(0.40000000000000002 * membrane__V))
@@ -1607,22 +1656,21 @@ L_type_calcium_channel_current_d_gate__beta_d = 0.011429999999999999 * (-5.0 + m
 ```
 L_type_calcium_channel_current_d_gate__beta_d = 0.011429999999999999 * (-5.0 + membrane__V) / (-1.0 + 0.1353352832366127 * exp(0.40000000000000002 * membrane__V))
 ```
+### Singulariy points detected:
+{5.0000000000000000}
 *U*
 `-2.0 + 0.40000000000000002 * membrane__V`
 
 *V for 1e-07 range* 
 `4.9999997499999997 - 5.0000002500000003`
-### Singulariy points detected:
-{5.0000000000000000}
 
 *Singularity point: 5.0000000000000000*
 
-*Left limit:* 0.028574999999999998 == Right limit:* 0.028574999999999998
+*Left limit:* 0.028574999999999998 == *Right limit:* 0.028574999999999998
 
 *Has piecewise: * False
 
 ![point](diagrams/u/kurata_model_2002/eq2-sing1.png)
-
 # Model: LivshitzRudy2007
 ## Equation 1:
 ```
@@ -1632,22 +1680,21 @@ ICaL__ibarca = 4.0 * (-Environment__Ca_o * ICaL__gacao + Ca__Ca_i * ICaL__gacai 
 ```
 ICaL__ibarca = 7.8019226357407252 * (-0.61380000000000001 + 0.00021845056935893161 * exp(0.074871767015605231 * cell__V)) * cell__V / (-1.0 + exp(0.074871767015605231 * cell__V))
 ```
+### Singulariy points detected:
+{0}
 *U*
 `0.074871767015605231 * cell__V`
 
 *V for 1e-07 range* 
 `-1.3356169352749131e-6 - 1.3356169352749131e-6`
-### Singulariy points detected:
-{0}
 
 *Singularity point: 0*
 
-*Left limit:* -63.937529060560643 == Right limit:* -63.937529060560643
+*Left limit:* -63.937529060560643 == *Right limit:* -63.937529060560643
 
 *Has piecewise: * False
 
 ![point](diagrams/u/LivshitzRudy2007/eq1-sing1.png)
-
 ## Equation 2:
 ```
 ICaL__ibark = (-Environment__K_o * ICaL__gako + ICaL__gaki * K__K_i * exp(Environment__FonRT * cell__V)) * Environment__F * Environment__FonRT * ICaL__G_CaL_mult * ICaL__pk * cell__V / (-1.0 + exp(Environment__FonRT * cell__V))
@@ -1658,7 +1705,6 @@ ICaL__ibark = 0.00069711623550831479 * (-3.375 + 104.79818557737076 * exp(0.0374
 ```
 ### Singulariy points detected:
 {0}
-
 ## Equation 3:
 ```
 ICaL__ibarna = (-Environment__Na_o * ICaL__ganao + ICaL__ganai * Na__Na_i * exp(Environment__FonRT * cell__V)) * Environment__F * Environment__FonRT * ICaL__G_CaL_mult * ICaL__pna * cell__V / (-1.0 + exp(Environment__FonRT * cell__V))
@@ -1669,7 +1715,6 @@ ICaL__ibarna = 0.0024381008236689767 * (-105.0 + 12.459554485166251 * exp(0.0374
 ```
 ### Singulariy points detected:
 {0}
-
 ## Equation 4:
 ```
 ICaL__taud = 28.571428571428569 * (1.0 - 0.20137949774492364 * exp(-0.16025641025641024 * cell__V)) * ICaL__dss0 / (10.0 + cell__V)
@@ -1680,7 +1725,6 @@ ICaL__taud = 28.571428571428569 * (1.0 - 0.20137949774492364 * exp(-0.1602564102
 ```
 ### Singulariy points detected:
 {-10.000000000000000}
-
 ## Equation 5:
 ```
 IKr__tauxr = 1 / (0.00060999999999999997 * (38.899999999999999 + cell__V) / (-1.0 + 281.60348502322194 * exp(0.14499999999999999 * cell__V)) + 0.0013799999999999999 * (14.199999999999999 + cell__V) / (1.0 - 0.17436578041087322 * exp(-0.123 * cell__V)))
@@ -1691,7 +1735,40 @@ IKr__tauxr = 1 / (0.00060999999999999997 * (38.899999999999999 + cell__V) / (-1.
 ```
 ### Singulariy points detected:
 {-14.199999999999999, -38.899999999999999}
+####1 * A
 
+####1 / A
+
+####A + B:
+`0.0013799999999999999 * (14.199999999999999 + cell__V) / (1.0 - 0.17436578041087322 * exp(-0.123 * cell__V))`
+`0.00060999999999999997 * (38.899999999999999 + cell__V) / (-1.0 + 281.60348502322194 * exp(0.14499999999999999 * cell__V))`
+
+*U*
+`-1.7465999999999999 - 0.123 * cell__V`
+
+*V for 1e-07 range* 
+`-14.199999186991869 - -14.200000813008129`
+
+*Singularity point: -14.199999999999999*
+
+*Left limit:* 44.421975561881114 == *Right limit:* 44.421975561881114
+
+*Has piecewise: * False
+
+![point](diagrams/u/LivshitzRudy2007/eq5-sing1.png)
+*U*
+`5.6404999999999994 + 0.14499999999999999 * cell__V`
+
+*V for 1e-07 range* 
+`-38.900000689655172 - -38.899999310344825`
+
+*Singularity point: -38.899999999999999*
+
+*Left limit:* 582.80704638336232 == *Right limit:* 582.80704638336232
+
+*Has piecewise: * False
+
+![point](diagrams/u/LivshitzRudy2007/eq5-sing2.png)
 ## Equation 6:
 ```
 IKs__tauxs = 1 / (0.00013100000000000001 * (30.0 + cell__V) / (-1.0 + 7.8538197044216602 * exp(0.068699999999999997 * cell__V)) + 7.1899999999999999e-5 * (30.0 + cell__V) / (1.0 - 0.011795938519751569 * exp(-0.14799999999999999 * cell__V)))
@@ -1702,7 +1779,6 @@ IKs__tauxs = 1 / (0.00013100000000000001 * (30.0 + cell__V) / (-1.0 + 7.85381970
 ```
 ### Singulariy points detected:
 {-30.000000000000000}
-
 ## Equation 7:
 ```
 INa__am = 0.32000000000000001 * (47.130000000000003 + cell__V) / (1.0 - 0.00897780373069724 * exp(-0.10000000000000001 * cell__V))
@@ -1711,22 +1787,21 @@ INa__am = 0.32000000000000001 * (47.130000000000003 + cell__V) / (1.0 - 0.008977
 ```
 INa__am = 0.32000000000000001 * (47.130000000000003 + cell__V) / (1.0 - 0.00897780373069724 * exp(-0.10000000000000001 * cell__V))
 ```
-*U for -exp(U)+1* 
+### Singulariy points detected:
+{-47.130000000000003}
+*U*
 `-4.7130000000000001 - 0.10000000000000001 * cell__V`
 
 *V for 1e-07 range* 
 `-47.129999000000005 - -47.130001`
-### Singulariy points detected:
-{-47.130000000000003}
 
 *Singularity point: -47.130000000000003*
 
-*Left limit:* 3.1999999999999999 == Right limit:* 3.1999999999999999
+*Left limit:* 3.1999999999999999 == *Right limit:* 3.1999999999999999
 
 *Has piecewise: * False
 
 ![point](diagrams/u/LivshitzRudy2007/eq7-sing1.png)
-
 # Model: Li_Mouse_2010
 ## Equation 1:
 ```
@@ -1736,22 +1811,21 @@ slow_delayed_rectifier_K_I__alpha_n = 4.8133299999999997e-6 * (26.5 + cell__V) /
 ```
 slow_delayed_rectifier_K_I__alpha_n = 4.8133299999999997e-6 * (26.5 + cell__V) / (1.0 - 0.033641326918204616 * exp(-0.128 * cell__V))
 ```
-*U for -exp(U)+1* 
+### Singulariy points detected:
+{-26.500000000000000}
+*U*
 `-3.3919999999999999 - 0.128 * cell__V`
 
 *V for 1e-07 range* 
 `-26.499999218749998 - -26.500000781250002`
-### Singulariy points detected:
-{-26.500000000000000}
 
 *Singularity point: -26.500000000000000*
 
-*Left limit:* 3.7604140624999997e-5 == Right limit:* 3.7604140624999997e-5
+*Left limit:* 3.7604140624999997e-5 == *Right limit:* 3.7604140624999997e-5
 
 *Has piecewise: * False
 
 ![point](diagrams/u/Li_Mouse_2010/eq1-sing1.png)
-
 # Model: luo_rudy_1994
 ## Equation 1:
 ```
@@ -1761,22 +1835,21 @@ L_type_Ca_channel__I_CaCa = 4.0 * pow(membrane__F, 2) * (-L_type_Ca_channel__gam
 ```
 L_type_Ca_channel__I_CaCa = 0.078597788527232842 * (-0.6120000000000001 + 0.00012 * exp(0.075146605522028176 * membrane__V)) * membrane__V / (-1.0 + exp(0.075146605522028176 * membrane__V))
 ```
+### Singulariy points detected:
+{0}
 *U*
 `0.075146605522028176 * membrane__V`
 
 *V for 1e-07 range* 
 `-1.3307320976818627e-6 - 1.3307320976818627e-6`
-### Singulariy points detected:
-{0}
 
 *Singularity point: 0*
 
-*Left limit:* -0.63998120088000006 == Right limit:* -0.63998120088000006
+*Left limit:* -0.63998120088000006 == *Right limit:* -0.63998120088000006
 
 *Has piecewise: * False
 
 ![point](diagrams/u/luo_rudy_1994/eq1-sing1.png)
-
 ## Equation 2:
 ```
 L_type_Ca_channel__I_CaK = pow(membrane__F, 2) * (-L_type_Ca_channel__gamma_Ko * ionic_concentrations__Ko + L_type_Ca_channel__gamma_Ki * ionic_concentrations__Ki * exp(membrane__F * membrane__V / (membrane__R * membrane__T))) * L_type_Ca_channel__P_K * membrane__V / ((-1.0 + exp(membrane__F * membrane__V / (membrane__R * membrane__T))) * membrane__R * membrane__T)
@@ -1787,7 +1860,6 @@ L_type_Ca_channel__I_CaK = 7.0228579563684903e-6 * (-4.0500000000000007 + 108.75
 ```
 ### Singulariy points detected:
 {0}
-
 ## Equation 3:
 ```
 L_type_Ca_channel__I_CaNa = pow(membrane__F, 2) * (-L_type_Ca_channel__gamma_Nao * ionic_concentrations__Nao + L_type_Ca_channel__gamma_Nai * ionic_concentrations__Nai * exp(membrane__F * membrane__V / (membrane__R * membrane__T))) * L_type_Ca_channel__P_Na * membrane__V / ((-1.0 + exp(membrane__F * membrane__V / (membrane__R * membrane__T))) * membrane__R * membrane__T)
@@ -1798,7 +1870,6 @@ L_type_Ca_channel__I_CaNa = 2.4561808914760263e-5 * (-105.0 + 7.5 * exp(0.037573
 ```
 ### Singulariy points detected:
 {0}
-
 ## Equation 4:
 ```
 L_type_Ca_channel_d_gate__tau_d = 28.571428571428569 * (1.0 - 0.20137949774492364 * exp(-0.16025641025641024 * membrane__V)) * L_type_Ca_channel_d_gate__d_infinity / (10.0 + membrane__V)
@@ -1809,7 +1880,6 @@ L_type_Ca_channel_d_gate__tau_d = 28.571428571428569 * (1.0 - 0.2013794977449236
 ```
 ### Singulariy points detected:
 {-10.000000000000000}
-
 ## Equation 5:
 ```
 fast_sodium_current_m_gate__alpha_m = 0.32000000000000001 * (47.130000000000003 + membrane__V) / (1.0 - 0.00897780373069724 * exp(-0.10000000000000001 * membrane__V))
@@ -1818,22 +1888,21 @@ fast_sodium_current_m_gate__alpha_m = 0.32000000000000001 * (47.130000000000003 
 ```
 fast_sodium_current_m_gate__alpha_m = 0.32000000000000001 * (47.130000000000003 + membrane__V) / (1.0 - 0.00897780373069724 * exp(-0.10000000000000001 * membrane__V))
 ```
-*U for -exp(U)+1* 
+### Singulariy points detected:
+{-47.130000000000003}
+*U*
 `-4.7130000000000001 - 0.10000000000000001 * membrane__V`
 
 *V for 1e-07 range* 
 `-47.129999000000005 - -47.130001`
-### Singulariy points detected:
-{-47.130000000000003}
 
 *Singularity point: -47.130000000000003*
 
-*Left limit:* 3.1999999999999999 == Right limit:* 3.1999999999999999
+*Left limit:* 3.1999999999999999 == *Right limit:* 3.1999999999999999
 
 *Has piecewise: * False
 
 ![point](diagrams/u/luo_rudy_1994/eq5-sing1.png)
-
 ## Equation 6:
 ```
 time_dependent_potassium_current_X_gate__alpha_X = 7.1899999999999999e-5 * (30.0 + membrane__V) / (1.0 - 0.011795938519751569 * exp(-0.14799999999999999 * membrane__V))
@@ -1842,22 +1911,21 @@ time_dependent_potassium_current_X_gate__alpha_X = 7.1899999999999999e-5 * (30.0
 ```
 time_dependent_potassium_current_X_gate__alpha_X = 7.1899999999999999e-5 * (30.0 + membrane__V) / (1.0 - 0.011795938519751569 * exp(-0.14799999999999999 * membrane__V))
 ```
-*U for -exp(U)+1* 
+### Singulariy points detected:
+{-30.000000000000000}
+*U*
 `-4.4399999999999995 - 0.14799999999999999 * membrane__V`
 
 *V for 1e-07 range* 
 `-29.999999324324325 - -30.000000675675675`
-### Singulariy points detected:
-{-30.000000000000000}
 
 *Singularity point: -30.000000000000000*
 
-*Left limit:* 0 == Right limit:* 0
+*Left limit:* 0 == *Right limit:* 0
 
 *Has piecewise: * False
 
 ![point](diagrams/u/luo_rudy_1994/eq6-sing1.png)
-
 ## Equation 7:
 ```
 time_dependent_potassium_current_X_gate__beta_X = 0.00013100000000000001 * (30.0 + membrane__V) / (-1.0 + 7.8538197044216602 * exp(0.068699999999999997 * membrane__V))
@@ -1866,22 +1934,21 @@ time_dependent_potassium_current_X_gate__beta_X = 0.00013100000000000001 * (30.0
 ```
 time_dependent_potassium_current_X_gate__beta_X = 0.00013100000000000001 * (30.0 + membrane__V) / (-1.0 + 7.8538197044216602 * exp(0.068699999999999997 * membrane__V))
 ```
+### Singulariy points detected:
+{-30.000000000000000}
 *U*
 `2.0609999999999999 + 0.068699999999999997 * membrane__V`
 
 *V for 1e-07 range* 
 `-30.000001455604075 - -29.999998544395925`
-### Singulariy points detected:
-{-30.000000000000000}
 
 *Singularity point: -30.000000000000000*
 
-*Left limit:* 0 == Right limit:* 0
+*Left limit:* 0 == *Right limit:* 0
 
 *Has piecewise: * False
 
 ![point](diagrams/u/luo_rudy_1994/eq7-sing1.png)
-
 # Model: mahajan_shiferaw_model_2008
 ## Equation 1:
 ```
@@ -1893,7 +1960,6 @@ IKr__xkrv1 = ((fabs(7.0 + cell__V) > 0.001) ? (0.0013799999999999999 * (7.0 + ce
 ```
 ### Singulariy points detected:
 {-7.0000000000000000}
-
 ## Equation 2:
 ```
 IKr__xkrv2 = ((fabs(10.0 + cell__V) > 0.001) ? (0.00060999999999999997 * (10.0 + cell__V) / (-1.0 + 4.2631145151688168 * exp(0.14499999999999999 * cell__V))) : (0.0042068965517241376))
@@ -1904,7 +1970,6 @@ IKr__xkrv2 = ((fabs(10.0 + cell__V) > 0.001) ? (0.00060999999999999997 * (10.0 +
 ```
 ### Singulariy points detected:
 {-10.000000000000000}
-
 ## Equation 3:
 ```
 IKs__tauxs1 = ((fabs(30.0 + cell__V) < 0.014556040756914121) ? (417.94625266107982) : (1 / (0.00013100000000000001 * (30.0 + cell__V) / (-1.0 + 7.8538197044216602 * exp(0.068699999999999997 * cell__V)) + 7.1899999999999999e-5 * (30.0 + cell__V) / (1.0 - 0.011795938519751569 * exp(-0.14799999999999999 * cell__V)))))
@@ -1915,7 +1980,6 @@ IKs__tauxs1 = ((fabs(30.0 + cell__V) < 0.014556040756914121) ? (417.946252661079
 ```
 ### Singulariy points detected:
 {-30.000000000000000}
-
 ## Equation 4:
 ```
 INa__am = ((fabs(47.130000000000003 + cell__V) > 0.001) ? (0.32000000000000001 * (47.130000000000003 + cell__V) / (1.0 - 0.00897780373069724 * exp(-0.10000000000000001 * cell__V))) : (3.2000000000000002))
@@ -1926,7 +1990,6 @@ INa__am = ((fabs(47.130000000000003 + cell__V) > 0.001) ? (0.32000000000000001 *
 ```
 ### Singulariy points detected:
 {-47.130000000000003}
-
 # Model: matsuoka_model_2003
 ## Equation 1:
 ```
@@ -1938,7 +2001,6 @@ constant_field_equations__CF_Ca = ((membrane__Vm == 0) ? (-1.8) : (0.07487038460
 ```
 ### Singulariy points detected:
 {0}
-
 ## Equation 2:
 ```
 constant_field_equations__CF_K = ((membrane__Vm == 0) ? (internal_ion_concentrations__Ki) : ((-external_ion_concentrations__Ko * exp(-membrane__F * membrane__Vm / (membrane__R * membrane__T)) + internal_ion_concentrations__Ki) * membrane__F * membrane__Vm / ((1.0 - exp(-membrane__F * membrane__Vm / (membrane__R * membrane__T))) * membrane__R * membrane__T)))
@@ -1949,7 +2011,6 @@ constant_field_equations__CF_K = ((membrane__Vm == 0) ? (143.18373330004491) : (
 ```
 ### Singulariy points detected:
 {0}
-
 ## Equation 3:
 ```
 background_Kpl_current__i_Kpl = ((membrane__Vm == (-3.0)) ? (13.0077 * background_Kpl_current__P_Kpl * constant_field_equations__CF_K) : ((3.0 + membrane__Vm) * background_Kpl_current__P_Kpl * constant_field_equations__CF_K / (1.0 - 0.79392265781795135 * exp(-0.076923076923076927 * membrane__Vm))))
@@ -1960,7 +2021,6 @@ background_Kpl_current__i_Kpl = ((membrane__Vm == (-3.0)) ? (5.3564032599450697e
 ```
 ### Singulariy points detected:
 {-3.0000000000000000}
-
 ## Equation 4:
 ```
 constant_field_equations__CF_Na = ((membrane__Vm == 0) ? (-external_ion_concentrations__Nao) : ((-external_ion_concentrations__Nao * exp(-membrane__F * membrane__Vm / (membrane__R * membrane__T)) + internal_ion_concentrations__Nai) * membrane__F * membrane__Vm / ((1.0 - exp(-membrane__F * membrane__Vm / (membrane__R * membrane__T))) * membrane__R * membrane__T)))
@@ -1971,7 +2031,6 @@ constant_field_equations__CF_Na = ((membrane__Vm == 0) ? (-140.0) : (0.037435192
 ```
 ### Singulariy points detected:
 {0}
-
 # Model: luo_rudy_1991
 # Model: noble_model_1991
 ## Equation 1:
@@ -1984,7 +2043,6 @@ L_type_Ca_channel__i_Ca_L_Ca = 0
 ```
 ### Singulariy points detected:
 {50.000000000000000}
-
 ## Equation 2:
 ```
 L_type_Ca_channel__i_Ca_L_K = (-50.0 + membrane__V) * (intracellular_potassium_concentration__K_i * exp(50.0 * membrane__F / (membrane__R * membrane__T)) - extracellular_potassium_concentration__K_o * exp((50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * L_type_Ca_channel__P_CaK * L_type_Ca_channel__P_Ca_L * L_type_Ca_channel_d_gate__d * L_type_Ca_channel_f_gate__f * membrane__F / ((1.0 - exp((50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * membrane__R * membrane__T)
@@ -1995,7 +2053,6 @@ L_type_Ca_channel__i_Ca_L_K = 0
 ```
 ### Singulariy points detected:
 {50.000000000000000}
-
 ## Equation 3:
 ```
 L_type_Ca_channel__i_Ca_L_Na = (-50.0 + membrane__V) * (intracellular_sodium_concentration__Na_i * exp(50.0 * membrane__F / (membrane__R * membrane__T)) - extracellular_sodium_concentration__Na_o * exp((50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * L_type_Ca_channel__P_CaNa * L_type_Ca_channel__P_Ca_L * L_type_Ca_channel_d_gate__d * L_type_Ca_channel_f_gate__f * membrane__F / ((1.0 - exp((50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * membrane__R * membrane__T)
@@ -2006,7 +2063,6 @@ L_type_Ca_channel__i_Ca_L_Na = 0
 ```
 ### Singulariy points detected:
 {50.000000000000000}
-
 # Model: noble_model_1998
 ## Equation 1:
 ```
@@ -2018,7 +2074,6 @@ L_type_Ca_channel__i_Ca_L_Ca_cyt = 0
 ```
 ### Singulariy points detected:
 {50.000000000000000}
-
 ## Equation 2:
 ```
 L_type_Ca_channel__i_Ca_L_Ca_ds = 4.0 * (-50.0 + membrane__V) * (intracellular_calcium_concentration__Ca_i * exp(100.0 * membrane__F / (membrane__R * membrane__T)) - extracellular_calcium_concentration__Ca_o * exp(2.0 * (50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * L_type_Ca_channel__FrICa * L_type_Ca_channel__P_Ca_L * L_type_Ca_channel_d_gate__d * L_type_Ca_channel_f2ds_gate__f2ds * L_type_Ca_channel_f_gate__f * membrane__F / ((1.0 - exp(2.0 * (50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * membrane__R * membrane__T)
@@ -2029,7 +2084,6 @@ L_type_Ca_channel__i_Ca_L_Ca_ds = 0
 ```
 ### Singulariy points detected:
 {50.000000000000000}
-
 ## Equation 3:
 ```
 L_type_Ca_channel__i_Ca_L_K_cyt = (1.0 - L_type_Ca_channel__FrICa) * (-50.0 + membrane__V) * (intracellular_potassium_concentration__K_i * exp(50.0 * membrane__F / (membrane__R * membrane__T)) - extracellular_potassium_concentration__K_o * exp((50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * L_type_Ca_channel__P_CaK * L_type_Ca_channel__P_Ca_L * L_type_Ca_channel_d_gate__d * L_type_Ca_channel_f2_gate__f2 * L_type_Ca_channel_f_gate__f * membrane__F / ((1.0 - exp((50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * membrane__R * membrane__T)
@@ -2040,7 +2094,6 @@ L_type_Ca_channel__i_Ca_L_K_cyt = 0
 ```
 ### Singulariy points detected:
 {50.000000000000000}
-
 ## Equation 4:
 ```
 L_type_Ca_channel__i_Ca_L_K_ds = (-50.0 + membrane__V) * (intracellular_potassium_concentration__K_i * exp(50.0 * membrane__F / (membrane__R * membrane__T)) - extracellular_potassium_concentration__K_o * exp((50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * L_type_Ca_channel__FrICa * L_type_Ca_channel__P_CaK * L_type_Ca_channel__P_Ca_L * L_type_Ca_channel_d_gate__d * L_type_Ca_channel_f2ds_gate__f2ds * L_type_Ca_channel_f_gate__f * membrane__F / ((1.0 - exp((50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * membrane__R * membrane__T)
@@ -2051,7 +2104,6 @@ L_type_Ca_channel__i_Ca_L_K_ds = 0
 ```
 ### Singulariy points detected:
 {50.000000000000000}
-
 ## Equation 5:
 ```
 L_type_Ca_channel__i_Ca_L_Na_cyt = (1.0 - L_type_Ca_channel__FrICa) * (-50.0 + membrane__V) * (intracellular_sodium_concentration__Na_i * exp(50.0 * membrane__F / (membrane__R * membrane__T)) - extracellular_sodium_concentration__Na_o * exp((50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * L_type_Ca_channel__P_CaNa * L_type_Ca_channel__P_Ca_L * L_type_Ca_channel_d_gate__d * L_type_Ca_channel_f2_gate__f2 * L_type_Ca_channel_f_gate__f * membrane__F / ((1.0 - exp((50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * membrane__R * membrane__T)
@@ -2062,7 +2114,6 @@ L_type_Ca_channel__i_Ca_L_Na_cyt = 0
 ```
 ### Singulariy points detected:
 {50.000000000000000}
-
 ## Equation 6:
 ```
 L_type_Ca_channel__i_Ca_L_Na_ds = (-50.0 + membrane__V) * (intracellular_sodium_concentration__Na_i * exp(50.0 * membrane__F / (membrane__R * membrane__T)) - extracellular_sodium_concentration__Na_o * exp((50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * L_type_Ca_channel__FrICa * L_type_Ca_channel__P_CaNa * L_type_Ca_channel__P_Ca_L * L_type_Ca_channel_d_gate__d * L_type_Ca_channel_f2ds_gate__f2ds * L_type_Ca_channel_f_gate__f * membrane__F / ((1.0 - exp((50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * membrane__R * membrane__T)
@@ -2073,7 +2124,6 @@ L_type_Ca_channel__i_Ca_L_Na_ds = 0
 ```
 ### Singulariy points detected:
 {50.000000000000000}
-
 # Model: NN_SAN_model_1984
 ## Equation 1:
 ```
@@ -2083,22 +2133,21 @@ second_inward_current__i_siCa = 4.0 * (-50.0 + membrane__V) * (intracellular_cal
 ```
 second_inward_current__i_siCa = 0.00076123407928412891 * (0.0024499725338953324 - 84.481811513632152 * exp(-0.074867781645490947 * membrane__V)) * (-50.0 + membrane__V) / (1.0 - 42.240905756816076 * exp(-0.074867781645490947 * membrane__V))
 ```
-*U for -exp(U)+1* 
+### Singulariy points detected:
+{50.000000000000000}
+*U*
 `3.7433890822745473 - 0.074867781645490947 * membrane__V`
 
 *V for 1e-07 range* 
 `50.000001335688033 - 49.999998664311967`
-### Singulariy points detected:
-{50.000000000000000}
 
 *Singularity point: 50.000000000000000*
 
-*Left limit:* -0.020310514383642459 == Right limit:* -0.020310514383642459
+*Left limit:* -0.020310514383642459 == *Right limit:* -0.020310514383642459
 
 *Has piecewise: * False
 
 ![point](diagrams/u/NN_SAN_model_1984/eq1-sing1.png)
-
 ## Equation 2:
 ```
 second_inward_current__i_siK = 0.01 * (-50.0 + membrane__V) * (intracellular_potassium_concentration__Ki * exp(50.0 / membrane__RTONF) - extracellular_potassium_concentration__Kc * exp(-(-50.0 + membrane__V) / membrane__RTONF)) * second_inward_current__P_si * second_inward_current_d_gate__d * second_inward_current_f2_gate__f2 * second_inward_current_f_gate__f / ((1.0 - exp(-(-50.0 + membrane__V) / membrane__RTONF)) * membrane__RTONF)
@@ -2107,22 +2156,21 @@ second_inward_current__i_siK = 0.01 * (-50.0 + membrane__V) * (intracellular_pot
 ```
 second_inward_current__i_siK = 1.9030851982103224e-6 * (909.90205672566492 - 19.497901215549962 * exp(-0.037433890822745473 * membrane__V)) * (-50.0 + membrane__V) / (1.0 - 6.4993004051833205 * exp(-0.037433890822745473 * membrane__V))
 ```
-*U for -exp(U)+1* 
+### Singulariy points detected:
+{50.000000000000000}
+*U*
 `1.8716945411372736 - 0.037433890822745473 * membrane__V`
 
 *V for 1e-07 range* 
 `50.000002671376066 - 49.999997328623934`
-### Singulariy points detected:
-{50.000000000000000}
 
 *Singularity point: 50.000000000000000*
 
-*Left limit:* 0.046105596892226268 == Right limit:* 0.046105596892226268
+*Left limit:* 0.046105596892226268 == *Right limit:* 0.046105596892226268
 
 *Has piecewise: * False
 
 ![point](diagrams/u/NN_SAN_model_1984/eq2-sing1.png)
-
 ## Equation 3:
 ```
 second_inward_current__i_siNa = 0.01 * (-50.0 + membrane__V) * (intracellular_sodium_concentration__Nai * exp(50.0 / membrane__RTONF) - extracellular_sodium_concentration__Nao * exp(-(-50.0 + membrane__V) / membrane__RTONF)) * second_inward_current__P_si * second_inward_current_d_gate__d * second_inward_current_f2_gate__f2 * second_inward_current_f_gate__f / ((1.0 - exp(-(-50.0 + membrane__V) / membrane__RTONF)) * membrane__RTONF)
@@ -2131,22 +2179,21 @@ second_inward_current__i_siNa = 0.01 * (-50.0 + membrane__V) * (intracellular_so
 ```
 second_inward_current__i_siNa = 1.9030851982103224e-6 * (48.744753038874904 - 909.90205672566492 * exp(-0.037433890822745473 * membrane__V)) * (-50.0 + membrane__V) / (1.0 - 6.4993004051833205 * exp(-0.037433890822745473 * membrane__V))
 ```
-*U for -exp(U)+1* 
+### Singulariy points detected:
+{50.000000000000000}
+*U*
 `1.8716945411372736 - 0.037433890822745473 * membrane__V`
 
 *V for 1e-07 range* 
 `50.000002671376066 - 49.999997328623934`
-### Singulariy points detected:
-{50.000000000000000}
 
 *Singularity point: 50.000000000000000*
 
-*Left limit:* -0.0046392855760860939 == Right limit:* -0.0046392855760860939
+*Left limit:* -0.0046392855760860939 == *Right limit:* -0.0046392855760860939
 
 *Has piecewise: * False
 
 ![point](diagrams/u/NN_SAN_model_1984/eq3-sing1.png)
-
 # Model: Noble_SAN_model_1989
 ## Equation 1:
 ```
@@ -2158,7 +2205,6 @@ second_inward_current__i_siCa = 0
 ```
 ### Singulariy points detected:
 {50.000000000000000}
-
 ## Equation 2:
 ```
 second_inward_current__i_siK = 0.01 * (-50.0 + membrane__V) * (intracellular_potassium_concentration__Ki * exp(50.0 / membrane__RTONF) - extracellular_potassium_concentration__Kc * exp(-(-50.0 + membrane__V) / membrane__RTONF)) * second_inward_current__P_si * second_inward_current_d_gate__d * second_inward_current_f2_gate__f2 * second_inward_current_f_gate__f / ((1.0 - exp(-(-50.0 + membrane__V) / membrane__RTONF)) * membrane__RTONF)
@@ -2169,7 +2215,6 @@ second_inward_current__i_siK = 0
 ```
 ### Singulariy points detected:
 {50.000000000000000}
-
 ## Equation 3:
 ```
 second_inward_current__i_siNa = 0.01 * (-50.0 + membrane__V) * (intracellular_sodium_concentration__Nai * exp(50.0 / membrane__RTONF) - extracellular_sodium_concentration__Nao * exp(-(-50.0 + membrane__V) / membrane__RTONF)) * second_inward_current__P_si * second_inward_current_d_gate__d * second_inward_current_f2_gate__f2 * second_inward_current_f_gate__f / ((1.0 - exp(-(-50.0 + membrane__V) / membrane__RTONF)) * membrane__RTONF)
@@ -2180,7 +2225,6 @@ second_inward_current__i_siNa = 0
 ```
 ### Singulariy points detected:
 {50.000000000000000}
-
 # Model: nygren_atrial_model_1998
 ## Equation 1:
 ```
@@ -2190,22 +2234,21 @@ sodium_current__i_Na = pow(membrane__F, 2) * pow(sodium_current_m_gate__m, 3) * 
 ```
 sodium_current__i_Na = 2.1991428764888377e-5 * (-1.0 + 0.065799816938566749 * exp(0.037907445518581065 * membrane__V)) * membrane__V / (-1.0 + exp(0.037907445518581065 * membrane__V))
 ```
+### Singulariy points detected:
+{0}
 *U*
 `0.037907445518581065 * membrane__V`
 
 *V for 1e-07 range* 
 `-2.6380041870925613e-6 - 2.6380041870925613e-6`
-### Singulariy points detected:
-{0}
 
 *Singularity point: 0*
 
-*Left limit:* -0.00054196204721499793 == Right limit:* -0.00054196204721499793
+*Left limit:* -0.00054196204721499793 == *Right limit:* -0.00054196204721499793
 
 *Has piecewise: * False
 
 ![point](diagrams/u/nygren_atrial_model_1998/eq1-sing1.png)
-
 ## Equation 2:
 ```
 sodium_potassium_pump__i_NaK = pow(intracellular_ion_concentrations__Na_i, 1.5) * (150.0 + membrane__V) * cleft_space_ion_concentrations__K_c * sodium_potassium_pump__i_NaK_max / ((200.0 + membrane__V) * (pow(intracellular_ion_concentrations__Na_i, 1.5) + pow(sodium_potassium_pump__k_NaK_Na, 1.5)) * (cleft_space_ion_concentrations__K_c + sodium_potassium_pump__k_NaK_K))
@@ -2216,7 +2259,6 @@ sodium_potassium_pump__i_NaK = 24.281503485861936 * (150.0 + membrane__V) / (200
 ```
 ### Singulariy points detected:
 {-200.00000000000000}
-
 # Model: paci_hyttinen_aaltosetala_severi_ventricularVersion
 # Model: pandit_model_2001_epi
 ## Equation 1:
@@ -2229,7 +2271,6 @@ sodium_current_m_gate__tau_m = 0.0013600000000000001 / (0.080000000000000002 * e
 ```
 ### Singulariy points detected:
 {-47.130000000000003}
-
 # Model: priebe_beuckelmann_model_1998
 ## Equation 1:
 ```
@@ -2241,7 +2282,6 @@ INa_m_gate__alpha_m = ((fabs(47.130000000000003 + cell__V) > 0.001) ? (0.3200000
 ```
 ### Singulariy points detected:
 {-47.130000000000003}
-
 # Model: sachse_model_2007
 ## Equation 1:
 ```
@@ -2253,7 +2293,6 @@ I_Shkr__I_Shkr = 0
 ```
 ### Singulariy points detected:
 {0}
-
 # Model: sakmann_model_2000_epi
 ## Equation 1:
 ```
@@ -2265,7 +2304,6 @@ L_type_Ca_channel__i_Ca_L_Ca_cyt = 0
 ```
 ### Singulariy points detected:
 {50.000000000000000}
-
 ## Equation 2:
 ```
 L_type_Ca_channel__i_Ca_L_Ca_ds = 4.0 * (-50.0 + membrane__V) * (intracellular_calcium_concentration__Ca_i * exp(100.0 * membrane__F / (membrane__R * membrane__T)) - extracellular_calcium_concentration__Ca_o * exp(2.0 * (50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * L_type_Ca_channel__FrICa * L_type_Ca_channel__P_Ca_L * L_type_Ca_channel_d_gate__d * L_type_Ca_channel_f2ds_gate__f2ds * L_type_Ca_channel_f_gate__f * membrane__F / ((1.0 - exp(2.0 * (50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * membrane__R * membrane__T)
@@ -2274,22 +2312,21 @@ L_type_Ca_channel__i_Ca_L_Ca_ds = 4.0 * (-50.0 + membrane__V) * (intracellular_c
 ```
 L_type_Ca_channel__i_Ca_L_Ca_ds = 2.203930365375749e-6 * (0.0022979052731707948 - 84.481811513632152 * exp(-0.074867781645490947 * membrane__V)) * (-50.0 + membrane__V) / (1.0 - 42.240905756816076 * exp(-0.074867781645490947 * membrane__V))
 ```
-*U for -exp(U)+1* 
+### Singulariy points detected:
+{50.000000000000000}
+*U*
 `3.7433890822745473 - 0.074867781645490947 * membrane__V`
 
 *V for 1e-07 range* 
 `50.000001335688033 - 49.999998664311967`
-### Singulariy points detected:
-{50.000000000000000}
 
 *Singularity point: 50.000000000000000*
 
-*Left limit:* -5.8807623396550406e-5 == Right limit:* -5.8807623396550406e-5
+*Left limit:* -5.8807623396550406e-5 == *Right limit:* -5.8807623396550406e-5
 
 *Has piecewise: * False
 
 ![point](diagrams/u/sakmann_model_2000_epi/eq2-sing1.png)
-
 ## Equation 3:
 ```
 L_type_Ca_channel__i_Ca_L_K_cyt = (1.0 - L_type_Ca_channel__FrICa) * (-50.0 + membrane__V) * (intracellular_potassium_concentration__K_i * exp(50.0 * membrane__F / (membrane__R * membrane__T)) - extracellular_potassium_concentration__K_o * exp((50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * L_type_Ca_channel__P_CaK * L_type_Ca_channel__P_Ca_L * L_type_Ca_channel_d_gate__d * L_type_Ca_channel_f2_gate__f2 * L_type_Ca_channel_f_gate__f * membrane__F / ((1.0 - exp((50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * membrane__R * membrane__T)
@@ -2300,7 +2337,6 @@ L_type_Ca_channel__i_Ca_L_K_cyt = 0
 ```
 ### Singulariy points detected:
 {50.000000000000000}
-
 ## Equation 4:
 ```
 L_type_Ca_channel__i_Ca_L_K_ds = (-50.0 + membrane__V) * (intracellular_potassium_concentration__K_i * exp(50.0 * membrane__F / (membrane__R * membrane__T)) - extracellular_potassium_concentration__K_o * exp((50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * L_type_Ca_channel__FrICa * L_type_Ca_channel__P_CaK * L_type_Ca_channel__P_Ca_L * L_type_Ca_channel_d_gate__d * L_type_Ca_channel_f2ds_gate__f2ds * L_type_Ca_channel_f_gate__f * membrane__F / ((1.0 - exp((50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * membrane__R * membrane__T)
@@ -2309,22 +2345,21 @@ L_type_Ca_channel__i_Ca_L_K_ds = (-50.0 + membrane__V) * (intracellular_potassiu
 ```
 L_type_Ca_channel__i_Ca_L_K_ds = 1.1019651826878747e-9 * (902.07933822526627 - 25.997201620733282 * exp(-0.037433890822745473 * membrane__V)) * (-50.0 + membrane__V) / (1.0 - 6.4993004051833205 * exp(-0.037433890822745473 * membrane__V))
 ```
-*U for -exp(U)+1* 
+### Singulariy points detected:
+{50.000000000000000}
+*U*
 `1.8716945411372736 - 0.037433890822745473 * membrane__V`
 
 *V for 1e-07 range* 
 `50.000002671376066 - 49.999997328623934`
-### Singulariy points detected:
-{50.000000000000000}
 
 *Singularity point: 50.000000000000000*
 
-*Left limit:* 0 == Right limit:* 0
+*Left limit:* 0 == *Right limit:* 0
 
 *Has piecewise: * False
 
 ![point](diagrams/u/sakmann_model_2000_epi/eq4-sing1.png)
-
 ## Equation 5:
 ```
 L_type_Ca_channel__i_Ca_L_Na_cyt = (1.0 - L_type_Ca_channel__FrICa) * (-50.0 + membrane__V) * (intracellular_sodium_concentration__Na_i * exp(50.0 * membrane__F / (membrane__R * membrane__T)) - extracellular_sodium_concentration__Na_o * exp((50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * L_type_Ca_channel__P_CaNa * L_type_Ca_channel__P_Ca_L * L_type_Ca_channel_d_gate__d * L_type_Ca_channel_f2_gate__f2 * L_type_Ca_channel_f_gate__f * membrane__F / ((1.0 - exp((50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * membrane__R * membrane__T)
@@ -2335,7 +2370,6 @@ L_type_Ca_channel__i_Ca_L_Na_cyt = 0
 ```
 ### Singulariy points detected:
 {50.000000000000000}
-
 ## Equation 6:
 ```
 L_type_Ca_channel__i_Ca_L_Na_ds = (-50.0 + membrane__V) * (intracellular_sodium_concentration__Na_i * exp(50.0 * membrane__F / (membrane__R * membrane__T)) - extracellular_sodium_concentration__Na_o * exp((50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * L_type_Ca_channel__FrICa * L_type_Ca_channel__P_CaNa * L_type_Ca_channel__P_Ca_L * L_type_Ca_channel_d_gate__d * L_type_Ca_channel_f2ds_gate__f2ds * L_type_Ca_channel_f_gate__f * membrane__F / ((1.0 - exp((50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * membrane__R * membrane__T)
@@ -2344,22 +2378,21 @@ L_type_Ca_channel__i_Ca_L_Na_ds = (-50.0 + membrane__V) * (intracellular_sodium_
 ```
 L_type_Ca_channel__i_Ca_L_Na_ds = 5.5098259134393731e-9 * (36.807947485213347 - 909.90205672566492 * exp(-0.037433890822745473 * membrane__V)) * (-50.0 + membrane__V) / (1.0 - 6.4993004051833205 * exp(-0.037433890822745473 * membrane__V))
 ```
-*U for -exp(U)+1* 
+### Singulariy points detected:
+{50.000000000000000}
+*U*
 `1.8716945411372736 - 0.037433890822745473 * membrane__V`
 
 *V for 1e-07 range* 
 `50.000002671376066 - 49.999997328623934`
-### Singulariy points detected:
-{50.000000000000000}
 
 *Singularity point: 50.000000000000000*
 
-*Left limit:* 0 == Right limit:* 0
+*Left limit:* 0 == *Right limit:* 0
 
 *Has piecewise: * False
 
 ![point](diagrams/u/sakmann_model_2000_epi/eq6-sing1.png)
-
 ## Equation 7:
 ```
 rapid_delayed_rectifier_potassium_current_xr_gate__tau_xr = 0.001 / (0.00060999999999999997 * (38.899999999999999 + membrane__V) / (-1.0 + 281.60348502322194 * exp(0.14499999999999999 * membrane__V)) + 0.0013799999999999999 * (14.199999999999999 + membrane__V) / (1.0 - 0.17436578041087322 * exp(-0.123 * membrane__V)))
@@ -2370,7 +2403,9 @@ rapid_delayed_rectifier_potassium_current_xr_gate__tau_xr = 0.001 / (0.000609999
 ```
 ### Singulariy points detected:
 {-14.199999999999999, -38.899999999999999}
-
+####Failed!
+<class 'sympy.core.mul.Mul'>
+0.001/(0.00060999999999999997*(_membrane$V + 38.899999999999999)/(281.60348502322194*exp(0.14499999999999999*_membrane$V) - 1.0) + 0.0013799999999999999*(_membrane$V + 14.199999999999999)/(1.0 - 0.17436578041087323*exp(-0.123*_membrane$V)))
 ## Equation 8:
 ```
 slow_delayed_rectifier_potassium_current_xs_gate__tau_xs = 0.001 / (0.00013100000000000001 * (30.0 + membrane__V) / (-1.0 + 7.8538197044216602 * exp(0.068699999999999997 * membrane__V)) + 7.1899999999999999e-5 * (30.0 + membrane__V) / (1.0 - 0.011795938519751569 * exp(-0.14799999999999999 * membrane__V)))
@@ -2381,7 +2416,6 @@ slow_delayed_rectifier_potassium_current_xs_gate__tau_xs = 0.001 / (0.0001310000
 ```
 ### Singulariy points detected:
 {-30.000000000000000}
-
 # Model: shannon_wang_puglisi_weber_bers_2004_model_updated
 ## Equation 1:
 ```
@@ -2393,7 +2427,6 @@ ICaL_d_gate__tau_d = 28.571428571428569 * (1.0 - 0.089218517409260095 * exp(-0.1
 ```
 ### Singulariy points detected:
 {-14.500000000000000}
-
 ## Equation 2:
 ```
 IKr_Xr_gate__tau_Xr = 1 / (0.00060999999999999997 * (10.0 + cell__V) / (-1.0 + 4.2631145151688168 * exp(0.14499999999999999 * cell__V)) + 0.0013799999999999999 * (7.0 + cell__V) / (1.0 - 0.42273913174596284 * exp(-0.123 * cell__V)))
@@ -2403,8 +2436,41 @@ IKr_Xr_gate__tau_Xr = 1 / (0.00060999999999999997 * (10.0 + cell__V) / (-1.0 + 4
 IKr_Xr_gate__tau_Xr = 1 / (0.00060999999999999997 * (10.0 + cell__V) / (-1.0 + 4.2631145151688168 * exp(0.14499999999999999 * cell__V)) + 0.0013799999999999999 * (7.0 + cell__V) / (1.0 - 0.42273913174596284 * exp(-0.123 * cell__V)))
 ```
 ### Singulariy points detected:
-{-7.0000000000000000, -10.000000000000000}
+{-10.000000000000000, -7.0000000000000000}
+####1 * A
 
+####1 / A
+
+####A + B:
+`0.0013799999999999999 * (7.0 + cell__V) / (1.0 - 0.42273913174596284 * exp(-0.123 * cell__V))`
+`0.00060999999999999997 * (10.0 + cell__V) / (-1.0 + 4.2631145151688168 * exp(0.14499999999999999 * cell__V))`
+
+*U*
+`-0.86099999999999999 - 0.123 * cell__V`
+
+*V for 1e-07 range* 
+`-6.9999991869918698 - -7.0000008130081302`
+
+*Singularity point: -7.0000000000000000*
+
+*Left limit:* 112.63765447509774 == *Right limit:* 112.63765447509774
+
+*Has piecewise: * False
+
+![point](diagrams/u/shannon_wang_puglisi_weber_bers_2004_model_updated/eq2-sing1.png)
+*U*
+`1.45 + 0.14499999999999999 * cell__V`
+
+*V for 1e-07 range* 
+`-10.000000689655172 - -9.9999993103448279`
+
+*Singularity point: -10.000000000000000*
+
+*Left limit:* 107.79893808568592 == *Right limit:* 107.79893808568592
+
+*Has piecewise: * False
+
+![point](diagrams/u/shannon_wang_puglisi_weber_bers_2004_model_updated/eq2-sing2.png)
 ## Equation 3:
 ```
 IKs_Xs_gate__tau_Xs = 1 / (0.00013100000000000001 * (30.0 + cell__V) / (-1.0 + 7.8538197044216602 * exp(0.068699999999999997 * cell__V)) + 7.1899999999999999e-5 * (30.0 + cell__V) / (1.0 - 0.011795938519751569 * exp(-0.14799999999999999 * cell__V)))
@@ -2415,7 +2481,6 @@ IKs_Xs_gate__tau_Xs = 1 / (0.00013100000000000001 * (30.0 + cell__V) / (-1.0 + 7
 ```
 ### Singulariy points detected:
 {-30.000000000000000}
-
 ## Equation 4:
 ```
 INa_m_gate__alpha_m = 0.32000000000000001 * (47.130000000000003 + cell__V) / (1.0 - 0.00897780373069724 * exp(-0.10000000000000001 * cell__V))
@@ -2424,22 +2489,21 @@ INa_m_gate__alpha_m = 0.32000000000000001 * (47.130000000000003 + cell__V) / (1.
 ```
 INa_m_gate__alpha_m = 0.32000000000000001 * (47.130000000000003 + cell__V) / (1.0 - 0.00897780373069724 * exp(-0.10000000000000001 * cell__V))
 ```
-*U for -exp(U)+1* 
+### Singulariy points detected:
+{-47.130000000000003}
+*U*
 `-4.7130000000000001 - 0.10000000000000001 * cell__V`
 
 *V for 1e-07 range* 
 `-47.129999000000005 - -47.130001`
-### Singulariy points detected:
-{-47.130000000000003}
 
 *Singularity point: -47.130000000000003*
 
-*Left limit:* 3.1999999999999999 == Right limit:* 3.1999999999999999
+*Left limit:* 3.1999999999999999 == *Right limit:* 3.1999999999999999
 
 *Has piecewise: * False
 
 ![point](diagrams/u/shannon_wang_puglisi_weber_bers_2004_model_updated/eq4-sing1.png)
-
 ## Equation 5:
 ```
 ICaL__i_CaL_Ca_SL = 4.0 * (-ICaL__gamma_Cao * model_parameters__Cao + Ca_buffer__Ca_SL * ICaL__gamma_Cai * exp(2.0 * cell__V * model_parameters__F / (model_parameters__R * model_parameters__T))) * ICaL__Fx_ICaL_SL * ICaL__PCa * ICaL__temp * ICaL_fCa_gate__fCa_SL / (-1.0 + exp(2.0 * cell__V * model_parameters__F / (model_parameters__R * model_parameters__T)))
@@ -2448,22 +2512,21 @@ ICaL__i_CaL_Ca_SL = 4.0 * (-ICaL__gamma_Cao * model_parameters__Cao + Ca_buffer_
 ```
 ICaL__i_CaL_Ca_SL = 2.4206884569550026e-6 * (-0.61380000000000001 + 3.5795216745958792e-5 * exp(0.074870384603595908 * cell__V)) * cell__V / (-1.0 + exp(0.074870384603595908 * cell__V))
 ```
+### Singulariy points detected:
+{0}
 *U*
 `0.074870384603595908 * cell__V`
 
 *V for 1e-07 range* 
 `-1.3356415961992688e-6 - 1.3356415961992688e-6`
-### Singulariy points detected:
-{0}
 
 *Singularity point: 0*
 
-*Left limit:* -1.9844053609144039e-5 == Right limit:* -1.9844053609144039e-5
+*Left limit:* -1.9844053609144039e-5 == *Right limit:* -1.9844053609144039e-5
 
 *Has piecewise: * False
 
 ![point](diagrams/u/shannon_wang_puglisi_weber_bers_2004_model_updated/eq5-sing1.png)
-
 ## Equation 6:
 ```
 ICaL__i_CaL_Ca_jct = 4.0 * (-ICaL__gamma_Cao * model_parameters__Cao + Ca_buffer__Ca_jct * ICaL__gamma_Cai * exp(2.0 * cell__V * model_parameters__F / (model_parameters__R * model_parameters__T))) * ICaL__Fx_ICaL_jct * ICaL__PCa * ICaL__temp * ICaL_fCa_gate__fCa_jct / (-1.0 + exp(2.0 * cell__V * model_parameters__F / (model_parameters__R * model_parameters__T)))
@@ -2472,22 +2535,21 @@ ICaL__i_CaL_Ca_jct = 4.0 * (-ICaL__gamma_Cao * model_parameters__Cao + Ca_buffer
 ```
 ICaL__i_CaL_Ca_jct = 2.157860280473536e-5 * (-0.61380000000000001 + 5.9349397044773433e-5 * exp(0.074870384603595908 * cell__V)) * cell__V / (-1.0 + exp(0.074870384603595908 * cell__V))
 ```
+### Singulariy points detected:
+{0}
 *U*
 `0.074870384603595908 * cell__V`
 
 *V for 1e-07 range* 
 `-1.3356415961992688e-6 - 1.3356415961992688e-6`
-### Singulariy points detected:
-{0}
 
 *Singularity point: 0*
 
-*Left limit:* -0.00017688790827775397 == Right limit:* -0.00017688790827775397
+*Left limit:* -0.00017688790827775397 == *Right limit:* -0.00017688790827775397
 
 *Has piecewise: * False
 
 ![point](diagrams/u/shannon_wang_puglisi_weber_bers_2004_model_updated/eq6-sing1.png)
-
 ## Equation 7:
 ```
 ICaL__i_CaL_K = (ICaL__Fx_ICaL_SL * ICaL_fCa_gate__fCa_SL + ICaL__Fx_ICaL_jct * ICaL_fCa_gate__fCa_jct) * (-ICaL__gamma_Ko * model_parameters__Ko + ICaL__gamma_Ki * model_parameters__Ki * exp(cell__V * model_parameters__F / (model_parameters__R * model_parameters__T))) * ICaL__PK * ICaL__temp / (-1.0 + exp(cell__V * model_parameters__F / (model_parameters__R * model_parameters__T)))
@@ -2498,7 +2560,6 @@ ICaL__i_CaL_K = 2.9999114077112956e-9 * (-4.0500000000000007 + 101.25 * exp(0.03
 ```
 ### Singulariy points detected:
 {0}
-
 ## Equation 8:
 ```
 ICaL__i_CaL_Na_SL = (-ICaL__gamma_Nao * model_parameters__Nao + ICaL__gamma_Nai * Na_buffer__Na_SL * exp(cell__V * model_parameters__F / (model_parameters__R * model_parameters__T))) * ICaL__Fx_ICaL_SL * ICaL__PNa * ICaL__temp * ICaL_fCa_gate__fCa_SL / (-1.0 + exp(cell__V * model_parameters__F / (model_parameters__R * model_parameters__T)))
@@ -2509,7 +2570,6 @@ ICaL__i_CaL_Na_SL = 1.6810336506631961e-11 * (-105.0 + 6.6537144904403025 * exp(
 ```
 ### Singulariy points detected:
 {0}
-
 ## Equation 9:
 ```
 ICaL__i_CaL_Na_jct = (-ICaL__gamma_Nao * model_parameters__Nao + ICaL__gamma_Nai * Na_buffer__Na_jct * exp(cell__V * model_parameters__F / (model_parameters__R * model_parameters__T))) * ICaL__Fx_ICaL_jct * ICaL__PNa * ICaL__temp * ICaL_fCa_gate__fCa_jct / (-1.0 + exp(cell__V * model_parameters__F / (model_parameters__R * model_parameters__T)))
@@ -2520,7 +2580,6 @@ ICaL__i_CaL_Na_jct = 1.4985140836621777e-10 * (-105.0 + 6.6527387631683705 * exp
 ```
 ### Singulariy points detected:
 {0}
-
 # Model: stewart_zhang_model_2008
 ## Equation 1:
 ```
@@ -2530,22 +2589,21 @@ L_type_Ca_current__i_CaL = 4.0 * pow(membrane__F, 2) * (-15.0 + membrane__V) * (
 ```
 L_type_Ca_current__i_CaL = 0.00016303166834423906 * (-2.0 + 3.6337194739638214e-5 * exp(0.074867781645490947 * membrane__V)) * (-15.0 + membrane__V) / (-1.0 + 0.32529698149690262 * exp(0.074867781645490947 * membrane__V))
 ```
+### Singulariy points detected:
+{15.000000000000000}
 *U*
 `-1.1230167246823641 + 0.074867781645490947 * membrane__V`
 
 *V for 1e-07 range* 
 `14.999998664311967 - 15.000001335688033`
-### Singulariy points detected:
-{15.000000000000000}
 
 *Singularity point: 15.000000000000000*
 
-*Left limit:* -0.0043549457206071075 == Right limit:* -0.0043549457206071075
+*Left limit:* -0.0043549457206071075 == *Right limit:* -0.0043549457206071075
 
 *Has piecewise: * False
 
 ![point](diagrams/u/stewart_zhang_model_2008/eq1-sing1.png)
-
 # Model: tentusscher_model_2004_endo
 ## Equation 1:
 ```
@@ -2557,7 +2615,6 @@ L_type_Ca_current__i_CaL = 0
 ```
 ### Singulariy points detected:
 {0}
-
 # Model: tentusscher_model_2004_epi
 ## Equation 1:
 ```
@@ -2567,22 +2624,21 @@ L_type_Ca_current__i_CaL = 4.0 * pow(membrane__F, 2) * (-0.34100000000000003 * c
 ```
 L_type_Ca_current__i_CaL = 4.9724340271963296e-5 * (-0.68200000000000005 + 6.6200990301269099e-5 * exp(0.074867781645490947 * membrane__V)) * membrane__V / (-1.0 + exp(0.074867781645490947 * membrane__V))
 ```
+### Singulariy points detected:
+{0}
 *U*
 `0.074867781645490947 * membrane__V`
 
 *V for 1e-07 range* 
 `-1.3356880329847825e-6 - 1.3356880329847825e-6`
-### Singulariy points detected:
-{0}
 
 *Singularity point: 0*
 
-*Left limit:* -0.00045291455843413660 == Right limit:* -0.00045291455843413660
+*Left limit:* -0.00045291455843413660 == *Right limit:* -0.00045291455843413660
 
 *Has piecewise: * False
 
 ![point](diagrams/u/tentusscher_model_2004_epi/eq1-sing1.png)
-
 # Model: tentusscher_panfilov_2006_epi
 ## Equation 1:
 ```
@@ -2592,22 +2648,21 @@ L_type_Ca_current__i_CaL = 4.0 * pow(membrane__F, 2) * (-15.0 + membrane__V) * (
 ```
 L_type_Ca_current__i_CaL = 1.485367413663972e-5 * (-2.0 + 2.9276728334721234e-5 * exp(0.074867781645490947 * membrane__V)) * (-15.0 + membrane__V) / (-1.0 + 0.32529698149690262 * exp(0.074867781645490947 * membrane__V))
 ```
+### Singulariy points detected:
+{15.000000000000000}
 *U*
 `-1.1230167246823641 + 0.074867781645490947 * membrane__V`
 
 *V for 1e-07 range* 
 `14.999998664311967 - 15.000001335688033`
-### Singulariy points detected:
-{15.000000000000000}
 
 *Singularity point: 15.000000000000000*
 
-*Left limit:* -0.00039677963991599373 == Right limit:* -0.00039677963991599373
+*Left limit:* -0.00039677963991599373 == *Right limit:* -0.00039677963991599373
 
 *Has piecewise: * False
 
 ![point](diagrams/u/tentusscher_panfilov_2006_epi/eq1-sing1.png)
-
 # Model: viswanathan_model_1999_epi
 ## Equation 1:
 ```
@@ -2617,22 +2672,21 @@ L_type_Ca_channel__I_CaCa = 4.0 * pow(membrane__F, 2) * (-L_type_Ca_channel__gam
 ```
 L_type_Ca_channel__I_CaCa = 7.8019226357407252 * (-0.61380000000000001 + 0.00035237000000000002 * exp(0.074871767015605231 * membrane__V)) * membrane__V / (-1.0 + exp(0.074871767015605231 * membrane__V))
 ```
+### Singulariy points detected:
+{0}
 *U*
 `0.074871767015605231 * membrane__V`
 
 *V for 1e-07 range* 
 `-1.3356169352749131e-6 - 1.3356169352749131e-6`
-### Singulariy points detected:
-{0}
 
 *Singularity point: 0*
 
-*Left limit:* -63.923574146994007 == Right limit:* -63.923574146994007
+*Left limit:* -63.923574146994007 == *Right limit:* -63.923574146994007
 
 *Has piecewise: * False
 
 ![point](diagrams/u/viswanathan_model_1999_epi/eq1-sing1.png)
-
 ## Equation 2:
 ```
 L_type_Ca_channel__I_CaK = pow(membrane__F, 2) * (-L_type_Ca_channel__gamma_Ko * ionic_concentrations__Ko + L_type_Ca_channel__gamma_Ki * ionic_concentrations__Ki * exp(membrane__F * membrane__V / (membrane__R * membrane__T))) * L_type_Ca_channel__P_K * membrane__V / ((-1.0 + exp(membrane__F * membrane__V / (membrane__R * membrane__T))) * membrane__R * membrane__T)
@@ -2643,7 +2697,6 @@ L_type_Ca_channel__I_CaK = 0.00069711623550831479 * (-3.375 + 103.2183 * exp(0.0
 ```
 ### Singulariy points detected:
 {0}
-
 ## Equation 3:
 ```
 L_type_Ca_channel__I_CaNa = pow(membrane__F, 2) * (-L_type_Ca_channel__gamma_Nao * ionic_concentrations__Nao + L_type_Ca_channel__gamma_Nai * ionic_concentrations__Nai * exp(membrane__F * membrane__V / (membrane__R * membrane__T))) * L_type_Ca_channel__P_Na * membrane__V / ((-1.0 + exp(membrane__F * membrane__V / (membrane__R * membrane__T))) * membrane__R * membrane__T)
@@ -2654,7 +2707,6 @@ L_type_Ca_channel__I_CaNa = 0.0024381008236689767 * (-99.0 + 11.756126774999998 
 ```
 ### Singulariy points detected:
 {0}
-
 ## Equation 4:
 ```
 non_specific_calcium_activated_current__I_ns_K = pow(membrane__F, 2) * (-L_type_Ca_channel__gamma_Ko * ionic_concentrations__Ko + L_type_Ca_channel__gamma_Ki * ionic_concentrations__Ki * exp(membrane__F * membrane__V / (membrane__R * membrane__T))) * membrane__V * non_specific_calcium_activated_current__P_ns_Ca / ((-1.0 + exp(membrane__F * membrane__V / (membrane__R * membrane__T))) * membrane__R * membrane__T)
@@ -2665,7 +2717,6 @@ non_specific_calcium_activated_current__I_ns_K = 0
 ```
 ### Singulariy points detected:
 {0}
-
 ## Equation 5:
 ```
 non_specific_calcium_activated_current__I_ns_Na = pow(membrane__F, 2) * (-L_type_Ca_channel__gamma_Nao * ionic_concentrations__Nao + L_type_Ca_channel__gamma_Nai * ionic_concentrations__Nai * exp(membrane__F * membrane__V / (membrane__R * membrane__T))) * membrane__V * non_specific_calcium_activated_current__P_ns_Ca / ((-1.0 + exp(membrane__F * membrane__V / (membrane__R * membrane__T))) * membrane__R * membrane__T)
@@ -2676,7 +2727,6 @@ non_specific_calcium_activated_current__I_ns_Na = 0
 ```
 ### Singulariy points detected:
 {0}
-
 ## Equation 6:
 ```
 rapid_delayed_rectifier_potassium_current_xr_gate__tau_xr = 0.001 / (0.00060999999999999997 * (38.899999999999999 + membrane__V) / (-1.0 + 281.60348502322194 * exp(0.14499999999999999 * membrane__V)) + 0.0013799999999999999 * (14.199999999999999 + membrane__V) / (1.0 - 0.17436578041087322 * exp(-0.123 * membrane__V)))
@@ -2687,7 +2737,9 @@ rapid_delayed_rectifier_potassium_current_xr_gate__tau_xr = 0.001 / (0.000609999
 ```
 ### Singulariy points detected:
 {-14.199999999999999, -38.899999999999999}
-
+####Failed!
+<class 'sympy.core.mul.Mul'>
+0.001/(0.00060999999999999997*(_membrane$V + 38.899999999999999)/(281.60348502322194*exp(0.14499999999999999*_membrane$V) - 1.0) + 0.0013799999999999999*(_membrane$V + 14.199999999999999)/(1.0 - 0.17436578041087323*exp(-0.123*_membrane$V)))
 ## Equation 7:
 ```
 slow_delayed_rectifier_potassium_current_xs1_gate__tau_xs1 = 0.001 / (0.00013100000000000001 * (30.0 + membrane__V) / (-1.0 + 7.8538197044216602 * exp(0.068699999999999997 * membrane__V)) + 7.1899999999999999e-5 * (30.0 + membrane__V) / (1.0 - 0.011795938519751569 * exp(-0.14799999999999999 * membrane__V)))
@@ -2698,7 +2750,6 @@ slow_delayed_rectifier_potassium_current_xs1_gate__tau_xs1 = 0.001 / (0.00013100
 ```
 ### Singulariy points detected:
 {-30.000000000000000}
-
 ## Equation 8:
 ```
 slow_delayed_rectifier_potassium_current_xs2_gate__tau_xs2 = 0.0040000000000000001 / (0.00013100000000000001 * (30.0 + membrane__V) / (-1.0 + 7.8538197044216602 * exp(0.068699999999999997 * membrane__V)) + 7.1899999999999999e-5 * (30.0 + membrane__V) / (1.0 - 0.011795938519751569 * exp(-0.14799999999999999 * membrane__V)))
@@ -2709,7 +2760,6 @@ slow_delayed_rectifier_potassium_current_xs2_gate__tau_xs2 = 0.00400000000000000
 ```
 ### Singulariy points detected:
 {-30.000000000000000}
-
 # Model: winslow_model_1999
 ## Equation 1:
 ```
@@ -2721,7 +2771,9 @@ slow_activating_delayed_rectifiyer_K_current_X_ks_gate__tau_X_ks = 0.001 / (0.00
 ```
 ### Singulariy points detected:
 {10.000000000000000, 10.000000000000000}
-
+####Failed!
+<class 'sympy.core.mul.Mul'>
+0.001/(0.00013100000000000001*(_membrane$V - 10.0)/(0.50308305662435066*exp(0.068699999999999997*_membrane$V) - 1.0) + 7.1899999999999999e-5*(_membrane$V - 10.0)/(1.0 - 4.3929456809187564*exp(-0.14799999999999999*_membrane$V)))
 ## Equation 2:
 ```
 L_type_Ca_current__i_Ca_max = 4000.0 * pow(membrane__F, 2) * (0.001 * exp(2.0 * membrane__F * membrane__V / (membrane__R * membrane__T)) - 0.34100000000000003 * standard_ionic_concentrations__Cao) * L_type_Ca_current__P_Ca * membrane__V / ((-1.0 + exp(2.0 * membrane__F * membrane__V / (membrane__R * membrane__T))) * membrane__R * membrane__T)
@@ -2730,22 +2782,21 @@ L_type_Ca_current__i_Ca_max = 4000.0 * pow(membrane__F, 2) * (0.001 * exp(2.0 * 
 ```
 L_type_Ca_current__i_Ca_max = 4.5147771746328917 * (-0.68200000000000005 + 0.001 * exp(0.074867781645490947 * membrane__V)) * membrane__V / (-1.0 + exp(0.074867781645490947 * membrane__V))
 ```
+### Singulariy points detected:
+{0}
 *U*
 `0.074867781645490947 * membrane__V`
 
 *V for 1e-07 range* 
 `-1.3356880329847825e-6 - 1.3356880329847825e-6`
-### Singulariy points detected:
-{0}
 
 *Singularity point: 0*
 
-*Left limit:* -41.066573475937506 == Right limit:* -41.066573475937506
+*Left limit:* -41.066573475937506 == *Right limit:* -41.066573475937506
 
 *Has piecewise: * False
 
 ![point](diagrams/u/winslow_model_1999/eq2-sing1.png)
-
 ## Equation 3:
 ```
 L_type_Ca_current__i_Ca_K = pow(membrane__F, 2) * (-standard_ionic_concentrations__Ko + intracellular_ion_concentrations__Ki * exp(membrane__F * membrane__V / (membrane__R * membrane__T))) * (L_type_Ca_current__O + L_type_Ca_current__O_Ca) * L_type_Ca_current__p_prime_k * L_type_Ca_current_y_gate__y * membrane__V / ((-1.0 + exp(membrane__F * membrane__V / (membrane__R * membrane__T))) * membrane__R * membrane__T)
@@ -2756,7 +2807,6 @@ L_type_Ca_current__i_Ca_K = 1.6430234988970467e-26 * (-4.0 + 157.80000000000001 
 ```
 ### Singulariy points detected:
 {0}
-
 # Model: zhang_SAN_model_2000_0D_capable
 ## Equation 1:
 ```
@@ -2768,7 +2818,36 @@ L_type_Ca_channel_d_gate__alpha_d_L = -28.390000000000001 * (35.0 + membrane__V)
 ```
 ### Singulariy points detected:
 {0, -35.000000000000000}
+####A + B:
+`84.900000000000006 * membrane__V / (1.0 - exp(-0.20799999999999999 * membrane__V))`
+`-28.390000000000001 * (35.0 + membrane__V) / (-1.0 + 8.3152871910356788e-7 * exp(-0.40000000000000002 * membrane__V))`
 
+*U*
+`-0.20799999999999999 * membrane__V`
+
+*V for 1e-07 range* 
+`4.8076923076923074e-7 - -4.8076923076923074e-7`
+
+*Singularity point: 0*
+
+*Left limit:* 1401.8239031722758 == *Right limit:* 1401.8239031722758
+
+*Has piecewise: * False
+
+![point](diagrams/u/zhang_SAN_model_2000_0D_capable/eq1-sing1.png)
+*U*
+`-14.0 - 0.40000000000000002 * membrane__V`
+
+*V for 1e-07 range* 
+`-34.999999750000001 - -35.000000249999999`
+
+*Singularity point: -35.000000000000000*
+
+*Left limit:* 73.024327269282409 == *Right limit:* 73.024327269282409
+
+*Has piecewise: * False
+
+![point](diagrams/u/zhang_SAN_model_2000_0D_capable/eq1-sing2.png)
 ## Equation 2:
 ```
 L_type_Ca_channel_d_gate__beta_d_L = 11.43 * (-5.0 + membrane__V) / (-1.0 + 0.13533528323661267 * exp(0.40000000000000002 * membrane__V))
@@ -2777,22 +2856,21 @@ L_type_Ca_channel_d_gate__beta_d_L = 11.43 * (-5.0 + membrane__V) / (-1.0 + 0.13
 ```
 L_type_Ca_channel_d_gate__beta_d_L = 11.43 * (-5.0 + membrane__V) / (-1.0 + 0.13533528323661267 * exp(0.40000000000000002 * membrane__V))
 ```
+### Singulariy points detected:
+{5.0000000000000000}
 *U*
 `-2.0 + 0.40000000000000002 * membrane__V`
 
 *V for 1e-07 range* 
 `4.9999997499999997 - 5.0000002500000003`
-### Singulariy points detected:
-{5.0000000000000000}
 
 *Singularity point: 5.0000000000000000*
 
-*Left limit:* 28.574999999999998 == Right limit:* 28.574999999999998
+*Left limit:* 28.574999999999998 == *Right limit:* 28.574999999999998
 
 *Has piecewise: * False
 
 ![point](diagrams/u/zhang_SAN_model_2000_0D_capable/eq2-sing1.png)
-
 ## Equation 3:
 ```
 L_type_Ca_channel_f_gate__alpha_f_L = 3.75 * (28.0 + membrane__V) / (-1.0 + 1096.6331584284585 * exp(0.25 * membrane__V))
@@ -2801,22 +2879,21 @@ L_type_Ca_channel_f_gate__alpha_f_L = 3.75 * (28.0 + membrane__V) / (-1.0 + 1096
 ```
 L_type_Ca_channel_f_gate__alpha_f_L = 3.75 * (28.0 + membrane__V) / (-1.0 + 1096.6331584284585 * exp(0.25 * membrane__V))
 ```
+### Singulariy points detected:
+{-28.000000000000000}
 *U*
 `7.0 + 0.25 * membrane__V`
 
 *V for 1e-07 range* 
 `-28.000000400000001 - -27.999999599999999`
-### Singulariy points detected:
-{-28.000000000000000}
 
 *Singularity point: -28.000000000000000*
 
-*Left limit:* 0 == Right limit:* 0
+*Left limit:* 0 == *Right limit:* 0
 
 *Has piecewise: * False
 
 ![point](diagrams/u/zhang_SAN_model_2000_0D_capable/eq3-sing1.png)
-
 ## Equation 4:
 ```
 sodium_current__i_Na = pow(membrane__F, 2) * pow(sodium_current_m_gate__m, 3) * (-1.0 + exp((-reversal_and_equilibrium_potentials__E_Na + membrane__V) * membrane__F / (membrane__R * membrane__T))) * ionic_concentrations__Na_o * membrane__V * sodium_current__g_Na * sodium_current_h_gate__h / ((-1.0 + exp(membrane__F * membrane__V / (membrane__R * membrane__T))) * membrane__R * membrane__T)
@@ -2827,7 +2904,6 @@ sodium_current__i_Na = 0
 ```
 ### Singulariy points detected:
 {0}
-
 # Model: zhang_SAN_model_2000_all
 ## Equation 1:
 ```
@@ -2839,7 +2915,36 @@ L_type_Ca_channel_d_gate__alpha_d_L = -28.390000000000001 * (35.0 + membrane__V)
 ```
 ### Singulariy points detected:
 {0, -35.000000000000000}
+####A + B:
+`84.900000000000006 * membrane__V / (1.0 - exp(-0.20799999999999999 * membrane__V))`
+`-28.390000000000001 * (35.0 + membrane__V) / (-1.0 + 8.3152871910356788e-7 * exp(-0.40000000000000002 * membrane__V))`
 
+*U*
+`-0.20799999999999999 * membrane__V`
+
+*V for 1e-07 range* 
+`4.8076923076923074e-7 - -4.8076923076923074e-7`
+
+*Singularity point: 0*
+
+*Left limit:* 1401.8239031722758 == *Right limit:* 1401.8239031722758
+
+*Has piecewise: * False
+
+![point](diagrams/u/zhang_SAN_model_2000_all/eq1-sing1.png)
+*U*
+`-14.0 - 0.40000000000000002 * membrane__V`
+
+*V for 1e-07 range* 
+`-34.999999750000001 - -35.000000249999999`
+
+*Singularity point: -35.000000000000000*
+
+*Left limit:* 73.024327269282409 == *Right limit:* 73.024327269282409
+
+*Has piecewise: * False
+
+![point](diagrams/u/zhang_SAN_model_2000_all/eq1-sing2.png)
 ## Equation 2:
 ```
 L_type_Ca_channel_d_gate__beta_d_L = ((membrane__Version == 1.0) ? (11.43 * (-5.0 + membrane__V) / (-1.0 + 0.13533528323661267 * exp(0.40000000000000002 * membrane__V))) : (11.42 * (-5.0 + membrane__V) / (-1.0 + 0.13533528323661267 * exp(0.40000000000000002 * membrane__V))))
@@ -2848,22 +2953,21 @@ L_type_Ca_channel_d_gate__beta_d_L = ((membrane__Version == 1.0) ? (11.43 * (-5.
 ```
 L_type_Ca_channel_d_gate__beta_d_L = 11.43 * (-5.0 + membrane__V) / (-1.0 + 0.13533528323661267 * exp(0.40000000000000002 * membrane__V))
 ```
+### Singulariy points detected:
+{5.0000000000000000}
 *U*
 `-2.0 + 0.40000000000000002 * membrane__V`
 
 *V for 1e-07 range* 
 `4.9999997499999997 - 5.0000002500000003`
-### Singulariy points detected:
-{5.0000000000000000}
 
 *Singularity point: 5.0000000000000000*
 
-*Left limit:* 28.574999999999998 == Right limit:* 28.574999999999998
+*Left limit:* 28.574999999999998 == *Right limit:* 28.574999999999998
 
 *Has piecewise: * False
 
 ![point](diagrams/u/zhang_SAN_model_2000_all/eq2-sing1.png)
-
 ## Equation 3:
 ```
 L_type_Ca_channel_f_gate__alpha_f_L = ((membrane__Version == 1.0) ? (3.75 * (28.0 + membrane__V) / (-1.0 + 1096.6331584284585 * exp(0.25 * membrane__V))) : (3.1200000000000001 * (28.0 + membrane__V) / (-1.0 + 1096.6331584284585 * exp(0.25 * membrane__V))))
@@ -2872,22 +2976,21 @@ L_type_Ca_channel_f_gate__alpha_f_L = ((membrane__Version == 1.0) ? (3.75 * (28.
 ```
 L_type_Ca_channel_f_gate__alpha_f_L = 3.75 * (28.0 + membrane__V) / (-1.0 + 1096.6331584284585 * exp(0.25 * membrane__V))
 ```
+### Singulariy points detected:
+{-28.000000000000000}
 *U*
 `7.0 + 0.25 * membrane__V`
 
 *V for 1e-07 range* 
 `-28.000000400000001 - -27.999999599999999`
-### Singulariy points detected:
-{-28.000000000000000}
 
 *Singularity point: -28.000000000000000*
 
-*Left limit:* 0 == Right limit:* 0
+*Left limit:* 0 == *Right limit:* 0
 
 *Has piecewise: * False
 
 ![point](diagrams/u/zhang_SAN_model_2000_all/eq3-sing1.png)
-
 ## Equation 4:
 ```
 sodium_current__i_Na = pow(membrane__F, 2) * pow(sodium_current_m_gate__m, 3) * (-1.0 + exp((-reversal_and_equilibrium_potentials__E_Na + membrane__V) * membrane__F / (membrane__R * membrane__T))) * ionic_concentrations__Na_o * membrane__V * sodium_current__g_Na * sodium_current_h_gate__h / ((-1.0 + exp(membrane__F * membrane__V / (membrane__R * membrane__T))) * membrane__R * membrane__T)
@@ -2898,4 +3001,3 @@ sodium_current__i_Na = 0
 ```
 ### Singulariy points detected:
 {0}
-
