@@ -20,5 +20,3 @@ sodium_potassium_pump__i_NaK = 24.281503485861936 * (150.0 + membrane__V) / (200
 #### float * A
 
 ####1 / A
-
-# Model: paci_hyttinen_aaltosetala_severi_ventricularVersion
