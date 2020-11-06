@@ -1,5 +1,10 @@
 ## script to generate singularities images. requires chaste_codegen, it's cellml files, matplotlib and numpy
 
+# todo:
+# We probably want to limit the search to -150 to +100mV ish
+# support for extended trig functions
+# add 1E-15 if eq=0
+
 import os
 from sympy import *
 from sympy.codegen.rewriting import ReplaceOptim, expm1_opt, optimize
@@ -10,33 +15,28 @@ from chaste_codegen._math_functions import MATH_FUNC_SYMPY_MAPPING
 from chaste_codegen._partial_eval import partial_eval
 from chaste_codegen.model_with_conversions import (get_equations_for, _get_modifiable_parameters)
 
-offset = 1e-7
+U_offset = 1e-7
 
 printer = ChastePrinter(lambda var: str(var).lstrip('_').replace('$', '__'),
                         lambda deriv: str(deriv).lstrip('_').replace('$', '__'))
 
 
-def match_pattern(eq, patterns):
-    for pattern in patterns:
-        match = eq.match(pattern)
-        if match is None:
-            match = eq.expand().match(pattern)
-        if match is not None:
-            return match
-    return None
-
-def match_pattern2(eq, patterns, conditions):
+def match_pattern(eq, patterns, conditions):
+    check_match = None
     for pattern, condition in zip(patterns, conditions):
         match = eq.match(pattern)
-        if not condition(match):
+        check_match = condition(match)
+        if not check_match:
             match = eq.factor().match(pattern)
-        if not condition(match):
+            check_match = condition(match)
+        if not check_match:
             match = eq.expand().match(pattern)
-        if condition(match):
-            return match
-    return None
+            check_match = condition(match)
+        if check_match:
+            return match, check_match
+    return None, None
 
-def _process_singularities(model):   
+def _process_singularities(model):
     def _get_initial_value(var):
         """Returns the initial value of a variable if it has one, 0 otherwise"""
         # state vars have an initial value parameter defined
@@ -61,9 +61,8 @@ def _process_singularities(model):
         # Pick out just the real answers
         return set(filter(lambda s: s.is_real, singularity_points))
 
-    def process_singularities_eq(expr, expr_part, singularity_points, sing_no=0):
-        if singularity_points:
-            print(expr_part)
+    def process_singularities_eq(expr, expr_part, singularity_points, sing_no=0, singularity_points_processed=set()):
+        if singularity_points and singularity_points != singularity_points_processed:
             if expr_part == 0.0:
                 print('#### Eq == 0!')
             elif isinstance(expr_part, Piecewise):
@@ -71,35 +70,37 @@ def _process_singularities(model):
             else:
                 (vs,ve, U) = get_U(expr_part, model.membrane_voltage_var)
                 if vs is not None and ve is not None:
-                    for sp in singularity_points:
+                    for sp in singularity_points - singularity_points_processed:
                         sing_no += 1
+                        singularity_points_processed.add(sp)
                         draw_graph(expr, sp, model, eq_no, sing_no, vs, ve, U)
                 else:
                     A=Wild('A', real=True)
                     B=Wild('B', real=True)
-                    match = match_pattern2(expr_part, [A + B], [lambda m: m is not None and A in m and B in m and m[A] != 0.0 and m[B] != 0.0])  # Eq is A + B: handle and and B analysis seperately
+                    match, _ = match_pattern(expr_part, [A + B], [lambda m: m is not None and A in m and B in m and m[A] != 0.0 and m[B] != 0.0])  # Eq is A + B: handle and and B analysis seperately
                     if match: # Eq is A + B: handle and and B analysis seperately
-                        print('####A + B:')
+                        print('####A + B:\n')
                         print('`'+printer.doprint(match[A])+'`')
                         print('`'+printer.doprint(match[B])+'`')
                         print()
-                        sing_no = process_singularities_eq(expr, match[A], get_singularity_points(match[A], model.membrane_voltage_var), sing_no)
-                        sing_no = process_singularities_eq(expr, match[B], get_singularity_points(match[B], model.membrane_voltage_var), sing_no)
+                        (sing_no, singularity_points_processed) = process_singularities_eq(expr, match[A], get_singularity_points(match[A], model.membrane_voltage_var), sing_no, singularity_points_processed)
+                        (sing_no, singularity_points_processed) = process_singularities_eq(expr, match[B], get_singularity_points(match[B], model.membrane_voltage_var), sing_no, singularity_points_processed)
                     elif isinstance(expr_part, Mul) and (isinstance(expr_part.args[0], Float) or isinstance(expr_part.args[0], float)):  # Eq is number * expr: handle expr seperately
-                        print('#### float * A')
-                        print()
-                        sing_no = process_singularities_eq(expr, expr_part.args[1], singularity_points, sing_no)  # Eq is 1 / expr: handle expr seperately
+                        print('#### float * A\n')
+                        (sing_no, singularity_points_processed) = process_singularities_eq(expr, expr_part.args[1], singularity_points, sing_no, singularity_points_processed)  # Eq is 1 / expr: handle expr seperately
                     elif isinstance(expr_part, Pow) and expr_part.args[1] == -1:  # 1/A
-                        print('####1 / A')
+                        print('####1 / A\n')
                         print()
-                        sing_no = process_singularities_eq(expr, expr_part.args[0], get_singularity_points(expr_part.args[0], model.membrane_voltage_var), sing_no)
+                        (sing_no, singularity_points_processed) = process_singularities_eq(expr, expr_part.args[0], get_singularity_points(expr_part.args[0], model.membrane_voltage_var), sing_no, singularity_points_processed)
                     else:
                         print('####Failed!')
                         print(type(expr_part))
                         print(expr_part)
-        return sing_no
+        return (sing_no, singularity_points_processed)
 
     vardefs = [Eq(e, _get_initial_value(e)) for e in ((_get_modifiable_parameters(model) | model.state_vars ) - set([model.membrane_voltage_var]))]
+    #add small number
+    vardefs_offset = [Eq(e, _get_initial_value(e) + 1e-7) for e in ((_get_modifiable_parameters(model) | model.state_vars ) - set([model.membrane_voltage_var]))]
     eq_no = 0
     for eq in model.derivative_equations:
         rhs = eq.rhs.subs(MATH_FUNC_SYMPY_MAPPING)
@@ -113,17 +114,23 @@ def _process_singularities(model):
             print("```")
             print("### Partially evaluated to: ")
             partial_eval_eq = partial_eval(vardefs + model.derivative_equations + [eq], list(model.y_derivatives) + [eq.lhs], keep_multiple_usages=False)[-1]
+            if partial_eval_eq.rhs == 0:  #add small number
+                partial_eval_eq = partial_eval(vardefs_offset + model.derivative_equations + [eq], list(model.y_derivatives) + [eq.lhs], keep_multiple_usages=False)[-1]
             partial_eval_rhs = partial_eval_eq.rhs.subs(MATH_FUNC_SYMPY_MAPPING)
             print("```")
             print(printer.doprint(partial_eval_eq.lhs) + " = " + printer.doprint(partial_eval_rhs))
             print("```")
-            print("### Singulariy points detected:")
+            print("### Singulariy points detected:\n")
             print(singularity_points)
-            #if eq_no == 2:
-            process_singularities_eq(partial_eval_rhs, partial_eval_rhs, singularity_points)
-                #assert False
+            process_singularities_eq(partial_eval_rhs, partial_eval_rhs, singularity_points, sing_no=0, singularity_points_processed=set() )
 
 def get_U(rhs, V):
+    def match_U(match):
+        def check_match(m):
+            return m is not None and P in m and Q in m
+        return match_pattern(match[U], [P * exp(Q) - 1.0, -P * exp(Q) + 1.0], [check_match, check_match])[0]
+    
+    (vs,ve, U) = (None, None, None)
     A=Wild('A', real=True)
     U=Wild('U', real=True)
     P=Wild('P', real=True)
@@ -131,28 +138,31 @@ def get_U(rhs, V):
     R=Wild('R', real=True)
     S=Wild('S', real=True)
 
-    # match = match_pattern(rhs, [A / U])
-    match = match_pattern2(rhs, [A / U], [lambda m: True and U in m and A in m and match_pattern(m[U], [P * exp(Q) - 1.0, -P * exp(Q) + 1.0])  ])
-    if match and U in match and A in match:
-        find_U = match_pattern(match[U], [P * exp(Q) - 1.0, -P * exp(Q) + 1.0])
-        if find_U and P in find_U and Q in find_U:
-            u = find_U[Q] + log(find_U[P])
-            print("*U*")
-            print("`" +printer.doprint(u)+"`")
-            print()
-            find_v_low = solveset(u + offset, V, domain=Reals)
-            find_v_up = solveset(u - offset, V, domain=Reals)
-            assert len(find_v_low) < 2
-            assert len(find_v_up) < 2
-            find_v_low = list(find_v_low)
-            find_v_up = list(find_v_up)
-            if find_v_low and find_v_up:
-                top_match = match_pattern(match[A], [R * u + S])
-                if top_match:
-                    print("*V for " + str(offset) + " range* ")
-                    print("`" +printer.doprint(find_v_low[-1]) + " - "+ printer.doprint(find_v_up[-1]) +"`")
-                    return (find_v_low[-1], find_v_up[-1], u)
-    return (None, None, None)
+    match, find_U = match_pattern(rhs, [A / U], [lambda m: True and U in m and A in m and match_U(m) ])
+    if match and find_U:
+        u = find_U[Q] + log(find_U[P])
+        print("*U*")
+        print("`" +printer.doprint(u)+"`")
+        print()
+        find_v_low = solveset(u + U_offset, V, domain=Reals)
+        find_v_up = solveset(u - U_offset, V, domain=Reals)
+        assert len(find_v_low) < 2
+        assert len(find_v_up) < 2
+        find_v_low = list(find_v_low)
+        find_v_up = list(find_v_up)
+        if find_v_low and find_v_up:
+            top_match, _ = match_pattern(match[A], [R * u + S], [lambda m: m is not None and R in m and R != 0.0])
+            if top_match:
+                print("*V for " + str(U_offset) + " range* ")
+                print("`" +printer.doprint(find_v_low[-1]) + " - "+ printer.doprint(find_v_up[-1]) +"`")
+                (vs, ve, U) = (find_v_low[-1], find_v_up[-1], u)
+            else:
+                print("*Not found on top* ")
+
+    if ve and vs and ve < vs:  # adjust the range from smaller to larger
+        return (ve, vs, U)
+    else:
+        return (vs, ve, U)
 
 
 
