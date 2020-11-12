@@ -7,6 +7,7 @@
 
 import os
 from sympy import *
+import sympy.core.numbers
 from sympy.codegen.rewriting import ReplaceOptim, expm1_opt, optimize
 import matplotlib.pyplot as plt
 import numpy as np
@@ -29,9 +30,6 @@ def match_pattern(eq, patterns, conditions):
         if not check_match:
             match = eq.factor().match(pattern)
             check_match = condition(match)
-#        if not check_match:
-#            match = eq.expand().match(pattern)
-#            check_match = condition(match)
         if check_match:
             return match, check_match
     return None, None
@@ -52,8 +50,6 @@ def _process_singularities(model):
 
     def get_singularity_points(rhs, V):
         def handle_singularity_points(sp):
-#            print('handle_singularity_points')
-#            print(sp)
             if isinstance(sp, FiniteSet):
                 return handle_FinisteSet(sp)
             elif isinstance(sp, Complement):
@@ -64,19 +60,12 @@ def _process_singularities(model):
                 return EmptySet
         
         def handle_FinisteSet(sp):
-#            print('handle_FinisteSet')
-#            print(sp)
-#            print(type(sp))
             return FiniteSet(*filter(lambda s: s.is_real, sp))
 
         def handle_Complement(sp):
-#            print('handle_Complement')
-#            print(sp)
             return handle_FinisteSet(sp.args[1]) if isinstance(sp.args[1], FiniteSet) else EmptySet
 
         def handle_Union(sp):
-#            print('handle_Union')
-#            print(sp)
             singularity_points = EmptySet
             for s in sp.args:
                 singularity_points = singularity_points.union(handle_singularity_points(s))
@@ -84,24 +73,24 @@ def _process_singularities(model):
 
         singularity_points = singularities(rhs, V, domain=Reals)
         return set(handle_singularity_points(singularity_points))
-#        if singularity_points is EmptySet or isinstance(singularity_points, Intersection) or isinstance(singularity_points, ConditionSet) or isinstance(singularity_points, Complement):
-#            return None
-#        if isinstance(singularity_points, Union):
-#            # Pick out all fite sets in the argument as 1 finite set
-#            finite_sets = [c.args[1] for c in singularity_points.args if isinstance(c, Complement) and isinstance(c.args[1], FiniteSet)]
-#            finite_sets += [s for s in singularity_points.args if isinstance(s, FiniteSet)]
-#            singularity_points = Union()
-#            for s in finite_sets:
-#                singularity_points = singularity_points.union(s)
-#        assert isinstance(singularity_points, FiniteSet), "Expecting singularity points to be contained in a  FiniteSet:\n" + str(singularity_points)
-#        # Pick out just the real answers
-#        print(singularity_points)
-#        return set(filter(lambda s: s.is_real, singularity_points))
+
+        # if singularity_points is EmptySet or isinstance(singularity_points, Intersection) or isinstance(singularity_points, ConditionSet) or isinstance(singularity_points, Complement):
+            # return None
+        # if isinstance(singularity_points, Union):
+            # # Pick out all fite sets in the argument as 1 finite set
+            # finite_sets = [c.args[1] for c in singularity_points.args if isinstance(c, Complement) and isinstance(c.args[1], FiniteSet)]
+            # finite_sets += [s for s in singularity_points.args if isinstance(s, FiniteSet)]
+            # singularity_points = Union()
+            # for s in finite_sets:
+                # singularity_points = singularity_points.union(s)
+        # assert isinstance(singularity_points, FiniteSet), "Expecting singularity points to be contained in a  FiniteSet:\n" + str(singularity_points)
+        # # Pick out just the real answers
+        # print(singularity_points)
+        # return set(filter(lambda s: s.is_real, singularity_points))
+
 
     def process_singularities_eq(expr, expr_part, singularity_points, sing_no=0, singularity_points_processed=set()):
         if singularity_points and singularity_points != singularity_points_processed:
-        
-        
             if expr_part == 0.0:
                 print('#### Eq == 0!')
             elif isinstance(expr_part, Piecewise):
@@ -109,6 +98,9 @@ def _process_singularities(model):
             else:
                 (vs,ve, U) = get_U(expr_part, model.membrane_voltage_var)
                 if vs is not None and ve is not None:
+                    print("*V for " + str(U_offset) + " range* ")
+                    print("`" +printer.doprint(vs) + " - "+ printer.doprint(ve) +"`")
+                    print("`" +printer.doprint(ve - vs) +"`")
                     for sp in singularity_points - singularity_points_processed:
                         sing_no += 1
                         singularity_points_processed.add(sp)
@@ -164,13 +156,16 @@ def _process_singularities(model):
             print("```")
             print("### Singulariy points detected:\n")
             print(singularity_points)
-            process_singularities_eq(partial_eval_rhs, partial_eval_rhs, singularity_points, sing_no=0, singularity_points_processed=set() )
+            (sing_no, singularity_points_processed) = process_singularities_eq(partial_eval_rhs, partial_eval_rhs, singularity_points, sing_no=0, singularity_points_processed=set() )
 
 def get_U(rhs, V):
     def match_U(match):
         def check_match(m):
-            return m is not None and P in m and Q in m
-        return match_pattern(match[U], [P * exp(Q) - 1.0, -P * exp(Q) + 1.0, P * exp(Q) + 1.0], [check_match, check_match, check_match])[0]
+            return m is not None and P in m and Q in m and m[P] != 0.0
+        #return match_pattern(match[U], [P * exp(Q) - 1.0, -P * exp(Q) + 1.0, P * exp(Q) + 1.0], [check_match, check_match, check_match])[0]
+        if match is None or U not in match or A not in match:
+            return None
+        return match_pattern(match[U], [P * exp(Q) - 1.0, -P * exp(Q) + 1.0], [check_match, lambda m: check_match(m) ])[0]
     
     (vs,ve, U) = (None, None, None)
     A=Wild('A', real=True)
@@ -180,8 +175,9 @@ def get_U(rhs, V):
     R=Wild('R', real=True)
     S=Wild('S', real=True)
     
-    match, find_U = match_pattern(rhs, [A / U], [lambda m: m is not None and U in m and A in m and match_U(m) ])
+    match, find_U = match_pattern(rhs, [A / U, U / A], [match_U, match_U])
     if match and find_U:
+        print(find_U)
         u = find_U[Q] + log(find_U[P])
         print("*U*")
         print("`" +printer.doprint(u)+"`")
@@ -193,10 +189,9 @@ def get_U(rhs, V):
         find_v_low = list(find_v_low)
         find_v_up = list(find_v_up)
         if find_v_low and find_v_up:
-            top_match, _ = match_pattern(match[A], [R * u + S], [lambda m: m is not None and R in m and R != 0.0])
+            #top_match, _ = match_pattern(match[A], [R * u + S], [lambda m: m is not None and R in m and m[R] != 0.0])
+            top_match, _ = match_pattern(match[A], [R * u + S], [lambda m: m is not None and R in m])
             if top_match:
-                print("*V for " + str(U_offset) + " range* ")
-                print("`" +printer.doprint(find_v_low[-1]) + " - "+ printer.doprint(find_v_up[-1]) +"`")
                 (vs, ve, U) = (find_v_low[-1], find_v_up[-1], u)
             else:
                 print("*Not found on top* ")
@@ -305,12 +300,38 @@ for file_name in ('old_davies_isap_2012.cellml',
     print("# Model: " + model.name)
     _process_singularities(model)
     
-model = load_model_with_conversions(os.path.join(DATA_DIR, 'tests', 'cellml', 'courtemanche_ramirez_nattel_model_1998.cellml'), quiet=True)
-model.derivative_equations = [model.derivative_equations[36]]
-# _process_singularities(model)
-# print(type(model.derivative_equations[-1].rhs))
-# print(1)
+# model = load_model_with_conversions(os.path.join(DATA_DIR, 'tests', 'cellml', 'courtemanche_ramirez_nattel_model_1998.cellml'), quiet=True)
+# model.derivative_equations = [model.derivative_equations[36]]
 
-model.derivative_equations = [Eq(model.derivative_equations[-1].lhs, model.derivative_equations[-1].rhs.args[1].args[0])]
-# print(2)
-_process_singularities(model)
+# model.derivative_equations = [Eq(model.derivative_equations[-1].lhs, model.derivative_equations[-1].rhs.args[1].args[0].subs(MATH_FUNC_SYMPY_MAPPING))]
+# _process_singularities(model)
+
+# A=Wild('A', real=True)
+# U=Wild('U', real=True, exclude=[Rational])
+# P=Wild('P', real=True)
+# Q=Wild('Q', real=True)
+# R=Wild('R', real=True)
+# S=Wild('S', real=True)
+
+# print(model.derivative_equations[-1].rhs)
+# m = model.derivative_equations[-1].rhs.match(A/U)
+# print(m)
+# print(m[U].match(P * exp(Q) - 1.0))
+# print(m[U].match(-P * exp(-Q) + 1.0))
+# print( match_pattern(m[U], [P * exp(Q) - 1.0], [lambda m: True]))
+# print( match_pattern(m[U], [-P * exp(Q) + 1.0], [lambda m: True]))
+# print( match_pattern(m[U], [-P * exp(-Q) + 1.0], [lambda m: True]))
+
+
+# print()
+# m = model.derivative_equations[-1].rhs.match(U/A)
+# print(m)
+# print(m[U].match(P * exp(Q) - 1.0))
+# print(m[U].match(P * exp(Q) + 1.0))
+# print(m[U].match(-P * exp(-Q) + 1.0))
+# print( match_pattern(m[U], [P * exp(Q) - 1.0], [lambda m: True]))
+# print( match_pattern(m[U], [-P * exp(Q) + 1.0], [lambda m: True]))
+# print( match_pattern(m[U], [-P * exp(-Q) + 1.0], [lambda m: True]))
+
+# print( match_pattern(m[U], [-P * exp(Q) + 1.0], [lambda m: m is not None and P in m and isinstance(m, Float) and float(m[P]) < 0.0]))
+# print( match_pattern(m[U], [-P * exp(-Q) + 1.0], [lambda m: m is not None and P in m and isinstance(m, Float) and  float(m[P]) < 0.0]))
