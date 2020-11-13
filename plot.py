@@ -2,8 +2,7 @@
 
 # todo:
 # We probably want to limit the search to -150 to +100mV ish
-# try finding without vardefs
-# 1/x warning
+# try finding without vardefs --> works fine but can't draw diagram
 
 import os
 from sympy import *
@@ -74,22 +73,10 @@ def _process_singularities(model):
         singularity_points = singularities(rhs, V, domain=Reals)
         return set(handle_singularity_points(singularity_points))
 
-        # if singularity_points is EmptySet or isinstance(singularity_points, Intersection) or isinstance(singularity_points, ConditionSet) or isinstance(singularity_points, Complement):
-            # return None
-        # if isinstance(singularity_points, Union):
-            # # Pick out all fite sets in the argument as 1 finite set
-            # finite_sets = [c.args[1] for c in singularity_points.args if isinstance(c, Complement) and isinstance(c.args[1], FiniteSet)]
-            # finite_sets += [s for s in singularity_points.args if isinstance(s, FiniteSet)]
-            # singularity_points = Union()
-            # for s in finite_sets:
-                # singularity_points = singularity_points.union(s)
-        # assert isinstance(singularity_points, FiniteSet), "Expecting singularity points to be contained in a  FiniteSet:\n" + str(singularity_points)
-        # # Pick out just the real answers
-        # print(singularity_points)
-        # return set(filter(lambda s: s.is_real, singularity_points))
+    def process_singularities_eq(expr, expr_part, singularity_points, sing_no=0, singularity_points_processed=set(), singularity_piecewise_parts=[]):
+        def f(Vx):
+            return expr.subs({model.membrane_voltage_var:Vx})
 
-
-    def process_singularities_eq(expr, expr_part, singularity_points, sing_no=0, singularity_points_processed=set()):
         if singularity_points and singularity_points != singularity_points_processed:
             if expr_part == 0.0:
                 print('#### Eq == 0!')
@@ -100,11 +87,13 @@ def _process_singularities(model):
                 if vs is not None and ve is not None:
                     print("*V for " + str(U_offset) + " range* ")
                     print("`" +printer.doprint(vs) + " - "+ printer.doprint(ve) +"`")
-                    print("`" +printer.doprint(ve - vs) +"`")
+                    singularities_parts = []
                     for sp in singularity_points - singularity_points_processed:
                         sing_no += 1
                         singularity_points_processed.add(sp)
-                        draw_graph(expr, sp, model, eq_no, sing_no, vs, ve, U)
+                        draw_graph(expr.subs(MATH_FUNC_SYMPY_MAPPING), sp, model, eq_no, sing_no, vs, ve, U)
+
+                        singularity_piecewise_parts.append((f(vs) + ((model.membrane_voltage_var - vs) / (ve - vs)) * (f(ve) - f(vs)), Abs(model.membrane_voltage_var-sp) < ve-sp))
                 else:
                     A=Wild('A', real=True)
                     B=Wild('B', real=True)
@@ -114,23 +103,23 @@ def _process_singularities(model):
                         print('`'+printer.doprint(match[A])+'`')
                         print('`'+printer.doprint(match[B])+'`')
                         print()
-                        (sing_no, singularity_points_processed) = process_singularities_eq(expr, match[A], get_singularity_points(match[A], model.membrane_voltage_var), sing_no, singularity_points_processed)
-                        (sing_no, singularity_points_processed) = process_singularities_eq(expr, match[B], get_singularity_points(match[B], model.membrane_voltage_var), sing_no, singularity_points_processed)
+                        (sing_no, singularity_points_processed, singularity_piecewise_parts) = process_singularities_eq(expr, match[A], get_singularity_points(match[A], model.membrane_voltage_var), sing_no, singularity_points_processed, singularity_piecewise_parts)
+                        (sing_no, singularity_points_processed, singularity_piecewise_parts) = process_singularities_eq(expr, match[B], get_singularity_points(match[B], model.membrane_voltage_var), sing_no, singularity_points_processed, singularity_piecewise_parts)
                     elif isinstance(expr_part, Mul) and (isinstance(expr_part.args[0], Float) or isinstance(expr_part.args[0], float)):  # Eq is number * expr: handle expr seperately
                         print('#### float * A\n')
                         part = Mul(*expr_part.args[1:])
-                        (sing_no, singularity_points_processed) = process_singularities_eq(expr, part, get_singularity_points(part, model.membrane_voltage_var), sing_no, singularity_points_processed)  # Eq is 1 / expr: handle expr seperately
+                        (sing_no, singularity_points_processed, singularity_piecewise_parts) = process_singularities_eq(expr, part, get_singularity_points(part, model.membrane_voltage_var), sing_no, singularity_points_processed, singularity_piecewise_parts)  # Eq is 1 / expr: handle expr seperately
                     elif isinstance(expr_part, Pow) and expr_part.args[1] == -1 and len(expr_part.args) == 2:  # 1/A
                         print('####1 / A\n')
                         print()
-                        (sing_no, singularity_points_processed) = process_singularities_eq(expr, expr_part.args[0], get_singularity_points(expr_part.args[0], model.membrane_voltage_var), sing_no, singularity_points_processed)
+                        (sing_no, singularity_points_processed, singularity_piecewise_parts) = process_singularities_eq(expr, expr_part.args[0], get_singularity_points(expr_part.args[0], model.membrane_voltage_var), sing_no, singularity_points_processed, singularity_piecewise_parts)
                     else:
                         # 1/x warning
                         print('####Failed!')
                         print(type(expr_part))
                         print(expr_part)
                         print(expr_part.args)
-        return (sing_no, singularity_points_processed)
+        return (sing_no, singularity_points_processed, singularity_piecewise_parts)
 
     vardefs = [Eq(e, _get_initial_value(e)) for e in ((_get_modifiable_parameters(model) | model.state_vars ) - set([model.membrane_voltage_var]))]
     #add small number
@@ -148,6 +137,7 @@ def _process_singularities(model):
             print("```")
             print("### Partially evaluated to: ")
             partial_eval_eq = partial_eval(vardefs + model.derivative_equations + [eq], list(model.y_derivatives) + [eq.lhs], keep_multiple_usages=False)[-1]
+            #partial_eval_eq = partial_eval(model.derivative_equations + [eq], list(model.y_derivatives) + [eq.lhs], keep_multiple_usages=False)[-1]
             if partial_eval_eq.rhs == 0:  #add small number
                 partial_eval_eq = partial_eval(vardefs_offset + model.derivative_equations + [eq], list(model.y_derivatives) + [eq.lhs], keep_multiple_usages=False)[-1]
             partial_eval_rhs = partial_eval_eq.rhs.subs(MATH_FUNC_SYMPY_MAPPING)
@@ -156,7 +146,14 @@ def _process_singularities(model):
             print("```")
             print("### Singulariy points detected:\n")
             print(singularity_points)
-            (sing_no, singularity_points_processed) = process_singularities_eq(partial_eval_rhs, partial_eval_rhs, singularity_points, sing_no=0, singularity_points_processed=set() )
+            (sing_no, singularity_points_processed, singularity_piecewise_parts) = process_singularities_eq(partial_eval_eq.rhs, partial_eval_rhs, singularity_points, sing_no=0, singularity_points_processed=set(), singularity_piecewise_parts=[])
+            if len(singularity_piecewise_parts) > 0:
+                print("## New Eq:")
+                singularity_piecewise_parts.append((eq.rhs, True))
+                new_expr = Piecewise(*singularity_piecewise_parts)
+                print(printer.doprint(new_expr))
+                print()
+#new eq for overall eq!
 
 def get_U(rhs, V):
     def match_U(match):
@@ -177,8 +174,7 @@ def get_U(rhs, V):
     
     match, find_U = match_pattern(rhs, [A / U, U / A], [match_U, match_U])
     if match and find_U:
-        print(find_U)
-        u = find_U[Q] + log(find_U[P])
+        u = (find_U[Q] + log(find_U[P]))
         print("*U*")
         print("`" +printer.doprint(u)+"`")
         print()
@@ -218,8 +214,11 @@ def draw_graph(rhs, point, model, eq_no, sing_no, vs, ve, U, draw_points=2000):
     ymin = min(A[1], B[1])
     ymax = max(A[1], B[1])
     ydiff = ymax-ymin if ymax-ymin != 0 else ve - vs
-    plt.ylim(float(ymin - ydiff), float(ymax + ydiff))
+    #plt.ylim(float(ymin - ydiff), float(ymax + ydiff))
+    #plt.ylim(float(ymin - 10*ydiff), float(ymax + 10*ydiff))
+    #plt.ylim(float(ymin - 100*ydiff), float(ymax + 100*ydiff))
     plt.xlim(float(vs - (ve - vs)), float(ve + (ve - vs)))
+    plt.axvspan(vs, ve, color='gold', alpha=0.125)
     
     #Ross function
     g = 1 - (1/2)*U
@@ -235,7 +234,6 @@ def draw_graph(rhs, point, model, eq_no, sing_no, vs, ve, U, draw_points=2000):
 
     plt.plot(x,y, color="silver")
     plt.plot(x,y2, color="red")
-    plt.axvspan(vs, ve, color='gold', alpha=0.125)
     image_dir = 'diagrams/u/' + model.name
     os.makedirs(image_dir, exist_ok=True)
     image_name = image_dir + '/eq' + str(eq_no) + '-sing' + str(sing_no) + '.png'
@@ -248,90 +246,62 @@ def draw_graph(rhs, point, model, eq_no, sing_no, vs, ve, U, draw_points=2000):
     plt.close('all')
     
 for file_name in ('old_davies_isap_2012.cellml',
-                  'aslanidi_model_2009.cellml',
-                  'beeler_reuter_model_1977.cellml',
-                  'bondarenko_model_2004_apex.cellml',
-                  'bondarenko_szigeti_bett_kim_rasmusson_2004_apical.cellml',
-                  'courtemanche_ramirez_nattel_model_1998.cellml',
-                  'decker_2009.cellml',
-                  'demir_model_1994.cellml',
-                  'difrancesco_noble_model_1985.cellml',
-                  'dokos_model_1996.cellml',
-                  'earm_noble_model_1990.cellml',
-                  'espinosa_model_1998_normal.cellml',
-                  'FaberRudy2000.cellml',
-                  'fink_noble_giles_model_2008.cellml',
-                  'grandi2010ss.cellml',
-                  'hilgemann_noble_model_1987.cellml',
-                  'hodgkin_huxley_squid_axon_model_1952_modified.cellml',
-                  'hund_rudy_2004_a.cellml',
-                  'iribe_model_2006_without_otherwise_section.cellml',
-                  'iyer_model_2004.cellml',
-                  'iyer_model_2007.cellml',
-                  'jafri_rice_winslow_model_1998.cellml',
-                  'kurata_model_2002.cellml',
-                  'livshitz_rudy_2007.cellml',
-                  'li_mouse_2010.cellml',
-                  'luo_rudy_1994.cellml',
-                  'mahajan_2008.cellml',
-                  'matsuoka_model_2003.cellml',
-                  'new_luo_rudy_1991_with_range.cellml',
-                  'noble_model_1991.cellml',
-                  'noble_model_1998.cellml',
-                  'noble_noble_SAN_model_1984.cellml',
-                  'noble_SAN_model_1989.cellml',
-                  'nygren_atrial_model_1998.cellml',
-                  'paci_hyttinen_aaltosetala_severi_ventricularVersion.cellml',
-                  'pandit_model_2001_epi.cellml',
-                  'priebe_beuckelmann_model_1998.cellml',
-                  'sachse_moreno_abildskov_2008_b.cellml',
-                  'sakmann_model_2000_epi.cellml',
-                  'Shannon2004.cellml',
-                  'stewart_zhang_model_2008_ss.cellml',
-                  'ten_tusscher_model_2004_endo.cellml',
-                  'ten_tusscher_model_2004_epi.cellml',
-                  'ten_tusscher_model_2006_epi.cellml',
-                  'viswanathan_model_1999_epi.cellml',
-                  'winslow_model_1999.cellml',
-                  'zhang_SAN_model_2000_0D_capable.cellml',
-                  'zhang_SAN_model_2000_all.cellml',
+                  #'aslanidi_model_2009.cellml',
+                  #'beeler_reuter_model_1977.cellml',
+                  #'bondarenko_model_2004_apex.cellml',
+                  #'bondarenko_szigeti_bett_kim_rasmusson_2004_apical.cellml',
+                  #'courtemanche_ramirez_nattel_model_1998.cellml',
+                  #'decker_2009.cellml',
+                  #'demir_model_1994.cellml',
+                  #'difrancesco_noble_model_1985.cellml',
+                  #'dokos_model_1996.cellml',
+                  #'earm_noble_model_1990.cellml',
+                  #'espinosa_model_1998_normal.cellml',
+                  #'FaberRudy2000.cellml',
+                  #'fink_noble_giles_model_2008.cellml',
+                  #'grandi2010ss.cellml',
+                  #'hilgemann_noble_model_1987.cellml',
+                  #'hodgkin_huxley_squid_axon_model_1952_modified.cellml',
+                  #'hund_rudy_2004_a.cellml',
+                  #'iribe_model_2006_without_otherwise_section.cellml',
+                  #'iyer_model_2004.cellml',
+                  #'iyer_model_2007.cellml',
+                  #'jafri_rice_winslow_model_1998.cellml',
+                  #'kurata_model_2002.cellml',
+                  #'livshitz_rudy_2007.cellml',
+                  #'li_mouse_2010.cellml',
+                  #'luo_rudy_1994.cellml',
+                  #'mahajan_2008.cellml',
+                  #'matsuoka_model_2003.cellml',
+                  #'new_luo_rudy_1991_with_range.cellml',
+                  #'noble_model_1991.cellml',
+                  #'noble_model_1998.cellml',
+                  #'noble_noble_SAN_model_1984.cellml',
+                  #'noble_SAN_model_1989.cellml',
+                  #'nygren_atrial_model_1998.cellml',
+                  #'paci_hyttinen_aaltosetala_severi_ventricularVersion.cellml',
+                  #'pandit_model_2001_epi.cellml',
+                  #'priebe_beuckelmann_model_1998.cellml',
+                  #'sachse_moreno_abildskov_2008_b.cellml',
+                  #'sakmann_model_2000_epi.cellml',
+                  #'Shannon2004.cellml',
+                  #'stewart_zhang_model_2008_ss.cellml',
+                  #'ten_tusscher_model_2004_endo.cellml',
+                  #'ten_tusscher_model_2004_epi.cellml',
+                  #'ten_tusscher_model_2006_epi.cellml',
+                  #'viswanathan_model_1999_epi.cellml',
+                  #'winslow_model_1999.cellml',
+                  #'zhang_SAN_model_2000_0D_capable.cellml',
+                  #'zhang_SAN_model_2000_all.cellml',
                   ):
     model = load_model_with_conversions(os.path.join(DATA_DIR, 'tests', 'cellml', file_name), quiet=True)
     print("# Model: " + model.name)
     _process_singularities(model)
     
-# model = load_model_with_conversions(os.path.join(DATA_DIR, 'tests', 'cellml', 'courtemanche_ramirez_nattel_model_1998.cellml'), quiet=True)
-# model.derivative_equations = [model.derivative_equations[36]]
-
-# model.derivative_equations = [Eq(model.derivative_equations[-1].lhs, model.derivative_equations[-1].rhs.args[1].args[0].subs(MATH_FUNC_SYMPY_MAPPING))]
-# _process_singularities(model)
-
-# A=Wild('A', real=True)
-# U=Wild('U', real=True, exclude=[Rational])
-# P=Wild('P', real=True)
-# Q=Wild('Q', real=True)
-# R=Wild('R', real=True)
-# S=Wild('S', real=True)
-
-# print(model.derivative_equations[-1].rhs)
-# m = model.derivative_equations[-1].rhs.match(A/U)
-# print(m)
-# print(m[U].match(P * exp(Q) - 1.0))
-# print(m[U].match(-P * exp(-Q) + 1.0))
-# print( match_pattern(m[U], [P * exp(Q) - 1.0], [lambda m: True]))
-# print( match_pattern(m[U], [-P * exp(Q) + 1.0], [lambda m: True]))
-# print( match_pattern(m[U], [-P * exp(-Q) + 1.0], [lambda m: True]))
-
-
-# print()
-# m = model.derivative_equations[-1].rhs.match(U/A)
-# print(m)
-# print(m[U].match(P * exp(Q) - 1.0))
-# print(m[U].match(P * exp(Q) + 1.0))
-# print(m[U].match(-P * exp(-Q) + 1.0))
-# print( match_pattern(m[U], [P * exp(Q) - 1.0], [lambda m: True]))
-# print( match_pattern(m[U], [-P * exp(Q) + 1.0], [lambda m: True]))
-# print( match_pattern(m[U], [-P * exp(-Q) + 1.0], [lambda m: True]))
-
-# print( match_pattern(m[U], [-P * exp(Q) + 1.0], [lambda m: m is not None and P in m and isinstance(m, Float) and float(m[P]) < 0.0]))
-# print( match_pattern(m[U], [-P * exp(-Q) + 1.0], [lambda m: m is not None and P in m and isinstance(m, Float) and  float(m[P]) < 0.0]))
+#model = load_model_with_conversions(os.path.join(DATA_DIR, 'tests', 'cellml', 'courtemanche_ramirez_nattel_model_1998.cellml'), quiet=True)
+#model.derivative_equations = [model.derivative_equations[36]]
+#
+#print(printer.doprint(model.derivative_equations[-1].rhs) + '=' + printer.doprint(model.derivative_equations[-1].rhs))
+#
+#model.derivative_equations = [Eq(model.derivative_equations[-1].lhs, model.derivative_equations[-1].rhs.args[1].args[0].subs(MATH_FUNC_SYMPY_MAPPING))]
+#_process_singularities(model)
