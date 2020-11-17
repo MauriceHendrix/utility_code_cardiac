@@ -14,6 +14,7 @@ from chaste_codegen import (add_conversions, ChastePrinter, load_model_with_conv
 from chaste_codegen._math_functions import MATH_FUNC_SYMPY_MAPPING
 from chaste_codegen._partial_eval import partial_eval
 from chaste_codegen.model_with_conversions import (get_equations_for, _get_modifiable_parameters)
+from cellmlmanip.model import Variable
 
 U_offset = 1e-7
 
@@ -21,32 +22,42 @@ printer = ChastePrinter(lambda var: str(var).lstrip('_').replace('$', '__'),
                         lambda deriv: str(deriv).lstrip('_').replace('$', '__'))
 
 
-def match_pattern(eq, patterns, conditions):
+def match_pattern(equation, patterns, functions):
+    """Check if list of patterns are found and if so applied the function f from the corresponding list.
+
+    :param equation: The equation to be checked.
+    :param patterns: List of pattrns to look for.
+    :param functions: List of functions to apply to match if found. 
+        Please note: patterns and conditions should be of equal length.
+    :return: A tuple of (match found, function(match)) 
+        if there was a match and function(match) is not False/None, otherwise (None, None)
+    """
+
     check_match = None
-    for pattern, condition in zip(patterns, conditions):
-        match = eq.match(pattern)
-        check_match = condition(match)
+    for pattern, func in zip(patterns, functions):
+        match = equation.match(pattern)
+        check_match = func(match)
         if not check_match:
-            match = eq.factor().match(pattern)
-            check_match = condition(match)
+            match = equation.factor().match(pattern)
+            check_match = func(match)
         if check_match:
             return match, check_match
     return None, None
 
-def _process_singularities(model):
-    def _get_initial_value(var):
-        """Returns the initial value of a variable if it has one, 0 otherwise"""
-        # state vars have an initial value parameter defined
-        initial_value = 0
-        if var in model.state_vars:
-            initial_value = getattr(var, 'initial_value', 0)
-        else:
-            eqs = get_equations_for(model, (var,), filter_modifiable_parameters_lhs=False, optimise=False)
-            # If there is a defining equation, there should be just 1 equation and it should be of the form var = value
-            if len(eqs) == 1 and isinstance(eqs[0].rhs, Float):
-                initial_value = eqs[0].rhs
-        return initial_value
+def get_initial_value(var, model):
+    """Returns the initial value of a variable if it has one, 0 otherwise"""
+    # state vars have an initial value parameter defined
+    initial_value = 0
+    if var in model.state_vars:
+        initial_value = getattr(var, 'initial_value', 0)
+    else:
+        eqs = get_equations_for(model, (var,), filter_modifiable_parameters_lhs=False, optimise=False)
+        # If there is a defining equation, there should be just 1 equation and it should be of the form var = value
+        if len(eqs) == 1 and isinstance(eqs[0].rhs, Float):
+            initial_value = eqs[0].rhs
+    return initial_value
 
+def _process_singularities(model):
     def get_singularity_points(rhs, V):
         def handle_singularity_points(sp):
             if isinstance(sp, FiniteSet):
@@ -70,10 +81,19 @@ def _process_singularities(model):
                 singularity_points = singularity_points.union(handle_singularity_points(s))
             return singularity_points
 
-        singularity_points = singularities(rhs, V, domain=Reals)
+        try:
+            singularity_points = singularities(rhs, V, domain=Reals)
+        except RecursionError:
+            print("Singularities failed Trying parially evaluated")
+            eq = Eq(Variable('rhs', 'dimensionless'), rhs)
+            rhs = partial_eval(model.derivative_equations + [eq], list(model.y_derivatives) + [eq.lhs], keep_multiple_usages=False)[-1]
+            singularity_points = singularities(rhs, V, domain=Reals)
+            print(singularity_points)
+            print()
+        
         return set(handle_singularity_points(singularity_points))
 
-    def process_singularities_eq(expr, expr_part, singularity_points, sing_no=0, singularity_points_processed=set(), singularity_piecewise_parts=[]):
+    def process_singularities_eq(expr, expr_part, singularity_points, sing_no=0, singularity_points_processed=set(), singularity_piecewise_parts=[], params=False):
         def f(Vx):
             return expr.subs({model.membrane_voltage_var:Vx})
 
@@ -103,31 +123,34 @@ def _process_singularities(model):
                         print('`'+printer.doprint(match[A])+'`')
                         print('`'+printer.doprint(match[B])+'`')
                         print()
-                        (sing_no, singularity_points_processed, singularity_piecewise_parts) = process_singularities_eq(expr, match[A], get_singularity_points(match[A], model.membrane_voltage_var), sing_no, singularity_points_processed, singularity_piecewise_parts)
-                        (sing_no, singularity_points_processed, singularity_piecewise_parts) = process_singularities_eq(expr, match[B], get_singularity_points(match[B], model.membrane_voltage_var), sing_no, singularity_points_processed, singularity_piecewise_parts)
+                        (sing_no, singularity_points_processed, singularity_piecewise_parts) = process_singularities_eq(expr, match[A], get_singularity_points(match[A], model.membrane_voltage_var), sing_no, singularity_points_processed, singularity_piecewise_parts, params)
+                        (sing_no, singularity_points_processed, singularity_piecewise_parts) = process_singularities_eq(expr, match[B], get_singularity_points(match[B], model.membrane_voltage_var), sing_no, singularity_points_processed, singularity_piecewise_parts, params)
                     elif isinstance(expr_part, Mul) and (isinstance(expr_part.args[0], Float) or isinstance(expr_part.args[0], float)):  # Eq is number * expr: handle expr seperately
                         print('#### float * A\n')
                         part = Mul(*expr_part.args[1:])
-                        (sing_no, singularity_points_processed, singularity_piecewise_parts) = process_singularities_eq(expr, part, get_singularity_points(part, model.membrane_voltage_var), sing_no, singularity_points_processed, singularity_piecewise_parts)  # Eq is 1 / expr: handle expr seperately
+                        (sing_no, singularity_points_processed, singularity_piecewise_parts) = process_singularities_eq(expr, part, get_singularity_points(part, model.membrane_voltage_var), sing_no, singularity_points_processed, singularity_piecewise_parts, params)  # Eq is 1 / expr: handle expr seperately
                     elif isinstance(expr_part, Pow) and expr_part.args[1] == -1 and len(expr_part.args) == 2:  # 1/A
                         print('####1 / A\n')
                         print()
-                        (sing_no, singularity_points_processed, singularity_piecewise_parts) = process_singularities_eq(expr, expr_part.args[0], get_singularity_points(expr_part.args[0], model.membrane_voltage_var), sing_no, singularity_points_processed, singularity_piecewise_parts)
+                        (sing_no, singularity_points_processed, singularity_piecewise_parts) = process_singularities_eq(expr, expr_part.args[0], get_singularity_points(expr_part.args[0], model.membrane_voltage_var), sing_no, singularity_points_processed, singularity_piecewise_parts, params)
                     else:
                         # 1/x warning
                         print('####Failed!')
                         print(type(expr_part))
                         print(expr_part)
                         print(expr_part.args)
+                        if not params:
+                            print("try partial eval")
+                            vardefs = [Eq(e, get_initial_value(e, model)) for e in ((_get_modifiable_parameters(model) | model.state_vars ) - set([model.membrane_voltage_var]))]
+                            rhs_eq = Eq(Variable('rhs', 'dimensionless'), rhs)
+                            partial_eval_eq = partial_eval(vardefs + model.derivative_equations + [rhs_eq], list(model.y_derivatives) + [rhs_eq.lhs], keep_multiple_usages=False)[-1]
+                            return process_singularities_eq(expr, partial_eval_eq.rhs, singularity_points, sing_no, singularity_points_processed, singularity_piecewise_parts, params=True)
         return (sing_no, singularity_points_processed, singularity_piecewise_parts)
 
-    vardefs = [Eq(e, _get_initial_value(e)) for e in ((_get_modifiable_parameters(model) | model.state_vars ) - set([model.membrane_voltage_var]))]
-    #add small number
-    vardefs_offset = [Eq(e, _get_initial_value(e) + 1e-7) for e in ((_get_modifiable_parameters(model) | model.state_vars ) - set([model.membrane_voltage_var]))]
     eq_no = 0
     for eq in model.derivative_equations:
         rhs = eq.rhs.subs(MATH_FUNC_SYMPY_MAPPING)
-        #todo: rhs == 0?
+
         singularity_points = get_singularity_points(rhs, model.membrane_voltage_var)
         if singularity_points:
             eq_no += 1
@@ -136,10 +159,7 @@ def _process_singularities(model):
             print(printer.doprint(eq.lhs) + " = " + printer.doprint(rhs))
             print("```")
             print("### Partially evaluated to: ")
-            partial_eval_eq = partial_eval(vardefs + model.derivative_equations + [eq], list(model.y_derivatives) + [eq.lhs], keep_multiple_usages=False)[-1]
-            #partial_eval_eq = partial_eval(model.derivative_equations + [eq], list(model.y_derivatives) + [eq.lhs], keep_multiple_usages=False)[-1]
-            if partial_eval_eq.rhs == 0:  #add small number
-                partial_eval_eq = partial_eval(vardefs_offset + model.derivative_equations + [eq], list(model.y_derivatives) + [eq.lhs], keep_multiple_usages=False)[-1]
+            partial_eval_eq = partial_eval(model.derivative_equations + [eq], list(model.y_derivatives) + [eq.lhs], keep_multiple_usages=False)[-1]
             partial_eval_rhs = partial_eval_eq.rhs.subs(MATH_FUNC_SYMPY_MAPPING)
             print("```")
             print(printer.doprint(partial_eval_eq.lhs) + " = " + printer.doprint(partial_eval_rhs))
@@ -162,7 +182,7 @@ def get_U(rhs, V):
         #return match_pattern(match[U], [P * exp(Q) - 1.0, -P * exp(Q) + 1.0, P * exp(Q) + 1.0], [check_match, check_match, check_match])[0]
         if match is None or U not in match or A not in match:
             return None
-        return match_pattern(match[U], [P * exp(Q) - 1.0, -P * exp(Q) + 1.0], [check_match, lambda m: check_match(m) ])[0]
+        return match_pattern(match[U], [P * exp(Q) - 1.0, -P * exp(Q) + 1.0], [check_match, check_match])[0]
     
     (vs,ve, U) = (None, None, None)
     A=Wild('A', real=True)
@@ -185,12 +205,7 @@ def get_U(rhs, V):
         find_v_low = list(find_v_low)
         find_v_up = list(find_v_up)
         if find_v_low and find_v_up:
-            #top_match, _ = match_pattern(match[A], [R * u + S], [lambda m: m is not None and R in m and m[R] != 0.0])
-            top_match, _ = match_pattern(match[A], [R * u + S], [lambda m: m is not None and R in m])
-            if top_match:
-                (vs, ve, U) = (find_v_low[-1], find_v_up[-1], u)
-            else:
-                print("*Not found on top* ")
+            (vs, ve, U) = (find_v_low[-1], find_v_up[-1], u)
 
     if ve and vs and ve < vs:  # adjust the range from smaller to larger
         return (ve, vs, U)
@@ -200,6 +215,15 @@ def get_U(rhs, V):
 
 
 def draw_graph(rhs, point, model, eq_no, sing_no, vs, ve, U, draw_points=2000):
+    vardefs = [Eq(e, get_initial_value(e, model)) for e in ((_get_modifiable_parameters(model) | model.state_vars ) - set([model.membrane_voltage_var]))]
+    vardefs_offset = [Eq(e, get_initial_value(e, model) + 1e-7) for e in ((_get_modifiable_parameters(model) | model.state_vars ) - set([model.membrane_voltage_var]))]
+    rhs_eq = Eq(Variable('rhs', 'dimensionless'), rhs)
+
+    partial_eval_eq = partial_eval(vardefs + model.derivative_equations + [rhs_eq], list(model.y_derivatives) + [rhs_eq.lhs], keep_multiple_usages=False)[-1]
+    if partial_eval_eq.rhs == 0:  #add small number
+        partial_eval_eq = partial_eval(vardefs_offset + model.derivative_equations + [rhs_eq], list(model.y_derivatives) + [rhs_eq.lhs], keep_multiple_usages=False)[-1]
+    rhs=partial_eval_eq.rhs
+
     V = model.membrane_voltage_var
     fig = plt.figure()
     ax1 = fig.add_subplot(111)
@@ -207,6 +231,7 @@ def draw_graph(rhs, point, model, eq_no, sing_no, vs, ve, U, draw_points=2000):
 
     A = (ve, rhs.subs({V:ve}))
     B = (vs, rhs.subs({V:vs}))
+
     slope = (A[1]-B[1])/(ve - vs)
     
     #slope-pont
@@ -245,7 +270,7 @@ def draw_graph(rhs, point, model, eq_no, sing_no, vs, ve, U, draw_points=2000):
     #assert False
     plt.close('all')
     
-for file_name in ('old_davies_isap_2012.cellml',
+for file_name in (#'old_davies_isap_2012.cellml',
                   #'aslanidi_model_2009.cellml',
                   #'beeler_reuter_model_1977.cellml',
                   #'bondarenko_model_2004_apex.cellml',
@@ -293,6 +318,86 @@ for file_name in ('old_davies_isap_2012.cellml',
                   #'winslow_model_1999.cellml',
                   #'zhang_SAN_model_2000_0D_capable.cellml',
                   #'zhang_SAN_model_2000_all.cellml',
+
+                  #'aslanidi_atrial_model_2009.cellml',
+                  #'aslanidi_Purkinje_model_2009.cellml',
+                  #'beeler_reuter_model_1977.cellml',
+                  #'benson_epicardial_2008.cellml',
+                  #'bernus_wilders_zemlin_verschelde_panfilov_2002.cellml',
+                  #'bondarenko_szigeti_bett_kim_rasmusson_2004_apical.cellml',
+                  #'bondarenko_szigeti_bett_kim_rasmusson_2004_septal.cellml',
+                  #'bueno_2007_endo.cellml',
+                  #'bueno_2007_epi.cellml',
+                  #'carro_2011_endo.cellml',
+                  #'carro_2011_epi.cellml',
+                  #'clancy_rudy_2002.cellml',
+                  #'corrias_purkinje_2011.cellml',
+                  #'courtemanche_ramirez_nattel_1998.cellml',
+                  #'davies_isap_2012.cellml',
+                  #'decker_2009.cellml',
+                  #'demir_model_1994.cellml',
+                  #'difrancesco_noble_model_1985.cellml',
+                  #'dokos_model_1996.cellml',
+                  #'earm_noble_model_1990.cellml',
+                  #'espinosa_model_1998_normal.cellml',
+                  #'faber_rudy_2000.cellml',
+                  #'fink_noble_giles_model_2008.cellml',
+                  #'fox_mcharg_gilmour_2002.cellml',
+                  #'grandi_pasqualini_bers_2010_ss.cellml',
+                  #'grandi_pasqualini_bers_2010_ss_endo.cellml',
+                  #'hilgemann_noble_model_1987.cellml',
+                  #'hodgkin_huxley_squid_axon_model_1952_modified.cellml',
+                  #'hund_rudy_2004.cellml',
+                  #'iribe_model_2006.cellml',
+                  #'iyer_2004.cellml',
+                  #'iyer_model_2007.cellml',
+                  #'jafri_rice_winslow_model_1998.cellml',
+                  #'kurata_model_2002.cellml',
+                  #'lindblad_model_1996.cellml',
+                  #'livshitz_rudy_2007.cellml',
+                  #'li_mouse_2010.cellml',
+                  #'luo_rudy_1991.cellml',
+                  #'luo_rudy_1994.cellml',
+                  #'mahajan_shiferaw_2008.cellml',
+                  #'maleckar_model_2009.cellml',
+                  #'maltsev_2009.cellml',
+                  #'matsuoka_model_2003.cellml',
+                  #'mcallister_noble_tsien_1975_b.cellml',
+                  #'noble_model_1962.cellml',
+                  #'noble_model_1991.cellml',
+                  #'noble_model_1998.cellml',
+                  #'noble_model_2001.cellml',
+                  #'noble_noble_SAN_model_1984.cellml',
+                  #'noble_SAN_model_1989.cellml',
+                  'nygren_atrial_model_1998.cellml',
+                  #'ohara_rudy_2011_endo.cellml',
+                  #'ohara_rudy_2011_epi.cellml',
+                  #'ohara_rudy_cipa_v1_2017.cellml',
+                  #'paci_hyttinen_aaltosetala_severi_atrialVersion.cellml',
+                  #'paci_hyttinen_aaltosetala_severi_ventricularVersion.cellml',
+                  #'pandit_clark_giles_demir_2001_endocardial_cell.cellml',
+                  #'pandit_clark_giles_demir_2001_epicardial_cell.cellml',
+                  #'pasek_simurda_christe_2006.cellml',
+                  #'pasek_simurda_orchard_christe_2008.cellml',
+                  #'priebe_beuckelmann_1998.cellml',
+                  'ramirez_nattel_courtemanche_2000.cellml',
+                  #'sachse_moreno_abildskov_2008_b.cellml',
+                  #'sakmann_model_2000_epi.cellml',
+                  'shannon_wang_puglisi_weber_bers_2004.cellml',
+                  #'stewart_zhang_model_2008_ss.cellml',
+                  #'ten_tusscher_model_2004_endo.cellml',
+                  #'ten_tusscher_model_2004_epi.cellml',
+                  #'ten_tusscher_model_2004_M.cellml',
+                  #'ten_tusscher_model_2006_endo.cellml',
+                  #'ten_tusscher_model_2006_epi.cellml',
+                  #'ten_tusscher_model_2006_M.cellml',
+                  #'ToRORd_fkatp_endo.cellml',
+                  #'ToRORd_fkatp_epi.cellml',
+                  #'Trovato2020.cellml',
+                  #'viswanathan_model_1999_epi.cellml',
+                  #'wang_sobie_2008.cellml',
+                  #'winslow_model_1999.cellml',
+                  #'zhang_SAN_model_2000_0D_capable.cellml'
                   ):
     model = load_model_with_conversions(os.path.join(DATA_DIR, 'tests', 'cellml', file_name), quiet=True)
     print("# Model: " + model.name)
@@ -300,8 +405,8 @@ for file_name in ('old_davies_isap_2012.cellml',
     
 #model = load_model_with_conversions(os.path.join(DATA_DIR, 'tests', 'cellml', 'courtemanche_ramirez_nattel_model_1998.cellml'), quiet=True)
 #model.derivative_equations = [model.derivative_equations[36]]
-#
+
 #print(printer.doprint(model.derivative_equations[-1].rhs) + '=' + printer.doprint(model.derivative_equations[-1].rhs))
-#
+
 #model.derivative_equations = [Eq(model.derivative_equations[-1].lhs, model.derivative_equations[-1].rhs.args[1].args[0].subs(MATH_FUNC_SYMPY_MAPPING))]
 #_process_singularities(model)
