@@ -136,11 +136,11 @@ def _process_singularities(model):
                     else:
                         # 1/x warning
                         print('####Failed!')
+                        print()
                         print(type(expr_part))
                         print(expr_part)
-                        print(expr_part.args)
                         if not params:
-                            print("try partial eval")
+                            print("\n*try substituting parameters*\n")
                             vardefs = [Eq(e, get_initial_value(e, model)) for e in ((_get_modifiable_parameters(model) | model.state_vars ) - set([model.membrane_voltage_var]))]
                             rhs_eq = Eq(Variable('rhs', 'dimensionless'), rhs)
                             partial_eval_eq = partial_eval(vardefs + model.derivative_equations + [rhs_eq], list(model.y_derivatives) + [rhs_eq.lhs], keep_multiple_usages=False)[-1]
@@ -223,6 +223,11 @@ def draw_graph(rhs, point, model, eq_no, sing_no, vs, ve, U, draw_points=2000):
     if partial_eval_eq.rhs == 0:  #add small number
         partial_eval_eq = partial_eval(vardefs_offset + model.derivative_equations + [rhs_eq], list(model.y_derivatives) + [rhs_eq.lhs], keep_multiple_usages=False)[-1]
     rhs=partial_eval_eq.rhs
+    
+    if not isinstance(point,Float):
+        sp_eq = Eq(Variable('sp', 'dimensionless'), point)
+        point = partial_eval(vardefs_offset + model.derivative_equations + [sp_eq], list(model.y_derivatives) + [sp_eq.lhs], keep_multiple_usages=False)[-1]
+        point = point.rhs
 
     V = model.membrane_voltage_var
     fig = plt.figure()
@@ -362,14 +367,14 @@ for file_name in (#'old_davies_isap_2012.cellml',
                   #'maleckar_model_2009.cellml',
                   #'maltsev_2009.cellml',
                   #'matsuoka_model_2003.cellml',
-                  #'mcallister_noble_tsien_1975_b.cellml',
+                  'mcallister_noble_tsien_1975_b.cellml',
                   #'noble_model_1962.cellml',
                   #'noble_model_1991.cellml',
                   #'noble_model_1998.cellml',
                   #'noble_model_2001.cellml',
                   #'noble_noble_SAN_model_1984.cellml',
                   #'noble_SAN_model_1989.cellml',
-                  'nygren_atrial_model_1998.cellml',
+                  #'nygren_atrial_model_1998.cellml',
                   #'ohara_rudy_2011_endo.cellml',
                   #'ohara_rudy_2011_epi.cellml',
                   #'ohara_rudy_cipa_v1_2017.cellml',
@@ -380,10 +385,10 @@ for file_name in (#'old_davies_isap_2012.cellml',
                   #'pasek_simurda_christe_2006.cellml',
                   #'pasek_simurda_orchard_christe_2008.cellml',
                   #'priebe_beuckelmann_1998.cellml',
-                  'ramirez_nattel_courtemanche_2000.cellml',
+                  #'ramirez_nattel_courtemanche_2000.cellml',
                   #'sachse_moreno_abildskov_2008_b.cellml',
                   #'sakmann_model_2000_epi.cellml',
-                  'shannon_wang_puglisi_weber_bers_2004.cellml',
+                  #'shannon_wang_puglisi_weber_bers_2004.cellml',
                   #'stewart_zhang_model_2008_ss.cellml',
                   #'ten_tusscher_model_2004_endo.cellml',
                   #'ten_tusscher_model_2004_epi.cellml',
