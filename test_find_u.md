@@ -1,20 +1,26 @@
 # Model: aslanidi_atrial_model_2009(aslanidi_atrial_model_2009.cellml)
 Ca_independent_transient_outward_K_current__i_sus = (((environment__CT == 1.0) && (environment__PM == 0)) ? (0.098000000000000004 + 0.0014 * membrane__V) : (((environment__CT == 0) && (environment__PM == 1.0)) ? (0.16799999999999998 + 0.0023999999999999998 * membrane__V) : (0.070000000000000007 + 0.001 * membrane__V)))
+
 ####Piecewise!
 
 Ca_independent_transient_outward_K_current__i_to = (((environment__CT == 1.0) && (environment__PM == 0)) ? (0.20000000000000001 * (0.40000000000000002 + 0.59999999999999998 * pow(Ca_independent_transient_outward_K_current_s3_gate__s3, 6)) * (-Ca_independent_transient_outward_K_current__E_K + membrane__V) * (0.58999999999999997 * pow(Ca_independent_transient_outward_K_current_s1_gate__s1, 3) + 0.40999999999999998 * pow(Ca_independent_transient_outward_K_current_s2_gate__s2, 3)) * Ca_independent_transient_outward_K_current__g_to * Ca_independent_transient_outward_K_current_r_gate__r) : (((environment__CT == 0) && (environment__PM == 1.0)) ? (0.34999999999999998 * (0.40000000000000002 + 0.59999999999999998 * pow(Ca_independent_transient_outward_K_current_s3_gate__s3, 6)) * (-Ca_independent_transient_outward_K_current__E_K + membrane__V) * (0.58999999999999997 * pow(Ca_independent_transient_outward_K_current_s1_gate__s1, 3) + 0.40999999999999998 * pow(Ca_independent_transient_outward_K_current_s2_gate__s2, 3)) * Ca_independent_transient_outward_K_current__g_to * Ca_independent_transient_outward_K_current_r_gate__r) : ((0.40000000000000002 + 0.59999999999999998 * pow(Ca_independent_transient_outward_K_current_s3_gate__s3, 6)) * (-Ca_independent_transient_outward_K_current__E_K + membrane__V) * (0.58999999999999997 * pow(Ca_independent_transient_outward_K_current_s1_gate__s1, 3) + 0.40999999999999998 * pow(Ca_independent_transient_outward_K_current_s2_gate__s2, 3)) * Ca_independent_transient_outward_K_current__g_to * Ca_independent_transient_outward_K_current_r_gate__r)))
+
 ####Piecewise!
 
 L_type_Ca_channel__i_Ca_L = (((environment__CT == 1.0) && (environment__PM == 0)) ? (1.8 * (-L_type_Ca_channel__E_Ca_app + membrane__V) * (L_type_Ca_channel_d_L_gate__d_L * L_type_Ca_channel_f_L_gate__f_L + L_type_Ca_channel__d_prime) * L_type_Ca_channel__g_Ca_L) : (((environment__CT == 0) && (environment__PM == 1.0)) ? (2.1000000000000001 * (-L_type_Ca_channel__E_Ca_app + membrane__V) * (L_type_Ca_channel_d_L_gate__d_L * L_type_Ca_channel_f_L_gate__f_L + L_type_Ca_channel__d_prime) * L_type_Ca_channel__g_Ca_L) : ((-L_type_Ca_channel__E_Ca_app + membrane__V) * (L_type_Ca_channel_d_L_gate__d_L * L_type_Ca_channel_f_L_gate__f_L + L_type_Ca_channel__d_prime) * L_type_Ca_channel__g_Ca_L)))
+
 ####Piecewise!
 
 background_currents__i_B_Ca = (((environment__CT == 1.0) && (environment__PM == 0)) ? (2.0000000000000002e-5 * membrane__V - 2.0000000000000002e-5 * background_currents__E_Ca) : (((environment__CT == 0) && (environment__PM == 1.0)) ? (3.0000000000000001e-5 * membrane__V - 3.0000000000000001e-5 * background_currents__E_Ca) : ((-background_currents__E_Ca + membrane__V) * background_currents__g_B_Ca)))
+
 ####Piecewise!
 
 inward_rectifier__i_K1 = (((environment__CT == 1.0) && (environment__PM == 0)) ? (2.0 * pow(cleft_space_ion_concentrations__K_c, 3) * (-Ca_independent_transient_outward_K_current__E_K + membrane__V) * inward_rectifier__g_K1 / ((1.0 + exp((-Ca_independent_transient_outward_K_current__E_K - inward_rectifier__shiftK1 + membrane__V) * inward_rectifier__steepK1 * membrane__F / (membrane__R * membrane__T))) * pow((cleft_space_ion_concentrations__K_c + inward_rectifier__KmK1), 3))) : (((environment__CT == 0) && (environment__PM == 1.0)) ? (2.5 * pow(cleft_space_ion_concentrations__K_c, 3) * (-Ca_independent_transient_outward_K_current__E_K + membrane__V) * inward_rectifier__g_K1 / ((1.0 + exp((-Ca_independent_transient_outward_K_current__E_K - inward_rectifier__shiftK1 + membrane__V) * inward_rectifier__steepK1 * membrane__F / (membrane__R * membrane__T))) * pow((cleft_space_ion_concentrations__K_c + inward_rectifier__KmK1), 3))) : (pow(cleft_space_ion_concentrations__K_c, 3) * (-Ca_independent_transient_outward_K_current__E_K + membrane__V) * inward_rectifier__g_K1 / ((1.0 + exp((-Ca_independent_transient_outward_K_current__E_K - inward_rectifier__shiftK1 + membrane__V) * inward_rectifier__steepK1 * membrane__F / (membrane__R * membrane__T))) * pow((cleft_space_ion_concentrations__K_c + inward_rectifier__KmK1), 3)))))
+
 ####Piecewise!
 
 background_currents__i_B_Na = (((environment__CT == 1.0) && (environment__PM == 0)) ? (2.0000000000000002e-5 * membrane__V - 2.0000000000000002e-5 * sodium_current__E_Na) : (((environment__CT == 0) && (environment__PM == 1.0)) ? (3.0000000000000001e-5 * membrane__V - 3.0000000000000001e-5 * sodium_current__E_Na) : ((-sodium_current__E_Na + membrane__V) * background_currents__g_B_Na)))
+
 ####Piecewise!
 
 ## Equation 1:
@@ -149,15 +155,19 @@ i_Na_L_m_L_gate__alpha_m_L = 0.32000000000000001 * (47.130000000000003 + membran
 ((fabs(47.130000000000003 + membrane__V) < 1.0000000000287557e-6) ? (-3.200000000092018e-7 / (1.0 - exp(1.0000000000287557e-7)) + (23565000.499322373 + 499999.99998562218 * membrane__V) * (3.200000000092018e-7 / (1.0 - exp(1.0000000000287557e-7)) + 3.200000000092018e-7 / (1.0 - exp(-1.0000000000287557e-7)))) : (0.32000000000000001 * (47.130000000000003 + membrane__V) / (1.0 - exp(-4.7130000000000001 - 0.10000000000000001 * membrane__V))))
 
 i_Na_h_gate__alpha_h = ((membrane__V < -40.0) ? (0.13500000000000001 * exp(-11.764705882352942 + 0.14705882352941177 * i_Na__shift_INa_inact - 0.14705882352941177 * membrane__V)) : (0))
+
 ####Piecewise!
 
 i_Na_h_gate__beta_h = ((membrane__V < -40.0) ? (310000.0 * exp(0.34999999999999998 * membrane__V - 0.34999999999999998 * i_Na__shift_INa_inact) + 3.5600000000000001 * exp(0.079000000000000001 * membrane__V - 0.079000000000000001 * i_Na__shift_INa_inact)) : (7.6923076923076916 / (1.0 + exp(-0.96036036036036043 + 0.0900900900900901 * i_Na__shift_INa_inact - 0.0900900900900901 * membrane__V))))
+
 ####Piecewise!
 
 i_Na_j_gate__alpha_j = ((membrane__V < -40.0) ? ((37.780000000000001 + membrane__V) * (-127140.0 * exp(0.24440000000000001 * membrane__V - 0.24440000000000001 * i_Na__shift_INa_inact) - 3.4740000000000003e-5 * exp(0.043909999999999998 * i_Na__shift_INa_inact - 0.043909999999999998 * membrane__V)) / (1.0 + exp(24.640530000000002 + 0.311 * membrane__V - 0.311 * i_Na__shift_INa_inact))) : (0))
+
 ####Piecewise!
 
 i_Na_j_gate__beta_j = ((membrane__V < -40.0) ? (0.1212 * exp(0.01052 * i_Na__shift_INa_inact - 0.01052 * membrane__V) / (1.0 + exp(-5.5312920000000005 + 0.13780000000000001 * i_Na__shift_INa_inact - 0.13780000000000001 * membrane__V))) : (0.29999999999999999 * exp(2.5349999999999999e-7 * i_Na__shift_INa_inact - 2.5349999999999999e-7 * membrane__V) / (1.0 + exp(-3.2000000000000002 + 0.10000000000000001 * i_Na__shift_INa_inact - 0.10000000000000001 * membrane__V))))
+
 ####Piecewise!
 
 ## Equation 4:
@@ -254,13 +264,16 @@ i_Ca_L__i_Ca_L_max = 3.510865186083326 * (-15.0 + membrane__V) * (-0.34100000000
 
 # Model: beeler_reuter_model_1977(beeler_reuter_model_1977.cellml)
 sodium_current_m_gate__alpha_m = (((sodium_current_m_gate__U >= -9.9999999999999995e-8) && (sodium_current_m_gate__U <= 9.9999999999999995e-8)) ? ((1.0 - 0.5 * sodium_current_m_gate__U) * sodium_current_m_gate__A) : (sodium_current_m_gate__A * sodium_current_m_gate__U / (-1.0 + exp(sodium_current_m_gate__U))))
+
 ####Piecewise!
 
 time_independent_outward_current__temp_current = (((time_independent_outward_current__U >= -9.9999999999999995e-8) && (time_independent_outward_current__U <= 9.9999999999999995e-8)) ? ((1.0 - 0.5 * time_independent_outward_current__U) * time_independent_outward_current__A) : (time_independent_outward_current__A * time_independent_outward_current__U / (-1.0 + exp(time_independent_outward_current__U))))
+
 ####Piecewise!
 
 # Model: benson_epicardial_2008(benson_epicardial_2008.cellml)
 INa__GNa = ((Environment__tissue == 0) ? (INa__GNa_max) : (4.0 * INa__GNa_max))
+
 ####Piecewise!
 
 ## Equation 1:
@@ -287,6 +300,7 @@ ICaL__ibarca = 14448.004881000332 * (-15.0 + cell__V) * (-0.34100000000000003 * 
 ((fabs(-15.0 + cell__V) < 1.3356169352718439e-6) ? ((-5615382.0261832969 + 374358.83507888648 * cell__V) * (0.019296999999954306 * (-0.34100000000000003 * Environment__Ca_o + Ca__Ca_ss * exp(9.9999999999406119e-8)) * ICaL__pca / (-1.0 + exp(9.9999999999406119e-8)) + 0.019296999999954306 * (-0.34100000000000003 * Environment__Ca_o + Ca__Ca_ss * exp(-9.9999999999406119e-8)) * ICaL__pca / (-1.0 + exp(-9.9999999999406119e-8))) - 0.019296999999954306 * (-0.34100000000000003 * Environment__Ca_o + Ca__Ca_ss * exp(-9.9999999999406119e-8)) * ICaL__pca / (-1.0 + exp(-9.9999999999406119e-8))) : (4.0 * (-15.0 + cell__V) * (-Environment__Ca_o * ICaL__gacao + Ca__Ca_ss * ICaL__gacai * exp(2.0 * (-15.0 + cell__V) * Environment__FonRT)) * Environment__F * Environment__FonRT * ICaL__pca / (-1.0 + exp(2.0 * (-15.0 + cell__V) * Environment__FonRT))))
 
 ICaL__ICaL = ((Environment__tissue == 0) ? (pow(ICaL__d, ICaL__dp) * ICaL__f * ICaL__f2 * ICaL__fca * ICaL__fca2 * ICaL__ibarca) : (ICaL__d * ICaL__f * ICaL__f2 * ICaL__fca * ICaL__fca2 * ICaL__ibarca))
+
 ####Piecewise!
 
 ## Equation 2:
@@ -397,9 +411,11 @@ IKs__tauxs = 1 / (7.6100000000000007e-5 * (44.600000000000001 + cell__V) / (1.0 
 ((fabs(44.600000000000001 + cell__V) < 1.0030090258350555e-8) ? (1 / (-0.016254000003610835 / (-1.0 + exp(-5.7792000012838516)) - 7.6328986866047728e-13 / (1.0 - exp(9.9999999836342113e-8))) + (2223310003.262351 + 49850000.061936118 * cell__V) * (1 / (7.6328986866047728e-13 / (1.0 - exp(-9.9999999836342113e-8)) - 0.016253999996389171 / (-1.0 + exp(-5.7791999987161491))) - 1 / (-0.016254000003610835 / (-1.0 + exp(-5.7792000012838516)) - 7.6328986866047728e-13 / (1.0 - exp(9.9999999836342113e-8))))) : ((fabs(-0.55000000000000004 + cell__V) < 7.8124999999557715e-7) ? (1 / (0.0034359149405468756 / (1.0 - exp(-450.14549221093756)) - 2.8124999999903229e-10 / (-1.0 + exp(-9.999999999962296e-8))) + (-351999.50000003882 + 640000.00000007043 * cell__V) * (1 / (2.812500000009058e-10 / (-1.0 + exp(1.0000000000027348e-7)) + 0.0034359150594531255 / (1.0 - exp(-450.14550778906255))) - 1 / (0.0034359149405468756 / (1.0 - exp(-450.14549221093756)) - 2.8124999999903229e-10 / (-1.0 + exp(-9.999999999962296e-8))))) : (1 / (7.6100000000000007e-5 * (44.600000000000001 + cell__V) / (1.0 - exp(-444.66200000000003 - 9.9700000000000006 * cell__V)) + 0.00036000000000000002 * (-0.55000000000000004 + cell__V) / (-1.0 + exp(-0.070400000000000004 + 0.128 * cell__V))))))
 
 INa__ah = ((cell__V >= -40.0) ? (0) : (0.13500000000000001 * exp(-11.764705882352942 - 0.14705882352941177 * cell__V)))
+
 ####Piecewise!
 
 INa__aj = ((cell__V >= -40.0) ? (0) : ((37.780000000000001 + cell__V) * (-127140.0 * exp(0.24440000000000001 * cell__V) - 3.4740000000000003e-5 * exp(-0.043909999999999998 * cell__V)) / (1.0 + exp(24.640530000000002 + 0.311 * cell__V))))
+
 ####Piecewise!
 
 ## Equation 5:
@@ -426,9 +442,11 @@ INa__am = 0.32000000000000001 * (47.130000000000003 + cell__V) / (1.0 - 0.008977
 ((fabs(47.130000000000003 + cell__V) < 1.0000000000287557e-6) ? (-3.200000000092018e-7 / (1.0 - exp(1.0000000000287557e-7)) + (23565000.499322373 + 499999.99998562218 * cell__V) * (3.200000000092018e-7 / (1.0 - exp(1.0000000000287557e-7)) + 3.200000000092018e-7 / (1.0 - exp(-1.0000000000287557e-7)))) : (0.32000000000000001 * (47.130000000000003 + cell__V) / (1.0 - exp(-4.7130000000000001 - 0.10000000000000001 * cell__V))))
 
 INa__bh = ((cell__V >= -40.0) ? (7.6923076923076916 / (1.0 + exp(-0.96036036036036043 - 0.0900900900900901 * cell__V))) : (310000.0 * exp(0.34999999999999998 * cell__V) + 3.5600000000000001 * exp(0.079000000000000001 * cell__V)))
+
 ####Piecewise!
 
 INa__bj = ((cell__V >= -40.0) ? (0.29999999999999999 * exp(-2.5349999999999999e-7 * cell__V) / (1.0 + exp(-3.2000000000000002 - 0.10000000000000001 * cell__V))) : (0.1212 * exp(-0.01052 * cell__V) / (1.0 + exp(-5.5312920000000005 - 0.13780000000000001 * cell__V))))
+
 ####Piecewise!
 
 ## Equation 6:
@@ -455,6 +473,7 @@ INal__amL = 0.32000000000000001 * (47.130000000000003 + cell__V) / (1.0 - 0.0089
 ((fabs(47.130000000000003 + cell__V) < 1.0000000000287557e-6) ? (-3.200000000092018e-7 / (1.0 - exp(1.0000000000287557e-7)) + (23565000.499322373 + 499999.99998562218 * cell__V) * (3.200000000092018e-7 / (1.0 - exp(1.0000000000287557e-7)) + 3.200000000092018e-7 / (1.0 - exp(-1.0000000000287557e-7)))) : (0.32000000000000001 * (47.130000000000003 + cell__V) / (1.0 - exp(-4.7130000000000001 - 0.10000000000000001 * cell__V))))
 
 Irel__vg = ((Environment__tissue == 0) ? (1 / (1.0 + exp(2.6000000000000001 + 0.20000000000000001 * ICaL__ibarca))) : (1.0))
+
 ####Piecewise!
 
 ## Equation 7:
@@ -554,47 +573,61 @@ slow_delayed_rectifier_potassium_current__alpha_n = 4.8133299999999997e-6 * (26.
 
 # Model: bueno_2007(bueno_2007_endo.cellml)
 m__m = ((m__u_m > membrane__u) ? (0) : (1.0))
+
 ####Piecewise!
 
 p__p = ((membrane__u < p__u_p) ? (0) : (1.0))
+
 ####Piecewise!
 
 fast_inward_current_v_gate__v_inf = ((membrane__u < q__u_q) ? (1.0) : (0))
+
 ####Piecewise!
 
 q__q = ((membrane__u < q__u_q) ? (0) : (1.0))
+
 ####Piecewise!
 
 r__r = ((membrane__u < r__u_r) ? (0) : (1.0))
+
 ####Piecewise!
 
 # Model: bueno_2007(bueno_2007_epi.cellml)
 m__m = ((m__u_m > membrane__u) ? (0) : (1.0))
+
 ####Piecewise!
 
 p__p = ((membrane__u < p__u_p) ? (0) : (1.0))
+
 ####Piecewise!
 
 fast_inward_current_v_gate__v_inf = ((membrane__u < q__u_q) ? (1.0) : (0))
+
 ####Piecewise!
 
 q__q = ((membrane__u < q__u_q) ? (0) : (1.0))
+
 ####Piecewise!
 
 r__r = ((membrane__u < r__u_r) ? (0) : (1.0))
+
 ####Piecewise!
 
 # Model: Carro_Rodriguez_Laguna_Pueyo_CinC2010_EPI(carro_2011_endo.cellml)
 Fast_Na_Current__a_h = ((membrane__V >= -40.0) ? (0) : (0.057000000000000002 * exp(-11.764705882352942 - 0.14705882352941177 * membrane__V)))
+
 ####Piecewise!
 
 Fast_Na_Current__a_j = ((membrane__V >= -40.0) ? (0) : ((37.780000000000001 + membrane__V) * (-25428.0 * exp(0.24440000000000001 * membrane__V) - 6.9480000000000002e-6 * exp(-0.043909999999999998 * membrane__V)) / (1.0 + exp(24.640530000000002 + 0.311 * membrane__V))))
+
 ####Piecewise!
 
 Fast_Na_Current__b_h = ((membrane__V >= -40.0) ? (5.9230999999999998 / (1.0 + exp(-0.96036036036036043 - 0.0900900900900901 * membrane__V))) : (310000.0 * exp(0.34849999999999998 * membrane__V) + 2.7000000000000002 * exp(0.079000000000000001 * membrane__V)))
+
 ####Piecewise!
 
 Fast_Na_Current__b_j = ((membrane__V >= -40.0) ? (0.59999999999999998 * exp(0.057000000000000002 * membrane__V) / (1.0 + exp(-3.2000000000000002 - 0.10000000000000001 * membrane__V))) : (0.024240000000000001 * exp(-0.01052 * membrane__V) / (1.0 + exp(-5.5312920000000005 - 0.13780000000000001 * membrane__V))))
+
 ####Piecewise!
 
 ## Equation 1:
@@ -714,15 +747,19 @@ L_Type_Calcium_Current__Ibar_Na_sl = 1.0971453706510394e-5 * (-Sodium_Concentrat
 
 # Model: Carro_Rodriguez_Laguna_Pueyo_CinC2010_EPI(carro_2011_epi.cellml)
 Fast_Na_Current__a_h = ((membrane__V >= -40.0) ? (0) : (0.057000000000000002 * exp(-11.764705882352942 - 0.14705882352941177 * membrane__V)))
+
 ####Piecewise!
 
 Fast_Na_Current__a_j = ((membrane__V >= -40.0) ? (0) : ((37.780000000000001 + membrane__V) * (-25428.0 * exp(0.24440000000000001 * membrane__V) - 6.9480000000000002e-6 * exp(-0.043909999999999998 * membrane__V)) / (1.0 + exp(24.640530000000002 + 0.311 * membrane__V))))
+
 ####Piecewise!
 
 Fast_Na_Current__b_h = ((membrane__V >= -40.0) ? (5.9230999999999998 / (1.0 + exp(-0.96036036036036043 - 0.0900900900900901 * membrane__V))) : (310000.0 * exp(0.34849999999999998 * membrane__V) + 2.7000000000000002 * exp(0.079000000000000001 * membrane__V)))
+
 ####Piecewise!
 
 Fast_Na_Current__b_j = ((membrane__V >= -40.0) ? (0.59999999999999998 * exp(0.057000000000000002 * membrane__V) / (1.0 + exp(-3.2000000000000002 - 0.10000000000000001 * membrane__V))) : (0.024240000000000001 * exp(-0.01052 * membrane__V) / (1.0 + exp(-5.5312920000000005 - 0.13780000000000001 * membrane__V))))
+
 ####Piecewise!
 
 ## Equation 1:
@@ -842,21 +879,27 @@ L_Type_Calcium_Current__Ibar_Na_sl = 1.0971453706510394e-5 * (-Sodium_Concentrat
 
 # Model: clancy_rudy_2002(clancy_rudy_2002.cellml)
 calcium_dynamics__APtrack2_orig_deriv = (((calcium_dynamics__APtrack > 0.17999999999999999) && (calcium_dynamics__APtrack < 0.20000000000000001)) ? (100000.0 - 100500.0 * calcium_dynamics__APtrack2) : (-500.0 * calcium_dynamics__APtrack2))
+
 ####Piecewise!
 
 calcium_dynamics__APtrack3_orig_deriv = (((calcium_dynamics__APtrack > 0.17999999999999999) && (calcium_dynamics__APtrack < 0.20000000000000001)) ? (100000.0 - 100500.0 * calcium_dynamics__APtrack3) : (-10.0 * calcium_dynamics__APtrack3))
+
 ####Piecewise!
 
 calcium_dynamics__OVRLDtrack2_orig_deriv = (((calcium_dynamics__Logicthresh > calcium_dynamics__OVRLDtrack2) && (calcium_dynamics__Logicthresh < calcium_dynamics__OVRLDtrack)) ? (50000.0 - 50000.0 * calcium_dynamics__OVRLDtrack2) : (-500.0 * calcium_dynamics__OVRLDtrack2))
+
 ####Piecewise!
 
 calcium_dynamics__OVRLDtrack3_orig_deriv = (((calcium_dynamics__Logicthresh > calcium_dynamics__OVRLDtrack3) && (calcium_dynamics__Logicthresh < calcium_dynamics__OVRLDtrack)) ? (50000.0 - 50000.0 * calcium_dynamics__OVRLDtrack3) : (-10.0 * calcium_dynamics__OVRLDtrack3))
+
 ####Piecewise!
 
 calcium_dynamics__OVRLDtrack_orig_deriv = (((calcium_dynamics__APtrack3 < 0.37) && (calcium_dynamics__OVRLDtrack3 < 0.37) && (calcium_dynamics__CSQNthresh < 1 / (1.0 + calcium_dynamics__K_mCSQN / calcium_dynamics__Ca_NSR))) ? (50000.0 - 50000.0 * calcium_dynamics__OVRLDtrack) : (-500.0 * calcium_dynamics__OVRLDtrack))
+
 ####Piecewise!
 
 calcium_dynamics__G_rel = ((calcium_dynamics__Cainfluxtrack > calcium_dynamics__delta_Ca_ith) ? ((1.0 - calcium_dynamics__APtrack2) * (-calcium_dynamics__delta_Ca_ith + calcium_dynamics__Cainfluxtrack) * calcium_dynamics__APtrack2 * calcium_dynamics__G_rel_max / (-calcium_dynamics__delta_Ca_ith + calcium_dynamics__Cainfluxtrack + calcium_dynamics__K_mrel)) : ((calcium_dynamics__OVRLDtrack2 > 0) ? ((1.0 - calcium_dynamics__OVRLDtrack2) * calcium_dynamics__G_rel_overload * calcium_dynamics__OVRLDtrack2) : (0)))
+
 ####Piecewise!
 
 ## Equation 1:
@@ -929,9 +972,11 @@ L_type_Ca_channel__I_CaNa = 0.0024381008236689767 * (-0.75 * ionic_concentration
 ((fabs(membrane__V) < 2.6712338705498262e-6) ? ((0.5 + 187179.41753901311 * membrane__V) * (6.5127375e-9 * (-0.75 * ionic_concentrations__Nao + 0.75 * ionic_concentrations__Nai * exp(9.9999999999999995e-8)) * L_type_Ca_channel__P_scale / (-1.0 + exp(9.9999999999999995e-8)) + 6.5127375e-9 * (-0.75 * ionic_concentrations__Nao + 0.75 * ionic_concentrations__Nai * exp(-9.9999999999999995e-8)) * L_type_Ca_channel__P_scale / (-1.0 + exp(-9.9999999999999995e-8))) - 6.5127375e-9 * (-0.75 * ionic_concentrations__Nao + 0.75 * ionic_concentrations__Nai * exp(-9.9999999999999995e-8)) * L_type_Ca_channel__P_scale / (-1.0 + exp(-9.9999999999999995e-8))) : (pow(membrane__F, 2) * (-L_type_Ca_channel__gamma_Nao * ionic_concentrations__Nao + L_type_Ca_channel__gamma_Nai * ionic_concentrations__Nai * exp(membrane__F * membrane__V / (membrane__R * membrane__T))) * L_type_Ca_channel__P_Na * L_type_Ca_channel__P_scale * membrane__V / ((-1.0 + exp(membrane__F * membrane__V / (membrane__R * membrane__T))) * membrane__R * membrane__T)))
 
 L_type_Ca_channel_d_gate__tau_d = ((fabs(L_type_Ca_channel_d_gate__E0_d) < 1.0000000000000001e-5) ? (0.0045787545787545781) : (0.028571428571428571 * (1.0 - exp(-0.16025641025641024 * L_type_Ca_channel_d_gate__E0_d)) * L_type_Ca_channel_d_gate__d_infinity / L_type_Ca_channel_d_gate__E0_d))
+
 ####Piecewise!
 
 T_type_Ca_channel_g_gate__tau_g = ((membrane__V <= 0) ? (0.012 - 0.00087500000000000002 * membrane__V) : (0.012))
+
 ####Piecewise!
 
 ## Equation 4:
@@ -959,6 +1004,7 @@ non_specific_calcium_activated_current__I_ns_Na = 0
 {0}
 #### Eq == 0!
 calcium_dynamics__Cainfluxtrack_orig_deriv = ((calcium_dynamics__APtrack > 0.20000000000000001) ? (-0.5 * (-Na_Ca_exchanger__i_NaCa + L_type_Ca_channel__i_CaCa + T_type_Ca_channel__i_Ca_T + calcium_background_current__i_Ca_b + sarcolemmal_calcium_pump__i_p_Ca) * ionic_concentrations__A_cap / (ionic_concentrations__V_myo * membrane__F)) : ((calcium_dynamics__APtrack2 > 0.01) ? (0) : (-500.0 * calcium_dynamics__Cainfluxtrack)))
+
 ####Piecewise!
 
 ## Equation 6:
@@ -1028,124 +1074,163 @@ slow_delayed_rectifier_potassium_current_xs2_gate__tau_xs2 = 0.00400000000000000
 ((fabs(30.0 + membrane__V) < 6.7567567568760367e-7) ? (0.0040000000000000001 / (-8.8513513515076093e-11 / (-1.0 + exp(-4.6418918920460017e-8)) - 4.8581081081938701e-11 / (1.0 - exp(1.0000000000287557e-7))) + (22200000.499608092 + 739999.99998693645 * membrane__V) * (0.0040000000000000001 / (8.8513513515076093e-11 / (-1.0 + exp(4.6418918920460017e-8)) + 4.8581081081938701e-11 / (1.0 - exp(-1.0000000000287557e-7))) - 0.0040000000000000001 / (-8.8513513515076093e-11 / (-1.0 + exp(-4.6418918920460017e-8)) - 4.8581081081938701e-11 / (1.0 - exp(1.0000000000287557e-7))))) : (0.0040000000000000001 / (0.00013100000000000001 * (30.0 + membrane__V) / (-1.0 + exp(2.0609999999999999 + 0.068699999999999997 * membrane__V)) + 7.1899999999999999e-5 * (30.0 + membrane__V) / (1.0 - exp(-4.4399999999999995 - 0.14799999999999999 * membrane__V)))))
 
 calcium_dynamics__APtrack_orig_deriv = ((membrane__dVdt > 150000.0) ? (100000.0 - 100500.0 * calcium_dynamics__APtrack) : (-500.0 * calcium_dynamics__APtrack))
+
 ####Piecewise!
 
 # Model: Corrias_rabbit_purkinje_model(corrias_purkinje_2011.cellml)
 x_ks__tau_x_ks = ((fabs(30.0 + membrane__Vm) < 0.014500000000000001) ? (417.94619999999998) : (1 / (0.00013100000000000001 * (30.0 + membrane__Vm) / (-1.0 + exp(2.0609999999999999 + 0.068699999999999997 * membrane__Vm)) + 7.1899999999999999e-5 * (30.0 + membrane__Vm) / (1.0 - exp(-4.4399999999999995 - 0.14799999999999999 * membrane__Vm)))))
+
 ####Piecewise!
 
 y_kr__ykrv1 = ((fabs(7.0 + membrane__Vm) > 0.001) ? (0.0013799999999999999 * (7.0 + membrane__Vm) / (1.0 - exp(-0.86099999999999999 - 0.123 * membrane__Vm))) : (0.011219512195121951))
+
 ####Piecewise!
 
 y_kr__ykrv2 = ((fabs(10.0 + membrane__Vm) > 0.001) ? (6.0999999999999999e-5 * (10.0 + membrane__Vm) / (-1.0 + exp(1.45 + 0.14499999999999999 * membrane__Vm))) : (0.0042068965517241376))
+
 ####Piecewise!
 
 # Model: courtemanche_1998(courtemanche_ramirez_nattel_1998.cellml)
 Ca_release_current_from_JSR_w_gate__tau_w = ((fabs(-7.9000000000000004 + membrane__V) < 1.0e-10) ? (0.92307692307692313) : (6.0 * (1.0 - exp(1.5800000000000001 - 0.20000000000000001 * membrane__V)) / ((1.0 + 0.29999999999999999 * exp(1.5800000000000001 - 0.20000000000000001 * membrane__V)) * (-7.9000000000000004 + membrane__V))))
+
 ####Piecewise!
 
 L_type_Ca_channel_d_gate__tau_d = ((fabs(10.0 + membrane__V) < 1.0e-10) ? (4.5789999999999997 / (1.0 + exp(-1.6025641025641024 - 0.16025641025641024 * membrane__V))) : (28.571428571428569 * (1.0 - exp(-1.6025641025641024 - 0.16025641025641024 * membrane__V)) / ((1.0 + exp(-1.6025641025641024 - 0.16025641025641024 * membrane__V)) * (10.0 + membrane__V))))
+
 ####Piecewise!
 
 fast_sodium_current_h_gate__alpha_h = ((membrane__V < -40.0) ? (0.13500000000000001 * exp(-11.764705882352942 + 0.14705882352941177 * fast_sodium_current__shift_INa_inact - 0.14705882352941177 * membrane__V)) : (0))
+
 ####Piecewise!
 
 fast_sodium_current_h_gate__beta_h = ((membrane__V < -40.0) ? (310000.0 * exp(0.34999999999999998 * membrane__V - 0.34999999999999998 * fast_sodium_current__shift_INa_inact) + 3.5600000000000001 * exp(0.079000000000000001 * membrane__V - 0.079000000000000001 * fast_sodium_current__shift_INa_inact)) : (7.6923076923076916 / (1.0 + exp(-0.96036036036036043 + 0.0900900900900901 * fast_sodium_current__shift_INa_inact - 0.0900900900900901 * membrane__V))))
+
 ####Piecewise!
 
 fast_sodium_current_j_gate__alpha_j = ((membrane__V < -40.0) ? ((37.780000000000001 + membrane__V) * (-127140.0 * exp(0.24440000000000001 * membrane__V - 0.24440000000000001 * fast_sodium_current__shift_INa_inact) - 3.4740000000000003e-5 * exp(0.043909999999999998 * fast_sodium_current__shift_INa_inact - 0.043909999999999998 * membrane__V)) / (1.0 + exp(24.640530000000002 + 0.311 * membrane__V - 0.311 * fast_sodium_current__shift_INa_inact))) : (0))
+
 ####Piecewise!
 
 fast_sodium_current_j_gate__beta_j = ((membrane__V < -40.0) ? (0.1212 * exp(0.01052 * fast_sodium_current__shift_INa_inact - 0.01052 * membrane__V) / (1.0 + exp(-5.5312920000000005 + 0.13780000000000001 * fast_sodium_current__shift_INa_inact - 0.13780000000000001 * membrane__V))) : (0.29999999999999999 * exp(2.5349999999999999e-7 * fast_sodium_current__shift_INa_inact - 2.5349999999999999e-7 * membrane__V) / (1.0 + exp(-3.2000000000000002 + 0.10000000000000001 * fast_sodium_current__shift_INa_inact - 0.10000000000000001 * membrane__V))))
+
 ####Piecewise!
 
 fast_sodium_current_m_gate__alpha_m = ((membrane__V == (-47.130000000000003)) ? (3.2000000000000002) : (0.32000000000000001 * (47.130000000000003 + membrane__V) / (1.0 - exp(-4.7130000000000001 - 0.10000000000000001 * membrane__V))))
+
 ####Piecewise!
 
 rapid_delayed_rectifier_K_current_xr_gate__alpha_xr = ((fabs(14.1 + membrane__V) < 1.0e-10) ? (0.0015) : (0.00029999999999999997 * (14.1 + membrane__V) / (1.0 - exp(-2.8199999999999998 - 0.20000000000000001 * membrane__V))))
+
 ####Piecewise!
 
 rapid_delayed_rectifier_K_current_xr_gate__beta_xr = ((fabs(-3.3328000000000002 + membrane__V) < 1.0e-10) ? (0.00037836118) : (7.3898000000000003e-5 * (-3.3328000000000002 + membrane__V) / (-1.0 + exp(-0.65046743564221166 + 0.19517145812596365 * membrane__V))))
+
 ####Piecewise!
 
 slow_delayed_rectifier_K_current_xs_gate__alpha_xs = ((fabs(-19.899999999999999 + membrane__V) < 1.0e-10) ? (0.00068000000000000005) : (4.0000000000000003e-5 * (-19.899999999999999 + membrane__V) / (1.0 - exp(1.1705882352941175 - 0.058823529411764705 * membrane__V))))
+
 ####Piecewise!
 
 slow_delayed_rectifier_K_current_xs_gate__beta_xs = ((fabs(-19.899999999999999 + membrane__V) < 1.0e-10) ? (0.00031500000000000001) : (3.4999999999999997e-5 * (-19.899999999999999 + membrane__V) / (-1.0 + exp(-2.2111111111111108 + 0.1111111111111111 * membrane__V))))
+
 ####Piecewise!
 
 # Model: davies_isap_2012(davies_isap_2012.cellml)
 ICaL__ibarca = (((ICaL__U >= -9.9999999999999995e-8) && (ICaL__U <= 9.9999999999999995e-8)) ? ((1.0 - 0.5 * ICaL__U) * ICaL__A) : (ICaL__A * ICaL__U / (-1.0 + exp(ICaL__U))))
+
 ####Piecewise!
 
 ICab__ICab = (((ICab__U >= -9.9999999999999995e-8) && (ICab__U <= 9.9999999999999995e-8)) ? ((1.0 - 0.5 * ICab__U) * ICab__A) : (ICab__A * ICab__U / (-1.0 + exp(ICab__U))))
+
 ####Piecewise!
 
 IKs__temp_part_1 = (((IKs__U_1 >= -9.9999999999999995e-8) && (IKs__U_1 <= 9.9999999999999995e-8)) ? ((1.0 - 0.5 * IKs__U_1) * IKs__A_1) : (IKs__A_1 * IKs__U_1 / (-1.0 + exp(IKs__U_1))))
+
 ####Piecewise!
 
 IKs__temp_part_2 = (((IKs__U_2 >= -9.9999999999999995e-8) && (IKs__U_2 <= 9.9999999999999995e-8)) ? ((1.0 - 0.5 * IKs__U_2) * IKs__A_2) : (IKs__A_2 * IKs__U_2 / (-1.0 + exp(IKs__U_2))))
+
 ####Piecewise!
 
 INa__ah = ((cell__V >= -40.0) ? (0) : (0.13500000000000001 * exp(-11.764705882352942 - 0.14705882352941177 * cell__V)))
+
 ####Piecewise!
 
 INa__aj = ((cell__V >= -40.0) ? (0) : ((37.780000000000001 + cell__V) * (-127140.0 * exp(0.24440000000000001 * cell__V) - 3.4740000000000003e-5 * exp(-0.043909999999999998 * cell__V)) / (1.0 + exp(24.640530000000002 + 0.311 * cell__V))))
+
 ####Piecewise!
 
 INa__am = (((INa__U >= -9.9999999999999995e-8) && (INa__U <= 9.9999999999999995e-8)) ? ((1.0 - 0.5 * INa__U) * INa__A) : (INa__A * INa__U / (-1.0 + exp(INa__U))))
+
 ####Piecewise!
 
 INa__bh = ((cell__V >= -40.0) ? (7.6923076923076916 / (1.0 + exp(-0.96036036036036043 - 0.0900900900900901 * cell__V))) : (310000.0 * exp(0.34999999999999998 * cell__V) + 3.5600000000000001 * exp(0.079000000000000001 * cell__V)))
+
 ####Piecewise!
 
 INa__bj = ((cell__V >= -40.0) ? (0.29999999999999999 * exp(-2.5349999999999999e-7 * cell__V) / (1.0 + exp(-3.2000000000000002 - 0.10000000000000001 * cell__V))) : (0.1212 * exp(-0.01052 * cell__V) / (1.0 + exp(-5.5312920000000005 - 0.13780000000000001 * cell__V))))
+
 ####Piecewise!
 
 INal__amL = (((INal__U >= -9.9999999999999995e-8) && (INal__U <= 9.9999999999999995e-8)) ? ((1.0 - 0.5 * INal__U) * INal__A) : (INal__A * INal__U / (-1.0 + exp(INal__U))))
+
 ####Piecewise!
 
 Ito__rv = ((cell__V <= 0) ? (exp(cell__V / Ito__Cto)) : (1.0))
+
 ####Piecewise!
 
 Ito2__Ito2_max = (((Ito2__U >= -9.9999999999999995e-8) && (Ito2__U <= 9.9999999999999995e-8)) ? ((1.0 - 0.5 * Ito2__U) * Ito2__A) : (Ito2__A * Ito2__U / (-1.0 + exp(Ito2__U))))
+
 ####Piecewise!
 
 # Model: decker_2009(decker_2009.cellml)
 IKr_xr_gate__temp_part_1 = (((IKr_xr_gate__U_1 >= -9.9999999999999995e-8) && (IKr_xr_gate__U_1 <= 9.9999999999999995e-8)) ? ((1.0 - 0.5 * IKr_xr_gate__U_1) * IKr_xr_gate__A_1) : (IKr_xr_gate__A_1 * IKr_xr_gate__U_1 / (-1.0 + exp(IKr_xr_gate__U_1))))
+
 ####Piecewise!
 
 IKr_xr_gate__temp_part_2 = (((IKr_xr_gate__U_2 >= -9.9999999999999995e-8) && (IKr_xr_gate__U_2 <= 9.9999999999999995e-8)) ? ((1.0 - 0.5 * IKr_xr_gate__U_2) * IKr_xr_gate__A_2) : (IKr_xr_gate__A_2 * IKr_xr_gate__U_2 / (-1.0 + exp(IKr_xr_gate__U_2))))
+
 ####Piecewise!
 
 INaL_mL_gate__amL = (((INaL_mL_gate__U >= -9.9999999999999995e-8) && (INaL_mL_gate__U <= 9.9999999999999995e-8)) ? ((1.0 - 0.5 * INaL_mL_gate__U) * INaL_mL_gate__A) : (INaL_mL_gate__A * INaL_mL_gate__U / (-1.0 + exp(INaL_mL_gate__U))))
+
 ####Piecewise!
 
 INa_h_gate__ah = ((membrane__Vm >= -40.0) ? (0) : (0.13500000000000001 * exp(-11.764705882352942 - 0.14705882352941177 * membrane__Vm)))
+
 ####Piecewise!
 
 INa_h_gate__bh = ((membrane__Vm >= -40.0) ? (7.6923076923076916 / (1.0 + exp(-0.96036036036036043 - 0.0900900900900901 * membrane__Vm))) : (310000.0 * exp(0.34999999999999998 * membrane__Vm) + 3.5600000000000001 * exp(0.079000000000000001 * membrane__Vm)))
+
 ####Piecewise!
 
 INa_j_gate__aj = ((membrane__Vm >= -40.0) ? (0) : ((37.780000000000001 + membrane__Vm) * (-127140.0 * exp(0.24440000000000001 * membrane__Vm) - 6.9480000000000006e-5 * exp(-0.043909999999999998 * membrane__Vm)) / (1.0 + exp(24.640530000000002 + 0.311 * membrane__Vm))))
+
 ####Piecewise!
 
 INa_j_gate__bj = ((membrane__Vm >= -40.0) ? (0.29999999999999999 * exp(-2.5349999999999999e-7 * membrane__Vm) / (1.0 + exp(-3.2000000000000002 - 0.10000000000000001 * membrane__Vm))) : (0.1212 * exp(-0.01052 * membrane__Vm) / (1.0 + exp(-5.5312920000000005 - 0.13780000000000001 * membrane__Vm))))
+
 ####Piecewise!
 
 INa_m_gate__am = (((INa_m_gate__U >= -9.9999999999999995e-8) && (INa_m_gate__U <= 9.9999999999999995e-8)) ? ((1.0 - 0.5 * INa_m_gate__U) * INa_m_gate__A) : (INa_m_gate__A * INa_m_gate__U / (-1.0 + exp(INa_m_gate__U))))
+
 ####Piecewise!
 
 ICaL__ICaL_max = (((ICaL__U >= -9.9999999999999995e-8) && (ICaL__U <= 9.9999999999999995e-8)) ? ((1.0 - 0.5 * ICaL__U) * ICaL__A) : (ICaL__A * ICaL__U / (-1.0 + exp(ICaL__U))))
+
 ####Piecewise!
 
 ICab__ICab = (((ICab__U >= -9.9999999999999995e-8) && (ICab__U <= 9.9999999999999995e-8)) ? ((1.0 - 0.5 * ICab__U) * ICab__A) : (ICab__A * ICab__U / (-1.0 + exp(ICab__U))))
+
 ####Piecewise!
 
 INab__INab = (((INab__U >= -9.9999999999999995e-8) && (INab__U <= 9.9999999999999995e-8)) ? ((1.0 - 0.5 * INab__U) * INab__A) : (INab__A * INab__U / (-1.0 + exp(INab__U))))
+
 ####Piecewise!
 
 Ito2__Ito2_max = (((Ito2__U >= -9.9999999999999995e-8) && (Ito2__U <= 9.9999999999999995e-8)) ? ((1.0 - 0.5 * Ito2__U) * Ito2__A) : (Ito2__A * Ito2__U / (-1.0 + exp(Ito2__U))))
+
 ####Piecewise!
 
 # Model: demir_model_1994(demir_model_1994.cellml)
@@ -1280,9 +1365,11 @@ sodium_current__i_Na = 3611.8217397063127 * pow(sodium_current_m_gate__m, 3) * (
 
 # Model: difrancesco_noble_model_1985(difrancesco_noble_model_1985.cellml)
 fast_sodium_current_m_gate__alpha_m = ((fast_sodium_current_m_gate__delta_m > fabs(fast_sodium_current_m_gate__E0_m)) ? (2000.0) : (200.0 * fast_sodium_current_m_gate__E0_m / (1.0 - exp(-0.10000000000000001 * fast_sodium_current_m_gate__E0_m))))
+
 ####Piecewise!
 
 hyperpolarising_activated_current_y_gate__beta_y = ((hyperpolarising_activated_current_y_gate__delta_y > fabs(hyperpolarising_activated_current_y_gate__E0_y)) ? (2.5) : (hyperpolarising_activated_current_y_gate__E0_y / (1.0 - exp(-0.20000000000000001 * hyperpolarising_activated_current_y_gate__E0_y))))
+
 ####Piecewise!
 
 ## Equation 1:
@@ -1309,12 +1396,15 @@ intracellular_calcium_concentration__alpha_p = 0.625 * (34.0 + membrane__V) / (-
 ((fabs(34.0 + membrane__V) < 4.0000000001150227e-7) ? (-2.5000000000718892e-7 / (-1.0 + exp(-1.0000000000287557e-7)) + (42500000.498777881 + 1249999.9999640554 * membrane__V) * (2.5000000000718892e-7 / (-1.0 + exp(1.0000000000287557e-7)) + 2.5000000000718892e-7 / (-1.0 + exp(-1.0000000000287557e-7)))) : (0.625 * (34.0 + membrane__V) / (-1.0 + exp(8.5 + 0.25 * membrane__V))))
 
 second_inward_current_d_gate__alpha_d = ((second_inward_current_d_gate__delta_d > fabs(second_inward_current_d_gate__E0_d)) ? (120.0) : (30.0 * second_inward_current_d_gate__E0_d / (1.0 - exp(-0.25 * second_inward_current_d_gate__E0_d))))
+
 ####Piecewise!
 
 second_inward_current_d_gate__beta_d = ((second_inward_current_d_gate__delta_d > fabs(second_inward_current_d_gate__E0_d)) ? (120.0) : (12.0 * second_inward_current_d_gate__E0_d / (-1.0 + exp(0.10000000000000001 * second_inward_current_d_gate__E0_d))))
+
 ####Piecewise!
 
 second_inward_current_f_gate__alpha_f = ((second_inward_current_f_gate__delta_f > fabs(second_inward_current_f_gate__E0_f)) ? (25.0) : (6.25 * second_inward_current_f_gate__E0_f / (-1.0 + exp(0.25 * second_inward_current_f_gate__E0_f))))
+
 ####Piecewise!
 
 ## Equation 2:
@@ -1550,15 +1640,19 @@ L_type_calcium_current__i_Ca_L_Na = 0.00037433890822745472 * (1.0 - L_type_calci
 ((fabs(-50.0 + membrane__V) < 2.6713760659657915e-6) ? ((-9358472.2056995872 + 187169.45411399176 * membrane__V) * (9.9999999999858744e-10 * (1.0 - L_type_calcium_current_f_Ca_gate__f_Ca) * (1.0 - intracellular_calcium_concentration__Ca_i / (0.001 + intracellular_calcium_concentration__Ca_i)) * (intracellular_sodium_concentration__Na_i * exp(1.8716945411372736) - extracellular_sodium_concentration__Na_o * exp(9.9999999999406119e-8)) * L_type_calcium_current__P_Ca_L * L_type_calcium_current_d_gate__d / (1.0 - exp(9.9999999999406119e-8)) + 9.9999999999858744e-10 * (1.0 - L_type_calcium_current_f_Ca_gate__f_Ca) * (1.0 - intracellular_calcium_concentration__Ca_i / (0.001 + intracellular_calcium_concentration__Ca_i)) * (intracellular_sodium_concentration__Na_i * exp(1.8716945411372736) - extracellular_sodium_concentration__Na_o * exp(-9.9999999999406119e-8)) * L_type_calcium_current__P_Ca_L * L_type_calcium_current_d_gate__d / (1.0 - exp(-9.9999999999406119e-8))) - 9.9999999999858744e-10 * (1.0 - L_type_calcium_current_f_Ca_gate__f_Ca) * (1.0 - intracellular_calcium_concentration__Ca_i / (0.001 + intracellular_calcium_concentration__Ca_i)) * (intracellular_sodium_concentration__Na_i * exp(1.8716945411372736) - extracellular_sodium_concentration__Na_o * exp(9.9999999999406119e-8)) * L_type_calcium_current__P_Ca_L * L_type_calcium_current_d_gate__d / (1.0 - exp(9.9999999999406119e-8))) : (0.01 * (-50.0 + membrane__V) * (intracellular_sodium_concentration__Na_i * exp(50.0 / membrane__RTONF) - extracellular_sodium_concentration__Na_o * exp((50.0 - membrane__V) / membrane__RTONF)) * L_type_calcium_current__P_Ca_L * L_type_calcium_current_d_gate__d * L_type_calcium_current_f_Ca_gate__CaChon / ((1.0 - exp((50.0 - membrane__V) / membrane__RTONF)) * membrane__RTONF)))
 
 L_type_calcium_current_d_gate__alpha_d = ((fabs(L_type_calcium_current_d_gate__E0_d) < 0.0001) ? (120.0) : (30.0 * L_type_calcium_current_d_gate__E0_d / (1.0 - exp(-0.25 * L_type_calcium_current_d_gate__E0_d))))
+
 ####Piecewise!
 
 L_type_calcium_current_d_gate__beta_d = ((fabs(L_type_calcium_current_d_gate__E0_d) < 0.0001) ? (120.0) : (12.0 * L_type_calcium_current_d_gate__E0_d / (-1.0 + exp(0.10000000000000001 * L_type_calcium_current_d_gate__E0_d))))
+
 ####Piecewise!
 
 L_type_calcium_current_f_Ca_gate__alpha_f_Ca = ((fabs(L_type_calcium_current_f_Ca_gate__E0_f) < 0.0001) ? (25.0) : (6.25 * L_type_calcium_current_f_Ca_gate__E0_f / (-1.0 + exp(0.25 * L_type_calcium_current_f_Ca_gate__E0_f))))
+
 ####Piecewise!
 
 fast_sodium_current_m_gate__alpha_m = ((fast_sodium_current_m_gate__delta_m > fabs(fast_sodium_current_m_gate__E0_m)) ? (2000.0) : (200.0 * fast_sodium_current_m_gate__E0_m / (1.0 - exp(-0.10000000000000001 * fast_sodium_current_m_gate__E0_m))))
+
 ####Piecewise!
 
 # Model: espinosa_model_1998(espinosa_model_1998_normal.cellml)
@@ -1668,40 +1762,52 @@ L_type_Ca_channel__i_Ca_L_Na_ds = 0.00037433890822745472 * (-50.0 + membrane__V)
 ((fabs(-50.0 + membrane__V) < 2.6713760659657915e-6) ? ((-9358472.2056995872 + 187169.45411399176 * membrane__V) * (9.9999999999858744e-10 * (intracellular_sodium_concentration__Na_i * exp(1.8716945411372736) - extracellular_sodium_concentration__Na_o * exp(9.9999999999406119e-8)) * L_type_Ca_channel__P_Ca_L * L_type_Ca_channel_d_gate__d * L_type_Ca_channel_f2ds_gate__f2ds * L_type_Ca_channel_f_gate__f / (1.0 - exp(9.9999999999406119e-8)) + 9.9999999999858744e-10 * (intracellular_sodium_concentration__Na_i * exp(1.8716945411372736) - extracellular_sodium_concentration__Na_o * exp(-9.9999999999406119e-8)) * L_type_Ca_channel__P_Ca_L * L_type_Ca_channel_d_gate__d * L_type_Ca_channel_f2ds_gate__f2ds * L_type_Ca_channel_f_gate__f / (1.0 - exp(-9.9999999999406119e-8))) - 9.9999999999858744e-10 * (intracellular_sodium_concentration__Na_i * exp(1.8716945411372736) - extracellular_sodium_concentration__Na_o * exp(9.9999999999406119e-8)) * L_type_Ca_channel__P_Ca_L * L_type_Ca_channel_d_gate__d * L_type_Ca_channel_f2ds_gate__f2ds * L_type_Ca_channel_f_gate__f / (1.0 - exp(9.9999999999406119e-8))) : ((-50.0 + membrane__V) * (intracellular_sodium_concentration__Na_i * exp(50.0 * membrane__F / (membrane__R * membrane__T)) - extracellular_sodium_concentration__Na_o * exp((50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * L_type_Ca_channel__FrICa * L_type_Ca_channel__P_CaNa * L_type_Ca_channel__P_Ca_L * L_type_Ca_channel_d_gate__d * L_type_Ca_channel_f2ds_gate__f2ds * L_type_Ca_channel_f_gate__f * membrane__F / ((1.0 - exp((50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * membrane__R * membrane__T)))
 
 L_type_Ca_channel_d_gate__alpha_d = ((fabs(L_type_Ca_channel_d_gate__E0_d) < 0.0001) ? (120.0) : (30.0 * L_type_Ca_channel_d_gate__E0_d / (1.0 - exp(-0.33333333333333331 * L_type_Ca_channel_d_gate__E0_d))))
+
 ####Piecewise!
 
 L_type_Ca_channel_d_gate__beta_d = ((fabs(L_type_Ca_channel_d_gate__E0_d) < 0.0001) ? (120.0) : (12.0 * L_type_Ca_channel_d_gate__E0_d / (-1.0 + exp(0.13333333333333333 * L_type_Ca_channel_d_gate__E0_d))))
+
 ####Piecewise!
 
 L_type_Ca_channel_f_gate__alpha_f = ((L_type_Ca_channel_f_gate__delta_f > fabs(L_type_Ca_channel_f_gate__E0_f)) ? (25.0) : (6.25 * L_type_Ca_channel_f_gate__E0_f / (-1.0 + exp(0.18181818181818182 * L_type_Ca_channel_f_gate__E0_f))))
+
 ####Piecewise!
 
 calcium_release__SpeedRel = ((membrane__V < -50.0) ? (5.0) : (1.0))
+
 ####Piecewise!
 
 fast_sodium_current_m_gate__alpha_m = ((fast_sodium_current_m_gate__delta_m > fabs(fast_sodium_current_m_gate__E0_m)) ? (2000.0) : (200.0 * fast_sodium_current_m_gate__E0_m / (1.0 - exp(-0.10000000000000001 * fast_sodium_current_m_gate__E0_m))))
+
 ####Piecewise!
 
 time_dependent_potassium_current_x_gate__alpha_x = ((time_dependent_potassium_current_x_gate__delta_x > fabs(time_dependent_potassium_current_x_gate__E0_x)) ? (2.5) : (1.5 * time_dependent_potassium_current_x_gate__E0_x / (1.0 - exp(-0.20000000000000001 * time_dependent_potassium_current_x_gate__E0_x))))
+
 ####Piecewise!
 
 time_dependent_potassium_current_x_gate__beta_x = ((time_dependent_potassium_current_x_gate__delta_x > fabs(time_dependent_potassium_current_x_gate__E0_x)) ? (2.5) : (0.53400000000000003 * time_dependent_potassium_current_x_gate__E0_x / (-1.0 + exp(0.066666666666666666 * time_dependent_potassium_current_x_gate__E0_x))))
+
 ####Piecewise!
 
 # Model: faber_rudy_2000(faber_rudy_2000.cellml)
 Derivative(_calcium_dynamics__APtrack2, _environment__time) = (((calcium_dynamics__APtrack > 0.17999999999999999) && (calcium_dynamics__APtrack < 0.20000000000000001)) ? (100.0 - 100.5 * calcium_dynamics__APtrack2) : (-0.5 * calcium_dynamics__APtrack2))
+
 ####Piecewise!
 
 Derivative(_calcium_dynamics__APtrack3, _environment__time) = (((calcium_dynamics__APtrack > 0.17999999999999999) && (calcium_dynamics__APtrack < 0.20000000000000001)) ? (100.0 - 100.5 * calcium_dynamics__APtrack3) : (-0.01 * calcium_dynamics__APtrack3))
+
 ####Piecewise!
 
 Derivative(_calcium_dynamics__OVRLDtrack2, _environment__time) = (((calcium_dynamics__Logicthresh > calcium_dynamics__OVRLDtrack2) && (calcium_dynamics__Logicthresh < calcium_dynamics__OVRLDtrack)) ? (50.0 - 50.0 * calcium_dynamics__OVRLDtrack2) : (-0.5 * calcium_dynamics__OVRLDtrack2))
+
 ####Piecewise!
 
 Derivative(_calcium_dynamics__OVRLDtrack, _environment__time) = (((calcium_dynamics__APtrack3 < 0.37) && (calcium_dynamics__OVRLDtrack3 < 0.37) && (calcium_dynamics__CSQNthresh < 1 / (1.0 + calcium_dynamics__K_mCSQN / calcium_dynamics__Ca_JSR))) ? (50.0 - 50.0 * calcium_dynamics__OVRLDtrack) : (-0.5 * calcium_dynamics__OVRLDtrack))
+
 ####Piecewise!
 
 Derivative(_calcium_dynamics__OVRLDtrack3, _environment__time) = (((calcium_dynamics__Logicthresh > calcium_dynamics__OVRLDtrack3) && (calcium_dynamics__Logicthresh < calcium_dynamics__OVRLDtrack)) ? (50.0 - 50.0 * calcium_dynamics__OVRLDtrack3) : (-0.01 * calcium_dynamics__OVRLDtrack3))
+
 ####Piecewise!
 
 ## Equation 1:
@@ -1728,24 +1834,31 @@ L_type_Ca_channel__I_CaCa = 14448.004881001343 * (-0.34100000000000003 * calcium
 ((fabs(cell__V) < 1.3356169352749131e-6) ? ((0.5 + 374358.83507802623 * cell__V) * (0.019296999999999998 * (-0.34100000000000003 * calcium_dynamics__Cao + calcium_dynamics__Cai * exp(9.9999999999999995e-8)) * L_type_Ca_channel__P_Ca / (-1.0 + exp(9.9999999999999995e-8)) + 0.019296999999999998 * (-0.34100000000000003 * calcium_dynamics__Cao + calcium_dynamics__Cai * exp(-9.9999999999999995e-8)) * L_type_Ca_channel__P_Ca / (-1.0 + exp(-9.9999999999999995e-8))) - 0.019296999999999998 * (-0.34100000000000003 * calcium_dynamics__Cao + calcium_dynamics__Cai * exp(-9.9999999999999995e-8)) * L_type_Ca_channel__P_Ca / (-1.0 + exp(-9.9999999999999995e-8))) : (4.0 * pow(cell__F, 2) * (-L_type_Ca_channel__gamma_Cao * calcium_dynamics__Cao + L_type_Ca_channel__gamma_Cai * calcium_dynamics__Cai * exp(2.0 * cell__F * cell__V / (cell__R * cell__T))) * L_type_Ca_channel__P_Ca * cell__V / ((-1.0 + exp(2.0 * cell__F * cell__V / (cell__R * cell__T))) * cell__R * cell__T)))
 
 L_type_Ca_channel_d_gate__tau_d = ((fabs(L_type_Ca_channel_d_gate__E0_d) < 1.0000000000000001e-5) ? (2.2893772893772892) : (28.571428571428569 * (1.0 - exp(-0.16025641025641024 * L_type_Ca_channel_d_gate__E0_d)) * L_type_Ca_channel_d_gate__d_infinity / L_type_Ca_channel_d_gate__E0_d))
+
 ####Piecewise!
 
 T_type_Ca_channel_g_gate__tau_g = ((cell__V <= 0) ? (12.0 - 0.875 * cell__V) : (12.0))
+
 ####Piecewise!
 
 fast_sodium_current_h_gate__alpha_h = ((cell__V < -40.0) ? (0.13500000000000001 * exp(-11.764705882352942 + 0.14705882352941177 * fast_sodium_current__shift_INa_inact - 0.14705882352941177 * cell__V)) : (0))
+
 ####Piecewise!
 
 fast_sodium_current_h_gate__beta_h = ((cell__V < -40.0) ? (310000.0 * exp(0.34999999999999998 * cell__V - 0.34999999999999998 * fast_sodium_current__shift_INa_inact) + 3.5600000000000001 * exp(0.079000000000000001 * cell__V - 0.079000000000000001 * fast_sodium_current__shift_INa_inact)) : (7.6923076923076916 / (1.0 + exp(-0.96036036036036043 + 0.0900900900900901 * fast_sodium_current__shift_INa_inact - 0.0900900900900901 * cell__V))))
+
 ####Piecewise!
 
 fast_sodium_current_j_gate__alpha_j = ((cell__V < -40.0) ? ((37.780000000000001 + cell__V) * (-127140.0 * exp(0.24440000000000001 * cell__V - 0.24440000000000001 * fast_sodium_current__shift_INa_inact) - 3.4740000000000003e-5 * exp(0.043909999999999998 * fast_sodium_current__shift_INa_inact - 0.043909999999999998 * cell__V)) / (1.0 + exp(24.640530000000002 + 0.311 * cell__V - 0.311 * fast_sodium_current__shift_INa_inact))) : (0))
+
 ####Piecewise!
 
 fast_sodium_current_j_gate__beta_j = ((cell__V < -40.0) ? (0.1212 * exp(0.01052 * fast_sodium_current__shift_INa_inact - 0.01052 * cell__V) / (1.0 + exp(-5.5312920000000005 + 0.13780000000000001 * fast_sodium_current__shift_INa_inact - 0.13780000000000001 * cell__V))) : (0.29999999999999999 * exp(2.5349999999999999e-7 * fast_sodium_current__shift_INa_inact - 2.5349999999999999e-7 * cell__V) / (1.0 + exp(-3.2000000000000002 + 0.10000000000000001 * fast_sodium_current__shift_INa_inact - 0.10000000000000001 * cell__V))))
+
 ####Piecewise!
 
 fast_sodium_current_m_gate__alpha_m = ((fast_sodium_current_m_gate__delta_m <= fabs(fast_sodium_current_m_gate__E0_m)) ? (0.32000000000000001 * fast_sodium_current_m_gate__E0_m / (1.0 - exp(-0.10000000000000001 * fast_sodium_current_m_gate__E0_m))) : (3.2000000000000002))
+
 ####Piecewise!
 
 ## Equation 2:
@@ -1883,6 +1996,7 @@ rapid_delayed_rectifier_potassium_current_xr_gate__tau_xr = 1 / (0.0006099999999
 ((fabs(14.199999999999999 + cell__V) < 8.1300813006834893e-7) ? (1 / (0.015066999504065039 / (-1.0 + exp(3.5814998821138206)) - 1.1219512194943214e-9 / (1.0 - exp(9.9999999999406119e-8))) + (8733000.5000645891 + 615000.00000454858 * cell__V) * (1 / (1.1219512195134727e-9 / (1.0 - exp(-9.9999999999406119e-8)) + 0.015067000495934959 / (-1.0 + exp(3.5815001178861787))) - 1 / (0.015066999504065039 / (-1.0 + exp(3.5814998821138206)) - 1.1219512194943214e-9 / (1.0 - exp(9.9999999999406119e-8))))) : ((fabs(38.899999999999999 + cell__V) < 6.8965517246999397e-7) ? (1 / (-0.034086000951724135 / (1.0 - exp(3.0381000848275859)) - 4.2068965517283451e-10 / (-1.0 + exp(-1.0000000000287557e-7))) + (28202500.498836767 + 724999.99997009686 * cell__V) * (1 / (4.2068965520669629e-10 / (-1.0 + exp(1.0000000000287557e-7)) - 0.034085999048275861 / (1.0 - exp(3.0380999151724137))) - 1 / (-0.034086000951724135 / (1.0 - exp(3.0381000848275859)) - 4.2068965517283451e-10 / (-1.0 + exp(-1.0000000000287557e-7))))) : (1 / (0.00060999999999999997 * (38.899999999999999 + cell__V) / (-1.0 + exp(5.6404999999999994 + 0.14499999999999999 * cell__V)) + 0.0013799999999999999 * (14.199999999999999 + cell__V) / (1.0 - exp(-1.7465999999999999 - 0.123 * cell__V))))))
 
 Derivative(_calcium_dynamics__Cainfluxtrack, _environment__time) = ((calcium_dynamics__APtrack > 0.20000000000000001) ? (-0.5 * (-2.0 * Na_Ca_exchanger__i_NaCa + L_type_Ca_channel__i_CaCa + T_type_Ca_channel__i_Ca_T + calcium_background_current__i_Ca_b + sarcolemmal_calcium_pump__i_p_Ca) * geometry__A_cap / (cell__F * geometry__V_myo)) : ((calcium_dynamics__APtrack2 > 0.01) ? (0) : (-0.5 * calcium_dynamics__Cainfluxtrack)))
+
 ####Piecewise!
 
 ## Equation 7:
@@ -1952,6 +2066,7 @@ slow_delayed_rectifier_potassium_current_xs2_gate__tau_xs2 = 4.0 / (0.0001310000
 ((fabs(30.0 + cell__V) < 6.7567567568760367e-7) ? (4.0 / (-8.8513513515076093e-11 / (-1.0 + exp(-4.6418918920460017e-8)) - 4.8581081081938701e-11 / (1.0 - exp(1.0000000000287557e-7))) + (22200000.499608092 + 739999.99998693645 * cell__V) * (4.0 / (8.8513513515076093e-11 / (-1.0 + exp(4.6418918920460017e-8)) + 4.8581081081938701e-11 / (1.0 - exp(-1.0000000000287557e-7))) - 4.0 / (-8.8513513515076093e-11 / (-1.0 + exp(-4.6418918920460017e-8)) - 4.8581081081938701e-11 / (1.0 - exp(1.0000000000287557e-7))))) : (4.0 / (0.00013100000000000001 * (30.0 + cell__V) / (-1.0 + exp(2.0609999999999999 + 0.068699999999999997 * cell__V)) + 7.1899999999999999e-5 * (30.0 + cell__V) / (1.0 - exp(-4.4399999999999995 - 0.14799999999999999 * cell__V)))))
 
 Derivative(_calcium_dynamics__APtrack, _environment__time) = ((cell__dVdt > 150.0) ? (100.0 - 100.5 * calcium_dynamics__APtrack) : (-0.5 * calcium_dynamics__APtrack))
+
 ####Piecewise!
 
 # Model: fink_noble_giles_model_2008(fink_noble_giles_model_2008.cellml)
@@ -1979,15 +2094,19 @@ ICaL__i_CaL = 14447.286958825251 * (-15.0 + cell__V) * (-Environment__Ca_o + 0.0
 ((fabs(-15.0 + cell__V) < 1.3356880329828957e-6) ? ((-5615083.1234197523 + 374338.90822798351 * cell__V) * (0.019297068299972742 * (-Environment__Ca_o + 0.25 * Ca__Ca_ss * exp(9.9999999999406119e-8)) * ICaL__g_CaL * iCaL_d_gate__d * iCaL_f2_gate__f2 * iCaL_fCass_gate__fCass * iCaL_f_gate__f / (-1.0 + exp(9.9999999999406119e-8)) + 0.019297068299972742 * (-Environment__Ca_o + 0.25 * Ca__Ca_ss * exp(-9.9999999999406119e-8)) * ICaL__g_CaL * iCaL_d_gate__d * iCaL_f2_gate__f2 * iCaL_fCass_gate__fCass * iCaL_f_gate__f / (-1.0 + exp(-9.9999999999406119e-8))) - 0.019297068299972742 * (-Environment__Ca_o + 0.25 * Ca__Ca_ss * exp(-9.9999999999406119e-8)) * ICaL__g_CaL * iCaL_d_gate__d * iCaL_f2_gate__f2 * iCaL_fCass_gate__fCass * iCaL_f_gate__f / (-1.0 + exp(-9.9999999999406119e-8))) : (pow(Environment__F, 2) * pow(ICaL__z, 2) * (-15.0 + cell__V) * (-Environment__Ca_o + 0.25 * Ca__Ca_ss * exp(2.0 * (-15.0 + cell__V) * Environment__F / (Environment__R * Environment__T))) * ICaL__g_CaL * iCaL_d_gate__d * iCaL_f2_gate__f2 * iCaL_fCass_gate__fCass * iCaL_f_gate__f / ((-1.0 + exp(2.0 * (-15.0 + cell__V) * Environment__F / (Environment__R * Environment__T))) * Environment__R * Environment__T)))
 
 iNa_h_gate__alpha_h = ((cell__V < -40.0 + INa__shift_INa_inact) ? (0.057000000000000002 * exp(-11.764705882352942 + 0.14705882352941177 * INa__shift_INa_inact - 0.14705882352941177 * cell__V)) : (0))
+
 ####Piecewise!
 
 iNa_h_gate__beta_h = ((cell__V < -40.0 + INa__shift_INa_inact) ? (310000.0 * exp(0.34849999999999998 * cell__V - 0.34849999999999998 * INa__shift_INa_inact) + 2.7000000000000002 * exp(0.079000000000000001 * cell__V - 0.079000000000000001 * INa__shift_INa_inact)) : (5.9230769230769234 / (1.0 + exp(-0.96036036036036043 + 0.0900900900900901 * INa__shift_INa_inact - 0.0900900900900901 * cell__V))))
+
 ####Piecewise!
 
 iNa_j_gate__alpha_j = ((cell__V < -40.0 + INa__shift_INa_inact) ? ((37.780000000000001 + cell__V) * (-25428.0 * exp(0.24440000000000001 * cell__V - 0.24440000000000001 * INa__shift_INa_inact) - 6.9480000000000002e-6 * exp(0.043909999999999998 * INa__shift_INa_inact - 0.043909999999999998 * cell__V)) / (1.0 + exp(24.640530000000002 + 0.311 * cell__V - 0.311 * INa__shift_INa_inact))) : (0))
+
 ####Piecewise!
 
 iNa_j_gate__beta_j = ((cell__V < -40.0 + INa__shift_INa_inact) ? (0.024240000000000001 * exp(0.01052 * INa__shift_INa_inact - 0.01052 * cell__V) / (1.0 + exp(-5.5312920000000005 + 0.13780000000000001 * INa__shift_INa_inact - 0.13780000000000001 * cell__V))) : (0.59999999999999998 * exp(0.057000000000000002 * cell__V - 0.057000000000000002 * INa__shift_INa_inact) / (1.0 + exp(-3.2000000000000002 + 0.10000000000000001 * INa__shift_INa_inact - 0.10000000000000001 * cell__V))))
+
 ####Piecewise!
 
 # Model: fox_model_2001(fox_mcharg_gilmour_2002.cellml)
@@ -2089,21 +2208,27 @@ I_Ca__taud = 28.571428571428569 * (1.0 - 0.4345982085070782 * exp(-0.16666666666
 ((fabs(5.0 + membrane_potential__V_m) < 6.0000000000337561e-7) ? ((4166667.1666432251 + 833333.33332864498 * membrane_potential__V_m) * (47619047.618779711 * (1.0 - exp(1.0000000000027348e-7)) / (1.0 + exp(1.0000000000027348e-7)) + 47619047.618779711 * (1.0 - exp(-1.0000000000114084e-7)) / (1.0 + exp(-1.0000000000114084e-7))) - 47619047.618779711 * (1.0 - exp(1.0000000000027348e-7)) / (1.0 + exp(1.0000000000027348e-7))) : (28.571428571428569 * (1.0 - exp(-0.83333333333333337 - 0.16666666666666666 * membrane_potential__V_m)) * I_Ca__dss / (5.0 + membrane_potential__V_m)))
 
 I_Na__ah = ((membrane_potential__V_m >= -40.0) ? (0) : (0.057000000000000002 * exp(-11.764705882352942 + 0.14705882352941177 * I_Na__shift_INa_inact - 0.14705882352941177 * membrane_potential__V_m)))
+
 ####Piecewise!
 
 I_Na__aj = ((membrane_potential__V_m >= -40.0) ? (0) : ((37.780000000000001 + membrane_potential__V_m) * (-25428.0 * exp(0.24440000000000001 * membrane_potential__V_m - 0.24440000000000001 * I_Na__shift_INa_inact) - 6.9480000000000002e-6 * exp(0.043909999999999998 * I_Na__shift_INa_inact - 0.043909999999999998 * membrane_potential__V_m)) / (1.0 + exp(24.640530000000002 + 0.311 * membrane_potential__V_m - 0.311 * I_Na__shift_INa_inact))))
+
 ####Piecewise!
 
 I_Na__bh = ((membrane_potential__V_m >= -40.0) ? (5.9230769230769234 / (1.0 + exp(-0.96036036036036043 + 0.0900900900900901 * I_Na__shift_INa_inact - 0.0900900900900901 * membrane_potential__V_m))) : (310000.0 * exp(0.34849999999999998 * membrane_potential__V_m - 0.34849999999999998 * I_Na__shift_INa_inact) + 2.7000000000000002 * exp(0.079000000000000001 * membrane_potential__V_m - 0.079000000000000001 * I_Na__shift_INa_inact)))
+
 ####Piecewise!
 
 I_Na__bj = ((membrane_potential__V_m >= -40.0) ? (0.59999999999999998 * exp(0.057000000000000002 * membrane_potential__V_m - 0.057000000000000002 * I_Na__shift_INa_inact) / (1.0 + exp(-3.2000000000000002 + 0.10000000000000001 * I_Na__shift_INa_inact - 0.10000000000000001 * membrane_potential__V_m))) : (0.024240000000000001 * exp(0.01052 * I_Na__shift_INa_inact - 0.01052 * membrane_potential__V_m) / (1.0 + exp(-5.5312920000000005 + 0.13780000000000001 * I_Na__shift_INa_inact - 0.13780000000000001 * membrane_potential__V_m))))
+
 ####Piecewise!
 
 I_to__GtoFast = ((parameters__epi == 1.0) ? (0.1144 * I_to__GtoFast_factor) : (0.0014039999999999999 * I_to__GtoFast_factor))
+
 ####Piecewise!
 
 I_to__GtoSlow = ((parameters__epi == 1.0) ? (0.015599999999999999 * I_to__GtoSlow_factor) : (0.037595999999999997 * I_to__GtoSlow_factor))
+
 ####Piecewise!
 
 ## Equation 2:
@@ -2291,21 +2416,27 @@ I_Ca__taud = 28.571428571428569 * (1.0 - 0.4345982085070782 * exp(-0.16666666666
 ((fabs(5.0 + membrane_potential__V_m) < 6.0000000000337561e-7) ? ((4166667.1666432251 + 833333.33332864498 * membrane_potential__V_m) * (47619047.618779711 * (1.0 - exp(1.0000000000027348e-7)) / (1.0 + exp(1.0000000000027348e-7)) + 47619047.618779711 * (1.0 - exp(-1.0000000000114084e-7)) / (1.0 + exp(-1.0000000000114084e-7))) - 47619047.618779711 * (1.0 - exp(1.0000000000027348e-7)) / (1.0 + exp(1.0000000000027348e-7))) : (28.571428571428569 * (1.0 - exp(-0.83333333333333337 - 0.16666666666666666 * membrane_potential__V_m)) * I_Ca__dss / (5.0 + membrane_potential__V_m)))
 
 I_Na__ah = ((membrane_potential__V_m >= -40.0) ? (0) : (0.057000000000000002 * exp(-11.764705882352942 + 0.14705882352941177 * I_Na__shift_INa_inact - 0.14705882352941177 * membrane_potential__V_m)))
+
 ####Piecewise!
 
 I_Na__aj = ((membrane_potential__V_m >= -40.0) ? (0) : ((37.780000000000001 + membrane_potential__V_m) * (-25428.0 * exp(0.24440000000000001 * membrane_potential__V_m - 0.24440000000000001 * I_Na__shift_INa_inact) - 6.9480000000000002e-6 * exp(0.043909999999999998 * I_Na__shift_INa_inact - 0.043909999999999998 * membrane_potential__V_m)) / (1.0 + exp(24.640530000000002 + 0.311 * membrane_potential__V_m - 0.311 * I_Na__shift_INa_inact))))
+
 ####Piecewise!
 
 I_Na__bh = ((membrane_potential__V_m >= -40.0) ? (5.9230769230769234 / (1.0 + exp(-0.96036036036036043 + 0.0900900900900901 * I_Na__shift_INa_inact - 0.0900900900900901 * membrane_potential__V_m))) : (310000.0 * exp(0.34849999999999998 * membrane_potential__V_m - 0.34849999999999998 * I_Na__shift_INa_inact) + 2.7000000000000002 * exp(0.079000000000000001 * membrane_potential__V_m - 0.079000000000000001 * I_Na__shift_INa_inact)))
+
 ####Piecewise!
 
 I_Na__bj = ((membrane_potential__V_m >= -40.0) ? (0.59999999999999998 * exp(0.057000000000000002 * membrane_potential__V_m - 0.057000000000000002 * I_Na__shift_INa_inact) / (1.0 + exp(-3.2000000000000002 + 0.10000000000000001 * I_Na__shift_INa_inact - 0.10000000000000001 * membrane_potential__V_m))) : (0.024240000000000001 * exp(0.01052 * I_Na__shift_INa_inact - 0.01052 * membrane_potential__V_m) / (1.0 + exp(-5.5312920000000005 + 0.13780000000000001 * I_Na__shift_INa_inact - 0.13780000000000001 * membrane_potential__V_m))))
+
 ####Piecewise!
 
 I_to__GtoFast = ((parameters__epi == 1.0) ? (0.1144 * I_to__GtoFast_factor) : (0.0014039999999999999 * I_to__GtoFast_factor))
+
 ####Piecewise!
 
 I_to__GtoSlow = ((parameters__epi == 1.0) ? (0.015599999999999999 * I_to__GtoSlow_factor) : (0.037595999999999997 * I_to__GtoSlow_factor))
+
 ####Piecewise!
 
 ## Equation 2:
@@ -2425,15 +2556,19 @@ I_Ca__ibarna_sl = 2.7090009151877515e-5 * (-0.75 * parameters__Nao + 0.75 * Na_C
 
 # Model: hilgemann_noble_model_1987(hilgemann_noble_model_1987.cellml)
 fast_sodium_current_m_gate__alpha_m = ((fast_sodium_current_m_gate__delta_m > fabs(fast_sodium_current_m_gate__E0_m)) ? (2000.0) : (200.0 * fast_sodium_current_m_gate__E0_m / (1.0 - exp(-0.10000000000000001 * fast_sodium_current_m_gate__E0_m))))
+
 ####Piecewise!
 
 second_inward_calcium_current_d_gate__alpha_d = ((second_inward_calcium_current_d_gate__delta_d > fabs(second_inward_calcium_current_d_gate__E0_d)) ? (120.0) : (30.0 * second_inward_calcium_current_d_gate__E0_d / (1.0 - exp(-0.25 * second_inward_calcium_current_d_gate__E0_d))))
+
 ####Piecewise!
 
 second_inward_calcium_current_d_gate__beta_d = ((second_inward_calcium_current_d_gate__delta_d > fabs(second_inward_calcium_current_d_gate__E0_d)) ? (120.0) : (12.0 * second_inward_calcium_current_d_gate__E0_d / (-1.0 + exp(0.10000000000000001 * second_inward_calcium_current_d_gate__E0_d))))
+
 ####Piecewise!
 
 second_inward_calcium_current_f_Ca_gate__alpha_f_Ca = ((second_inward_calcium_current_f_Ca_gate__delta_f > fabs(second_inward_calcium_current_f_Ca_gate__E0_f)) ? (25.0) : (6.25 * second_inward_calcium_current_f_Ca_gate__E0_f / (-1.0 + exp(0.25 * second_inward_calcium_current_f_Ca_gate__E0_f))))
+
 ####Piecewise!
 
 ## Equation 1:
@@ -2507,13 +2642,16 @@ second_inward_calcium_current__i_siNa = 0.00037433890822745472 * (1.0 - second_i
 
 # Model: hodgkin_huxley_squid_axon_model_1952_modified(hodgkin_huxley_squid_axon_model_1952_modified.cellml)
 potassium_channel_n_gate__alpha_n = (((potassium_channel_n_gate__U >= -9.9999999999999995e-8) && (potassium_channel_n_gate__U <= 9.9999999999999995e-8)) ? ((1.0 - 0.5 * potassium_channel_n_gate__U) * potassium_channel_n_gate__A) : (potassium_channel_n_gate__A * potassium_channel_n_gate__U / (-1.0 + exp(potassium_channel_n_gate__U))))
+
 ####Piecewise!
 
 sodium_channel_m_gate__alpha_m = (((sodium_channel_m_gate__U >= -9.9999999999999995e-8) && (sodium_channel_m_gate__U <= 9.9999999999999995e-8)) ? ((1.0 - 0.5 * sodium_channel_m_gate__U) * sodium_channel_m_gate__A) : (sodium_channel_m_gate__A * sodium_channel_m_gate__U / (-1.0 + exp(sodium_channel_m_gate__U))))
+
 ####Piecewise!
 
 # Model: HundRudy2004_units(hund_rudy_2004.cellml)
 INa__GNa = ((Environment__tissue == 0) ? (INa__GNa_max) : (4.0 * INa__GNa_max))
+
 ####Piecewise!
 
 ## Equation 1:
@@ -2540,6 +2678,7 @@ ICaL__ibarca = 14448.004881000332 * (-15.0 + cell__V) * (-0.34100000000000003 * 
 ((fabs(-15.0 + cell__V) < 1.3356169352718439e-6) ? ((-5615382.0261832969 + 374358.83507888648 * cell__V) * (0.019296999999954306 * (-0.34100000000000003 * Environment__Ca_o + Ca__Ca_ss * exp(9.9999999999406119e-8)) * ICaL__pca / (-1.0 + exp(9.9999999999406119e-8)) + 0.019296999999954306 * (-0.34100000000000003 * Environment__Ca_o + Ca__Ca_ss * exp(-9.9999999999406119e-8)) * ICaL__pca / (-1.0 + exp(-9.9999999999406119e-8))) - 0.019296999999954306 * (-0.34100000000000003 * Environment__Ca_o + Ca__Ca_ss * exp(-9.9999999999406119e-8)) * ICaL__pca / (-1.0 + exp(-9.9999999999406119e-8))) : (4.0 * (-15.0 + cell__V) * (-Environment__Ca_o * ICaL__gacao + Ca__Ca_ss * ICaL__gacai * exp(2.0 * (-15.0 + cell__V) * Environment__FonRT)) * Environment__F * Environment__FonRT * ICaL__pca / (-1.0 + exp(2.0 * (-15.0 + cell__V) * Environment__FonRT))))
 
 ICaL__ICaL = ((Environment__tissue == 0) ? (pow(ICaL__d, ICaL__dp) * ICaL__f * ICaL__f2 * ICaL__fca * ICaL__fca2 * ICaL__ibarca) : (ICaL__d * ICaL__f * ICaL__f2 * ICaL__fca * ICaL__fca2 * ICaL__ibarca))
+
 ####Piecewise!
 
 ## Equation 2:
@@ -2650,9 +2789,11 @@ IKs__tauxs = 1 / (7.6100000000000007e-5 * (44.600000000000001 + cell__V) / (1.0 
 ((fabs(44.600000000000001 + cell__V) < 1.0030090258350555e-8) ? (1 / (-0.016254000003610835 / (-1.0 + exp(-5.7792000012838516)) - 7.6328986866047728e-13 / (1.0 - exp(9.9999999836342113e-8))) + (2223310003.262351 + 49850000.061936118 * cell__V) * (1 / (7.6328986866047728e-13 / (1.0 - exp(-9.9999999836342113e-8)) - 0.016253999996389171 / (-1.0 + exp(-5.7791999987161491))) - 1 / (-0.016254000003610835 / (-1.0 + exp(-5.7792000012838516)) - 7.6328986866047728e-13 / (1.0 - exp(9.9999999836342113e-8))))) : ((fabs(-0.55000000000000004 + cell__V) < 7.8124999999557715e-7) ? (1 / (0.0034359149405468756 / (1.0 - exp(-450.14549221093756)) - 2.8124999999903229e-10 / (-1.0 + exp(-9.999999999962296e-8))) + (-351999.50000003882 + 640000.00000007043 * cell__V) * (1 / (2.812500000009058e-10 / (-1.0 + exp(1.0000000000027348e-7)) + 0.0034359150594531255 / (1.0 - exp(-450.14550778906255))) - 1 / (0.0034359149405468756 / (1.0 - exp(-450.14549221093756)) - 2.8124999999903229e-10 / (-1.0 + exp(-9.999999999962296e-8))))) : (1 / (7.6100000000000007e-5 * (44.600000000000001 + cell__V) / (1.0 - exp(-444.66200000000003 - 9.9700000000000006 * cell__V)) + 0.00036000000000000002 * (-0.55000000000000004 + cell__V) / (-1.0 + exp(-0.070400000000000004 + 0.128 * cell__V))))))
 
 INa__ah = ((cell__V >= -40.0) ? (0) : (0.13500000000000001 * exp(-11.764705882352942 + 0.14705882352941177 * INa__shift_INa_inact - 0.14705882352941177 * cell__V)))
+
 ####Piecewise!
 
 INa__aj = ((cell__V >= -40.0) ? (0) : ((37.780000000000001 + cell__V) * (-127140.0 * exp(0.24440000000000001 * cell__V - 0.24440000000000001 * INa__shift_INa_inact) - 3.4740000000000003e-5 * exp(0.043909999999999998 * INa__shift_INa_inact - 0.043909999999999998 * cell__V)) / (1.0 + exp(24.640530000000002 + 0.311 * cell__V - 0.311 * INa__shift_INa_inact))))
+
 ####Piecewise!
 
 ## Equation 5:
@@ -2679,9 +2820,11 @@ INa__am = 0.32000000000000001 * (47.130000000000003 + cell__V) / (1.0 - 0.008977
 ((fabs(47.130000000000003 + cell__V) < 1.0000000000287557e-6) ? (-3.200000000092018e-7 / (1.0 - exp(1.0000000000287557e-7)) + (23565000.499322373 + 499999.99998562218 * cell__V) * (3.200000000092018e-7 / (1.0 - exp(1.0000000000287557e-7)) + 3.200000000092018e-7 / (1.0 - exp(-1.0000000000287557e-7)))) : (0.32000000000000001 * (47.130000000000003 + cell__V) / (1.0 - exp(-4.7130000000000001 - 0.10000000000000001 * cell__V))))
 
 INa__bh = ((cell__V >= -40.0) ? (7.6923076923076916 / (1.0 + exp(-0.96036036036036043 + 0.0900900900900901 * INa__shift_INa_inact - 0.0900900900900901 * cell__V))) : (310000.0 * exp(0.34999999999999998 * cell__V - 0.34999999999999998 * INa__shift_INa_inact) + 3.5600000000000001 * exp(0.079000000000000001 * cell__V - 0.079000000000000001 * INa__shift_INa_inact)))
+
 ####Piecewise!
 
 INa__bj = ((cell__V >= -40.0) ? (0.29999999999999999 * exp(2.5349999999999999e-7 * INa__shift_INa_inact - 2.5349999999999999e-7 * cell__V) / (1.0 + exp(-3.2000000000000002 + 0.10000000000000001 * INa__shift_INa_inact - 0.10000000000000001 * cell__V))) : (0.1212 * exp(0.01052 * INa__shift_INa_inact - 0.01052 * cell__V) / (1.0 + exp(-5.5312920000000005 + 0.13780000000000001 * INa__shift_INa_inact - 0.13780000000000001 * cell__V))))
+
 ####Piecewise!
 
 ## Equation 6:
@@ -2708,6 +2851,7 @@ INal__amL = 0.32000000000000001 * (47.130000000000003 + cell__V) / (1.0 - 0.0089
 ((fabs(47.130000000000003 + cell__V) < 1.0000000000287557e-6) ? (-3.200000000092018e-7 / (1.0 - exp(1.0000000000287557e-7)) + (23565000.499322373 + 499999.99998562218 * cell__V) * (3.200000000092018e-7 / (1.0 - exp(1.0000000000287557e-7)) + 3.200000000092018e-7 / (1.0 - exp(-1.0000000000287557e-7)))) : (0.32000000000000001 * (47.130000000000003 + cell__V) / (1.0 - exp(-4.7130000000000001 - 0.10000000000000001 * cell__V))))
 
 Irel__vg = ((Environment__tissue == 0) ? (1 / (1.0 + exp(2.6000000000000001 + 0.20000000000000001 * ICaL__ibarca))) : (1.0))
+
 ####Piecewise!
 
 ## Equation 7:
@@ -2735,6 +2879,7 @@ Ito2__Ito2_max = 0.001444800488100033 * (-Environment__Cl_o * exp(0.037435883507
 
 # Model: iribe_model_2006(iribe_model_2006.cellml)
 Force__phi_SL = (((Force__SL >= 1.7) && (Force__SL <= 2.0)) ? (-0.4285714285714286 + 0.7142857142857143 * Force__SL) : (((Force__SL <= 2.2000000000000002) && (Force__SL > 2.0)) ? (1.0) : (((Force__SL <= 2.2999999999999998) && (Force__SL > 2.2000000000000002)) ? (2.5714285714285716 - 0.7142857142857143 * Force__SL) : (NAN))))
+
 ####Piecewise!
 
 ## Equation 1:
@@ -2807,41 +2952,53 @@ L_type_Ca_channel__i_Ca_L_Na = 0.00037433890822745472 * (-50.0 + membrane_potent
 ((fabs(-50.0 + membrane_potential__V) < 2.6713760659657915e-6) ? ((-9358472.2056995872 + 187169.45411399176 * membrane_potential__V) * (9.9999999999858744e-10 * (intracellular_sodium_concentration__Na_i * exp(1.8716945411372736) - cell_parameters__Na_o * exp(9.9999999999406119e-8)) * L_type_Ca_channel__P_Ca_L_Ca * L_type_Ca_channel_d_gate__d * L_type_Ca_channel_f_gate__f / (1.0 - exp(9.9999999999406119e-8)) + 9.9999999999858744e-10 * (intracellular_sodium_concentration__Na_i * exp(1.8716945411372736) - cell_parameters__Na_o * exp(-9.9999999999406119e-8)) * L_type_Ca_channel__P_Ca_L_Ca * L_type_Ca_channel_d_gate__d * L_type_Ca_channel_f_gate__f / (1.0 - exp(-9.9999999999406119e-8))) - 9.9999999999858744e-10 * (intracellular_sodium_concentration__Na_i * exp(1.8716945411372736) - cell_parameters__Na_o * exp(9.9999999999406119e-8)) * L_type_Ca_channel__P_Ca_L_Ca * L_type_Ca_channel_d_gate__d * L_type_Ca_channel_f_gate__f / (1.0 - exp(9.9999999999406119e-8))) : (0.01 * (-50.0 + membrane_potential__V) * (intracellular_sodium_concentration__Na_i * exp(50.0 * cell_parameters__F / (cell_parameters__R * cell_parameters__T)) - cell_parameters__Na_o * exp((50.0 - membrane_potential__V) * cell_parameters__F / (cell_parameters__R * cell_parameters__T))) * L_type_Ca_channel__P_Ca_L_Ca * L_type_Ca_channel_d_gate__d * L_type_Ca_channel_f_gate__f * cell_parameters__F / ((1.0 - exp((50.0 - membrane_potential__V) * cell_parameters__F / (cell_parameters__R * cell_parameters__T))) * cell_parameters__R * cell_parameters__T)))
 
 L_type_Ca_channel_d_gate__alpha_d = ((fabs(L_type_Ca_channel_d_gate__E0_d) < 1.0000000000000001e-5) ? (120.0 * L_type_Ca_channel_d_gate__speed_d) : (30.0 * L_type_Ca_channel_d_gate__E0_d * L_type_Ca_channel_d_gate__speed_d / (1.0 - exp(-0.25 * L_type_Ca_channel_d_gate__E0_d))))
+
 ####Piecewise!
 
 L_type_Ca_channel_d_gate__beta_d = ((fabs(L_type_Ca_channel_d_gate__E0_d) < 1.0000000000000001e-5) ? (120.0 * L_type_Ca_channel_d_gate__speed_d) : (-12.0 * L_type_Ca_channel_d_gate__E0_d * L_type_Ca_channel_d_gate__speed_d / (1.0 - exp(0.10000000000000001 * L_type_Ca_channel_d_gate__E0_d))))
+
 ####Piecewise!
 
 L_type_Ca_channel_f_gate__alpha_f = ((fabs(L_type_Ca_channel_f_gate__E0_f) < 1.0000000000000001e-5) ? (25.0 * L_type_Ca_channel_f_gate__speed_f) : (6.25 * L_type_Ca_channel_f_gate__E0_f * L_type_Ca_channel_f_gate__speed_f / (-1.0 + exp(0.25 * L_type_Ca_channel_f_gate__E0_f))))
+
 ####Piecewise!
 
 fast_sodium_current_m_gate__alpha_m = ((fast_sodium_current_m_gate__delta_m > fabs(fast_sodium_current_m_gate__E0_m)) ? (2000.0) : (200.0 * fast_sodium_current_m_gate__E0_m / (1.0 - exp(-0.10000000000000001 * fast_sodium_current_m_gate__E0_m))))
+
 ####Piecewise!
 
 # Model: IyerMazhariWinslow2004(iyer_2004.cellml)
 COMPUTE_ICa_ICaK__Icabar = ((COMPUTE_ICa_ICaK__ICamax >= 0) ? (0) : (COMPUTE_ICa_ICaK__ICamax))
+
 ####Piecewise!
 
 # Model: iyer_model_2007(iyer_model_2007.cellml)
 COMPUTE_DERIVATIVES_OF_RyR_RECEPTOR_STATES__H50C2O1 = ((environment__CSQN2 == 1.0) ? (0.5) : (1.0))
+
 ####Piecewise!
 
 COMPUTE_DERIVATIVES_OF_RyR_RECEPTOR_STATES__HmaxO1C2 = ((environment__CSQN2 == 1.0) ? (0.20000000000000001) : (0.5))
+
 ####Piecewise!
 
 COMPUTE_DERIVATIVES_OF_RyR_RECEPTOR_STATES__kryr = ((environment__RyR2 == 1.0) ? (0.80000000000000004) : (1.0))
+
 ####Piecewise!
 
 COMPUTE_Jtrpn_and_BUFFER_SCALE_FACTORS__CSQNtot = ((environment__RyR2 == 1.0) ? (15.0) : (7.5))
+
 ####Piecewise!
 
 COMPUTE_ICa_ICaK__PCa = ((environment__iso == 0) ? (COMPUTE_ICa_ICaK__PCa_max * COMPUTE_ICa_ICaK__Pscale) : (1.5 * COMPUTE_ICa_ICaK__PCa_max * COMPUTE_ICa_ICaK__Pscale))
+
 ####Piecewise!
 
 COMPUTE_ICa_ICaK__Icabar = ((COMPUTE_ICa_ICaK__ICamax >= 0) ? (0) : (COMPUTE_ICa_ICaK__ICamax))
+
 ####Piecewise!
 
 COMPUTE_INTRACELLULAR_CALCIUM_FLUXES__Jup = ((environment__iso == 0) ? ((COMPUTE_INTRACELLULAR_CALCIUM_FLUXES__fb * COMPUTE_INTRACELLULAR_CALCIUM_FLUXES__vmaxf - COMPUTE_INTRACELLULAR_CALCIUM_FLUXES__rb * COMPUTE_INTRACELLULAR_CALCIUM_FLUXES__vmaxr) * COMPUTE_INTRACELLULAR_CALCIUM_FLUXES__KSR / (1.0 + COMPUTE_INTRACELLULAR_CALCIUM_FLUXES__fb + COMPUTE_INTRACELLULAR_CALCIUM_FLUXES__rb)) : (1.5 * (COMPUTE_INTRACELLULAR_CALCIUM_FLUXES__fb * COMPUTE_INTRACELLULAR_CALCIUM_FLUXES__vmaxf - COMPUTE_INTRACELLULAR_CALCIUM_FLUXES__rb * COMPUTE_INTRACELLULAR_CALCIUM_FLUXES__vmaxr) * COMPUTE_INTRACELLULAR_CALCIUM_FLUXES__KSR / (1.0 + COMPUTE_INTRACELLULAR_CALCIUM_FLUXES__fb + COMPUTE_INTRACELLULAR_CALCIUM_FLUXES__rb)))
+
 ####Piecewise!
 
 # Model: jafri_rice_winslow_1998(jafri_rice_winslow_model_1998.cellml)
@@ -2892,15 +3049,19 @@ L_type_Ca_channel__i_Ca_L_K = 3.6387865058904094e-6 * (-ionic_concentrations__Ko
 ((fabs(membrane__V) < 2.6614641953637254e-6) ? ((0.5 + 187866.51380507043 * membrane__V) * (9.6845000000000006e-12 * (-ionic_concentrations__Ko + ionic_concentrations__Ki * exp(-9.9999999999999995e-8)) * (L_type_Ca_channel__O + L_type_Ca_channel__O_Ca) * L_type_Ca_channel_y_gate__y / ((1.0 + 8.4580786026200876 * (0.001 * exp(-1.9999999999999999e-7) - 0.34100000000000003 * ionic_concentrations__Cao) * L_type_Ca_channel__P_Ca / (-1.0 + exp(-1.9999999999999999e-7))) * (-1.0 + exp(-9.9999999999999995e-8))) + 9.6845000000000006e-12 * (-ionic_concentrations__Ko + ionic_concentrations__Ki * exp(9.9999999999999995e-8)) * (L_type_Ca_channel__O + L_type_Ca_channel__O_Ca) * L_type_Ca_channel_y_gate__y / ((1.0 - 8.4580786026200876 * (0.001 * exp(1.9999999999999999e-7) - 0.34100000000000003 * ionic_concentrations__Cao) * L_type_Ca_channel__P_Ca / (-1.0 + exp(1.9999999999999999e-7))) * (-1.0 + exp(9.9999999999999995e-8)))) - 9.6845000000000006e-12 * (-ionic_concentrations__Ko + ionic_concentrations__Ki * exp(-9.9999999999999995e-8)) * (L_type_Ca_channel__O + L_type_Ca_channel__O_Ca) * L_type_Ca_channel_y_gate__y / ((1.0 + 8.4580786026200876 * (0.001 * exp(-1.9999999999999999e-7) - 0.34100000000000003 * ionic_concentrations__Cao) * L_type_Ca_channel__P_Ca / (-1.0 + exp(-1.9999999999999999e-7))) * (-1.0 + exp(-9.9999999999999995e-8)))) : (pow(membrane__F, 2) * (-ionic_concentrations__Ko + ionic_concentrations__Ki * exp(membrane__F * membrane__V / (membrane__R * membrane__T))) * (L_type_Ca_channel__O + L_type_Ca_channel__O_Ca) * L_type_Ca_channel__p_k * L_type_Ca_channel_y_gate__y * membrane__V / ((-1.0 + exp(membrane__F * membrane__V / (membrane__R * membrane__T))) * membrane__R * membrane__T)))
 
 fast_sodium_current_h_gate__alpha_h = ((membrane__V < -40.0) ? (0.13500000000000001 * exp(-11.764705882352942 + 0.14705882352941177 * fast_sodium_current__shift_INa_inact - 0.14705882352941177 * membrane__V)) : (0))
+
 ####Piecewise!
 
 fast_sodium_current_h_gate__beta_h = ((membrane__V < -40.0) ? (310000.0 * exp(0.34999999999999998 * membrane__V - 0.34999999999999998 * fast_sodium_current__shift_INa_inact) + 3.5600000000000001 * exp(0.079000000000000001 * membrane__V - 0.079000000000000001 * fast_sodium_current__shift_INa_inact)) : (7.6923076923076916 / (1.0 + exp(-0.96036036036036043 + 0.0900900900900901 * fast_sodium_current__shift_INa_inact - 0.0900900900900901 * membrane__V))))
+
 ####Piecewise!
 
 fast_sodium_current_j_gate__alpha_j = ((membrane__V < -40.0) ? ((37.780000000000001 + membrane__V) * (-127140.0 * exp(0.24440000000000001 * membrane__V - 0.24440000000000001 * fast_sodium_current__shift_INa_inact) - 3.4740000000000003e-5 * exp(0.043909999999999998 * fast_sodium_current__shift_INa_inact - 0.043909999999999998 * membrane__V)) / (1.0 + exp(24.640530000000002 + 0.311 * membrane__V - 0.311 * fast_sodium_current__shift_INa_inact))) : (0))
+
 ####Piecewise!
 
 fast_sodium_current_j_gate__beta_j = ((membrane__V < -40.0) ? (0.1212 * exp(0.01052 * fast_sodium_current__shift_INa_inact - 0.01052 * membrane__V) / (1.0 + exp(-5.5312920000000005 + 0.13780000000000001 * fast_sodium_current__shift_INa_inact - 0.13780000000000001 * membrane__V))) : (0.29999999999999999 * exp(2.5349999999999999e-7 * fast_sodium_current__shift_INa_inact - 2.5349999999999999e-7 * membrane__V) / (1.0 + exp(-3.2000000000000002 + 0.10000000000000001 * fast_sodium_current__shift_INa_inact - 0.10000000000000001 * membrane__V))))
+
 ####Piecewise!
 
 ## Equation 3:
@@ -3287,12 +3448,15 @@ INa__am = 0.32000000000000001 * (47.130000000000003 + cell__V) / (1.0 - 0.008977
 
 # Model: Li_Mouse_2010(li_mouse_2010.cellml)
 L_type_calcium_current__i_CaL = ((fabs(L_type_calcium_current__FVRT_Ca) > 1.0000000000000001e-5) ? (-2.0 * (-calcium_concentration__Cass + cell__Cao * exp(-L_type_calcium_current__FVRT_Ca)) * L_type_calcium_current__FVRT_Ca * L_type_calcium_current__O * L_type_calcium_current__P_CaL * L_type_calcium_current__y_gate * cell__F * cell__Vss / ((1.0 - exp(-L_type_calcium_current__FVRT_Ca)) * cell__Acap * cell__Cm)) : (-2.0000000000000002e-5 * (-calcium_concentration__Cass + cell__Cao * exp(-1.0000000000000001e-5)) * L_type_calcium_current__O * L_type_calcium_current__P_CaL * L_type_calcium_current__y_gate * cell__F * cell__Vss / ((1.0 - exp(-1.0000000000000001e-5)) * cell__Acap * cell__Cm)))
+
 ####Piecewise!
 
 calcium_fluxes__J_leak = ((environment__time < cell__prepulses_number * cell__stim_period) ? ((-calcium_concentration__Cai + calcium_concentration__CaNSR) * calcium_fluxes__v2) : ((-calcium_concentration__Cai + calcium_concentration__CaNSR) * calcium_fluxes__v2_caff))
+
 ####Piecewise!
 
 calcium_fluxes__J_rel = ((environment__time < cell__prepulses_number * cell__stim_period) ? ((-calcium_concentration__Cass + calcium_concentration__CaJSR) * (ryanodine_receptors__P_O1 + ryanodine_receptors__P_O2) * calcium_fluxes__P_RyR * calcium_fluxes__v1) : ((-calcium_concentration__Cass + calcium_concentration__CaJSR) * calcium_fluxes__v1_caff))
+
 ####Piecewise!
 
 ## Equation 1:
@@ -3320,28 +3484,36 @@ slow_delayed_rectifier_K_I__alpha_n = 4.8133299999999997e-6 * (26.5 + cell__V) /
 
 # Model: luo_rudy_1991(luo_rudy_1991.cellml)
 fast_sodium_current_h_gate__alpha_h = ((membrane__V < -40.0) ? (0.13500000000000001 * exp(-11.764705882352942 + 0.14705882352941177 * fast_sodium_current__shift_INa_inact - 0.14705882352941177 * membrane__V)) : (0))
+
 ####Piecewise!
 
 fast_sodium_current_h_gate__beta_h = ((membrane__V < -40.0) ? (310000.0 * exp(0.34999999999999998 * membrane__V - 0.34999999999999998 * fast_sodium_current__shift_INa_inact) + 3.5600000000000001 * exp(0.079000000000000001 * membrane__V - 0.079000000000000001 * fast_sodium_current__shift_INa_inact)) : (7.6923076923076916 / (1.0 + exp(-0.96036036036036043 + 0.0900900900900901 * fast_sodium_current__shift_INa_inact - 0.0900900900900901 * membrane__V))))
+
 ####Piecewise!
 
 fast_sodium_current_j_gate__alpha_j = ((membrane__V < -40.0) ? ((37.780000000000001 + membrane__V) * (-127140.0 * exp(0.24440000000000001 * membrane__V - 0.24440000000000001 * fast_sodium_current__shift_INa_inact) - 3.4740000000000003e-5 * exp(0.043909999999999998 * fast_sodium_current__shift_INa_inact - 0.043909999999999998 * membrane__V)) / (1.0 + exp(24.640530000000002 + 0.311 * membrane__V - 0.311 * fast_sodium_current__shift_INa_inact))) : (0))
+
 ####Piecewise!
 
 fast_sodium_current_j_gate__beta_j = ((membrane__V < -40.0) ? (0.1212 * exp(0.01052 * fast_sodium_current__shift_INa_inact - 0.01052 * membrane__V) / (1.0 + exp(-5.5312920000000005 + 0.13780000000000001 * fast_sodium_current__shift_INa_inact - 0.13780000000000001 * membrane__V))) : (0.29999999999999999 * exp(2.5349999999999999e-7 * fast_sodium_current__shift_INa_inact - 2.5349999999999999e-7 * membrane__V) / (1.0 + exp(-3.2000000000000002 + 0.10000000000000001 * fast_sodium_current__shift_INa_inact - 0.10000000000000001 * membrane__V))))
+
 ####Piecewise!
 
 fast_sodium_current_m_gate__alpha_m = (((fast_sodium_current_m_gate__U >= -9.9999999999999995e-8) && (fast_sodium_current_m_gate__U <= 9.9999999999999995e-8)) ? ((1.0 - 0.5 * fast_sodium_current_m_gate__U) * fast_sodium_current_m_gate__A) : (fast_sodium_current_m_gate__A * fast_sodium_current_m_gate__U / (-1.0 + exp(fast_sodium_current_m_gate__U))))
+
 ####Piecewise!
 
 time_dependent_potassium_current_Xi_gate__temp_Xi = (((time_dependent_potassium_current_Xi_gate__U >= -9.9999999999999995e-8) && (time_dependent_potassium_current_Xi_gate__U <= 9.9999999999999995e-8)) ? ((1.0 + 0.5 * time_dependent_potassium_current_Xi_gate__U) * time_dependent_potassium_current_Xi_gate__A) : ((-1.0 + exp(time_dependent_potassium_current_Xi_gate__U)) * time_dependent_potassium_current_Xi_gate__A / time_dependent_potassium_current_Xi_gate__U))
+
 ####Piecewise!
 
 time_dependent_potassium_current_Xi_gate__Xi = ((membrane__V > -100.0) ? (time_dependent_potassium_current_Xi_gate__temp_Xi / exp(1.4000000000000001 + 0.040000000000000001 * membrane__V)) : (1.0))
+
 ####Piecewise!
 
 # Model: luo_rudy_1994(luo_rudy_1994.cellml)
 calcium_fluxes_in_the_SR__G_rel_peak = ((calcium_fluxes_in_the_SR__delta_Ca_i2 < calcium_fluxes_in_the_SR__delta_Ca_ith) ? (0) : (calcium_fluxes_in_the_SR__G_rel_max))
+
 ####Piecewise!
 
 ## Equation 1:
@@ -3437,15 +3609,19 @@ L_type_Ca_channel_d_gate__tau_d = 28.571428571428569 * (1.0 - 0.2013794977449236
 ((fabs(10.0 + membrane__V) < 6.2399999999074307e-7) ? ((8012821.0129393814 + 801282.05129393819 * membrane__V) * (45787545.788225032 * (1.0 - exp(9.9999999997671396e-8)) / (1.0 + exp(9.9999999997671396e-8)) + 45787545.788225032 * (1.0 - exp(-9.9999999997671396e-8)) / (1.0 + exp(-9.9999999997671396e-8))) - 45787545.788225032 * (1.0 - exp(9.9999999997671396e-8)) / (1.0 + exp(9.9999999997671396e-8))) : (28.571428571428569 * (1.0 - exp(-1.6025641025641024 - 0.16025641025641024 * membrane__V)) * L_type_Ca_channel_d_gate__d_infinity / (10.0 + membrane__V)))
 
 fast_sodium_current_h_gate__alpha_h = ((membrane__V < -40.0) ? (0.13500000000000001 * exp(-11.764705882352942 - 0.14705882352941177 * membrane__V)) : (0))
+
 ####Piecewise!
 
 fast_sodium_current_h_gate__beta_h = ((membrane__V < -40.0) ? (310000.0 * exp(0.34999999999999998 * membrane__V) + 3.5600000000000001 * exp(0.079000000000000001 * membrane__V)) : (7.6923076923076916 / (1.0 + exp(-0.96036036036036043 - 0.0900900900900901 * membrane__V))))
+
 ####Piecewise!
 
 fast_sodium_current_j_gate__alpha_j = ((membrane__V < -40.0) ? ((37.780000000000001 + membrane__V) * (-127140.0 * exp(0.24440000000000001 * membrane__V) - 3.4740000000000003e-5 * exp(-0.043909999999999998 * membrane__V)) / (1.0 + exp(24.640530000000002 + 0.311 * membrane__V))) : (0))
+
 ####Piecewise!
 
 fast_sodium_current_j_gate__beta_j = ((membrane__V < -40.0) ? (0.1212 * exp(-0.01052 * membrane__V) / (1.0 + exp(-5.5312920000000005 - 0.13780000000000001 * membrane__V))) : (0.29999999999999999 * exp(-2.5349999999999999e-7 * membrane__V) / (1.0 + exp(-3.2000000000000002 - 0.10000000000000001 * membrane__V))))
+
 ####Piecewise!
 
 ## Equation 5:
@@ -3519,33 +3695,43 @@ time_dependent_potassium_current_X_gate__beta_X = 0.00013100000000000001 * (30.0
 
 # Model: MahajanShiferaw2008_units(mahajan_shiferaw_2008.cellml)
 Irel__Qr0 = (((Irel__Ca_JSR > 50.0) && (Irel__Ca_JSR < Irel__cstar)) ? (-50.0 + Irel__Ca_JSR) : ((Irel__Ca_JSR >= Irel__cstar) ? (Irel__Ca_JSR * Irel__av + Irel__bv) : (0)))
+
 ####Piecewise!
 
 ICaL__rxa = ((fabs(ICaL__za) < 0.001) ? (2.0 * (-0.34100000000000003 * Environment__Ca_o + Ca__csm * exp(ICaL__za)) * Environment__F * ICaL__pca) : (4.0 * (-0.34100000000000003 * Environment__Ca_o + Ca__csm * exp(ICaL__za)) * Environment__F * Environment__FonRT * ICaL__pca * cell__V / (-1.0 + exp(ICaL__za))))
+
 ####Piecewise!
 
 IKr__xkrv1 = ((fabs(7.0 + cell__V) > 0.001) ? (0.0013799999999999999 * (7.0 + cell__V) / (1.0 - exp(-0.86099999999999999 - 0.123 * cell__V))) : (0.011219512195121951))
+
 ####Piecewise!
 
 IKr__xkrv2 = ((fabs(10.0 + cell__V) > 0.001) ? (0.00060999999999999997 * (10.0 + cell__V) / (-1.0 + exp(1.45 + 0.14499999999999999 * cell__V))) : (0.0042068965517241376))
+
 ####Piecewise!
 
 IKs__tauxs1 = ((fabs(30.0 + cell__V) < 0.014556040756914121) ? (417.94625266107982) : (1 / (0.00013100000000000001 * (30.0 + cell__V) / (-1.0 + exp(2.0609999999999999 + 0.068699999999999997 * cell__V)) + 7.1899999999999999e-5 * (30.0 + cell__V) / (1.0 - exp(-4.4399999999999995 - 0.14799999999999999 * cell__V)))))
+
 ####Piecewise!
 
 INa__ah = ((cell__V < -40.0) ? (0.13500000000000001 * exp(-11.764705882352942 + 0.14705882352941177 * INa__shift_h - 0.14705882352941177 * cell__V)) : (0))
+
 ####Piecewise!
 
 INa__aj = ((cell__V < -40.0) ? ((37.780000000000001 + cell__V) * (-127140.0 * exp(0.24440000000000001 * cell__V - 0.24440000000000001 * INa__shift_h) - 3.4740000000000003e-5 * exp(0.043909999999999998 * INa__shift_h - 0.043909999999999998 * cell__V)) / (1.0 + exp(24.640530000000002 + 0.311 * cell__V))) : (0))
+
 ####Piecewise!
 
 INa__am = ((fabs(47.130000000000003 + cell__V) > 0.001) ? (0.32000000000000001 * (47.130000000000003 + cell__V) / (1.0 - exp(-4.7130000000000001 - 0.10000000000000001 * cell__V))) : (3.2000000000000002))
+
 ####Piecewise!
 
 INa__bh = ((cell__V < -40.0) ? (310000.0 * exp(0.34999999999999998 * cell__V - 0.34999999999999998 * INa__shift_h) + 3.5600000000000001 * exp(0.079000000000000001 * cell__V - 0.079000000000000001 * INa__shift_h)) : (7.6923076923076916 / (1.0 + exp(-0.96036036036036043 + 0.0900900900900901 * INa__shift_h - 0.0900900900900901 * cell__V))))
+
 ####Piecewise!
 
 INa__bj = ((cell__V < -40.0) ? (0.1212 * exp(0.01052 * INa__shift_h - 0.01052 * cell__V) / (1.0 + exp(-5.5312920000000005 - 0.13780000000000001 * cell__V))) : (0.29999999999999999 * exp(2.5349999999999999e-7 * INa__shift_h - 2.5349999999999999e-7 * cell__V) / (1.0 + exp(-3.2000000000000002 - 0.10000000000000001 * cell__V))))
+
 ####Piecewise!
 
 # Model: Maleckar(maleckar_model_2009.cellml)
@@ -3598,22 +3784,28 @@ _intracellular_ion_concentrations$Na_i**1.5*_cleft_space_ion_concentrations$K_c*
 _intracellular_ion_concentrations$Na_i**1.5*_cleft_space_ion_concentrations$K_c*(_membrane$V + 150.0)/((_intracellular_ion_concentrations$Na_i**1.5 + 36.482900000000001)*(_cleft_space_ion_concentrations$K_c + 1.0)*(_membrane$V + 200.0))
 # Model: maltsev_2009(maltsev_2009.cellml)
 i_CaL_dL_gate__adVm = ((Vm__Vm == (-35.0)) ? (-35.000010000000003) : ((Vm__Vm == 0) ? (1.0000000000000001e-5) : (Vm__Vm)))
+
 ####Piecewise!
 
 i_CaL_dL_gate__bdVm = ((Vm__Vm == 5.0) ? (5.0000099999999996) : (Vm__Vm))
+
 ####Piecewise!
 
 # Model: matsuoka_model_2003(matsuoka_model_2003.cellml)
 constant_field_equations__CF_Ca = ((membrane__Vm == 0) ? (-external_ion_concentrations__Cao) : (2.0 * (-external_ion_concentrations__Cao * exp(-2.0 * membrane__F * membrane__Vm / (membrane__R * membrane__T)) + internal_ion_concentrations__Cai) * membrane__F * membrane__Vm / ((1.0 - exp(-2.0 * membrane__F * membrane__Vm / (membrane__R * membrane__T))) * membrane__R * membrane__T)))
+
 ####Piecewise!
 
 constant_field_equations__CF_K = ((membrane__Vm == 0) ? (internal_ion_concentrations__Ki) : ((-external_ion_concentrations__Ko * exp(-membrane__F * membrane__Vm / (membrane__R * membrane__T)) + internal_ion_concentrations__Ki) * membrane__F * membrane__Vm / ((1.0 - exp(-membrane__F * membrane__Vm / (membrane__R * membrane__T))) * membrane__R * membrane__T)))
+
 ####Piecewise!
 
 background_Kpl_current__i_Kpl = ((membrane__Vm == (-3.0)) ? (13.0077 * background_Kpl_current__P_Kpl * constant_field_equations__CF_K) : ((3.0 + membrane__Vm) * background_Kpl_current__P_Kpl * constant_field_equations__CF_K / (1.0 - exp(-0.23076923076923078 - 0.076923076923076927 * membrane__Vm))))
+
 ####Piecewise!
 
 constant_field_equations__CF_Na = ((membrane__Vm == 0) ? (-external_ion_concentrations__Nao) : ((-external_ion_concentrations__Nao * exp(-membrane__F * membrane__Vm / (membrane__R * membrane__T)) + internal_ion_concentrations__Nai) * membrane__F * membrane__Vm / ((1.0 - exp(-membrane__F * membrane__Vm / (membrane__R * membrane__T))) * membrane__R * membrane__T)))
+
 ####Piecewise!
 
 # Model: mcallister_noble_tsien_1975_modelB(mcallister_noble_tsien_1975_b.cellml)
@@ -3878,15 +4070,19 @@ L_type_Ca_channel__i_Ca_L_Na = 0.00037433890822745472 * (-50.0 + membrane__V) * 
 ((fabs(-50.0 + membrane__V) < 2.6713760659657915e-6) ? ((-9358472.2056995872 + 187169.45411399176 * membrane__V) * (9.9999999999858744e-10 * (intracellular_sodium_concentration__Na_i * exp(1.8716945411372736) - extracellular_sodium_concentration__Na_o * exp(9.9999999999406119e-8)) * L_type_Ca_channel__P_Ca_L * L_type_Ca_channel_d_gate__d * L_type_Ca_channel_f_gate__f / (1.0 - exp(9.9999999999406119e-8)) + 9.9999999999858744e-10 * (intracellular_sodium_concentration__Na_i * exp(1.8716945411372736) - extracellular_sodium_concentration__Na_o * exp(-9.9999999999406119e-8)) * L_type_Ca_channel__P_Ca_L * L_type_Ca_channel_d_gate__d * L_type_Ca_channel_f_gate__f / (1.0 - exp(-9.9999999999406119e-8))) - 9.9999999999858744e-10 * (intracellular_sodium_concentration__Na_i * exp(1.8716945411372736) - extracellular_sodium_concentration__Na_o * exp(9.9999999999406119e-8)) * L_type_Ca_channel__P_Ca_L * L_type_Ca_channel_d_gate__d * L_type_Ca_channel_f_gate__f / (1.0 - exp(9.9999999999406119e-8))) : ((-50.0 + membrane__V) * (intracellular_sodium_concentration__Na_i * exp(50.0 * membrane__F / (membrane__R * membrane__T)) - extracellular_sodium_concentration__Na_o * exp((50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * L_type_Ca_channel__P_CaNa * L_type_Ca_channel__P_Ca_L * L_type_Ca_channel_d_gate__d * L_type_Ca_channel_f_gate__f * membrane__F / ((1.0 - exp((50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * membrane__R * membrane__T)))
 
 L_type_Ca_channel_d_gate__alpha_d = ((fabs(L_type_Ca_channel_d_gate__E0_d) < 0.0001) ? (120.0) : (30.0 * L_type_Ca_channel_d_gate__E0_d / (1.0 - exp(-0.25 * L_type_Ca_channel_d_gate__E0_d))))
+
 ####Piecewise!
 
 L_type_Ca_channel_d_gate__beta_d = ((fabs(L_type_Ca_channel_d_gate__E0_d) < 0.0001) ? (120.0) : (12.0 * L_type_Ca_channel_d_gate__E0_d / (-1.0 + exp(0.10000000000000001 * L_type_Ca_channel_d_gate__E0_d))))
+
 ####Piecewise!
 
 L_type_Ca_channel_f_gate__alpha_f = ((L_type_Ca_channel_f_gate__delta_f > fabs(L_type_Ca_channel_f_gate__E0_f)) ? (25.0) : (6.25 * L_type_Ca_channel_f_gate__E0_f / (-1.0 + exp(0.25 * L_type_Ca_channel_f_gate__E0_f))))
+
 ####Piecewise!
 
 fast_sodium_current_m_gate__alpha_m = ((fast_sodium_current_m_gate__delta_m > fabs(fast_sodium_current_m_gate__E0_m)) ? (2000.0) : (200.0 * fast_sodium_current_m_gate__E0_m / (1.0 - exp(-0.10000000000000001 * fast_sodium_current_m_gate__E0_m))))
+
 ####Piecewise!
 
 # Model: noble_model_1998(noble_model_1998.cellml)
@@ -3996,18 +4192,23 @@ L_type_Ca_channel__i_Ca_L_Na_ds = 0.00037433890822745472 * (-50.0 + membrane__V)
 ((fabs(-50.0 + membrane__V) < 2.6713760659657915e-6) ? ((-9358472.2056995872 + 187169.45411399176 * membrane__V) * (9.9999999999858744e-10 * (intracellular_sodium_concentration__Na_i * exp(1.8716945411372736) - extracellular_sodium_concentration__Na_o * exp(9.9999999999406119e-8)) * L_type_Ca_channel__P_Ca_L * L_type_Ca_channel_d_gate__d * L_type_Ca_channel_f2ds_gate__f2ds * L_type_Ca_channel_f_gate__f / (1.0 - exp(9.9999999999406119e-8)) + 9.9999999999858744e-10 * (intracellular_sodium_concentration__Na_i * exp(1.8716945411372736) - extracellular_sodium_concentration__Na_o * exp(-9.9999999999406119e-8)) * L_type_Ca_channel__P_Ca_L * L_type_Ca_channel_d_gate__d * L_type_Ca_channel_f2ds_gate__f2ds * L_type_Ca_channel_f_gate__f / (1.0 - exp(-9.9999999999406119e-8))) - 9.9999999999858744e-10 * (intracellular_sodium_concentration__Na_i * exp(1.8716945411372736) - extracellular_sodium_concentration__Na_o * exp(9.9999999999406119e-8)) * L_type_Ca_channel__P_Ca_L * L_type_Ca_channel_d_gate__d * L_type_Ca_channel_f2ds_gate__f2ds * L_type_Ca_channel_f_gate__f / (1.0 - exp(9.9999999999406119e-8))) : ((-50.0 + membrane__V) * (intracellular_sodium_concentration__Na_i * exp(50.0 * membrane__F / (membrane__R * membrane__T)) - extracellular_sodium_concentration__Na_o * exp((50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * L_type_Ca_channel__FrICa * L_type_Ca_channel__P_CaNa * L_type_Ca_channel__P_Ca_L * L_type_Ca_channel_d_gate__d * L_type_Ca_channel_f2ds_gate__f2ds * L_type_Ca_channel_f_gate__f * membrane__F / ((1.0 - exp((50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * membrane__R * membrane__T)))
 
 L_type_Ca_channel_d_gate__alpha_d = ((fabs(L_type_Ca_channel_d_gate__E0_d) < 0.0001) ? (120.0) : (30.0 * L_type_Ca_channel_d_gate__E0_d / (1.0 - exp(-0.25 * L_type_Ca_channel_d_gate__E0_d))))
+
 ####Piecewise!
 
 L_type_Ca_channel_d_gate__beta_d = ((fabs(L_type_Ca_channel_d_gate__E0_d) < 0.0001) ? (120.0) : (12.0 * L_type_Ca_channel_d_gate__E0_d / (-1.0 + exp(0.10000000000000001 * L_type_Ca_channel_d_gate__E0_d))))
+
 ####Piecewise!
 
 L_type_Ca_channel_f_gate__alpha_f = ((L_type_Ca_channel_f_gate__delta_f > fabs(L_type_Ca_channel_f_gate__E0_f)) ? (25.0) : (6.25 * L_type_Ca_channel_f_gate__E0_f / (-1.0 + exp(0.25 * L_type_Ca_channel_f_gate__E0_f))))
+
 ####Piecewise!
 
 calcium_release__SpeedRel = ((membrane__V < -50.0) ? (5.0) : (1.0))
+
 ####Piecewise!
 
 fast_sodium_current_m_gate__alpha_m = ((fast_sodium_current_m_gate__delta_m > fabs(fast_sodium_current_m_gate__E0_m)) ? (2000.0) : (200.0 * fast_sodium_current_m_gate__E0_m / (1.0 - exp(-0.10000000000000001 * fast_sodium_current_m_gate__E0_m))))
+
 ####Piecewise!
 
 # Model: noble_model_2001(noble_model_2001.cellml)
@@ -4150,34 +4351,44 @@ L_type_Ca_channel__i_Ca_L_Na_ds = 0.00026203723575921831 * (1.0 - L_type_Ca_chan
 ((fabs(-50.0 + membrane__V) < 2.6713760659657915e-6) ? ((-9358472.2056995872 + 187169.45411399176 * membrane__V) * (6.9999999999901117e-10 * (1.0 - L_type_Ca_channel_f_gate__f) * (1.0 - intracellular_calcium_concentration__Ca_ds / (0.001 + intracellular_calcium_concentration__Ca_ds)) * (intracellular_sodium_concentration__Na_i * exp(1.8716945411372736) - extracellular_sodium_concentration__Na_o * exp(9.9999999999406119e-8)) * L_type_Ca_channel__P_Ca_L * L_type_Ca_channel_d_gate__d / (1.0 - exp(9.9999999999406119e-8)) + 6.9999999999901117e-10 * (1.0 - L_type_Ca_channel_f_gate__f) * (1.0 - intracellular_calcium_concentration__Ca_ds / (0.001 + intracellular_calcium_concentration__Ca_ds)) * (intracellular_sodium_concentration__Na_i * exp(1.8716945411372736) - extracellular_sodium_concentration__Na_o * exp(-9.9999999999406119e-8)) * L_type_Ca_channel__P_Ca_L * L_type_Ca_channel_d_gate__d / (1.0 - exp(-9.9999999999406119e-8))) - 6.9999999999901117e-10 * (1.0 - L_type_Ca_channel_f_gate__f) * (1.0 - intracellular_calcium_concentration__Ca_ds / (0.001 + intracellular_calcium_concentration__Ca_ds)) * (intracellular_sodium_concentration__Na_i * exp(1.8716945411372736) - extracellular_sodium_concentration__Na_o * exp(9.9999999999406119e-8)) * L_type_Ca_channel__P_Ca_L * L_type_Ca_channel_d_gate__d / (1.0 - exp(9.9999999999406119e-8))) : ((-50.0 + membrane__V) * (intracellular_sodium_concentration__Na_i * exp(50.0 * membrane__F / (membrane__R * membrane__T)) - extracellular_sodium_concentration__Na_o * exp((50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * L_type_Ca_channel__FrICa * L_type_Ca_channel__P_CaNa * L_type_Ca_channel__P_Ca_L * L_type_Ca_channel_d_gate__d * L_type_Ca_channel_f_gate__CaChonds * membrane__F / ((1.0 - exp((50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * membrane__R * membrane__T)))
 
 L_type_Ca_channel_d_gate__alpha_d = ((fabs(L_type_Ca_channel_d_gate__E0_d) < 0.0001) ? (120.0) : (30.0 * L_type_Ca_channel_d_gate__E0_d / (1.0 - exp(-0.25 * L_type_Ca_channel_d_gate__E0_d))))
+
 ####Piecewise!
 
 L_type_Ca_channel_d_gate__beta_d = ((fabs(L_type_Ca_channel_d_gate__E0_d) < 0.0001) ? (120.0) : (12.0 * L_type_Ca_channel_d_gate__E0_d / (-1.0 + exp(0.10000000000000001 * L_type_Ca_channel_d_gate__E0_d))))
+
 ####Piecewise!
 
 L_type_Ca_channel_f_gate__alpha_f = ((L_type_Ca_channel_f_gate__delta_f > fabs(L_type_Ca_channel_f_gate__E0_f)) ? (25.0) : (6.25 * L_type_Ca_channel_f_gate__E0_f / (-1.0 + exp(0.25 * L_type_Ca_channel_f_gate__E0_f))))
+
 ####Piecewise!
 
 calcium_release__SpeedRel = ((membrane__V < -50.0) ? (5.0) : (1.0))
+
 ####Piecewise!
 
 fast_sodium_current_m_gate__alpha_m = ((fast_sodium_current_m_gate__delta_m > fabs(fast_sodium_current_m_gate__E0_m)) ? (2000.0) : (200.0 * fast_sodium_current_m_gate__E0_m / (1.0 - exp(-0.10000000000000001 * fast_sodium_current_m_gate__E0_m))))
+
 ####Piecewise!
 
 # Model: NN_SAN_model_1984(noble_noble_SAN_model_1984.cellml)
 fast_sodium_current_m_gate__alpha_m = ((fast_sodium_current_m_gate__delta_m > fabs(fast_sodium_current_m_gate__E0_m)) ? (2000.0) : (200.0 * fast_sodium_current_m_gate__E0_m / (1.0 - exp(-0.10000000000000001 * fast_sodium_current_m_gate__E0_m))))
+
 ####Piecewise!
 
 hyperpolarising_activated_current_y_gate__beta_y = ((hyperpolarising_activated_current_y_gate__delta_y > fabs(hyperpolarising_activated_current_y_gate__E0_y)) ? (2.5) : (hyperpolarising_activated_current_y_gate__E0_y / (1.0 - exp(-0.20000000000000001 * hyperpolarising_activated_current_y_gate__E0_y))))
+
 ####Piecewise!
 
 second_inward_current_d_gate__alpha_d = ((second_inward_current_d_gate__delta_d > fabs(second_inward_current_d_gate__E0_d)) ? (120.0) : (30.0 * second_inward_current_d_gate__E0_d / (1.0 - exp(-0.25 * second_inward_current_d_gate__E0_d))))
+
 ####Piecewise!
 
 second_inward_current_d_gate__beta_d = ((second_inward_current_d_gate__delta_d > fabs(second_inward_current_d_gate__E0_d)) ? (120.0) : (12.0 * second_inward_current_d_gate__E0_d / (-1.0 + exp(0.10000000000000001 * second_inward_current_d_gate__E0_d))))
+
 ####Piecewise!
 
 second_inward_current_f_gate__alpha_f = ((second_inward_current_f_gate__delta_f > fabs(second_inward_current_f_gate__E0_f)) ? (25.0) : (6.25 * second_inward_current_f_gate__E0_f / (-1.0 + exp(0.25 * second_inward_current_f_gate__E0_f))))
+
 ####Piecewise!
 
 ## Equation 1:
@@ -4250,22 +4461,28 @@ second_inward_current__i_siNa = 0.00037433890822745472 * (-50.0 + membrane__V) *
 ((fabs(-50.0 + membrane__V) < 2.6713760659657915e-6) ? ((-9358472.2056995872 + 187169.45411399176 * membrane__V) * (9.9999999999858744e-10 * (intracellular_sodium_concentration__Nai * exp(1.8716945411372736) - extracellular_sodium_concentration__Nao * exp(9.9999999999406119e-8)) * second_inward_current__P_si * second_inward_current_d_gate__d * second_inward_current_f2_gate__f2 * second_inward_current_f_gate__f / (1.0 - exp(9.9999999999406119e-8)) + 9.9999999999858744e-10 * (intracellular_sodium_concentration__Nai * exp(1.8716945411372736) - extracellular_sodium_concentration__Nao * exp(-9.9999999999406119e-8)) * second_inward_current__P_si * second_inward_current_d_gate__d * second_inward_current_f2_gate__f2 * second_inward_current_f_gate__f / (1.0 - exp(-9.9999999999406119e-8))) - 9.9999999999858744e-10 * (intracellular_sodium_concentration__Nai * exp(1.8716945411372736) - extracellular_sodium_concentration__Nao * exp(9.9999999999406119e-8)) * second_inward_current__P_si * second_inward_current_d_gate__d * second_inward_current_f2_gate__f2 * second_inward_current_f_gate__f / (1.0 - exp(9.9999999999406119e-8))) : (0.01 * (-50.0 + membrane__V) * (intracellular_sodium_concentration__Nai * exp(50.0 / membrane__RTONF) - extracellular_sodium_concentration__Nao * exp(-(-50.0 + membrane__V) / membrane__RTONF)) * second_inward_current__P_si * second_inward_current_d_gate__d * second_inward_current_f2_gate__f2 * second_inward_current_f_gate__f / ((1.0 - exp(-(-50.0 + membrane__V) / membrane__RTONF)) * membrane__RTONF)))
 
 time_dependent_potassium_current_x_gate__alpha_x = ((time_dependent_potassium_current_x_gate__delta_x > fabs(time_dependent_potassium_current_x_gate__E0_x)) ? (2.5) : (0.5 * time_dependent_potassium_current_x_gate__E0_x / (1.0 - exp(-0.20000000000000001 * time_dependent_potassium_current_x_gate__E0_x))))
+
 ####Piecewise!
 
 time_dependent_potassium_current_x_gate__beta_x = ((time_dependent_potassium_current_x_gate__delta_x > fabs(time_dependent_potassium_current_x_gate__E0_x)) ? (2.5) : (0.17799999999999999 * time_dependent_potassium_current_x_gate__E0_x / (-1.0 + exp(0.066666666666666666 * time_dependent_potassium_current_x_gate__E0_x))))
+
 ####Piecewise!
 
 # Model: Noble_SAN_model_1989(noble_SAN_model_1989.cellml)
 fast_sodium_current_m_gate__alpha_m = ((fast_sodium_current_m_gate__delta_m > fabs(fast_sodium_current_m_gate__E0_m)) ? (2000.0) : (200.0 * fast_sodium_current_m_gate__E0_m / (1.0 - exp(-0.10000000000000001 * fast_sodium_current_m_gate__E0_m))))
+
 ####Piecewise!
 
 second_inward_current_d_gate__alpha_d = ((second_inward_current_d_gate__delta_d > fabs(second_inward_current_d_gate__E0_d)) ? (120.0) : (30.0 * second_inward_current_d_gate__E0_d / (1.0 - exp(-0.25 * second_inward_current_d_gate__E0_d))))
+
 ####Piecewise!
 
 second_inward_current_d_gate__beta_d = ((second_inward_current_d_gate__delta_d > fabs(second_inward_current_d_gate__E0_d)) ? (120.0) : (12.0 * second_inward_current_d_gate__E0_d / (-1.0 + exp(0.10000000000000001 * second_inward_current_d_gate__E0_d))))
+
 ####Piecewise!
 
 second_inward_current_f_gate__alpha_f = ((second_inward_current_f_gate__delta_f > fabs(second_inward_current_f_gate__E0_f)) ? (25.0) : (6.25 * second_inward_current_f_gate__E0_f / (-1.0 + exp(0.25 * second_inward_current_f_gate__E0_f))))
+
 ####Piecewise!
 
 ## Equation 1:
@@ -4389,236 +4606,312 @@ _intracellular_ion_concentrations$Na_i**1.5*_cleft_space_ion_concentrations$K_c*
 _intracellular_ion_concentrations$Na_i**1.5*_cleft_space_ion_concentrations$K_c*(_membrane$V + 150.0)/((_intracellular_ion_concentrations$Na_i**1.5 + 36.482872693909398)*(_cleft_space_ion_concentrations$K_c + 1.0)*(_membrane$V + 200.0))
 # Model: ohara_rudy_2011_endo(ohara_rudy_2011_endo.cellml)
 ICaL__PCa = ((environment__celltype == 1.0) ? (1.2 * ICaL__PCa_b) : ((environment__celltype == 2.0) ? (2.5 * ICaL__PCa_b) : (ICaL__PCa_b)))
+
 ####Piecewise!
 
 IK1__GK1 = ((environment__celltype == 1.0) ? (1.2 * IK1__GK1_b) : ((environment__celltype == 2.0) ? (1.3 * IK1__GK1_b) : (IK1__GK1_b)))
+
 ####Piecewise!
 
 IKb__GKb = ((environment__celltype == 1.0) ? (0.59999999999999998 * IKb__GKb_b) : (IKb__GKb_b))
+
 ####Piecewise!
 
 IKr__GKr = ((environment__celltype == 1.0) ? (1.3 * IKr__GKr_b) : ((environment__celltype == 2.0) ? (0.80000000000000004 * IKr__GKr_b) : (IKr__GKr_b)))
+
 ####Piecewise!
 
 IKs__GKs = ((environment__celltype == 1.0) ? (1.3999999999999999 * IKs__GKs_b) : (IKs__GKs_b))
+
 ####Piecewise!
 
 INaCa_i__Gncx = ((environment__celltype == 1.0) ? (1.1000000000000001 * INaCa_i__Gncx_b) : ((environment__celltype == 2.0) ? (1.3999999999999999 * INaCa_i__Gncx_b) : (INaCa_i__Gncx_b)))
+
 ####Piecewise!
 
 INaK__Pnak = ((environment__celltype == 1.0) ? (0.90000000000000002 * INaK__Pnak_b) : ((environment__celltype == 2.0) ? (0.69999999999999996 * INaK__Pnak_b) : (INaK__Pnak_b)))
+
 ####Piecewise!
 
 INaL__GNaL = ((environment__celltype == 1.0) ? (0.59999999999999998 * INaL__GNaL_b) : (INaL__GNaL_b))
+
 ####Piecewise!
 
 Ito__Gto = (((environment__celltype == 1.0) || (environment__celltype == 2.0)) ? (4.0 * Ito__Gto_b) : (Ito__Gto_b))
+
 ####Piecewise!
 
 SERCA__upScale = ((environment__celltype == 1.0) ? (1.3) : (1.0))
+
 ####Piecewise!
 
 intracellular_ions__cmdnmax = ((environment__celltype == 1.0) ? (1.3 * intracellular_ions__cmdnmax_b) : (intracellular_ions__cmdnmax_b))
+
 ####Piecewise!
 
 Ito__delta_epi = ((environment__celltype == 1.0) ? (1.0 - 0.94999999999999996 / (1.0 + exp(14.0 + 0.20000000000000001 * membrane__v))) : (1.0))
+
 ####Piecewise!
 
 ryr__Jrel_inf = ((environment__celltype == 2.0) ? (1.7 * ryr__Jrel_inf_temp) : (ryr__Jrel_inf_temp))
+
 ####Piecewise!
 
 ryr__Jrel_infp = ((environment__celltype == 2.0) ? (1.7 * ryr__Jrel_temp) : (ryr__Jrel_temp))
+
 ####Piecewise!
 
 ryr__tau_rel = ((ryr__tau_rel_temp < 0.001) ? (0.001) : (ryr__tau_rel_temp))
+
 ####Piecewise!
 
 ryr__tau_relp = ((ryr__tau_relp_temp < 0.001) ? (0.001) : (ryr__tau_relp_temp))
+
 ####Piecewise!
 
 # Model: ohara_rudy_2011_epi(ohara_rudy_2011_epi.cellml)
 ICaL__PCa = ((environment__celltype == 1.0) ? (1.2 * ICaL__PCa_b) : ((environment__celltype == 2.0) ? (2.5 * ICaL__PCa_b) : (ICaL__PCa_b)))
+
 ####Piecewise!
 
 IK1__GK1 = ((environment__celltype == 1.0) ? (1.2 * IK1__GK1_b) : ((environment__celltype == 2.0) ? (1.3 * IK1__GK1_b) : (IK1__GK1_b)))
+
 ####Piecewise!
 
 IKb__GKb = ((environment__celltype == 1.0) ? (0.59999999999999998 * IKb__GKb_b) : (IKb__GKb_b))
+
 ####Piecewise!
 
 IKr__GKr = ((environment__celltype == 1.0) ? (1.3 * IKr__GKr_b) : ((environment__celltype == 2.0) ? (0.80000000000000004 * IKr__GKr_b) : (IKr__GKr_b)))
+
 ####Piecewise!
 
 IKs__GKs = ((environment__celltype == 1.0) ? (1.3999999999999999 * IKs__GKs_b) : (IKs__GKs_b))
+
 ####Piecewise!
 
 INaCa_i__Gncx = ((environment__celltype == 1.0) ? (1.1000000000000001 * INaCa_i__Gncx_b) : ((environment__celltype == 2.0) ? (1.3999999999999999 * INaCa_i__Gncx_b) : (INaCa_i__Gncx_b)))
+
 ####Piecewise!
 
 INaK__Pnak = ((environment__celltype == 1.0) ? (0.90000000000000002 * INaK__Pnak_b) : ((environment__celltype == 2.0) ? (0.69999999999999996 * INaK__Pnak_b) : (INaK__Pnak_b)))
+
 ####Piecewise!
 
 INaL__GNaL = ((environment__celltype == 1.0) ? (0.59999999999999998 * INaL__GNaL_b) : (INaL__GNaL_b))
+
 ####Piecewise!
 
 Ito__Gto = (((environment__celltype == 1.0) || (environment__celltype == 2.0)) ? (4.0 * Ito__Gto_b) : (Ito__Gto_b))
+
 ####Piecewise!
 
 SERCA__upScale = ((environment__celltype == 1.0) ? (1.3) : (1.0))
+
 ####Piecewise!
 
 intracellular_ions__cmdnmax = ((environment__celltype == 1.0) ? (1.3 * intracellular_ions__cmdnmax_b) : (intracellular_ions__cmdnmax_b))
+
 ####Piecewise!
 
 Ito__delta_epi = ((environment__celltype == 1.0) ? (1.0 - 0.94999999999999996 / (1.0 + exp(14.0 + 0.20000000000000001 * membrane__v))) : (1.0))
+
 ####Piecewise!
 
 ryr__Jrel_inf = ((environment__celltype == 2.0) ? (1.7 * ryr__Jrel_inf_temp) : (ryr__Jrel_inf_temp))
+
 ####Piecewise!
 
 ryr__Jrel_infp = ((environment__celltype == 2.0) ? (1.7 * ryr__Jrel_temp) : (ryr__Jrel_temp))
+
 ####Piecewise!
 
 ryr__tau_rel = ((ryr__tau_rel_temp < 0.001) ? (0.001) : (ryr__tau_rel_temp))
+
 ####Piecewise!
 
 ryr__tau_relp = ((ryr__tau_relp_temp < 0.001) ? (0.001) : (ryr__tau_relp_temp))
+
 ####Piecewise!
 
 # Model: ohara_rudy_cipa_v1_2017(ohara_rudy_cipa_v1_2017.cellml)
 ICaL__PCa = ((environment__celltype == 1.0) ? (1.2 * ICaL__PCa_b) : ((environment__celltype == 2.0) ? (2.5 * ICaL__PCa_b) : (ICaL__PCa_b)))
+
 ####Piecewise!
 
 IK1__GK1 = ((environment__celltype == 1.0) ? (1.2 * IK1__GK1_b) : ((environment__celltype == 2.0) ? (1.3 * IK1__GK1_b) : (IK1__GK1_b)))
+
 ####Piecewise!
 
 IKb__GKb = ((environment__celltype == 1.0) ? (0.59999999999999998 * IKb__GKb_b) : (IKb__GKb_b))
+
 ####Piecewise!
 
 IKr__GKr = ((environment__celltype == 1.0) ? (1.3 * IKr__GKr_b) : ((environment__celltype == 2.0) ? (0.80000000000000004 * IKr__GKr_b) : (IKr__GKr_b)))
+
 ####Piecewise!
 
 IKs__GKs = ((environment__celltype == 1.0) ? (1.3999999999999999 * IKs__GKs_b) : (IKs__GKs_b))
+
 ####Piecewise!
 
 INaCa_i__Gncx = ((environment__celltype == 1.0) ? (1.1000000000000001 * INaCa_i__Gncx_b) : ((environment__celltype == 2.0) ? (1.3999999999999999 * INaCa_i__Gncx_b) : (INaCa_i__Gncx_b)))
+
 ####Piecewise!
 
 INaK__Pnak = ((environment__celltype == 1.0) ? (0.90000000000000002 * INaK__Pnak_b) : ((environment__celltype == 2.0) ? (0.69999999999999996 * INaK__Pnak_b) : (INaK__Pnak_b)))
+
 ####Piecewise!
 
 INaL__GNaL = ((environment__celltype == 1.0) ? (0.59999999999999998 * INaL__GNaL_b) : (INaL__GNaL_b))
+
 ####Piecewise!
 
 Ito__Gto = (((environment__celltype == 1.0) || (environment__celltype == 2.0)) ? (4.0 * Ito__Gto_b) : (Ito__Gto_b))
+
 ####Piecewise!
 
 SERCA__upScale = ((environment__celltype == 1.0) ? (1.3) : (1.0))
+
 ####Piecewise!
 
 intracellular_ions__cmdnmax = ((environment__celltype == 1.0) ? (1.3 * intracellular_ions__cmdnmax_b) : (intracellular_ions__cmdnmax_b))
+
 ####Piecewise!
 
 Ito__delta_epi = ((environment__celltype == 1.0) ? (1.0 - 0.94999999999999996 / (1.0 + exp(14.0 + 0.20000000000000001 * membrane__v))) : (1.0))
+
 ####Piecewise!
 
 ICaL__PhiCaK = (((ICaL__U_3 >= -9.9999999999999995e-8) && (ICaL__U_3 <= 9.9999999999999995e-8)) ? ((1.0 - 0.5 * ICaL__U_3) * ICaL__A_3) : (ICaL__A_3 * ICaL__U_3 / (-1.0 + exp(ICaL__U_3))))
+
 ####Piecewise!
 
 ICaL__PhiCaL = (((ICaL__U_1 >= -9.9999999999999995e-8) && (ICaL__U_1 <= 9.9999999999999995e-8)) ? ((1.0 - 0.5 * ICaL__U_1) * ICaL__A_1) : (ICaL__A_1 * ICaL__U_1 / (-1.0 + exp(ICaL__U_1))))
+
 ####Piecewise!
 
 ICaL__PhiCaNa = (((ICaL__U_2 >= -9.9999999999999995e-8) && (ICaL__U_2 <= 9.9999999999999995e-8)) ? ((1.0 - 0.5 * ICaL__U_2) * ICaL__A_2) : (ICaL__A_2 * ICaL__U_2 / (-1.0 + exp(ICaL__U_2))))
+
 ####Piecewise!
 
 ICab__ICab = (((ICab__U >= -9.9999999999999995e-8) && (ICab__U <= 9.9999999999999995e-8)) ? ((1.0 - 0.5 * ICab__U) * ICab__A) : (ICab__A * ICab__U / (-1.0 + exp(ICab__U))))
+
 ####Piecewise!
 
 INab__INab = (((INab__U >= -9.9999999999999995e-8) && (INab__U <= 9.9999999999999995e-8)) ? ((1.0 - 0.5 * INab__U) * INab__A) : (INab__A * INab__U / (-1.0 + exp(INab__U))))
+
 ####Piecewise!
 
 ryr__Jrel_inf = ((environment__celltype == 2.0) ? (1.7 * ryr__Jrel_inf_temp) : (ryr__Jrel_inf_temp))
+
 ####Piecewise!
 
 ryr__Jrel_infp = ((environment__celltype == 2.0) ? (1.7 * ryr__Jrel_temp) : (ryr__Jrel_temp))
+
 ####Piecewise!
 
 ryr__tau_rel = ((ryr__tau_rel_temp < 0.001) ? (0.001) : (ryr__tau_rel_temp))
+
 ####Piecewise!
 
 ryr__tau_relp = ((ryr__tau_relp_temp < 0.001) ? (0.001) : (ryr__tau_relp_temp))
+
 ####Piecewise!
 
 # Model: paci_hyttinen_aaltosetala_severi_atrialVersion(paci_hyttinen_aaltosetala_severi_atrialVersion.cellml)
 calcium_dynamics__g_inf = ((calcium_dynamics__Cai <= 0.00035) ? (1 / (1.0 + 5.439910241481016e+20 * pow(calcium_dynamics__Cai, 6))) : (1 / (1.0 + 1.9720198874049176e+55 * pow(calcium_dynamics__Cai, 16))))
+
 ####Piecewise!
 
 calcium_dynamics__const2 = (((Membrane__Vm > -0.059999999999999998) && (calcium_dynamics__g < calcium_dynamics__g_inf)) ? (0) : (1.0))
+
 ####Piecewise!
 
 i_CaL_f1_gate__constf1 = ((-i_CaL_f1_gate__f1_inf + i_CaL_f1_gate__f1 < 0) ? (0.92835000000000001 + 1433.0 * calcium_dynamics__Cai) : (1.0))
+
 ####Piecewise!
 
 i_CaL_fCa_gate__constfCa = (((Membrane__Vm > -0.059999999999999998) && (i_CaL_fCa_gate__fCa < i_CaL_fCa_gate__fCa_inf)) ? (0) : (1.0))
+
 ####Piecewise!
 
 i_Na_h_gate__alpha_h = ((Membrane__Vm < -0.040000000000000001) ? (0.057000000000000002 * exp(-11.764705882352942 - 147.05882352941177 * Membrane__Vm)) : (0))
+
 ####Piecewise!
 
 i_Na_h_gate__beta_h = ((Membrane__Vm < -0.040000000000000001) ? (2.7000000000000002 * exp(79.0 * Membrane__Vm) + 310000.0 * exp(348.5 * Membrane__Vm)) : (5.9230769230769234 / (1.0 + exp(-0.96036036036036043 - 90.090090090090087 * Membrane__Vm))))
+
 ####Piecewise!
 
 i_Na_h_gate__tau_h = ((Membrane__Vm < -0.040000000000000001) ? (0.0015 / (i_Na_h_gate__alpha_h + i_Na_h_gate__beta_h)) : (0.002542))
+
 ####Piecewise!
 
 i_Na_j_gate__alpha_j = ((Membrane__Vm < -0.040000000000000001) ? ((37.780000000000001 + 1000.0 * Membrane__Vm) * (-25428.0 * exp(244.40000000000001 * Membrane__Vm) - 6.9480000000000002e-6 * exp(-43.909999999999997 * Membrane__Vm)) / (1.0 + exp(24.640530000000002 + 311.0 * Membrane__Vm))) : (0))
+
 ####Piecewise!
 
 i_Na_j_gate__beta_j = ((Membrane__Vm < -0.040000000000000001) ? (0.024240000000000001 * exp(-10.52 * Membrane__Vm) / (1.0 + exp(-5.5312920000000005 - 137.80000000000001 * Membrane__Vm))) : (0.59999999999999998 * exp(57.0 * Membrane__Vm) / (1.0 + exp(-3.2000000000000002 - 100.0 * Membrane__Vm))))
+
 ####Piecewise!
 
 # Model: paci_hyttinen_aaltosetala_severi_ventricularVersion(paci_hyttinen_aaltosetala_severi_ventricularVersion.cellml)
 calcium_dynamics__g_inf = ((calcium_dynamics__Cai <= 0.00035) ? (1 / (1.0 + 5.439910241481016e+20 * pow(calcium_dynamics__Cai, 6))) : (1 / (1.0 + 1.9720198874049176e+55 * pow(calcium_dynamics__Cai, 16))))
+
 ####Piecewise!
 
 calcium_dynamics__const2 = (((Membrane__Vm > -0.059999999999999998) && (calcium_dynamics__g < calcium_dynamics__g_inf)) ? (0) : (1.0))
+
 ####Piecewise!
 
 i_CaL_f1_gate__constf1 = ((-i_CaL_f1_gate__f1_inf + i_CaL_f1_gate__f1 < 0) ? (0.92835000000000001 + 1433.0 * calcium_dynamics__Cai) : (1.0))
+
 ####Piecewise!
 
 i_CaL_fCa_gate__constfCa = (((Membrane__Vm > -0.059999999999999998) && (i_CaL_fCa_gate__fCa < i_CaL_fCa_gate__fCa_inf)) ? (0) : (1.0))
+
 ####Piecewise!
 
 i_Kr__E4031_coeff = ((current_blockers__E4031_30nM == 1.0) ? (0.77000000000000002) : ((current_blockers__E4031_100nM == 1.0) ? (0.5) : (1.0)))
+
 ####Piecewise!
 
 i_Ks__Chromanol_coeff = ((current_blockers__Chromanol_iKs30 == 1.0) ? (0.69999999999999996) : ((current_blockers__Chromanol_iKs50 == 1.0) ? (0.5) : ((current_blockers__Chromanol_iKs70 == 1.0) ? (0.29999999999999999) : ((current_blockers__Chromanol_iKs90 == 1.0) ? (0.10000000000000001) : (1.0)))))
+
 ####Piecewise!
 
 i_Na__TTX_coeff = ((current_blockers__TTX_3uM == 1.0) ? (0.17999999999999999) : ((current_blockers__TTX_10uM == 1.0) ? (0.059999999999999998) : ((current_blockers__TTX_30uM == 1.0) ? (0.02) : (1.0))))
+
 ####Piecewise!
 
 i_Na_h_gate__alpha_h = ((Membrane__Vm < -0.040000000000000001) ? (0.057000000000000002 * exp(-11.764705882352942 - 147.05882352941177 * Membrane__Vm)) : (0))
+
 ####Piecewise!
 
 i_Na_h_gate__beta_h = ((Membrane__Vm < -0.040000000000000001) ? (2.7000000000000002 * exp(79.0 * Membrane__Vm) + 310000.0 * exp(348.5 * Membrane__Vm)) : (5.9230769230769234 / (1.0 + exp(-0.96036036036036043 - 90.090090090090087 * Membrane__Vm))))
+
 ####Piecewise!
 
 i_Na_h_gate__tau_h = ((Membrane__Vm < -0.040000000000000001) ? (0.0015 / (i_Na_h_gate__alpha_h + i_Na_h_gate__beta_h)) : (0.002542))
+
 ####Piecewise!
 
 i_Na_j_gate__alpha_j = ((Membrane__Vm < -0.040000000000000001) ? ((37.780000000000001 + 1000.0 * Membrane__Vm) * (-25428.0 * exp(244.40000000000001 * Membrane__Vm) - 6.9480000000000002e-6 * exp(-43.909999999999997 * Membrane__Vm)) / (1.0 + exp(24.640530000000002 + 311.0 * Membrane__Vm))) : (0))
+
 ####Piecewise!
 
 i_Na_j_gate__beta_j = ((Membrane__Vm < -0.040000000000000001) ? (0.024240000000000001 * exp(-10.52 * Membrane__Vm) / (1.0 + exp(-5.5312920000000005 - 137.80000000000001 * Membrane__Vm))) : (0.59999999999999998 * exp(57.0 * Membrane__Vm) / (1.0 + exp(-3.2000000000000002 - 100.0 * Membrane__Vm))))
+
 ####Piecewise!
 
 # Model: pandit_clark_giles_demir_2001_version06_variant01(pandit_clark_giles_demir_2001_endocardial_cell.cellml)
 sodium_current_h_gate__tau_h = ((membrane__V >= -40.0) ? (0.00045370000000000002 + 0.00045370000000000002 * exp(-0.96036036036036043 + 0.0900900900900901 * sodium_current__shift_INa_inact - 0.0900900900900901 * membrane__V)) : (0.00349 / (310000.0 * exp(0.34999999999999998 * membrane__V - 0.34999999999999998 * sodium_current__shift_INa_inact) + 0.13500000000000001 * exp(-11.764705882352942 + 0.14705882352941177 * sodium_current__shift_INa_inact - 0.14705882352941177 * membrane__V) + 3.5600000000000001 * exp(0.079000000000000001 * membrane__V - 0.079000000000000001 * sodium_current__shift_INa_inact))))
+
 ####Piecewise!
 
 sodium_current_j_gate__tau_j = ((membrane__V >= -40.0) ? (0.01163 * (1.0 + exp(-3.2000000000000002 + 0.10000000000000001 * sodium_current__shift_INa_inact - 0.10000000000000001 * membrane__V)) / exp(-2.5349999999999999e-7 * membrane__V)) : (0.00349 / (0.1212 * exp(0.01052 * sodium_current__shift_INa_inact - 0.01052 * membrane__V) / (1.0 + exp(-5.5312920000000005 - 0.13780000000000001 * membrane__V)) + (37.780000000000001 + membrane__V) * (-127140.0 * exp(0.24440000000000001 * membrane__V - 0.24440000000000001 * sodium_current__shift_INa_inact) - 3.4740000000000003e-5 * exp(0.043909999999999998 * sodium_current__shift_INa_inact - 0.043909999999999998 * membrane__V)) / (1.0 + exp(24.640530000000002 + 0.311 * membrane__V)))))
+
 ####Piecewise!
 
 ## Equation 1:
@@ -4656,9 +4949,11 @@ sodium_current_m_gate__tau_m = 0.0013600000000000001 / (0.080000000000000002 * e
 
 # Model: pandit_clark_giles_demir_2001(pandit_clark_giles_demir_2001_epicardial_cell.cellml)
 sodium_current_h_gate__tau_h = ((membrane__V >= -40.0) ? (0.00045370000000000002 + 0.00045370000000000002 * exp(-0.96036036036036043 + 0.0900900900900901 * sodium_current__shift_INa_inact - 0.0900900900900901 * membrane__V)) : (0.00349 / (310000.0 * exp(0.34999999999999998 * membrane__V - 0.34999999999999998 * sodium_current__shift_INa_inact) + 0.13500000000000001 * exp(-11.764705882352942 + 0.14705882352941177 * sodium_current__shift_INa_inact - 0.14705882352941177 * membrane__V) + 3.5600000000000001 * exp(0.079000000000000001 * membrane__V - 0.079000000000000001 * sodium_current__shift_INa_inact))))
+
 ####Piecewise!
 
 sodium_current_j_gate__tau_j = ((membrane__V >= -40.0) ? (0.01163 * (1.0 + exp(-3.2000000000000002 + 0.10000000000000001 * sodium_current__shift_INa_inact - 0.10000000000000001 * membrane__V)) / exp(-2.5349999999999999e-7 * membrane__V)) : (0.00349 / (0.1212 * exp(0.01052 * sodium_current__shift_INa_inact - 0.01052 * membrane__V) / (1.0 + exp(-5.5312920000000005 - 0.13780000000000001 * membrane__V)) + (37.780000000000001 + membrane__V) * (-127140.0 * exp(0.24440000000000001 * membrane__V - 0.24440000000000001 * sodium_current__shift_INa_inact) - 3.4740000000000003e-5 * exp(0.043909999999999998 * sodium_current__shift_INa_inact - 0.043909999999999998 * membrane__V)) / (1.0 + exp(24.640530000000002 + 0.311 * membrane__V)))))
+
 ####Piecewise!
 
 ## Equation 1:
@@ -4940,57 +5235,75 @@ membrane_permeabilities__i_NaK_max_s * model_parameters__K_e / ((1.0 + 31.622776
 
 # Model: priebe_beuckelmann_1998(priebe_beuckelmann_1998.cellml)
 Derivative(_Irel__APtrack2, _environment__time) = (((Irel__APtrack > 0.17999999999999999) && (Irel__APtrack < 0.20000000000000001)) ? (100.0 - 100.5 * Irel__APtrack2) : (-0.5 * Irel__APtrack2))
+
 ####Piecewise!
 
 Derivative(_Irel__APtrack3, _environment__time) = (((Irel__APtrack > 0.17999999999999999) && (Irel__APtrack < 0.20000000000000001)) ? (100.0 - 100.5 * Irel__APtrack3) : (-0.01 * Irel__APtrack3))
+
 ####Piecewise!
 
 Irel__G_rel = ((Irel__Cainfluxtrack > Irel__delta_Ca_ith) ? ((1.0 - Irel__APtrack2) * (-Irel__delta_Ca_ith + Irel__Cainfluxtrack) * Irel__APtrack2 * Irel__G_rel_max / (-Irel__delta_Ca_ith + Irel__Cainfluxtrack + Irel__K_mrel)) : (0))
+
 ####Piecewise!
 
 INa_h_gate__alpha_h = ((cell__V < -40.0) ? (0.13500000000000001 * exp(-11.764705882352942 + 0.14705882352941177 * INa__shift_INa_inact - 0.14705882352941177 * cell__V)) : (0))
+
 ####Piecewise!
 
 INa_h_gate__beta_h = ((cell__V < -40.0) ? (310000.0 * exp(0.34999999999999998 * cell__V - 0.34999999999999998 * INa__shift_INa_inact) + 3.5600000000000001 * exp(0.079000000000000001 * cell__V - 0.079000000000000001 * INa__shift_INa_inact)) : (7.6923076923076916 / (1.0 + exp(-0.96036036036036043 - 0.0900900900900901 * INa__shift_INa_inact - 0.0900900900900901 * cell__V))))
+
 ####Piecewise!
 
 INa_j_gate__alpha_j = ((cell__V < -40.0) ? ((37.780000000000001 + cell__V) * (-127140.0 * exp(0.24399999999999999 * cell__V - 0.24399999999999999 * INa__shift_INa_inact) - 3.4740000000000003e-5 * exp(0.043909999999999998 * INa__shift_INa_inact - 0.043909999999999998 * cell__V)) / (1.0 + exp(24.640530000000002 + 0.311 * cell__V - 0.311 * INa__shift_INa_inact))) : (0))
+
 ####Piecewise!
 
 INa_j_gate__beta_j = ((cell__V < -40.0) ? (0.1212 * exp(0.01052 * INa__shift_INa_inact - 0.01052 * cell__V) / (1.0 + exp(-5.5312920000000005 + 0.13780000000000001 * INa__shift_INa_inact - 0.13780000000000001 * cell__V))) : (0.29999999999999999 * exp(2.5349999999999999e-7 * INa__shift_INa_inact - 2.5349999999999999e-7 * cell__V) / (1.0 + exp(-3.2000000000000002 + 0.10000000000000001 * INa__shift_INa_inact - 0.10000000000000001 * cell__V))))
+
 ####Piecewise!
 
 INa_m_gate__alpha_m = ((fabs(47.130000000000003 + cell__V) > 0.001) ? (0.32000000000000001 * (47.130000000000003 + cell__V) / (1.0 - exp(-4.7130000000000001 - 0.10000000000000001 * cell__V))) : (3.2000000000000002))
+
 ####Piecewise!
 
 ICab__g_b_Ca_max = ((cell__failing == 0) ? (0.00084999999999999995) : (0.0012999999999999999))
+
 ####Piecewise!
 
 IK1__g_K1_max = ((cell__failing == 0) ? (2.5) : (2.0))
+
 ####Piecewise!
 
 INaCa__K_NaCa = ((cell__failing == 0) ? (INaCa__K_NaCa_normal) : (1650.0))
+
 ####Piecewise!
 
 Derivative(_Irel__Cainfluxtrack, _environment__time) = ((Irel__APtrack > 0.20000000000000001) ? (-0.5 * (-INaCa__i_NaCa + ICa__i_Ca + ICab__i_b_Ca) * cell__Cm / (Ionic_concentrations__V_myo * cell__F)) : ((Irel__APtrack2 > 0.01) ? (0) : (-0.5 * Irel__Cainfluxtrack)))
+
 ####Piecewise!
 
 INaK__I_NaK_max = ((cell__failing == 0) ? (1.3) : (0.75))
+
 ####Piecewise!
 
 INab__g_b_Na_max = ((cell__failing == 0) ? (0.001) : (0))
+
 ####Piecewise!
 
 Ileak__K_leak = ((cell__failing == 0) ? (0.00025999999999999998) : (0.00017000000000000001))
+
 ####Piecewise!
 
 Ito__g_to_max = ((cell__failing == 0) ? (0.29999999999999999) : (0.191)) * Ito__g_to_max_factor
+
 ####Piecewise!
 
 Iup__I_up_max = ((cell__failing == 0) ? (0.0044999999999999997) : (0.0015))
+
 ####Piecewise!
 
 Derivative(_Irel__APtrack, _environment__time) = ((cell__dVdt > 150.0) ? (100.0 - 100.5 * Irel__APtrack) : (-0.5 * Irel__APtrack))
+
 ####Piecewise!
 
 # Model: ramirez_2000(ramirez_nattel_courtemanche_2000.cellml)
@@ -5018,15 +5331,19 @@ Ca_release_current_from_JSR_w_gate__tau_w = (6.0 - 29.129734867424602 * exp(-0.2
 ((fabs(-7.9000000000000004 + membrane__V) < 4.9999999998662226e-7) ? ((-7899999.5000469172 + 1000000.0000059388 * membrane__V) * (1999999.9999702442 * (6.0 - 6.0 * exp(1.0000000000114084e-7)) / (1.0 + 0.29999999999999999 * exp(1.0000000000114084e-7)) + 2000000.000053511 * (6.0 - 6.0 * exp(-9.9999999997671396e-8)) / (1.0 + 0.29999999999999999 * exp(-9.9999999997671396e-8))) - 1999999.9999702442 * (6.0 - 6.0 * exp(1.0000000000114084e-7)) / (1.0 + 0.29999999999999999 * exp(1.0000000000114084e-7))) : ((6.0 - 6.0 * exp(1.5800000000000001 - 0.20000000000000001 * membrane__V)) / ((1.0 + 0.29999999999999999 * exp(1.5800000000000001 - 0.20000000000000001 * membrane__V)) * (-7.9000000000000004 + membrane__V))))
 
 fast_sodium_current_h_gate__alpha_h = ((membrane__V < -40.0) ? (0.13500000000000001 * exp(-11.764705882352942 - 0.14705882352941177 * membrane__V)) : (0))
+
 ####Piecewise!
 
 fast_sodium_current_h_gate__beta_h = ((membrane__V < -40.0) ? (310000.0 * exp(0.34999999999999998 * membrane__V) + 3.5600000000000001 * exp(0.079000000000000001 * membrane__V)) : (7.6923076923076916 / (1.0 + exp(-0.96036036036036043 - 0.0900900900900901 * membrane__V))))
+
 ####Piecewise!
 
 fast_sodium_current_j_gate__alpha_j = ((membrane__V < -40.0) ? ((37.780000000000001 + membrane__V) * (-127140.0 * exp(0.24440000000000001 * membrane__V) - 3.4740000000000003e-5 * exp(-0.043909999999999998 * membrane__V)) / (1.0 + exp(24.640530000000002 + 0.311 * membrane__V))) : (0))
+
 ####Piecewise!
 
 fast_sodium_current_j_gate__beta_j = ((membrane__V < -40.0) ? (0.1212 * exp(-0.01052 * membrane__V) / (1.0 + exp(-5.5312920000000005 - 0.13780000000000001 * membrane__V))) : (0.29999999999999999 * exp(-2.5349999999999999e-7 * membrane__V) / (1.0 + exp(-3.2000000000000002 - 0.10000000000000001 * membrane__V))))
+
 ####Piecewise!
 
 ## Equation 2:
@@ -5307,18 +5624,23 @@ L_type_Ca_channel__i_Ca_L_Na_ds = 4.1177279905020022e-5 * (-50.0 + membrane__V) 
 ((fabs(-50.0 + membrane__V) < 2.6713760659657915e-6) ? ((-9358472.2056995872 + 187169.45411399176 * membrane__V) * (1.0999999999984461e-10 * (intracellular_sodium_concentration__Na_i * exp(1.8716945411372736) - extracellular_sodium_concentration__Na_o * exp(9.9999999999406119e-8)) * L_type_Ca_channel_d_gate__d * L_type_Ca_channel_f2ds_gate__f2ds * L_type_Ca_channel_f_gate__f / (1.0 - exp(9.9999999999406119e-8)) + 1.0999999999984461e-10 * (intracellular_sodium_concentration__Na_i * exp(1.8716945411372736) - extracellular_sodium_concentration__Na_o * exp(-9.9999999999406119e-8)) * L_type_Ca_channel_d_gate__d * L_type_Ca_channel_f2ds_gate__f2ds * L_type_Ca_channel_f_gate__f / (1.0 - exp(-9.9999999999406119e-8))) - 1.0999999999984461e-10 * (intracellular_sodium_concentration__Na_i * exp(1.8716945411372736) - extracellular_sodium_concentration__Na_o * exp(9.9999999999406119e-8)) * L_type_Ca_channel_d_gate__d * L_type_Ca_channel_f2ds_gate__f2ds * L_type_Ca_channel_f_gate__f / (1.0 - exp(9.9999999999406119e-8))) : ((-50.0 + membrane__V) * (intracellular_sodium_concentration__Na_i * exp(50.0 * membrane__F / (membrane__R * membrane__T)) - extracellular_sodium_concentration__Na_o * exp((50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * L_type_Ca_channel__FrICa * L_type_Ca_channel__P_CaNa * L_type_Ca_channel__P_Ca_L * L_type_Ca_channel_d_gate__d * L_type_Ca_channel_f2ds_gate__f2ds * L_type_Ca_channel_f_gate__f * membrane__F / ((1.0 - exp((50.0 - membrane__V) * membrane__F / (membrane__R * membrane__T))) * membrane__R * membrane__T)))
 
 L_type_Ca_channel_d_gate__alpha_d = ((fabs(L_type_Ca_channel_d_gate__E0_d) < 0.0001) ? (120.0) : (30.0 * L_type_Ca_channel_d_gate__E0_d / (1.0 - exp(-0.1388888888888889 * L_type_Ca_channel_d_gate__E0_d))))
+
 ####Piecewise!
 
 L_type_Ca_channel_d_gate__beta_d = ((fabs(L_type_Ca_channel_d_gate__E0_d) < 0.0001) ? (120.0) : (12.0 * L_type_Ca_channel_d_gate__E0_d / (-1.0 + exp(0.055555555555555552 * L_type_Ca_channel_d_gate__E0_d))))
+
 ####Piecewise!
 
 L_type_Ca_channel_f_gate__alpha_f = ((L_type_Ca_channel_f_gate__delta_f > fabs(L_type_Ca_channel_f_gate__E0_f)) ? (25.0) : (6.25 * L_type_Ca_channel_f_gate__E0_f / (-1.0 + exp(0.19607843137254904 * L_type_Ca_channel_f_gate__E0_f))))
+
 ####Piecewise!
 
 calcium_release__SpeedRel = ((membrane__V < -50.0) ? (5.0) : (1.0))
+
 ####Piecewise!
 
 fast_sodium_current_m_gate__alpha_m = ((fast_sodium_current_m_gate__delta_m > fabs(fast_sodium_current_m_gate__E0_m)) ? (2000.0) : (200.0 * fast_sodium_current_m_gate__E0_m / (1.0 - exp(-0.10000000000000001 * fast_sodium_current_m_gate__E0_m))))
+
 ####Piecewise!
 
 ## Equation 7:
@@ -5496,15 +5818,19 @@ IKs_Xs_gate__tau_Xs = 1 / (0.00013100000000000001 * (30.0 + cell__V) / (-1.0 + 7
 ((fabs(30.0 + cell__V) < 6.7567567568760367e-7) ? (1 / (-8.8513513515076093e-11 / (-1.0 + exp(-4.6418918920460017e-8)) - 4.8581081081938701e-11 / (1.0 - exp(1.0000000000287557e-7))) + (22200000.499608092 + 739999.99998693645 * cell__V) * (1 / (8.8513513515076093e-11 / (-1.0 + exp(4.6418918920460017e-8)) + 4.8581081081938701e-11 / (1.0 - exp(-1.0000000000287557e-7))) - 1 / (-8.8513513515076093e-11 / (-1.0 + exp(-4.6418918920460017e-8)) - 4.8581081081938701e-11 / (1.0 - exp(1.0000000000287557e-7))))) : (1 / (0.00013100000000000001 * (30.0 + cell__V) / (-1.0 + exp(2.0609999999999999 + 0.068699999999999997 * cell__V)) + 7.1899999999999999e-5 * (30.0 + cell__V) / (1.0 - exp(-4.4399999999999995 - 0.14799999999999999 * cell__V)))))
 
 INa_h_gate__alpha_h = ((cell__V < -40.0) ? (0.13500000000000001 * exp(-11.764705882352942 + 0.14705882352941177 * INa__shift_INa_inact - 0.14705882352941177 * cell__V)) : (0))
+
 ####Piecewise!
 
 INa_h_gate__beta_h = ((cell__V < -40.0) ? (310000.0 * exp(0.34999999999999998 * cell__V - 0.34999999999999998 * INa__shift_INa_inact) + 3.5600000000000001 * exp(0.079000000000000001 * cell__V - 0.079000000000000001 * INa__shift_INa_inact)) : (7.6923076923076916 / (1.0 + exp(-0.96036036036036043 + 0.0900900900900901 * INa__shift_INa_inact - 0.0900900900900901 * cell__V))))
+
 ####Piecewise!
 
 INa_j_gate__alpha_j = ((cell__V < -40.0) ? ((37.780000000000001 + cell__V) * (-127140.0 * exp(0.24440000000000001 * cell__V - 0.24440000000000001 * INa__shift_INa_inact) - 3.4740000000000003e-5 * exp(0.043909999999999998 * INa__shift_INa_inact - 0.043909999999999998 * cell__V)) / (1.0 + exp(24.640530000000002 + 0.311 * cell__V - 0.311 * INa__shift_INa_inact))) : (0))
+
 ####Piecewise!
 
 INa_j_gate__beta_j = ((cell__V < -40.0) ? (0.1212 * exp(0.01052 * INa__shift_INa_inact - 0.01052 * cell__V) / (1.0 + exp(-5.5312920000000005 + 0.13780000000000001 * INa__shift_INa_inact - 0.13780000000000001 * cell__V))) : (0.29999999999999999 * exp(2.5349999999999999e-7 * INa__shift_INa_inact - 2.5349999999999999e-7 * cell__V) / (1.0 + exp(-3.2000000000000002 + 0.10000000000000001 * INa__shift_INa_inact - 0.10000000000000001 * cell__V))))
+
 ####Piecewise!
 
 ## Equation 4:
@@ -5715,25 +6041,32 @@ L_type_Ca_current__i_CaL = 14447.286958825251 * (-15.0 + membrane__V) * (-calciu
 ((fabs(-15.0 + membrane__V) < 1.3356880329828957e-6) ? ((-5615083.1234197523 + 374338.90822798351 * membrane__V) * (0.019297068299972742 * (-calcium_dynamics__Ca_o + 0.25 * calcium_dynamics__Ca_ss * exp(9.9999999999406119e-8)) * L_type_Ca_current__g_CaL * L_type_Ca_current_d_gate__d * L_type_Ca_current_f2_gate__f2 * L_type_Ca_current_fCass_gate__fCass * L_type_Ca_current_f_gate__f / (-1.0 + exp(9.9999999999406119e-8)) + 0.019297068299972742 * (-calcium_dynamics__Ca_o + 0.25 * calcium_dynamics__Ca_ss * exp(-9.9999999999406119e-8)) * L_type_Ca_current__g_CaL * L_type_Ca_current_d_gate__d * L_type_Ca_current_f2_gate__f2 * L_type_Ca_current_fCass_gate__fCass * L_type_Ca_current_f_gate__f / (-1.0 + exp(-9.9999999999406119e-8))) - 0.019297068299972742 * (-calcium_dynamics__Ca_o + 0.25 * calcium_dynamics__Ca_ss * exp(-9.9999999999406119e-8)) * L_type_Ca_current__g_CaL * L_type_Ca_current_d_gate__d * L_type_Ca_current_f2_gate__f2 * L_type_Ca_current_fCass_gate__fCass * L_type_Ca_current_f_gate__f / (-1.0 + exp(-9.9999999999406119e-8))) : (4.0 * pow(membrane__F, 2) * (-15.0 + membrane__V) * (-calcium_dynamics__Ca_o + 0.25 * calcium_dynamics__Ca_ss * exp(2.0 * (-15.0 + membrane__V) * membrane__F / (membrane__R * membrane__T))) * L_type_Ca_current__g_CaL * L_type_Ca_current_d_gate__d * L_type_Ca_current_f2_gate__f2 * L_type_Ca_current_fCass_gate__fCass * L_type_Ca_current_f_gate__f / ((-1.0 + exp(2.0 * (-15.0 + membrane__V) * membrane__F / (membrane__R * membrane__T))) * membrane__R * membrane__T)))
 
 fast_sodium_current_h_gate__alpha_h = ((membrane__V < -40.0) ? (0.057000000000000002 * exp(-11.764705882352942 + 0.14705882352941177 * fast_sodium_current__shift_INa_inact - 0.14705882352941177 * membrane__V)) : (0))
+
 ####Piecewise!
 
 fast_sodium_current_h_gate__beta_h = ((membrane__V < -40.0) ? (310000.0 * exp(0.34849999999999998 * membrane__V - 0.34849999999999998 * fast_sodium_current__shift_INa_inact) + 2.7000000000000002 * exp(0.079000000000000001 * membrane__V - 0.079000000000000001 * fast_sodium_current__shift_INa_inact)) : (5.9230769230769234 / (1.0 + exp(-0.96036036036036043 + 0.0900900900900901 * fast_sodium_current__shift_INa_inact - 0.0900900900900901 * membrane__V))))
+
 ####Piecewise!
 
 fast_sodium_current_j_gate__alpha_j = ((membrane__V < -40.0) ? ((37.780000000000001 + membrane__V) * (-25428.0 * exp(0.24440000000000001 * membrane__V - 0.24440000000000001 * fast_sodium_current__shift_INa_inact) - 6.9480000000000002e-6 * exp(0.043909999999999998 * fast_sodium_current__shift_INa_inact - 0.043909999999999998 * membrane__V)) / (1.0 + exp(24.640530000000002 + 0.311 * membrane__V - 0.311 * fast_sodium_current__shift_INa_inact))) : (0))
+
 ####Piecewise!
 
 fast_sodium_current_j_gate__beta_j = ((membrane__V < -40.0) ? (0.024240000000000001 * exp(0.01052 * fast_sodium_current__shift_INa_inact - 0.01052 * membrane__V) / (1.0 + exp(-5.5312920000000005 + 0.13780000000000001 * fast_sodium_current__shift_INa_inact - 0.13780000000000001 * membrane__V))) : (0.59999999999999998 * exp(0.057000000000000002 * membrane__V - 0.057000000000000002 * fast_sodium_current__shift_INa_inact) / (1.0 + exp(-3.2000000000000002 + 0.10000000000000001 * fast_sodium_current__shift_INa_inact - 0.10000000000000001 * membrane__V))))
+
 ####Piecewise!
 
 # Model: tentusscher_model_2004_endo(ten_tusscher_model_2004_endo.cellml)
 calcium_dynamics__g_inf = ((calcium_dynamics__Ca_i < 0.00035) ? (1 / (1.0 + 5.439910241481016e+20 * pow(calcium_dynamics__Ca_i, 6))) : (1 / (1.0 + 1.9720198874049176e+55 * pow(calcium_dynamics__Ca_i, 16))))
+
 ####Piecewise!
 
 Derivative(_L_type_Ca_current_fCa_gate__fCa, _environment__time) = (((membrane__V > -60.0) && (L_type_Ca_current_fCa_gate__fCa < L_type_Ca_current_fCa_gate__fCa_inf)) ? (0) : (L_type_Ca_current_fCa_gate__d_fCa))
+
 ####Piecewise!
 
 Derivative(_calcium_dynamics__g, _environment__time) = (((membrane__V > -60.0) && (calcium_dynamics__g < calcium_dynamics__g_inf)) ? (0) : (calcium_dynamics__d_g))
+
 ####Piecewise!
 
 ## Equation 1:
@@ -5760,50 +6093,65 @@ L_type_Ca_current__i_CaL = 14447.286958825251 * (-0.34100000000000003 * calcium_
 ((fabs(membrane__V) < 1.3356880329847825e-6) ? ((0.5 + 374338.90822745475 * membrane__V) * (0.019297068299999998 * (-0.34100000000000003 * calcium_dynamics__Ca_o + calcium_dynamics__Ca_i * exp(9.9999999999999995e-8)) * L_type_Ca_current__g_CaL * L_type_Ca_current_d_gate__d * L_type_Ca_current_fCa_gate__fCa * L_type_Ca_current_f_gate__f / (-1.0 + exp(9.9999999999999995e-8)) + 0.019297068299999998 * (-0.34100000000000003 * calcium_dynamics__Ca_o + calcium_dynamics__Ca_i * exp(-9.9999999999999995e-8)) * L_type_Ca_current__g_CaL * L_type_Ca_current_d_gate__d * L_type_Ca_current_fCa_gate__fCa * L_type_Ca_current_f_gate__f / (-1.0 + exp(-9.9999999999999995e-8))) - 0.019297068299999998 * (-0.34100000000000003 * calcium_dynamics__Ca_o + calcium_dynamics__Ca_i * exp(-9.9999999999999995e-8)) * L_type_Ca_current__g_CaL * L_type_Ca_current_d_gate__d * L_type_Ca_current_fCa_gate__fCa * L_type_Ca_current_f_gate__f / (-1.0 + exp(-9.9999999999999995e-8))) : (4.0 * pow(membrane__F, 2) * (-0.34100000000000003 * calcium_dynamics__Ca_o + calcium_dynamics__Ca_i * exp(2.0 * membrane__F * membrane__V / (membrane__R * membrane__T))) * L_type_Ca_current__g_CaL * L_type_Ca_current_d_gate__d * L_type_Ca_current_fCa_gate__fCa * L_type_Ca_current_f_gate__f * membrane__V / ((-1.0 + exp(2.0 * membrane__F * membrane__V / (membrane__R * membrane__T))) * membrane__R * membrane__T)))
 
 fast_sodium_current_h_gate__alpha_h = ((membrane__V < -40.0) ? (0.057000000000000002 * exp(-11.764705882352942 - 0.14705882352941177 * membrane__V)) : (0))
+
 ####Piecewise!
 
 fast_sodium_current_h_gate__beta_h = ((membrane__V < -40.0) ? (310000.0 * exp(0.34849999999999998 * membrane__V) + 2.7000000000000002 * exp(0.079000000000000001 * membrane__V)) : (5.9230769230769234 / (1.0 + exp(-0.96036036036036043 - 0.0900900900900901 * membrane__V))))
+
 ####Piecewise!
 
 fast_sodium_current_j_gate__alpha_j = ((membrane__V < -40.0) ? ((37.780000000000001 + membrane__V) * (-25428.0 * exp(0.24440000000000001 * membrane__V) - 6.9480000000000002e-6 * exp(-0.043909999999999998 * membrane__V)) / (1.0 + exp(24.640530000000002 + 0.311 * membrane__V))) : (0))
+
 ####Piecewise!
 
 fast_sodium_current_j_gate__beta_j = ((membrane__V < -40.0) ? (0.024240000000000001 * exp(-0.01052 * membrane__V) / (1.0 + exp(-5.5312920000000005 - 0.13780000000000001 * membrane__V))) : (0.59999999999999998 * exp(0.057000000000000002 * membrane__V) / (1.0 + exp(-3.2000000000000002 - 0.10000000000000001 * membrane__V))))
+
 ####Piecewise!
 
 # Model: tentusscher_model_2004_epi(ten_tusscher_model_2004_epi.cellml)
 calcium_dynamics__g_inf = ((calcium_dynamics__Ca_i < 0.00035) ? (1 / (1.0 + 5.439910241481016e+20 * pow(calcium_dynamics__Ca_i, 6))) : (1 / (1.0 + 1.9720198874049176e+55 * pow(calcium_dynamics__Ca_i, 16))))
+
 ####Piecewise!
 
 Derivative(_L_type_Ca_current_fCa_gate__fCa, _environment__time) = (((membrane__V > -60.0) && (L_type_Ca_current_fCa_gate__fCa < L_type_Ca_current_fCa_gate__fCa_inf)) ? (0) : (L_type_Ca_current_fCa_gate__d_fCa))
+
 ####Piecewise!
 
 Derivative(_calcium_dynamics__g, _environment__time) = (((membrane__V > -60.0) && (calcium_dynamics__g < calcium_dynamics__g_inf)) ? (0) : (calcium_dynamics__d_g))
+
 ####Piecewise!
 
 L_type_Ca_current__i_CaL = (((L_type_Ca_current__U >= -9.9999999999999995e-8) && (L_type_Ca_current__U <= 9.9999999999999995e-8)) ? ((1.0 - 0.5 * L_type_Ca_current__U) * L_type_Ca_current__A) : (L_type_Ca_current__A * L_type_Ca_current__U / (-1.0 + exp(L_type_Ca_current__U))))
+
 ####Piecewise!
 
 fast_sodium_current_h_gate__alpha_h = ((membrane__V < -40.0) ? (0.057000000000000002 * exp(-11.764705882352942 - 0.14705882352941177 * membrane__V)) : (0))
+
 ####Piecewise!
 
 fast_sodium_current_h_gate__beta_h = ((membrane__V < -40.0) ? (310000.0 * exp(0.34849999999999998 * membrane__V) + 2.7000000000000002 * exp(0.079000000000000001 * membrane__V)) : (5.9230769230769234 / (1.0 + exp(-0.96036036036036043 - 0.0900900900900901 * membrane__V))))
+
 ####Piecewise!
 
 fast_sodium_current_j_gate__alpha_j = ((membrane__V < -40.0) ? ((37.780000000000001 + membrane__V) * (-25428.0 * exp(0.24440000000000001 * membrane__V) - 6.9480000000000002e-6 * exp(-0.043909999999999998 * membrane__V)) / (1.0 + exp(24.640530000000002 + 0.311 * membrane__V))) : (0))
+
 ####Piecewise!
 
 fast_sodium_current_j_gate__beta_j = ((membrane__V < -40.0) ? (0.024240000000000001 * exp(-0.01052 * membrane__V) / (1.0 + exp(-5.5312920000000005 - 0.13780000000000001 * membrane__V))) : (0.59999999999999998 * exp(0.057000000000000002 * membrane__V) / (1.0 + exp(-3.2000000000000002 - 0.10000000000000001 * membrane__V))))
+
 ####Piecewise!
 
 # Model: tentusscher_model_2004_M(ten_tusscher_model_2004_M.cellml)
 calcium_dynamics__g_inf = ((calcium_dynamics__Ca_i < 0.00035) ? (1 / (1.0 + 5.439910241481016e+20 * pow(calcium_dynamics__Ca_i, 6))) : (1 / (1.0 + 1.9720198874049176e+55 * pow(calcium_dynamics__Ca_i, 16))))
+
 ####Piecewise!
 
 Derivative(_L_type_Ca_current_fCa_gate__fCa, _environment__time) = (((membrane__V > -60.0) && (L_type_Ca_current_fCa_gate__fCa < L_type_Ca_current_fCa_gate__fCa_inf)) ? (0) : (L_type_Ca_current_fCa_gate__d_fCa))
+
 ####Piecewise!
 
 Derivative(_calcium_dynamics__g, _environment__time) = (((membrane__V > -60.0) && (calcium_dynamics__g < calcium_dynamics__g_inf)) ? (0) : (calcium_dynamics__d_g))
+
 ####Piecewise!
 
 ## Equation 1:
@@ -5830,217 +6178,286 @@ L_type_Ca_current__i_CaL = 14447.286958825251 * (-0.34100000000000003 * calcium_
 ((fabs(membrane__V) < 1.3356880329847825e-6) ? ((0.5 + 374338.90822745475 * membrane__V) * (0.019297068299999998 * (-0.34100000000000003 * calcium_dynamics__Ca_o + calcium_dynamics__Ca_i * exp(9.9999999999999995e-8)) * L_type_Ca_current__g_CaL * L_type_Ca_current_d_gate__d * L_type_Ca_current_fCa_gate__fCa * L_type_Ca_current_f_gate__f / (-1.0 + exp(9.9999999999999995e-8)) + 0.019297068299999998 * (-0.34100000000000003 * calcium_dynamics__Ca_o + calcium_dynamics__Ca_i * exp(-9.9999999999999995e-8)) * L_type_Ca_current__g_CaL * L_type_Ca_current_d_gate__d * L_type_Ca_current_fCa_gate__fCa * L_type_Ca_current_f_gate__f / (-1.0 + exp(-9.9999999999999995e-8))) - 0.019297068299999998 * (-0.34100000000000003 * calcium_dynamics__Ca_o + calcium_dynamics__Ca_i * exp(-9.9999999999999995e-8)) * L_type_Ca_current__g_CaL * L_type_Ca_current_d_gate__d * L_type_Ca_current_fCa_gate__fCa * L_type_Ca_current_f_gate__f / (-1.0 + exp(-9.9999999999999995e-8))) : (4.0 * pow(membrane__F, 2) * (-0.34100000000000003 * calcium_dynamics__Ca_o + calcium_dynamics__Ca_i * exp(2.0 * membrane__F * membrane__V / (membrane__R * membrane__T))) * L_type_Ca_current__g_CaL * L_type_Ca_current_d_gate__d * L_type_Ca_current_fCa_gate__fCa * L_type_Ca_current_f_gate__f * membrane__V / ((-1.0 + exp(2.0 * membrane__F * membrane__V / (membrane__R * membrane__T))) * membrane__R * membrane__T)))
 
 fast_sodium_current_h_gate__alpha_h = ((membrane__V < -40.0) ? (0.057000000000000002 * exp(-11.764705882352942 - 0.14705882352941177 * membrane__V)) : (0))
+
 ####Piecewise!
 
 fast_sodium_current_h_gate__beta_h = ((membrane__V < -40.0) ? (310000.0 * exp(0.34849999999999998 * membrane__V) + 2.7000000000000002 * exp(0.079000000000000001 * membrane__V)) : (5.9230769230769234 / (1.0 + exp(-0.96036036036036043 - 0.0900900900900901 * membrane__V))))
+
 ####Piecewise!
 
 fast_sodium_current_j_gate__alpha_j = ((membrane__V < -40.0) ? ((37.780000000000001 + membrane__V) * (-25428.0 * exp(0.24440000000000001 * membrane__V) - 6.9480000000000002e-6 * exp(-0.043909999999999998 * membrane__V)) / (1.0 + exp(24.640530000000002 + 0.311 * membrane__V))) : (0))
+
 ####Piecewise!
 
 fast_sodium_current_j_gate__beta_j = ((membrane__V < -40.0) ? (0.024240000000000001 * exp(-0.01052 * membrane__V) / (1.0 + exp(-5.5312920000000005 - 0.13780000000000001 * membrane__V))) : (0.59999999999999998 * exp(0.057000000000000002 * membrane__V) / (1.0 + exp(-3.2000000000000002 - 0.10000000000000001 * membrane__V))))
+
 ####Piecewise!
 
 # Model: tentusscher_model_2006_endo(ten_tusscher_model_2006_endo.cellml)
 L_type_Ca_current__temp = (((L_type_Ca_current__V_low > membrane__V) || (L_type_Ca_current__V_high < membrane__V)) ? ((-15.0 + membrane__V) * (-calcium_dynamics__Ca_o + 0.25 * calcium_dynamics__Ca_ss * exp(2.0 * (-15.0 + membrane__V) * membrane__F / (membrane__R * membrane__T))) / (-1.0 + exp(2.0 * (-15.0 + membrane__V) * membrane__F / (membrane__R * membrane__T)))) : (0.5 * (-15.0 + L_type_Ca_current__V_high) * (-calcium_dynamics__Ca_o + 0.25 * calcium_dynamics__Ca_ss * exp(2.0 * (-15.0 + L_type_Ca_current__V_high) * membrane__F / (membrane__R * membrane__T))) / (-1.0 + exp(2.0 * (-15.0 + L_type_Ca_current__V_high) * membrane__F / (membrane__R * membrane__T))) + 0.5 * (-15.0 + L_type_Ca_current__V_low) * (-calcium_dynamics__Ca_o + 0.25 * calcium_dynamics__Ca_ss * exp(2.0 * (-15.0 + L_type_Ca_current__V_low) * membrane__F / (membrane__R * membrane__T))) / (-1.0 + exp(2.0 * (-15.0 + L_type_Ca_current__V_low) * membrane__F / (membrane__R * membrane__T)))))
+
 ####Piecewise!
 
 fast_sodium_current_h_gate__alpha_h = ((membrane__V < -40.0 + fast_sodium_current__shift_INa_inact) ? (0.057000000000000002 * exp(-11.764705882352942 + 0.14705882352941177 * fast_sodium_current__shift_INa_inact - 0.14705882352941177 * membrane__V)) : (0))
+
 ####Piecewise!
 
 fast_sodium_current_h_gate__beta_h = ((membrane__V < -40.0 + fast_sodium_current__shift_INa_inact) ? (310000.0 * exp(0.34849999999999998 * membrane__V - 0.34849999999999998 * fast_sodium_current__shift_INa_inact) + 2.7000000000000002 * exp(0.079000000000000001 * membrane__V - 0.079000000000000001 * fast_sodium_current__shift_INa_inact)) : (5.9230769230769234 / (1.0 + exp(-0.96036036036036043 + 0.0900900900900901 * fast_sodium_current__shift_INa_inact - 0.0900900900900901 * membrane__V))))
+
 ####Piecewise!
 
 fast_sodium_current_j_gate__alpha_j = ((membrane__V < -40.0 + fast_sodium_current__shift_INa_inact) ? ((37.780000000000001 + membrane__V) * (-25428.0 * exp(0.24440000000000001 * membrane__V - 0.24440000000000001 * fast_sodium_current__shift_INa_inact) - 6.9480000000000002e-6 * exp(0.043909999999999998 * fast_sodium_current__shift_INa_inact - 0.043909999999999998 * membrane__V)) / (1.0 + exp(24.640530000000002 + 0.311 * membrane__V - 0.311 * fast_sodium_current__shift_INa_inact))) : (0))
+
 ####Piecewise!
 
 fast_sodium_current_j_gate__beta_j = ((membrane__V < -40.0 + fast_sodium_current__shift_INa_inact) ? (0.024240000000000001 * exp(0.01052 * fast_sodium_current__shift_INa_inact - 0.01052 * membrane__V) / (1.0 + exp(-5.5312920000000005 + 0.13780000000000001 * fast_sodium_current__shift_INa_inact - 0.13780000000000001 * membrane__V))) : (0.59999999999999998 * exp(0.057000000000000002 * membrane__V - 0.057000000000000002 * fast_sodium_current__shift_INa_inact) / (1.0 + exp(-3.2000000000000002 + 0.10000000000000001 * fast_sodium_current__shift_INa_inact - 0.10000000000000001 * membrane__V))))
+
 ####Piecewise!
 
 # Model: tentusscher_model_2006_epi(ten_tusscher_model_2006_epi.cellml)
 L_type_Ca_current__temp = (((L_type_Ca_current__V_low > membrane__V) || (L_type_Ca_current__V_high < membrane__V)) ? ((-15.0 + membrane__V) * (-calcium_dynamics__Ca_o + 0.25 * calcium_dynamics__Ca_ss * exp(2.0 * (-15.0 + membrane__V) * membrane__F / (membrane__R * membrane__T))) / (-1.0 + exp(2.0 * (-15.0 + membrane__V) * membrane__F / (membrane__R * membrane__T)))) : (0.5 * (-15.0 + L_type_Ca_current__V_high) * (-calcium_dynamics__Ca_o + 0.25 * calcium_dynamics__Ca_ss * exp(2.0 * (-15.0 + L_type_Ca_current__V_high) * membrane__F / (membrane__R * membrane__T))) / (-1.0 + exp(2.0 * (-15.0 + L_type_Ca_current__V_high) * membrane__F / (membrane__R * membrane__T))) + 0.5 * (-15.0 + L_type_Ca_current__V_low) * (-calcium_dynamics__Ca_o + 0.25 * calcium_dynamics__Ca_ss * exp(2.0 * (-15.0 + L_type_Ca_current__V_low) * membrane__F / (membrane__R * membrane__T))) / (-1.0 + exp(2.0 * (-15.0 + L_type_Ca_current__V_low) * membrane__F / (membrane__R * membrane__T)))))
+
 ####Piecewise!
 
 fast_sodium_current_h_gate__alpha_h = ((membrane__V < -40.0 + fast_sodium_current__shift_INa_inact) ? (0.057000000000000002 * exp(-11.764705882352942 + 0.14705882352941177 * fast_sodium_current__shift_INa_inact - 0.14705882352941177 * membrane__V)) : (0))
+
 ####Piecewise!
 
 fast_sodium_current_h_gate__beta_h = ((membrane__V < -40.0 + fast_sodium_current__shift_INa_inact) ? (310000.0 * exp(0.34849999999999998 * membrane__V - 0.34849999999999998 * fast_sodium_current__shift_INa_inact) + 2.7000000000000002 * exp(0.079000000000000001 * membrane__V - 0.079000000000000001 * fast_sodium_current__shift_INa_inact)) : (5.9230769230769234 / (1.0 + exp(-0.96036036036036043 + 0.0900900900900901 * fast_sodium_current__shift_INa_inact - 0.0900900900900901 * membrane__V))))
+
 ####Piecewise!
 
 fast_sodium_current_j_gate__alpha_j = ((membrane__V < -40.0 + fast_sodium_current__shift_INa_inact) ? ((37.780000000000001 + membrane__V) * (-25428.0 * exp(0.24440000000000001 * membrane__V - 0.24440000000000001 * fast_sodium_current__shift_INa_inact) - 6.9480000000000002e-6 * exp(0.043909999999999998 * fast_sodium_current__shift_INa_inact - 0.043909999999999998 * membrane__V)) / (1.0 + exp(24.640530000000002 + 0.311 * membrane__V - 0.311 * fast_sodium_current__shift_INa_inact))) : (0))
+
 ####Piecewise!
 
 fast_sodium_current_j_gate__beta_j = ((membrane__V < -40.0 + fast_sodium_current__shift_INa_inact) ? (0.024240000000000001 * exp(0.01052 * fast_sodium_current__shift_INa_inact - 0.01052 * membrane__V) / (1.0 + exp(-5.5312920000000005 + 0.13780000000000001 * fast_sodium_current__shift_INa_inact - 0.13780000000000001 * membrane__V))) : (0.59999999999999998 * exp(0.057000000000000002 * membrane__V - 0.057000000000000002 * fast_sodium_current__shift_INa_inact) / (1.0 + exp(-3.2000000000000002 + 0.10000000000000001 * fast_sodium_current__shift_INa_inact - 0.10000000000000001 * membrane__V))))
+
 ####Piecewise!
 
 # Model: tentusscher_model_2006_M(ten_tusscher_model_2006_M.cellml)
 L_type_Ca_current__temp = (((L_type_Ca_current__V_low > membrane__V) || (L_type_Ca_current__V_high < membrane__V)) ? ((-15.0 + membrane__V) * (-calcium_dynamics__Ca_o + 0.25 * calcium_dynamics__Ca_ss * exp(2.0 * (-15.0 + membrane__V) * membrane__F / (membrane__R * membrane__T))) / (-1.0 + exp(2.0 * (-15.0 + membrane__V) * membrane__F / (membrane__R * membrane__T)))) : (0.5 * (-15.0 + L_type_Ca_current__V_high) * (-calcium_dynamics__Ca_o + 0.25 * calcium_dynamics__Ca_ss * exp(2.0 * (-15.0 + L_type_Ca_current__V_high) * membrane__F / (membrane__R * membrane__T))) / (-1.0 + exp(2.0 * (-15.0 + L_type_Ca_current__V_high) * membrane__F / (membrane__R * membrane__T))) + 0.5 * (-15.0 + L_type_Ca_current__V_low) * (-calcium_dynamics__Ca_o + 0.25 * calcium_dynamics__Ca_ss * exp(2.0 * (-15.0 + L_type_Ca_current__V_low) * membrane__F / (membrane__R * membrane__T))) / (-1.0 + exp(2.0 * (-15.0 + L_type_Ca_current__V_low) * membrane__F / (membrane__R * membrane__T)))))
+
 ####Piecewise!
 
 fast_sodium_current_h_gate__alpha_h = ((membrane__V < -40.0 + fast_sodium_current__shift_INa_inact) ? (0.057000000000000002 * exp(-11.764705882352942 + 0.14705882352941177 * fast_sodium_current__shift_INa_inact - 0.14705882352941177 * membrane__V)) : (0))
+
 ####Piecewise!
 
 fast_sodium_current_h_gate__beta_h = ((membrane__V < -40.0 + fast_sodium_current__shift_INa_inact) ? (310000.0 * exp(0.34849999999999998 * membrane__V - 0.34849999999999998 * fast_sodium_current__shift_INa_inact) + 2.7000000000000002 * exp(0.079000000000000001 * membrane__V - 0.079000000000000001 * fast_sodium_current__shift_INa_inact)) : (5.9230769230769234 / (1.0 + exp(-0.96036036036036043 + 0.0900900900900901 * fast_sodium_current__shift_INa_inact - 0.0900900900900901 * membrane__V))))
+
 ####Piecewise!
 
 fast_sodium_current_j_gate__alpha_j = ((membrane__V < -40.0 + fast_sodium_current__shift_INa_inact) ? ((37.780000000000001 + membrane__V) * (-25428.0 * exp(0.24440000000000001 * membrane__V - 0.24440000000000001 * fast_sodium_current__shift_INa_inact) - 6.9480000000000002e-6 * exp(0.043909999999999998 * fast_sodium_current__shift_INa_inact - 0.043909999999999998 * membrane__V)) / (1.0 + exp(24.640530000000002 + 0.311 * membrane__V - 0.311 * fast_sodium_current__shift_INa_inact))) : (0))
+
 ####Piecewise!
 
 fast_sodium_current_j_gate__beta_j = ((membrane__V < -40.0 + fast_sodium_current__shift_INa_inact) ? (0.024240000000000001 * exp(0.01052 * fast_sodium_current__shift_INa_inact - 0.01052 * membrane__V) / (1.0 + exp(-5.5312920000000005 + 0.13780000000000001 * fast_sodium_current__shift_INa_inact - 0.13780000000000001 * membrane__V))) : (0.59999999999999998 * exp(0.057000000000000002 * membrane__V - 0.057000000000000002 * fast_sodium_current__shift_INa_inact) / (1.0 + exp(-3.2000000000000002 + 0.10000000000000001 * fast_sodium_current__shift_INa_inact - 0.10000000000000001 * membrane__V))))
+
 ####Piecewise!
 
 # Model: Tomek_model13endo(ToRORd_fkatp_endo.cellml)
 ICaL__PCa = ((environment__celltype == 1.0) ? (1.2 * ICaL__PCa_b) : ((environment__celltype == 2.0) ? (2.0 * ICaL__PCa_b) : (ICaL__PCa_b)))
+
 ####Piecewise!
 
 IK1__GK1 = ((environment__celltype == 1.0) ? (1.2 * IK1__GK1_b) : ((environment__celltype == 2.0) ? (1.3 * IK1__GK1_b) : (IK1__GK1_b)))
+
 ####Piecewise!
 
 IKb__GKb = ((environment__celltype == 1.0) ? (0.59999999999999998 * IKb__GKb_b) : (IKb__GKb_b))
+
 ####Piecewise!
 
 IKr__GKr = ((environment__celltype == 1.0) ? (1.3 * IKr__GKr_b) : ((environment__celltype == 2.0) ? (0.80000000000000004 * IKr__GKr_b) : (IKr__GKr_b)))
+
 ####Piecewise!
 
 IKs__GKs = ((environment__celltype == 1.0) ? (1.3999999999999999 * IKs__GKs_b) : (IKs__GKs_b))
+
 ####Piecewise!
 
 INaCa__Gncx = ((environment__celltype == 1.0) ? (1.1000000000000001 * INaCa__Gncx_b) : ((environment__celltype == 2.0) ? (1.3999999999999999 * INaCa__Gncx_b) : (INaCa__Gncx_b)))
+
 ####Piecewise!
 
 INaK__Pnak = ((environment__celltype == 1.0) ? (0.90000000000000002 * INaK__Pnak_b) : ((environment__celltype == 2.0) ? (0.69999999999999996 * INaK__Pnak_b) : (INaK__Pnak_b)))
+
 ####Piecewise!
 
 INaL__GNaL = ((environment__celltype == 1.0) ? (0.59999999999999998 * INaL__GNaL_b) : (INaL__GNaL_b))
+
 ####Piecewise!
 
 Ito__Gto = (((environment__celltype == 1.0) || (environment__celltype == 2.0)) ? (2.0 * Ito__Gto_b) : (Ito__Gto_b))
+
 ####Piecewise!
 
 SERCA__upScale = ((environment__celltype == 1.0) ? (1.3) : (1.0))
+
 ####Piecewise!
 
 intracellular_ions__cmdnmax = ((environment__celltype == 1.0) ? (1.3 * intracellular_ions__cmdnmax_b) : (intracellular_ions__cmdnmax_b))
+
 ####Piecewise!
 
 ICaL__dss = ((membrane__v >= 31.497800000000002) ? (1.0) : (1.0763 * exp(-1.0069999999999999 * exp(-0.082900000000000001 * membrane__v))))
+
 ####Piecewise!
 
 INa__ah = ((membrane__v >= -40.0) ? (0) : (0.057000000000000002 * exp(-11.764705882352942 - 0.14705882352941177 * membrane__v)))
+
 ####Piecewise!
 
 INa__aj = ((membrane__v >= -40.0) ? (0) : ((37.780000000000001 + membrane__v) * (-25428.0 * exp(0.24440000000000001 * membrane__v) - 6.9480000000000002e-6 * exp(-0.043909999999999998 * membrane__v)) / (1.0 + exp(24.640530000000002 + 0.311 * membrane__v))))
+
 ####Piecewise!
 
 INa__bh = ((membrane__v >= -40.0) ? (5.9230769230769234 / (1.0 + exp(-0.96036036036036043 - 0.0900900900900901 * membrane__v))) : (310000.0 * exp(0.34849999999999998 * membrane__v) + 2.7000000000000002 * exp(0.079000000000000001 * membrane__v)))
+
 ####Piecewise!
 
 INa__bj = ((membrane__v >= -40.0) ? (0.59999999999999998 * exp(0.057000000000000002 * membrane__v) / (1.0 + exp(-3.2000000000000002 - 0.10000000000000001 * membrane__v))) : (0.024240000000000001 * exp(-0.01052 * membrane__v) / (1.0 + exp(-5.5312920000000005 - 0.13780000000000001 * membrane__v))))
+
 ####Piecewise!
 
 Ito__delta_epi = ((environment__celltype == 1.0) ? (1.0 - 0.94999999999999996 / (1.0 + exp(14.0 + 0.20000000000000001 * Ito__EKshift + 0.20000000000000001 * membrane__v))) : (1.0))
+
 ####Piecewise!
 
 ryr__Jrel_inf = ((environment__celltype == 2.0) ? (1.7 * ryr__Jrel_inf_b) : (ryr__Jrel_inf_b))
+
 ####Piecewise!
 
 ryr__Jrel_infp = ((environment__celltype == 2.0) ? (1.7 * ryr__Jrel_infp_b) : (ryr__Jrel_infp_b))
+
 ####Piecewise!
 
 ryr__tau_rel = ((ryr__tau_rel_b < 0.001) ? (0.001) : (ryr__tau_rel_b))
+
 ####Piecewise!
 
 ryr__tau_relp = ((ryr__tau_relp_b < 0.001) ? (0.001) : (ryr__tau_relp_b))
+
 ####Piecewise!
 
 # Model: Tomek_model13epi(ToRORd_fkatp_epi.cellml)
 ICaL__PCa = ((environment__celltype == 1.0) ? (1.2 * ICaL__PCa_b) : ((environment__celltype == 2.0) ? (2.0 * ICaL__PCa_b) : (ICaL__PCa_b)))
+
 ####Piecewise!
 
 IK1__GK1 = ((environment__celltype == 1.0) ? (1.2 * IK1__GK1_b) : ((environment__celltype == 2.0) ? (1.3 * IK1__GK1_b) : (IK1__GK1_b)))
+
 ####Piecewise!
 
 IKb__GKb = ((environment__celltype == 1.0) ? (0.59999999999999998 * IKb__GKb_b) : (IKb__GKb_b))
+
 ####Piecewise!
 
 IKr__GKr = ((environment__celltype == 1.0) ? (1.3 * IKr__GKr_b) : ((environment__celltype == 2.0) ? (0.80000000000000004 * IKr__GKr_b) : (IKr__GKr_b)))
+
 ####Piecewise!
 
 IKs__GKs = ((environment__celltype == 1.0) ? (1.3999999999999999 * IKs__GKs_b) : (IKs__GKs_b))
+
 ####Piecewise!
 
 INaCa__Gncx = ((environment__celltype == 1.0) ? (1.1000000000000001 * INaCa__Gncx_b) : ((environment__celltype == 2.0) ? (1.3999999999999999 * INaCa__Gncx_b) : (INaCa__Gncx_b)))
+
 ####Piecewise!
 
 INaK__Pnak = ((environment__celltype == 1.0) ? (0.90000000000000002 * INaK__Pnak_b) : ((environment__celltype == 2.0) ? (0.69999999999999996 * INaK__Pnak_b) : (INaK__Pnak_b)))
+
 ####Piecewise!
 
 INaL__GNaL = ((environment__celltype == 1.0) ? (0.59999999999999998 * INaL__GNaL_b) : (INaL__GNaL_b))
+
 ####Piecewise!
 
 Ito__Gto = (((environment__celltype == 1.0) || (environment__celltype == 2.0)) ? (2.0 * Ito__Gto_b) : (Ito__Gto_b))
+
 ####Piecewise!
 
 SERCA__upScale = ((environment__celltype == 1.0) ? (1.3) : (1.0))
+
 ####Piecewise!
 
 intracellular_ions__cmdnmax = ((environment__celltype == 1.0) ? (1.3 * intracellular_ions__cmdnmax_b) : (intracellular_ions__cmdnmax_b))
+
 ####Piecewise!
 
 ICaL__dss = ((membrane__v >= 31.497800000000002) ? (1.0) : (1.0763 * exp(-1.0069999999999999 * exp(-0.082900000000000001 * membrane__v))))
+
 ####Piecewise!
 
 INa__ah = ((membrane__v >= -40.0) ? (0) : (0.057000000000000002 * exp(-11.764705882352942 - 0.14705882352941177 * membrane__v)))
+
 ####Piecewise!
 
 INa__aj = ((membrane__v >= -40.0) ? (0) : ((37.780000000000001 + membrane__v) * (-25428.0 * exp(0.24440000000000001 * membrane__v) - 6.9480000000000002e-6 * exp(-0.043909999999999998 * membrane__v)) / (1.0 + exp(24.640530000000002 + 0.311 * membrane__v))))
+
 ####Piecewise!
 
 INa__bh = ((membrane__v >= -40.0) ? (5.9230769230769234 / (1.0 + exp(-0.96036036036036043 - 0.0900900900900901 * membrane__v))) : (310000.0 * exp(0.34849999999999998 * membrane__v) + 2.7000000000000002 * exp(0.079000000000000001 * membrane__v)))
+
 ####Piecewise!
 
 INa__bj = ((membrane__v >= -40.0) ? (0.59999999999999998 * exp(0.057000000000000002 * membrane__v) / (1.0 + exp(-3.2000000000000002 - 0.10000000000000001 * membrane__v))) : (0.024240000000000001 * exp(-0.01052 * membrane__v) / (1.0 + exp(-5.5312920000000005 - 0.13780000000000001 * membrane__v))))
+
 ####Piecewise!
 
 Ito__delta_epi = ((environment__celltype == 1.0) ? (1.0 - 0.94999999999999996 / (1.0 + exp(14.0 + 0.20000000000000001 * Ito__EKshift + 0.20000000000000001 * membrane__v))) : (1.0))
+
 ####Piecewise!
 
 ryr__Jrel_inf = ((environment__celltype == 2.0) ? (1.7 * ryr__Jrel_inf_b) : (ryr__Jrel_inf_b))
+
 ####Piecewise!
 
 ryr__Jrel_infp = ((environment__celltype == 2.0) ? (1.7 * ryr__Jrel_infp_b) : (ryr__Jrel_infp_b))
+
 ####Piecewise!
 
 ryr__tau_rel = ((ryr__tau_rel_b < 0.001) ? (0.001) : (ryr__tau_rel_b))
+
 ####Piecewise!
 
 ryr__tau_relp = ((ryr__tau_relp_b < 0.001) ? (0.001) : (ryr__tau_relp_b))
+
 ####Piecewise!
 
 # Model: Trovato2020(Trovato2020.cellml)
 ryr__irelss = ((ryr__REL > 0) ? (15.0 * (1.0 + 1 / (1.0 + 3.7780199833600026e-5 / pow(CaMK__CaMKa, 8))) * ryr__REL / (1.0 + 1 / pow(intracellular_ions__cajsr, 8))) : (0))
+
 ####Piecewise!
 
 ryr__irelss2 = ((ryr__REL2 > 0) ? (91.0 * (1.0 + 1 / (1.0 + 3.7780199833600026e-5 / pow(CaMK__CaMKa, 8))) * ryr__REL2 / (1.0 + 1 / pow(intracellular_ions__cacsr, 8))) : (0))
+
 ####Piecewise!
 
 # Model: viswanathan_model_1999_epi(viswanathan_model_1999_epi.cellml)
 calcium_dynamics__APtrack2_orig_deriv = (((calcium_dynamics__APtrack > 0.17999999999999999) && (calcium_dynamics__APtrack < 0.20000000000000001)) ? (100000.0 - 100500.0 * calcium_dynamics__APtrack2) : (-500.0 * calcium_dynamics__APtrack2))
+
 ####Piecewise!
 
 calcium_dynamics__APtrack3_orig_deriv = (((calcium_dynamics__APtrack > 0.17999999999999999) && (calcium_dynamics__APtrack < 0.20000000000000001)) ? (100000.0 - 100500.0 * calcium_dynamics__APtrack3) : (-10.0 * calcium_dynamics__APtrack3))
+
 ####Piecewise!
 
 calcium_dynamics__OVRLDtrack2_orig_deriv = (((calcium_dynamics__Logicthresh > calcium_dynamics__OVRLDtrack2) && (calcium_dynamics__Logicthresh < calcium_dynamics__OVRLDtrack)) ? (50000.0 - 50000.0 * calcium_dynamics__OVRLDtrack2) : (-500.0 * calcium_dynamics__OVRLDtrack2))
+
 ####Piecewise!
 
 calcium_dynamics__OVRLDtrack3_orig_deriv = (((calcium_dynamics__Logicthresh > calcium_dynamics__OVRLDtrack3) && (calcium_dynamics__Logicthresh < calcium_dynamics__OVRLDtrack)) ? (50000.0 - 50000.0 * calcium_dynamics__OVRLDtrack3) : (-10.0 * calcium_dynamics__OVRLDtrack3))
+
 ####Piecewise!
 
 calcium_dynamics__OVRLDtrack_orig_deriv = (((calcium_dynamics__APtrack3 < 0.37) && (calcium_dynamics__OVRLDtrack3 < 0.37) && (calcium_dynamics__CSQNthresh < 1 / (1.0 + calcium_dynamics__K_mCSQN / calcium_dynamics__Ca_JSR))) ? (50000.0 - 50000.0 * calcium_dynamics__OVRLDtrack) : (-500.0 * calcium_dynamics__OVRLDtrack))
+
 ####Piecewise!
 
 calcium_dynamics__G_rel = ((calcium_dynamics__Cainfluxtrack > calcium_dynamics__delta_Ca_ith) ? ((1.0 - calcium_dynamics__APtrack2) * (-calcium_dynamics__delta_Ca_ith + calcium_dynamics__Cainfluxtrack) * calcium_dynamics__APtrack2 * calcium_dynamics__G_rel_max / (-calcium_dynamics__delta_Ca_ith + calcium_dynamics__Cainfluxtrack + calcium_dynamics__K_mrel)) : ((calcium_dynamics__OVRLDtrack2 > 0) ? ((1.0 - calcium_dynamics__OVRLDtrack2) * calcium_dynamics__G_rel_overload * calcium_dynamics__OVRLDtrack2) : (0)))
+
 ####Piecewise!
 
 ## Equation 1:
@@ -6113,24 +6530,31 @@ L_type_Ca_channel__I_CaNa = 0.0024381008236689767 * (-0.75 * ionic_concentration
 ((fabs(membrane__V) < 2.6712338705498262e-6) ? ((0.5 + 187179.41753901311 * membrane__V) * (6.5127375e-9 * (-0.75 * ionic_concentrations__Nao + 0.75 * ionic_concentrations__Nai * exp(9.9999999999999995e-8)) / (-1.0 + exp(9.9999999999999995e-8)) + 6.5127375e-9 * (-0.75 * ionic_concentrations__Nao + 0.75 * ionic_concentrations__Nai * exp(-9.9999999999999995e-8)) / (-1.0 + exp(-9.9999999999999995e-8))) - 6.5127375e-9 * (-0.75 * ionic_concentrations__Nao + 0.75 * ionic_concentrations__Nai * exp(-9.9999999999999995e-8)) / (-1.0 + exp(-9.9999999999999995e-8))) : (pow(membrane__F, 2) * (-L_type_Ca_channel__gamma_Nao * ionic_concentrations__Nao + L_type_Ca_channel__gamma_Nai * ionic_concentrations__Nai * exp(membrane__F * membrane__V / (membrane__R * membrane__T))) * L_type_Ca_channel__P_Na * membrane__V / ((-1.0 + exp(membrane__F * membrane__V / (membrane__R * membrane__T))) * membrane__R * membrane__T)))
 
 L_type_Ca_channel_d_gate__tau_d = ((fabs(L_type_Ca_channel_d_gate__E0_d) < 1.0000000000000001e-5) ? (0.0045787545787545781) : (0.028571428571428571 * (1.0 - exp(-0.16025641025641024 * L_type_Ca_channel_d_gate__E0_d)) * L_type_Ca_channel_d_gate__d_infinity / L_type_Ca_channel_d_gate__E0_d))
+
 ####Piecewise!
 
 T_type_Ca_channel_g_gate__tau_g = ((membrane__V <= 0) ? (0.012 - 0.00087500000000000002 * membrane__V) : (0.012))
+
 ####Piecewise!
 
 fast_sodium_current_h_gate__alpha_h = ((membrane__V < -40.0) ? (135.0 * exp(-11.764705882352942 - 0.14705882352941177 * membrane__V)) : (0))
+
 ####Piecewise!
 
 fast_sodium_current_h_gate__beta_h = ((membrane__V < -40.0) ? (3560.0 * exp(0.079000000000000001 * membrane__V) + 310000000.0 * exp(0.34999999999999998 * membrane__V)) : (7692.3076923076933 / (1.0 + exp(-0.96036036036036043 - 0.0900900900900901 * membrane__V))))
+
 ####Piecewise!
 
 fast_sodium_current_j_gate__alpha_j = ((membrane__V < -40.0) ? (1000.0 * (37.780000000000001 + membrane__V) * (-127140.0 * exp(0.24440000000000001 * membrane__V) - 3.4740000000000003e-5 * exp(-0.043909999999999998 * membrane__V)) / (1.0 + exp(24.640530000000002 + 0.311 * membrane__V))) : (0))
+
 ####Piecewise!
 
 fast_sodium_current_j_gate__beta_j = ((membrane__V < -40.0) ? (121.2 * exp(-0.01052 * membrane__V) / (1.0 + exp(-5.5312920000000005 - 0.13780000000000001 * membrane__V))) : (300.0 * exp(-2.5349999999999999e-7 * membrane__V) / (1.0 + exp(-3.2000000000000002 - 0.10000000000000001 * membrane__V))))
+
 ####Piecewise!
 
 fast_sodium_current_m_gate__alpha_m = ((fast_sodium_current_m_gate__delta_m <= fabs(fast_sodium_current_m_gate__E0_m)) ? (320.0 * fast_sodium_current_m_gate__E0_m / (1.0 - exp(-0.10000000000000001 * fast_sodium_current_m_gate__E0_m))) : (3200.0))
+
 ####Piecewise!
 
 ## Equation 4:
@@ -6200,6 +6624,7 @@ rapid_delayed_rectifier_potassium_current_xr_gate__tau_xr = 0.001 / (0.000609999
 ((fabs(14.199999999999999 + membrane__V) < 8.1300813006834893e-7) ? (0.001 / (0.015066999504065039 / (-1.0 + exp(3.5814998821138206)) - 1.1219512194943214e-9 / (1.0 - exp(9.9999999999406119e-8))) + (8733000.5000645891 + 615000.00000454858 * membrane__V) * (0.001 / (1.1219512195134727e-9 / (1.0 - exp(-9.9999999999406119e-8)) + 0.015067000495934959 / (-1.0 + exp(3.5815001178861787))) - 0.001 / (0.015066999504065039 / (-1.0 + exp(3.5814998821138206)) - 1.1219512194943214e-9 / (1.0 - exp(9.9999999999406119e-8))))) : ((fabs(38.899999999999999 + membrane__V) < 6.8965517246999397e-7) ? (0.001 / (-0.034086000951724135 / (1.0 - exp(3.0381000848275859)) - 4.2068965517283451e-10 / (-1.0 + exp(-1.0000000000287557e-7))) + (28202500.498836767 + 724999.99997009686 * membrane__V) * (0.001 / (4.2068965520669629e-10 / (-1.0 + exp(1.0000000000287557e-7)) - 0.034085999048275861 / (1.0 - exp(3.0380999151724137))) - 0.001 / (-0.034086000951724135 / (1.0 - exp(3.0381000848275859)) - 4.2068965517283451e-10 / (-1.0 + exp(-1.0000000000287557e-7))))) : (0.001 / (0.00060999999999999997 * (38.899999999999999 + membrane__V) / (-1.0 + exp(5.6404999999999994 + 0.14499999999999999 * membrane__V)) + 0.0013799999999999999 * (14.199999999999999 + membrane__V) / (1.0 - exp(-1.7465999999999999 - 0.123 * membrane__V))))))
 
 calcium_dynamics__Cainfluxtrack_orig_deriv = ((calcium_dynamics__APtrack > 0.20000000000000001) ? (-0.5 * (-Na_Ca_exchanger__i_NaCa + L_type_Ca_channel__i_CaCa + T_type_Ca_channel__i_Ca_T + calcium_background_current__i_Ca_b + sarcolemmal_calcium_pump__i_p_Ca) * ionic_concentrations__A_cap / (ionic_concentrations__V_myo * membrane__F)) : ((calcium_dynamics__APtrack2 > 0.01) ? (0) : (-500.0 * calcium_dynamics__Cainfluxtrack)))
+
 ####Piecewise!
 
 ## Equation 7:
@@ -6269,6 +6694,7 @@ slow_delayed_rectifier_potassium_current_xs2_gate__tau_xs2 = 0.00400000000000000
 ((fabs(30.0 + membrane__V) < 6.7567567568760367e-7) ? (0.0040000000000000001 / (-8.8513513515076093e-11 / (-1.0 + exp(-4.6418918920460017e-8)) - 4.8581081081938701e-11 / (1.0 - exp(1.0000000000287557e-7))) + (22200000.499608092 + 739999.99998693645 * membrane__V) * (0.0040000000000000001 / (8.8513513515076093e-11 / (-1.0 + exp(4.6418918920460017e-8)) + 4.8581081081938701e-11 / (1.0 - exp(-1.0000000000287557e-7))) - 0.0040000000000000001 / (-8.8513513515076093e-11 / (-1.0 + exp(-4.6418918920460017e-8)) - 4.8581081081938701e-11 / (1.0 - exp(1.0000000000287557e-7))))) : (0.0040000000000000001 / (0.00013100000000000001 * (30.0 + membrane__V) / (-1.0 + exp(2.0609999999999999 + 0.068699999999999997 * membrane__V)) + 7.1899999999999999e-5 * (30.0 + membrane__V) / (1.0 - exp(-4.4399999999999995 - 0.14799999999999999 * membrane__V)))))
 
 calcium_dynamics__APtrack_orig_deriv = ((membrane__dVdt > 150000.0) ? (100000.0 - 100500.0 * calcium_dynamics__APtrack) : (-500.0 * calcium_dynamics__APtrack))
+
 ####Piecewise!
 
 # Model: wang_model_2008(wang_sobie_2008.cellml)
@@ -6296,15 +6722,19 @@ calcium_activated_chloride_current__i_ClCa = 1.02986169524034e-6 * pow((calcium_
 ((fabs(membrane__V) < 2.5674321243523316e-6) ? ((0.5 + 194747.11532096748 * membrane__V) * (2.6440999999999996e-12 * pow((calcium_concentration__Cass / (4.0 + calcium_concentration__Cass)), 3.0) * (-membrane__Cli + membrane__Clo * exp(9.9999999999999995e-8)) / (-1.0 + exp(9.9999999999999995e-8)) + 2.6440999999999996e-12 * pow((calcium_concentration__Cass / (4.0 + calcium_concentration__Cass)), 3.0) * (-membrane__Cli + membrane__Clo * exp(-9.9999999999999995e-8)) / (-1.0 + exp(-9.9999999999999995e-8))) - 2.6440999999999996e-12 * pow((calcium_concentration__Cass / (4.0 + calcium_concentration__Cass)), 3.0) * (-membrane__Cli + membrane__Clo * exp(-9.9999999999999995e-8)) / (-1.0 + exp(-9.9999999999999995e-8))) : (pow(membrane__F, 2) * (-membrane__Cli + membrane__Clo * exp(membrane__F * membrane__V / (membrane__R * membrane__T))) * calcium_activated_chloride_current__P_ClCa * calcium_activated_chloride_current__f_ClCa * membrane__V / ((-1.0 + exp(membrane__F * membrane__V / (membrane__R * membrane__T))) * membrane__R * membrane__T)))
 
 fast_sodium_current_h_gate__alpha_h = ((membrane__V < -40.0) ? (0.13500000000000001 * exp(-11.764705882352942 - 0.14705882352941177 * membrane__V)) : (0))
+
 ####Piecewise!
 
 fast_sodium_current_h_gate__beta_h = ((membrane__V < -40.0) ? (310000.0 * exp(0.34999999999999998 * membrane__V) + 3.5600000000000001 * exp(0.079000000000000001 * membrane__V)) : (7.6923076923076916 / (1.0 + exp(-0.96036036036036043 - 0.0900900900900901 * membrane__V))))
+
 ####Piecewise!
 
 fast_sodium_current_j_gate__alpha_j = ((membrane__V < -40.0) ? ((37.780000000000001 + membrane__V) * (-127140.0 * exp(0.24440000000000001 * membrane__V) - 3.4740000000000003e-5 * exp(-0.043909999999999998 * membrane__V)) / (1.0 + exp(24.640530000000002 + 0.311 * membrane__V))) : (0))
+
 ####Piecewise!
 
 fast_sodium_current_j_gate__beta_j = ((membrane__V < -40.0) ? (0.1212 * exp(-0.01052 * membrane__V) / (1.0 + exp(-5.5312920000000005 - 0.13780000000000001 * membrane__V))) : (0.29999999999999999 * exp(-2.5349999999999999e-7 * membrane__V) / (1.0 + exp(-3.2000000000000002 - 0.10000000000000001 * membrane__V))))
+
 ####Piecewise!
 
 ## Equation 2:
@@ -6355,21 +6785,27 @@ slow_delayed_rectifier_potassium_current__alpha_n = 4.8133299999999997e-6 * (26.
 
 # Model: winslow_model_1999(winslow_model_1999.cellml)
 fast_sodium_current_h_gate__alpha_h = ((membrane__V < -40.0) ? (135.0 * exp(-11.764705882352942 + 0.14705882352941177 * fast_sodium_current__shift_INa_inact - 0.14705882352941177 * membrane__V)) : (0))
+
 ####Piecewise!
 
 fast_sodium_current_h_gate__beta_h = ((membrane__V < -40.0) ? (3560.0 * exp(0.079000000000000001 * membrane__V - 0.079000000000000001 * fast_sodium_current__shift_INa_inact) + 310000.0 * exp(0.34999999999999998 * membrane__V - 0.34999999999999998 * fast_sodium_current__shift_INa_inact)) : (7692.3076923076924 / (1.0 + exp(-0.96036036036036043 + 0.0900900900900901 * fast_sodium_current__shift_INa_inact - 0.0900900900900901 * membrane__V))))
+
 ####Piecewise!
 
 fast_sodium_current_j_gate__alpha_j = ((membrane__V < -40.0) ? (1000.0 * (37.780000000000001 + membrane__V) * (-127140.0 * exp(0.24440000000000001 * membrane__V - 0.24440000000000001 * fast_sodium_current__shift_INa_inact) - 3.4740000000000003e-5 * exp(0.043909999999999998 * fast_sodium_current__shift_INa_inact - 0.043909999999999998 * membrane__V)) / (1.0 + exp(24.640530000000002 + 0.311 * membrane__V - 0.311 * fast_sodium_current__shift_INa_inact))) : (0))
+
 ####Piecewise!
 
 fast_sodium_current_j_gate__beta_j = ((membrane__V < -40.0) ? (121.2 * exp(0.01052 * fast_sodium_current__shift_INa_inact - 0.01052 * membrane__V) / (1.0 + exp(-5.5312920000000005 + 0.13780000000000001 * fast_sodium_current__shift_INa_inact - 0.13780000000000001 * membrane__V))) : (300.0 * exp(2.5349999999999999e-7 * fast_sodium_current__shift_INa_inact - 2.5349999999999999e-7 * membrane__V) / (1.0 + exp(-3.2000000000000002 + 0.10000000000000001 * fast_sodium_current__shift_INa_inact - 0.10000000000000001 * membrane__V))))
+
 ####Piecewise!
 
 fast_sodium_current_m_gate__alpha_m = ((fabs(fast_sodium_current_m_gate__E0_m) < 1.0000000000000001e-5) ? (1000.0 / (0.10000000000000001 - 0.0050000000000000001 * fast_sodium_current_m_gate__E0_m)) : (320.0 * fast_sodium_current_m_gate__E0_m / (1.0 - exp(-0.10000000000000001 * fast_sodium_current_m_gate__E0_m))))
+
 ####Piecewise!
 
 fast_sodium_current_m_gate__m_orig_deriv = ((membrane__V >= -90.0) ? ((1.0 - fast_sodium_current_m_gate__m) * fast_sodium_current_m_gate__alpha_m - fast_sodium_current_m_gate__beta_m * fast_sodium_current_m_gate__m) : (0))
+
 ####Piecewise!
 
 ## Equation 1:
