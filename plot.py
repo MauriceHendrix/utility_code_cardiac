@@ -84,12 +84,10 @@ def _process_singularities(model):
         try:
             singularity_points = singularities(rhs, V, domain=Reals)
         except RecursionError:
-            print("Singularities failed Trying parially evaluated")
-            eq = Eq(Variable('rhs', 'dimensionless'), rhs)
-            rhs = partial_eval(model.derivative_equations + [eq], list(model.y_derivatives) + [eq.lhs], keep_multiple_usages=False)[-1]
-            singularity_points = singularities(rhs, V, domain=Reals)
-            print(singularity_points)
+            print("Singularities cannot be found")
+            print(printer.doprint(rhs))
             print()
+            return set()
         
         return set(handle_singularity_points(singularity_points))
 
@@ -150,8 +148,14 @@ def _process_singularities(model):
 
     eq_no = 0
     for eq in model.derivative_equations:
-        rhs = eq.rhs.subs(MATH_FUNC_SYMPY_MAPPING)
+        if len(eq.rhs.atoms(Piecewise)) > 0:
+            print(printer.doprint(eq.lhs) + " = " + printer.doprint(eq.rhs))
+            print('####Piecewise!')
+            print()
+            continue
 
+        rhs = eq.rhs.subs(MATH_FUNC_SYMPY_MAPPING)
+           
         singularity_points = get_singularity_points(rhs, model.membrane_voltage_var)
         if singularity_points:
             eq_no += 1
@@ -168,6 +172,7 @@ def _process_singularities(model):
             print("### Singulariy points detected:\n")
             print(singularity_points)
             (sing_no, singularity_points_processed, singularity_piecewise_parts) = process_singularities_eq(partial_eval_eq.rhs, partial_eval_rhs, singularity_points, sing_no=0, singularity_points_processed=set(), singularity_piecewise_parts=[])
+#            (sing_no, singularity_points_processed, singularity_piecewise_parts) = process_singularities_eq(eq.rhs, rhs, singularity_points, sing_no=0, singularity_points_processed=set(), singularity_piecewise_parts=[])
             if len(singularity_piecewise_parts) > 0:
                 print("## New Eq:")
                 singularity_piecewise_parts.append((eq.rhs, True))
@@ -406,6 +411,7 @@ for file_name in (#'old_davies_isap_2012.cellml',
                   'zhang_SAN_model_2000_0D_capable.cellml'
                   ):
     model = load_model_with_conversions(os.path.join(DATA_DIR, 'tests', 'cellml', file_name), quiet=True)
+    #model.derivative_equations = partial_eval(model.derivative_equations, list(model.y_derivatives), keep_multiple_usages=False)
     print("# Model: " + model.name + '('+file_name+')')
     _process_singularities(model)
     
