@@ -150,7 +150,7 @@ def _process_singularities(model):
     for eq in model.derivative_equations:
         if len(eq.rhs.atoms(Piecewise)) > 0:
             print(printer.doprint(eq.lhs) + " = " + printer.doprint(eq.rhs))
-            print('####Piecewise!')
+            print('\n####Piecewise!')
             print()
             continue
 
@@ -410,7 +410,7 @@ for file_name in (#'old_davies_isap_2012.cellml',
                   'winslow_model_1999.cellml',
                   'zhang_SAN_model_2000_0D_capable.cellml'
                   ):
-    model = load_model_with_conversions(os.path.join(DATA_DIR, 'tests', 'cellml', file_name), quiet=True)
+    model = load_model_with_conversions(os.path.join(DATA_DIR, '..', '..', '..', 'cellml', file_name), quiet=True)
     #model.derivative_equations = partial_eval(model.derivative_equations, list(model.y_derivatives), keep_multiple_usages=False)
     print("# Model: " + model.name + '('+file_name+')')
     _process_singularities(model)
