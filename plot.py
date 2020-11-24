@@ -16,6 +16,10 @@ from chaste_codegen._partial_eval import partial_eval
 from chaste_codegen.model_with_conversions import (get_equations_for, _get_modifiable_parameters)
 from cellmlmanip.model import Variable
 
+
+import sys
+sys.setrecursionlimit(sys.getrecursionlimit() * 2)
+
 U_offset = 1e-7
 
 printer = ChastePrinter(lambda var: str(var).lstrip('_').replace('$', '__'),
@@ -38,8 +42,11 @@ def match_pattern(equation, patterns, functions):
         match = equation.match(pattern)
         check_match = func(match)
         if not check_match:
-            match = equation.factor().match(pattern)
+            match = simplify(equation).match(pattern)
             check_match = func(match)
+#        if not check_match:
+#            match = equation.factor().match(pattern)
+#            check_match = func(match)
         if check_match:
             return match, check_match
     return None, None
@@ -57,44 +64,50 @@ def get_initial_value(var, model):
             initial_value = eqs[0].rhs
     return initial_value
 
+def get_singularity_points(rhs, V):
+    def handle_singularity_points(sp):
+        if isinstance(sp, FiniteSet):
+            return handle_FinisteSet(sp)
+        elif isinstance(sp, Complement):
+            return handle_Complement(sp)
+        elif isinstance(sp, Union):
+            return handle_Union(sp)
+        else:
+            return EmptySet
+        
+    def handle_FinisteSet(sp):
+        return FiniteSet(*filter(lambda s: s.is_real, sp))
+
+    def handle_Complement(sp):
+        return handle_FinisteSet(sp.args[1]) if isinstance(sp.args[1], FiniteSet) else EmptySet
+
+    def handle_Union(sp):
+        singularity_points = EmptySet
+        for s in sp.args:
+            singularity_points = singularity_points.union(handle_singularity_points(s))
+        return singularity_points
+
+    try:
+        rhs = rhs.subs(MATH_FUNC_SYMPY_MAPPING)
+        singularity_points = singularities(rhs, V, domain=Reals)
+    except (RecursionError, NotImplementedError):
+        print("Singularities cannot be found")
+        print(rhs)
+        print()
+        return set()
+    
+    return set(handle_singularity_points(singularity_points))
+
 def _process_singularities(model):
-    def get_singularity_points(rhs, V):
-        def handle_singularity_points(sp):
-            if isinstance(sp, FiniteSet):
-                return handle_FinisteSet(sp)
-            elif isinstance(sp, Complement):
-                return handle_Complement(sp)
-            elif isinstance(sp, Union):
-                return handle_Union(sp)
-            else:
-                return EmptySet
-        
-        def handle_FinisteSet(sp):
-            return FiniteSet(*filter(lambda s: s.is_real, sp))
-
-        def handle_Complement(sp):
-            return handle_FinisteSet(sp.args[1]) if isinstance(sp.args[1], FiniteSet) else EmptySet
-
-        def handle_Union(sp):
-            singularity_points = EmptySet
-            for s in sp.args:
-                singularity_points = singularity_points.union(handle_singularity_points(s))
-            return singularity_points
-
-        try:
-            singularity_points = singularities(rhs, V, domain=Reals)
-        except RecursionError:
-            print("Singularities cannot be found")
-            print(printer.doprint(rhs))
-            print()
-            return set()
-        
-        return set(handle_singularity_points(singularity_points))
+    unprocessed_eqs = {eq.lhs: eq.rhs for eq in model.derivative_equations} | MATH_FUNC_SYMPY_MAPPING
+    subs_dict = {eq.lhs: eq.rhs for eq in model.derivative_equations} | MATH_FUNC_SYMPY_MAPPING
+    paramdefs = {e: get_initial_value(e, model) for e in _get_modifiable_parameters(model)}
+    vardefs = {e: get_initial_value(e, model) for e in ((_get_modifiable_parameters(model) | model.state_vars ) - set([model.membrane_voltage_var]))}
+    vardefs_offset = {e: get_initial_value(e, model) + 1e-7 for e in ((_get_modifiable_parameters(model) | model.state_vars ) - set([model.membrane_voltage_var]))}
 
     def process_singularities_eq(expr, expr_part, singularity_points, sing_no=0, singularity_points_processed=set(), singularity_piecewise_parts=[], params=False):
         def f(Vx):
             return expr.subs({model.membrane_voltage_var:Vx})
-
         if singularity_points and singularity_points != singularity_points_processed:
             if expr_part == 0.0:
                 print('#### Eq == 0!')
@@ -109,9 +122,10 @@ def _process_singularities(model):
                     for sp in singularity_points - singularity_points_processed:
                         sing_no += 1
                         singularity_points_processed.add(sp)
-                        draw_graph(expr.subs(MATH_FUNC_SYMPY_MAPPING), sp, model, eq_no, sing_no, vs, ve, U)
+#                        singularity_piecewise_parts.append((f(vs) + ((model.membrane_voltage_var - vs) / (ve - vs)) * (f(ve) - f(vs)), Abs(model.membrane_voltage_var-sp) < ve-sp))
+                        singularity_piecewise_parts.append((f(vs) + ((model.membrane_voltage_var - vs) / (ve - vs)) * (f(ve) - f(vs)), Abs(model.membrane_voltage_var-sp) < Abs((ve-vs)/2)))
 
-                        singularity_piecewise_parts.append((f(vs) + ((model.membrane_voltage_var - vs) / (ve - vs)) * (f(ve) - f(vs)), Abs(model.membrane_voltage_var-sp) < ve-sp))
+                        draw_graph(expr, sp, model, eq_no, sing_no, vs, ve, U)
                 else:
                     A=Wild('A', real=True)
                     B=Wild('B', real=True)
@@ -133,51 +147,76 @@ def _process_singularities(model):
                         (sing_no, singularity_points_processed, singularity_piecewise_parts) = process_singularities_eq(expr, expr_part.args[0], get_singularity_points(expr_part.args[0], model.membrane_voltage_var), sing_no, singularity_points_processed, singularity_piecewise_parts, params)
                     else:
                         # 1/x warning
-                        print('####Failed!')
+                        print('####Failed to find U symbolically!')
                         print()
                         print(type(expr_part))
                         print(expr_part)
                         if not params:
                             print("\n*try substituting parameters*\n")
                             #vardefs = [Eq(e, get_initial_value(e, model)) for e in ((_get_modifiable_parameters(model) | model.state_vars ) - set([model.membrane_voltage_var]))]
-                            vardefs = [Eq(e, get_initial_value(e, model)) for e in _get_modifiable_parameters(model)]
-                            rhs_eq = Eq(Variable('rhs', 'dimensionless'), rhs)
-                            partial_eval_eq = partial_eval(vardefs + model.derivative_equations + [rhs_eq], list(model.y_derivatives) + [rhs_eq.lhs], keep_multiple_usages=False)[-1]
-                            return process_singularities_eq(expr, partial_eval_eq.rhs, singularity_points, sing_no, singularity_points_processed, singularity_piecewise_parts, params=True)
+                            #vardefs = [Eq(e, get_initial_value(e, model)) for e in _get_modifiable_parameters(model)]
+
+                            #subs_dict = {eq.lhs: eq.rhs for eq in model.derivative_equations} | MATH_FUNC_SYMPY_MAPPING
+                            #vardefs = {e: get_initial_value(e, model) for e in ((_get_modifiable_parameters(model) | model.state_vars ) - set([model.membrane_voltage_var]))}
+                            #vardefs_offset = {e: get_initial_value(e, model) + 1e-7 for e in ((_get_modifiable_parameters(model) | model.state_vars ) - set([model.membrane_voltage_var]))}
+
+                            #rhs_eq = Eq(Variable('rhs', 'dimensionless'), rhs)
+                            #partial_eval_eq = partial_eval(vardefs + model.derivative_equations + [rhs_eq], list(model.y_derivatives) + [rhs_eq.lhs], keep_multiple_usages=False)[-1]
+                            prev_expr = None
+                            while expr_part != prev_expr:
+                                prev_expr = expr_part
+                                expr_part = expr_part.subs(subs_dict | paramdefs)
+                            
+                            #return process_singularities_eq(expr, partial_eval_eq.rhs, singularity_points, sing_no, singularity_points_processed, singularity_piecewise_parts, params=True)
+                            return process_singularities_eq(expr, expr_part, singularity_points, sing_no, singularity_points_processed, singularity_piecewise_parts, params=True)
         return (sing_no, singularity_points_processed, singularity_piecewise_parts)
+
+    #subs_dict = {eq.lhs: eq.rhs for eq in model.derivative_equations}
 
     eq_no = 0
     for eq in model.derivative_equations:
         if len(eq.rhs.atoms(Piecewise)) > 0:
             print(printer.doprint(eq.lhs) + " = " + printer.doprint(eq.rhs))
-            print('\n####Piecewise!')
+            print('\n####Piecewise!!')
             print()
             continue
 
-        rhs = eq.rhs.subs(MATH_FUNC_SYMPY_MAPPING)
-           
-        singularity_points = get_singularity_points(rhs, model.membrane_voltage_var)
+        prev_rhs = None
+        rhs = eq.rhs
+        partial_eval_rhs = eq.rhs.subs(MATH_FUNC_SYMPY_MAPPING)
+        
+        # Get singularities
+        singularity_points = get_singularity_points(partial_eval_rhs, model.membrane_voltage_var)
+        # recurse till we find singularities or nothing changes
+        while len(singularity_points) == 0 and rhs != partial_eval_rhs:
+            prev_rhs = partial_eval_rhs
+            rhs = rhs.subs(unprocessed_eqs)
+            partial_eval_rhs = partial_eval_rhs.subs(unprocessed_eqs | MATH_FUNC_SYMPY_MAPPING)
+            singularity_points = get_singularity_points(partial_eval_rhs, model.membrane_voltage_var)
+
         if singularity_points:
             eq_no += 1
             print("## Equation "+ str(eq_no) + ":")
             print("```")
-            print(printer.doprint(eq.lhs) + " = " + printer.doprint(rhs))
+            print(printer.doprint(eq.lhs) + " = " + printer.doprint(eq.rhs))
             print("```")
             print("### Partially evaluated to: ")
-            partial_eval_eq = partial_eval(model.derivative_equations + [eq], list(model.y_derivatives) + [eq.lhs], keep_multiple_usages=False)[-1]
-            partial_eval_rhs = partial_eval_eq.rhs.subs(MATH_FUNC_SYMPY_MAPPING)
+#            partial_eval_eq = partial_eval(model.derivative_equations + [eq], list(model.y_derivatives) + [eq.lhs], keep_multiple_usages=False)[-1]
+#            partial_eval_rhs = partial_eval_eq.rhs.subs(MATH_FUNC_SYMPY_MAPPING)
             print("```")
-            print(printer.doprint(partial_eval_eq.lhs) + " = " + printer.doprint(partial_eval_rhs))
+#            print(printer.doprint(partial_eval_eq.lhs) + " = " + printer.doprint(partial_eval_rhs))
+            print(printer.doprint(eq.lhs) + " = " + printer.doprint(rhs))
             print("```")
             print("### Singulariy points detected:\n")
             print(singularity_points)
-            (sing_no, singularity_points_processed, singularity_piecewise_parts) = process_singularities_eq(partial_eval_eq.rhs, partial_eval_rhs, singularity_points, sing_no=0, singularity_points_processed=set(), singularity_piecewise_parts=[])
-#            (sing_no, singularity_points_processed, singularity_piecewise_parts) = process_singularities_eq(eq.rhs, rhs, singularity_points, sing_no=0, singularity_points_processed=set(), singularity_piecewise_parts=[])
+#            (sing_no, singularity_points_processed, singularity_piecewise_parts) = process_singularities_eq(partial_eval_eq.rhs, partial_eval_rhs, singularity_points, sing_no=0, singularity_points_processed=set(), singularity_piecewise_parts=[])
+            (sing_no, singularity_points_processed, singularity_piecewise_parts) = process_singularities_eq(rhs, partial_eval_rhs, singularity_points, sing_no=0, singularity_points_processed=set(), singularity_piecewise_parts=[])
             if len(singularity_piecewise_parts) > 0:
                 print("## New Eq:")
                 singularity_piecewise_parts.append((eq.rhs, True))
                 new_expr = Piecewise(*singularity_piecewise_parts)
                 print(printer.doprint(new_expr))
+                unprocessed_eqs.pop(eq.lhs)
                 print()
 #new eq for overall eq!
 
@@ -189,7 +228,6 @@ def get_U(rhs, V):
         if match is None or U not in match or A not in match:
             return None
         return match_pattern(match[U], [P * exp(Q) - 1.0, -P * exp(Q) + 1.0], [check_match, check_match])[0]
-    
     (vs,ve, U) = (None, None, None)
     A=Wild('A', real=True)
     U=Wild('U', real=True, exclude=[Rational])
@@ -197,15 +235,17 @@ def get_U(rhs, V):
     Q=Wild('Q', real=True)
     R=Wild('R', real=True)
     S=Wild('S', real=True)
-    
+  
     match, find_U = match_pattern(rhs, [A / U, U / A], [match_U, match_U])
     if match and find_U:
         u = (find_U[Q] + log(find_U[P]))
         print("*U*")
         print("`" +printer.doprint(u)+"`")
         print()
-        find_v_low = solveset(u + U_offset, V, domain=Reals)
-        find_v_up = solveset(u - U_offset, V, domain=Reals)
+        #find_v_low = solveset(u + U_offset, V, domain=Reals)
+        #find_v_up = solveset(u - U_offset, V, domain=Reals)
+        find_v_low = solveset(u + U_offset, V)
+        find_v_up = solveset(u - U_offset, V)
         assert len(find_v_low) < 2
         assert len(find_v_up) < 2
         find_v_low = list(find_v_low)
@@ -213,27 +253,53 @@ def get_U(rhs, V):
         if find_v_low and find_v_up:
             (vs, ve, U) = (find_v_low[-1], find_v_up[-1], u)
 
-    if ve and vs and ve < vs:  # adjust the range from smaller to larger
-        return (ve, vs, U)
-    else:
-        return (vs, ve, U)
+#    if ve and vs and ve < vs:  # adjust the range from smaller to larger
+#        return (ve, vs, U)
+#    else:
+    return (vs, ve, U)
 
 
 
 def draw_graph(rhs, point, model, eq_no, sing_no, vs, ve, U, draw_points=2000):
-    vardefs = [Eq(e, get_initial_value(e, model)) for e in ((_get_modifiable_parameters(model) | model.state_vars ) - set([model.membrane_voltage_var]))]
-    vardefs_offset = [Eq(e, get_initial_value(e, model) + 1e-7) for e in ((_get_modifiable_parameters(model) | model.state_vars ) - set([model.membrane_voltage_var]))]
-    rhs_eq = Eq(Variable('rhs', 'dimensionless'), rhs)
+    subs_dict = {eq.lhs: eq.rhs for eq in model.derivative_equations} | MATH_FUNC_SYMPY_MAPPING
+    vardefs = {e: get_initial_value(e, model) for e in ((_get_modifiable_parameters(model) | model.state_vars ) - set([model.membrane_voltage_var]))}
+    vardefs_offset = {e: get_initial_value(e, model) + 1e-7 for e in ((_get_modifiable_parameters(model) | model.state_vars ) - set([model.membrane_voltage_var]))}
+    prev_rhs = None
+    while prev_rhs != rhs:
+        prev_rhs = rhs
+        newrhs = rhs.subs(subs_dict | vardefs)
+        if newrhs == 0:
+            rhs = rhs.subs(subs_dict | vardefs_offset)
+        else:
+            rhs = newrhs
 
-    partial_eval_eq = partial_eval(vardefs + model.derivative_equations + [rhs_eq], list(model.y_derivatives) + [rhs_eq.lhs], keep_multiple_usages=False)[-1]
-    if partial_eval_eq.rhs == 0:  #add small number
-        partial_eval_eq = partial_eval(vardefs_offset + model.derivative_equations + [rhs_eq], list(model.y_derivatives) + [rhs_eq.lhs], keep_multiple_usages=False)[-1]
-    rhs=partial_eval_eq.rhs
+    prev_ve = None
+    while prev_ve != ve:
+        prev_ve = ve
+        ve = ve.subs(subs_dict | vardefs)
+
+    prev_vs = None
+    while prev_vs != vs:
+        prev_vs = vs
+        vs = vs.subs(subs_dict | vardefs)
+
+    if ve < vs:  # Swap to adjust the range from smaller to larger
+        ve, vs = vs, ve
+        
+    # vardefs = [Eq(e, get_initial_value(e, model)) for e in ((_get_modifiable_parameters(model) | model.state_vars ) - set([model.membrane_voltage_var]))]
+    # vardefs_offset = [Eq(e, get_initial_value(e, model) + 1e-7) for e in ((_get_modifiable_parameters(model) | model.state_vars ) - set([model.membrane_voltage_var]))]
+    # rhs_eq = Eq(Variable('rhs', 'dimensionless'), rhs)
+
+
+    # partial_eval_eq = partial_eval(vardefs + model.derivative_equations + [rhs_eq], list(model.y_derivatives) + [rhs_eq.lhs], keep_multiple_usages=False)[-1]
+    # if partial_eval_eq.rhs == 0:  #add small number
+        # partial_eval_eq = partial_eval(vardefs_offset + model.derivative_equations + [rhs_eq], list(model.y_derivatives) + [rhs_eq.lhs], keep_multiple_usages=False)[-1]
+    # rhs=partial_eval_eq.rhs.subs(MATH_FUNC_SYMPY_MAPPING)
     
-    if not isinstance(point,Float):
-        sp_eq = Eq(Variable('sp', 'dimensionless'), point)
-        point = partial_eval(vardefs_offset + model.derivative_equations + [sp_eq], list(model.y_derivatives) + [sp_eq.lhs], keep_multiple_usages=False)[-1]
-        point = point.rhs
+#    if not isinstance(point,Float):
+#        sp_eq = Eq(Variable('sp', 'dimensionless'), point)
+#        point = partial_eval(vardefs_offset + model.derivative_equations + [sp_eq], list(model.y_derivatives) + [sp_eq.lhs], keep_multiple_usages=False)[-1]
+#        point = point.rhs
 
     V = model.membrane_voltage_var
     fig = plt.figure()
@@ -242,22 +308,20 @@ def draw_graph(rhs, point, model, eq_no, sing_no, vs, ve, U, draw_points=2000):
 
     A = (ve, rhs.subs({V:ve}))
     B = (vs, rhs.subs({V:vs}))
-
+    
     slope = (A[1]-B[1])/(ve - vs)
     
     #slope-pont
     f = slope*(V - A[0]) + A[1]
     ymin = min(A[1], B[1])
     ymax = max(A[1], B[1])
+
     ydiff = ymax-ymin if ymax-ymin != 0 else ve - vs
     #plt.ylim(float(ymin - ydiff), float(ymax + ydiff))
     #plt.ylim(float(ymin - 10*ydiff), float(ymax + 10*ydiff))
     #plt.ylim(float(ymin - 100*ydiff), float(ymax + 100*ydiff))
     plt.xlim(float(vs - (ve - vs)), float(ve + (ve - vs)))
     plt.axvspan(vs, ve, color='gold', alpha=0.125)
-    
-    #Ross function
-    g = 1 - (1/2)*U
 
     current_point = point - (1.5 * (ve - vs))
     for _ in range(draw_points):
@@ -270,7 +334,7 @@ def draw_graph(rhs, point, model, eq_no, sing_no, vs, ve, U, draw_points=2000):
 
     plt.plot(x,y, color="silver")
     plt.plot(x,y2, color="red")
-    image_dir = 'diagrams/u/' + model.name
+    image_dir = 'diagrams/stepwise_recursion/' + model.name
     os.makedirs(image_dir, exist_ok=True)
     image_name = image_dir + '/eq' + str(eq_no) + '-sing' + str(sing_no) + '.png'
     plt.savefig(image_name)
@@ -411,11 +475,35 @@ for file_name in (#'old_davies_isap_2012.cellml',
                   'zhang_SAN_model_2000_0D_capable.cellml'
                   ):
     model = load_model_with_conversions(os.path.join(DATA_DIR, '..', '..', '..', 'cellml', file_name), quiet=True)
-    #model.derivative_equations = partial_eval(model.derivative_equations, list(model.y_derivatives), keep_multiple_usages=False)
     print("# Model: " + model.name + '('+file_name+')')
     _process_singularities(model)
     
-#model = load_model_with_conversions(os.path.join(DATA_DIR, 'tests', 'cellml', 'courtemanche_ramirez_nattel_model_1998.cellml'), quiet=True)
+    # #deqs = partial_eval(model.derivative_equations, model.y_derivatives, keep_multiple_usages=False)
+    # vardefs_symbols = (_get_modifiable_parameters(model) | model.state_vars )
+    # subs_dict = {eq.lhs: eq.rhs for eq in model.derivative_equations}
+
+    # for eq in model.derivative_equations:
+# #        print(eq)
+        # prev_rhs = None
+        # rhs = eq.rhs.subs(MATH_FUNC_SYMPY_MAPPING)
+# #        try:
+        # singularity_points = get_singularity_points(rhs, model.membrane_voltage_var)
+        # while len(singularity_points) == 0 and rhs != prev_rhs:
+            # prev_rhs = rhs
+            # rhs = rhs.subs(subs_dict)
+            # singularity_points = get_singularity_points(rhs, model.membrane_voltage_var)
+# #            print(singularity_points)
+# #        except Exception as e:
+# #            print(e)
+# #            print(type(rhs))
+# #            print(rhs)
+            # # print(model.name)
+            # # print(eq)
+            # # print(e)
+            # # print()
+    # print("done")
+    # print()
+
 #model.derivative_equations = [model.derivative_equations[36]]
 
 #print(printer.doprint(model.derivative_equations[-1].rhs) + '=' + printer.doprint(model.derivative_equations[-1].rhs))
