@@ -1,4 +1,4 @@
-|Model 	                                                                |PW* |PW with fixes|Extra PW|Sing**|Sing after fixes|Reducation|Extra PW == Sing reduction|
+|Model 	                                                                |PW* |PW with fixes|Extra PW|Sing**|Sing after fixes|Fewer sing|Extra PW == Fewer sing|
 |---                                                                     |---|---|---|---|---|---|---|
 |aslanidi_atrial_model_2009                                              |6  |6  |0  |5  |5  |0  |True|
 |aslanidi_2009                                                           |4  |4  |0  |7  |7  |0  |True|
