@@ -4,7 +4,7 @@
 |aslanidi_2009                                                           |4  |4  |0  |7  |7  |0  |True|
 |beeler_reuter_model_1977                                                |0  |2  |2  |2  |0  |2  |True|
 |benson_epicardial_2008                                                  |7  |7  |0  |7  |7  |0  |True|
-|bernus_wilders_zemlin_verschelde_panfilov_2002_version01                |0  |0  |0  |1  |1  |0  |True|
+|bernus_wilders_zemlin_verschelde_panfilov_2002_ version01               |0  |0  |0  |1  |1  |0  |True|
 |bondarenko_2004_apical                                                  |0  |0  |0  |1  |1  |0  |True|
 |bondarenko_2004_septum                                                  |0  |0  |0  |1  |1  |0  |True|
 |bueno_2007(bueno_2007_endo.cellml)                                      |5  |5  |0  |0  |0  |0  |True|
