@@ -1,4 +1,4 @@
-|Model 	                                                                |Piecewises|Piecewises with manual fixes|Extra piecewises after manual fixes|Singularities detected|Singularities detected after manual fixes|Reducation with manual fixes|Extra piecewises == Singularities reduction|
+|Model 	                                                                |PW* |PW with fixes|Extra PW|Sing**|Sing after fixes|Reducation|Extra PW == Sing reduction|
 |---                                                                     |---|---|---|---|---|---|---|
 |aslanidi_atrial_model_2009                                              |6  |6  |0  |5  |5  |0  |True|
 |aslanidi_2009                                                           |4  |4  |0  |7  |7  |0  |True|
@@ -79,3 +79,6 @@
 |wang_model_2008                                                         |4  |4  |0  |3  |3  |0  |True|
 |winslow_model_1999                                                      |5  |6  |1  |4  |3  |1  |True|
 |zhang_SAN_model_2000_0D_capable                                         |0  |0  |0  |3  |3  |0  |True|
+
+*  PW = Piecewise
+** Sing = singularities
