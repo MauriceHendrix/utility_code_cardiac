@@ -27,7 +27,7 @@
 |grandi_pasqualini_bers_2010 (grandi_pasqualini_bers_2010_ss.cellml)     |6  |6  |0  |6  |6  |0  |True|
 |grandi_pasqualini_bers_2010 (grandi_pasqualini_bers_2010_ss_endo.cellml)|6  |6  |0  |6  |6  |0  |True|
 |hilgemann_noble_model_1987                                              |0  |4  |4  |7  |3  |4  |True|
-|hodgkin_huxley_squid_axon_model_1952_modified                           |0  |2  |2  |2  |0  |2  |True|
+|hodgkin_huxley_squid_axon_model_1952_ modified                           |0  |2  |2  |2  |0  |2  |True|
 |HundRudy2004_units                                                      |7  |7  |0  |7  |7  |0  |True|
 |iribe_model_2006                                                        |1  |5  |4  |7  |3  |4  |True|
 |IyerMazhariWinslow2004                                                  |1  |1  |0  |4  |4  |0  |True|
