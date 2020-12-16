@@ -56,7 +56,7 @@
 |ohara_rudy_cipa_v1_2017                                                 |16 |21 |5  |5  |0  |5  |True|
 |paci_hyttinen_aaltosetala_severi_atrialVersion                          |9  |9  |0  |1  |1  |0  |True|
 |paci_hyttinen_aaltosetala_severi_ventricularVersion                     |12 |12 |0  |1  |1  |0  |True|
-|pandit_clark_giles_demir_2001_version06_variant01                       |2  |2  |0  |1  |1  |0  |True|
+|pandit_clark_giles_demir_2001_version06_ variant01                       |2  |2  |0  |1  |1  |0  |True|
 |pandit_clark_giles_demir_2001                                           |2  |2  |0  |1  |1  |0  |True|
 |pasek_simurda_christe_2006                                              |0  |0  |0  |3  |3  |0  |True|
 |pasek_model_2008                                                        |0  |0  |0  |6  |6  |0  |True|
@@ -64,7 +64,7 @@
 |ramirez_2000                                                            |4  |4  |0  |6  |6  |0  |True|
 |sachse_model_2007                                                       |0  |0  |0  |1  |1  |0  |True|
 |sakmann_model_2000_epi                                                  |1  |5  |4  |9  |5  |4  |True|
-|shannon_wang_puglisi_weber_bers_2004_model_updated                      |4  |4  |0  |9  |9  |0  |True|
+|shannon_wang_puglisi_weber_bers_2004_model_ updated                      |4  |4  |0  |9  |9  |0  |True|
 |stewart_zhang_model_2008                                                |4  |4  |0  |1  |1  |0  |True|
 |tentusscher_model_2004_endo                                             |7  |7  |0  |1  |1  |0  |True|
 |tentusscher_model_2004_epi                                              |7  |8  |1  |1  |0  |1  |True|
