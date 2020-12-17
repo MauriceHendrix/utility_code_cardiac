@@ -1,4 +1,4 @@
-|Model 	                                                                |PW* |PW with fixes|Extra PW|Sing**|Sing after fixes|Fewer sing|Extra PW == Fewer sing|
+|Model 	                                                                 |PW* |PW with fixes|Extra PW|Sing**|Sing after fixes|Fewer sing|Extra PW == Fewer sing|
 |---                                                                     |---|---|---|---|---|---|---|
 |aslanidi_atrial_model_2009                                              |6  |6  |0  |5  |5  |0  |True|
 |aslanidi_2009                                                           |4  |4  |0  |7  |7  |0  |True|
@@ -27,7 +27,7 @@
 |grandi_pasqualini_bers_2010 (grandi_pasqualini_bers_2010_ss.cellml)     |6  |6  |0  |6  |6  |0  |True|
 |grandi_pasqualini_bers_2010 (grandi_pasqualini_bers_2010_ss_endo.cellml)|6  |6  |0  |6  |6  |0  |True|
 |hilgemann_noble_model_1987                                              |0  |4  |4  |7  |3  |4  |True|
-|hodgkin_huxley_squid_axon_model_1952_ modified                           |0  |2  |2  |2  |0  |2  |True|
+|hodgkin_huxley_squid_axon_model_1952_ modified                          |0  |2  |2  |2  |0  |2  |True|
 |HundRudy2004_units                                                      |7  |7  |0  |7  |7  |0  |True|
 |iribe_model_2006                                                        |1  |5  |4  |7  |3  |4  |True|
 |IyerMazhariWinslow2004                                                  |1  |1  |0  |4  |4  |0  |True|
@@ -54,9 +54,9 @@
 |ohara_rudy_2011_endo                                                    |16 |16 |0  |5  |5  |0  |True|
 |ohara_rudy_2011_epi                                                     |16 |16 |0  |5  |5  |0  |True|
 |ohara_rudy_cipa_v1_2017                                                 |16 |21 |5  |5  |0  |5  |True|
-|paci_hyttinen_aaltosetala_severi_atrial Version                          |9  |9  |0  |1  |1  |0  |True|
-|paci_hyttinen_aaltosetala_severi_ventricular Version                     |12 |12 |0  |1  |1  |0  |True|
-|pandit_clark_giles_demir_2001_ version06_variant01                       |2  |2  |0  |1  |1  |0  |True|
+|paci_hyttinen_aaltosetala_severi_atrial Version                         |9  |9  |0  |1  |1  |0  |True|
+|paci_hyttinen_aaltosetala_severi_ventricular Version                    |12 |12 |0  |1  |1  |0  |True|
+|pandit_clark_giles_demir_2001_ version06_variant01                      |2  |2  |0  |1  |1  |0  |True|
 |pandit_clark_giles_demir_2001                                           |2  |2  |0  |1  |1  |0  |True|
 |pasek_simurda_christe_2006                                              |0  |0  |0  |3  |3  |0  |True|
 |pasek_model_2008                                                        |0  |0  |0  |6  |6  |0  |True|
@@ -64,7 +64,7 @@
 |ramirez_2000                                                            |4  |4  |0  |6  |6  |0  |True|
 |sachse_model_2007                                                       |0  |0  |0  |1  |1  |0  |True|
 |sakmann_model_2000_epi                                                  |1  |5  |4  |9  |5  |4  |True|
-|shannon_wang_puglisi_weber_bers_2004_model_ updated                      |4  |4  |0  |9  |9  |0  |True|
+|shannon_wang_puglisi_weber_bers_2004_model_ updated                     |4  |4  |0  |9  |9  |0  |True|
 |stewart_zhang_model_2008                                                |4  |4  |0  |1  |1  |0  |True|
 |tentusscher_model_2004_endo                                             |7  |7  |0  |1  |1  |0  |True|
 |tentusscher_model_2004_epi                                              |7  |8  |1  |1  |0  |1  |True|
@@ -82,3 +82,23 @@
 
 *  PW = Piecewise
 ** Sing = singularities
+
+# Model: davies_isap_2012(davies_isap_2012.cellml)
+- No of piecewises: 12, 5 with the manual fixes
+- With no manual fixes 6 singularities were found (all of which are piecewises in the model with fixes)
+- The following 2 piecewises (in manual fixes) disappear when manual fixes is removed: [IKs__temp_part_1, IKs__temp_part_2]
+- The following (lhs) is a new singularity detected that were not piecewises in the model with manual fixes: [IKs__tauxs]
+
+
+# Model: decker_2009(decker_2009.cellml)
+- No of piecewises: 12, 4 with the manual fixes
+- With no manual fixes 7 singularities were found (all of which are piecewises in the model with fixes)
+- The following 2 piecewises (in manual fixes) disappear when manual fixes is removed: [IKs__temp_part_1, IKs__temp_part_2]
+- The following (lhs) is a new singularity detected that were not piecewises in the model with manual fixes: [IKr_xr_gate__tau_xr]
+
+
+# Model: priebe_beuckelmann_1998(priebe_beuckelmann_1998.cellml)
+- No of piecewises: 12, 17 with the manual fixes
+- With no manual fixes 1 singularitie was found (INa_m_gate__alpha_m) which is a piecewise in the model with fixes)
+- All piecewises (in manual fixes) are either still piecewises or the detected singularity
+- The following (lhs) is a new singularity detected that were not piecewises in the model with manual fixes: [Ito__g_to_max]
