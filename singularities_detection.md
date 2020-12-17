@@ -80,8 +80,8 @@
 |winslow_model_1999                                                      |5  |6  |1  |4  |3  |1  |True|
 |zhang_SAN_model_2000_0D_capable                                         |0  |0  |0  |3  |3  |0  |True|
 
-*  PW = Piecewise
-** Sing = singularities
+*  PW = Number os Piecewise (in the set of derivative equations, secluding state variables and parameters)
+** Sing = Number of (equation swith) singularities
 
 # Model: davies_isap_2012(davies_isap_2012.cellml)
 - No of piecewises: 12, 5 with the manual fixes
