@@ -82,7 +82,7 @@
 |zhang_SAN_model_2000_0D_capable                                         |0  |0  |0  |4  |4  |0  |True |
 
 
-*  PW = Number os Piecewise (in the set of derivative equations, secluding state variables and parameters)
+<code>*</code>  PW = Number os Piecewise (in the set of derivative equations, secluding state variables and parameters)
 
 ** Sing = Number of (equation swith) singularities
 
