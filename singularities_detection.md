@@ -1,7 +1,6 @@
 
 |Model                                                                   |PW* with fixes|PW no fixes|PW diff|Sing** with fixes|Sing no fixes|sing diff|PW diff == sing diff|
 |---                                                                     |---|---|---|---|---|---|---|
-
 |aslanidi_atrial_model_2009                                              |6  |6  |0  |6  |6  |0  |True |
 |aslanidi_2009                                                           |4  |4  |0  |9  |9  |0  |True |
 |beeler_reuter_model_1977                                                |2  |0  |2  |0  |2  |2  |True |
