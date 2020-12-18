@@ -83,6 +83,7 @@
 
 
 *  PW = Number os Piecewise (in the set of derivative equations, secluding state variables and parameters)
+
 ** Sing = Number of (equation swith) singularities
 
 # Model: Corrias_rabbit_purkinje_model(corrias_purkinje_2011.cellml)
