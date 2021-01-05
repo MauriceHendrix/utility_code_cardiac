@@ -1,7 +1,5 @@
-
 |Model 	                                                                 |PW* with fixes|PW no fixes|PW diff|Sing** with fixes|Sing no fixes|sing diff|PW diff == sing diff|
 |---                                                                     |---|---|---|---|---|---|---|
-
 |aslanidi_atrial_model_2009                                              |6  |6  |0  |6  |6  |0  |True |
 |aslanidi_2009                                                           |4  |4  |0  |9  |9  |0  |True |
 |beeler_reuter_model_1977                                                |2  |0  |2  |0  |2  |2  |True |
@@ -81,3 +79,20 @@
 |wang_model_2008                                                         |4  |4  |0  |3  |3  |0  |True |
 |winslow_model_1999                                                      |6  |5  |1  |4  |5  |1  |True |
 |zhang_SAN_model_2000_0D_capable                                         |0  |0  |0  |4  |4  |0  |True |
+
+
+# Model: maltsev_2009
+- Same issue as above:
+    - *U*: -14.0 - 0.40000000000000002 * Vm__Vm
+        - *V for 1e-07 range* `-34.999999750000001 - -35.000000249999999`
+        - singularity point: -35.000000000000000
+    - *U*: -0.20833333333333334 * Vm__Vm
+        - *V for 1e-07 range* `4.7999999999999996e-7 - -4.7999999999999996e-7`
+        - singularity point: 0
+```
+i_CaL_dL_gate__alpha_dL = -0.028389999999999999 * (35.0 + Vm__Vm) / (-1.0 + exp(-14.0 - 0.40000000000000002 * Vm__Vm)) - 0.084900000000000003 * Vm__Vm / (-1.0 + exp(-0.20833333333333334 * Vm__Vm))
+```
+## New Eq:
+```
+i_CaL_dL_gate__alpha_dL = ((fabs(35.0 + Vm__Vm) < 2.5000000000718892e-7) ? (0.58229457863580991 + 0.014551258213141278 * Vm__Vm) : ((fabs(Vm__Vm) < 4.7999999999999996e-7) ? (1.4011708262480853 + 0.070842583268076562 * Vm__Vm) : (-0.028389999999999999 * (35.0 + Vm__Vm) / (-1.0 + exp(-14.0 - 0.40000000000000002 * Vm__Vm)) - 0.084900000000000003 * Vm__Vm / (-1.0 + exp(-0.20833333333333334 * Vm__Vm)))))
+```
