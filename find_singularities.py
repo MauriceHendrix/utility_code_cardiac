@@ -160,34 +160,79 @@ def get_U(expr, V):
                 (vs, ve, U, sp) = None, None, None, None
     return (vs, ve, U, sp)
 
-def get_new_expr_parts(expr, expr_part_eval, V):
+# def get_new_expr_parts(expr, expr_part_eval, V):
+    # def f(Vx):
+# #        return expr_part_eval.xreplace({V:Vx})
+        # return expr.xreplace({V:Vx})
+
+    # singularity_piecewise_parts = []
+    # if expr_part_eval.has(exp):
+        # if isinstance(expr_part_eval, Add): # A+B
+            # for a in expr_part_eval.args:
+                # if a.has(exp):
+                    # singularity_piecewise_parts.extend(get_new_expr_parts(expr, a, V))
+        # elif isinstance(expr_part_eval, Pow) and expr_part_eval.args[1] == -1.0 and len(expr_part_eval.args) == 2:  # 1/A
+            # singularity_piecewise_parts = get_new_expr_parts(expr, expr_part_eval.args[0], V)
+        # elif isinstance(expr_part_eval, Mul): #and len(expr_part_eval.atoms(exp)) > 0:
+            # (vs, ve, U, sp) = get_U(expr_part_eval, V)
+            # if vs is not None:
+               # print('*U2*: ' + printer.doprint(U))
+               # print("*V for " + str(U_offset) + " range* ")
+               # print("`" +printer.doprint(vs) + " - "+ printer.doprint(ve) +"`")
+               # print('singularity point: ' + str(sp))
+               # #(rhs, model, vardefs, vardefs_offset, deriv_eqs_dict) = draw_graph_params
+               # #draw_graph(rhs, sp, model, vs, ve, U, vardefs, vardefs_offset, deriv_eqs_dict)
+               # singularity_piecewise_parts = [(f(vs) + ((V - vs) / (ve - vs)) * (f(ve) - f(vs)), Abs(V-sp) < Abs((ve-vs)/2))]
+            # else:
+                # for a in expr_part_eval.args:
+                    # if a.has(exp):
+                        # singularity_piecewise_parts.extend(get_new_expr_parts(expr, a, V))
+    # return singularity_piecewise_parts
+
+def get_new_expr_parts_sp(expr, expr_part_eval, V):
     def f(Vx):
-#        return expr_part_eval.xreplace({V:Vx})
         return expr.xreplace({V:Vx})
 
     singularity_piecewise_parts = []
+    singularity_points = []
     if expr_part_eval.has(exp):
         if isinstance(expr_part_eval, Add): # A+B
             for a in expr_part_eval.args:
                 if a.has(exp):
-                    singularity_piecewise_parts.extend(get_new_expr_parts(expr, a, V))
+                    point, part = get_new_expr_parts_sp(expr, a, V)
+                    singularity_points.extend(point)
+                    singularity_piecewise_parts.extend(part)
+
+            range = [item for (vs, ve, _) in singularity_points for item in (vs, ve, _, _)]
+            if len(singularity_points) > 1 and len(set([sp for (_, _, sp) in singularity_points])) == 1 and all(isinstance(b, Float) for b in range): # if thre are multiple parts and they have the same singularity points
+                sp = singularity_points[0][2]
+                vs, ve = min(range), max(range)
+                singularity_piecewise_parts = [(f(vs) + ((V - vs) / (ve - vs)) * (f(ve) - f(vs)), Abs(V-sp) < Abs((ve-vs)/2))]
+                singularity_points = [(vs, ve, sp)]
+                print()
+                print('`Two part eq with same singularity. range used: '+ printer.doprint(vs) +' - ' + printer.doprint(ve)  +'`')
+
         elif isinstance(expr_part_eval, Pow) and expr_part_eval.args[1] == -1.0 and len(expr_part_eval.args) == 2:  # 1/A
-            singularity_piecewise_parts = get_new_expr_parts(expr, expr_part_eval.args[0], V)
+            point, part = get_new_expr_parts_sp(expr, expr_part_eval.args[0], V)
+            singularity_points.extend(point)
+            singularity_piecewise_parts.extend(part)
+
         elif isinstance(expr_part_eval, Mul): #and len(expr_part_eval.atoms(exp)) > 0:
             (vs, ve, U, sp) = get_U(expr_part_eval, V)
             if vs is not None:
-               print('*U2*: ' + printer.doprint(U))
-               print("*V for " + str(U_offset) + " range* ")
-               print("`" +printer.doprint(vs) + " - "+ printer.doprint(ve) +"`")
-               print('singularity point: ' + str(sp))
-               #(rhs, model, vardefs, vardefs_offset, deriv_eqs_dict) = draw_graph_params
-               #draw_graph(rhs, sp, model, vs, ve, U, vardefs, vardefs_offset, deriv_eqs_dict)
-               singularity_piecewise_parts = [(f(vs) + ((V - vs) / (ve - vs)) * (f(ve) - f(vs)), Abs(V-sp) < Abs((ve-vs)/2))]
+                print('*U2*: ' + printer.doprint(U))
+                print("*V for " + str(U_offset) + " range* ")
+                print("`" +printer.doprint(vs) + " - "+ printer.doprint(ve) +"`")
+                print('singularity point: ' + str(sp))
+                singularity_piecewise_parts = [(f(vs) + ((V - vs) / (ve - vs)) * (f(ve) - f(vs)), Abs(V-sp) < Abs((ve-vs)/2))]
+                singularity_points = [(vs, ve, sp)]
             else:
                 for a in expr_part_eval.args:
                     if a.has(exp):
-                        singularity_piecewise_parts.extend(get_new_expr_parts(expr, a, V))
-    return singularity_piecewise_parts
+                        point, part = get_new_expr_parts_sp(expr, a, V)
+                        singularity_points.extend(point)
+                        singularity_piecewise_parts.extend(part)
+    return singularity_points, singularity_piecewise_parts
 
 proc_times = []
 for file_name in ('aslanidi_atrial_model_2009.cellml',
@@ -289,8 +334,8 @@ for file_name in ('aslanidi_atrial_model_2009.cellml',
             rhs = subs_math_func_placeholders(eq.rhs)
             unprocessed_eqs[eq.lhs] = optimize(rhs.xreplace(unprocessed_eqs), (_POW_OPT,) )
 
-#            singularity_piecewise_parts = get_new_expr_parts(eq.rhs, unprocessed_eqs[eq.lhs], model.membrane_voltage_var)
-            singularity_piecewise_parts = get_new_expr_parts(unprocessed_eqs[eq.lhs], unprocessed_eqs[eq.lhs], model.membrane_voltage_var)
+#            singularity_piecewise_parts = get_new_expr_parts(unprocessed_eqs[eq.lhs], unprocessed_eqs[eq.lhs], model.membrane_voltage_var)
+            points, singularity_piecewise_parts = get_new_expr_parts_sp(unprocessed_eqs[eq.lhs], unprocessed_eqs[eq.lhs], model.membrane_voltage_var)
 
             if len(singularity_piecewise_parts) > 0:
                 eq_no+=1

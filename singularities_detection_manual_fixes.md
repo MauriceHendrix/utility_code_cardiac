@@ -90,7 +90,7 @@ sodium_current__i_Na = ((fabs(membrane__V) < 2.6539450910485349e-6) ? ((0.5 + 18
 ```
 
 # of singularities:  6
-singularity processing time: 1.8362325000000004
+singularity processing time: 1.8550136000000004
 # Model: aslanidi_2009(aslanidi_Purkinje_model_2009.cellml)
 No of piecewises: 4
 *U2*: -444.66200000000003 - 9.9700000000000006 * membrane__V
@@ -221,11 +221,11 @@ i_Ca_L__i_Ca_L_max = ((fabs(-15.0 + membrane__V) < 1.3356169352718439e-6) ? (46.
 ```
 
 # of singularities:  9
-singularity processing time: 2.498734500000001
+singularity processing time: 3.322804699999999
 # Model: beeler_reuter_model_1977(beeler_reuter_model_1977.cellml)
 No of piecewises: 2
 # of singularities:  0
-singularity processing time: 0.9131929000000021
+singularity processing time: 0.9024886000000016
 # Model: benson_epicardial_2008(benson_epicardial_2008.cellml)
 No of piecewises: 7
 *U2*: -1.1230765052339999 + 0.074871767015599999 * cell__V
@@ -356,7 +356,7 @@ Ito2__Ito2_max = ((fabs(cell__V) < 2.671233870550013e-6) ? (3.8593998070325926 -
 ```
 
 # of singularities:  9
-singularity processing time: 2.7475585000000002
+singularity processing time: 2.007447799999998
 # Model: bernus_wilders_zemlin_verschelde_panfilov_2002_version01(bernus_wilders_zemlin_verschelde_panfilov_2002.cellml)
 No of piecewises: 0
 *U2*: -4.7130000000000001 - 0.10000000000000001 * membrane__V
@@ -377,7 +377,7 @@ sodium_current_m_gate__alpha_m = ((fabs(47.130000000000003 + membrane__V) < 1.00
 ```
 
 # of singularities:  1
-singularity processing time: 1.2358896000000001
+singularity processing time: 1.2211439000000013
 # Model: bondarenko_2004_apical(bondarenko_szigeti_bett_kim_rasmusson_2004_apical.cellml)
 No of piecewises: 0
 *U2*: -3.3919999999999999 - 0.128 * membrane__V
@@ -398,7 +398,7 @@ slow_delayed_rectifier_potassium_current__alpha_n = ((fabs(26.5 + membrane__V) <
 ```
 
 # of singularities:  1
-singularity processing time: 1.3847608999999999
+singularity processing time: 1.3630738999999998
 # Model: bondarenko_2004_septum(bondarenko_szigeti_bett_kim_rasmusson_2004_septal.cellml)
 No of piecewises: 0
 *U2*: -3.3919999999999999 - 0.128 * membrane__V
@@ -419,15 +419,15 @@ slow_delayed_rectifier_potassium_current__alpha_n = ((fabs(26.5 + membrane__V) <
 ```
 
 # of singularities:  1
-singularity processing time: 1.5260952000000003
+singularity processing time: 1.3719480000000033
 # Model: bueno_2007(bueno_2007_endo.cellml)
 No of piecewises: 5
 # of singularities:  0
-singularity processing time: 0.026547900000004176
+singularity processing time: 0.02126739999999927
 # Model: bueno_2007(bueno_2007_epi.cellml)
 No of piecewises: 5
 # of singularities:  0
-singularity processing time: 0.022671500000001288
+singularity processing time: 0.020035900000003437
 # Model: Carro_Rodriguez_Laguna_Pueyo_CinC2010_EPI(carro_2011_endo.cellml)
 No of piecewises: 4
 *U2*: 0.074871767015605231 * membrane__V
@@ -516,7 +516,7 @@ L_Type_Calcium_Current__Ibar_Na_sl = ((fabs(membrane__V) < 2.6712338705498262e-6
 ```
 
 # of singularities:  5
-singularity processing time: 2.3382507000000032
+singularity processing time: 2.306102800000005
 # Model: Carro_Rodriguez_Laguna_Pueyo_CinC2010_EPI(carro_2011_epi.cellml)
 No of piecewises: 4
 *U2*: 0.074871767015605231 * membrane__V
@@ -605,7 +605,7 @@ L_Type_Calcium_Current__Ibar_Na_sl = ((fabs(membrane__V) < 2.6712338705498262e-6
 ```
 
 # of singularities:  5
-singularity processing time: 2.1349929000000003
+singularity processing time: 2.341135399999999
 # Model: clancy_rudy_2002(clancy_rudy_2002.cellml)
 No of piecewises: 10
 *U2*: 0.074871767015605231 * membrane__V
@@ -667,6 +667,8 @@ singularity point: -30.000000000000000
 *V for 1e-07 range* 
 `-29.999999324324325 - -30.000000675675675`
 singularity point: -30.000000000000000
+
+`Two part eq with same singularity. range used: -30.000001455604075 - -29.999998544395925`
 ## Equation 4:
 ```
 slow_delayed_rectifier_potassium_current_xs1_gate__tau_xs1 = 0.001 / (0.00013100000000000001 * (30.0 + membrane__V) / (-1.0 + exp(2.0609999999999999 + 0.068699999999999997 * membrane__V)) + 7.1899999999999999e-5 * (30.0 + membrane__V) / (1.0 - exp(-4.4399999999999995 - 0.14799999999999999 * membrane__V)))
@@ -677,7 +679,7 @@ slow_delayed_rectifier_potassium_current_xs1_gate__tau_xs1 = 0.001 / (0.00013100
 ```
 ## New Eq:
 ```
-slow_delayed_rectifier_potassium_current_xs1_gate__tau_xs1 = ((fabs(30.0 + membrane__V) < 1.455604075689676e-6) ? (0.57283278764504919 + 0.0051628844993798191 * membrane__V) : ((fabs(30.0 + membrane__V) < 6.7567567568760367e-7) ? (0.57277257883161203 + 0.0051608775388260067 * membrane__V) : (0.001 / (0.00013100000000000001 * (30.0 + membrane__V) / (-1.0 + exp(2.0609999999999999 + 0.068699999999999997 * membrane__V)) + 7.1899999999999999e-5 * (30.0 + membrane__V) / (1.0 - exp(-4.4399999999999995 - 0.14799999999999999 * membrane__V))))))
+slow_delayed_rectifier_potassium_current_xs1_gate__tau_xs1 = ((fabs(30.0 + membrane__V) < 1.455604075689676e-6) ? (0.57283278764504919 + 0.0051628844993798191 * membrane__V) : (0.001 / (0.00013100000000000001 * (30.0 + membrane__V) / (-1.0 + exp(2.0609999999999999 + 0.068699999999999997 * membrane__V)) + 7.1899999999999999e-5 * (30.0 + membrane__V) / (1.0 - exp(-4.4399999999999995 - 0.14799999999999999 * membrane__V)))))
 ```
 
 *U2*: 2.0609999999999999 + 0.068699999999999997 * membrane__V
@@ -688,6 +690,8 @@ singularity point: -30.000000000000000
 *V for 1e-07 range* 
 `-29.999999324324325 - -30.000000675675675`
 singularity point: -30.000000000000000
+
+`Two part eq with same singularity. range used: -30.000001455604075 - -29.999998544395925`
 ## Equation 5:
 ```
 slow_delayed_rectifier_potassium_current_xs2_gate__tau_xs2 = 0.0040000000000000001 / (0.00013100000000000001 * (30.0 + membrane__V) / (-1.0 + exp(2.0609999999999999 + 0.068699999999999997 * membrane__V)) + 7.1899999999999999e-5 * (30.0 + membrane__V) / (1.0 - exp(-4.4399999999999995 - 0.14799999999999999 * membrane__V)))
@@ -698,27 +702,27 @@ slow_delayed_rectifier_potassium_current_xs2_gate__tau_xs2 = 0.00400000000000000
 ```
 ## New Eq:
 ```
-slow_delayed_rectifier_potassium_current_xs2_gate__tau_xs2 = ((fabs(30.0 + membrane__V) < 1.455604075689676e-6) ? (2.2913311505801968 + 0.020651537997519277 * membrane__V) : ((fabs(30.0 + membrane__V) < 6.7567567568760367e-7) ? (2.2910903153264481 + 0.020643510155304027 * membrane__V) : (0.0040000000000000001 / (0.00013100000000000001 * (30.0 + membrane__V) / (-1.0 + exp(2.0609999999999999 + 0.068699999999999997 * membrane__V)) + 7.1899999999999999e-5 * (30.0 + membrane__V) / (1.0 - exp(-4.4399999999999995 - 0.14799999999999999 * membrane__V))))))
+slow_delayed_rectifier_potassium_current_xs2_gate__tau_xs2 = ((fabs(30.0 + membrane__V) < 1.455604075689676e-6) ? (2.2913311505801968 + 0.020651537997519277 * membrane__V) : (0.0040000000000000001 / (0.00013100000000000001 * (30.0 + membrane__V) / (-1.0 + exp(2.0609999999999999 + 0.068699999999999997 * membrane__V)) + 7.1899999999999999e-5 * (30.0 + membrane__V) / (1.0 - exp(-4.4399999999999995 - 0.14799999999999999 * membrane__V)))))
 ```
 
-# of singularities:  7
-singularity processing time: 3.978983399999997
+# of singularities:  5
+singularity processing time: 2.8183092000000016
 # Model: Corrias_rabbit_purkinje_model(corrias_purkinje_2011.cellml)
 No of piecewises: 3
 # of singularities:  0
-singularity processing time: 0.8169341999999986
+singularity processing time: 0.7537931000000029
 # Model: courtemanche_1998(courtemanche_ramirez_nattel_1998.cellml)
 No of piecewises: 11
 # of singularities:  0
-singularity processing time: 1.1276763000000045
+singularity processing time: 1.4296836000000042
 # Model: davies_isap_2012(davies_isap_2012.cellml)
 No of piecewises: 12
 # of singularities:  0
-singularity processing time: 1.640577300000004
+singularity processing time: 1.695964399999994
 # Model: decker_2009(decker_2009.cellml)
 No of piecewises: 12
 # of singularities:  0
-singularity processing time: 2.6468785999999938
+singularity processing time: 2.6491749000000056
 # Model: demir_model_1994(demir_model_1994.cellml)
 No of piecewises: 0
 *U2*: -14.0 - 0.40000000000000002 * membrane__V
@@ -811,7 +815,7 @@ sodium_current__i_Na = ((fabs(membrane__V) < 2.671376065969565e-6) ? ((0.5 + 187
 ```
 
 # of singularities:  6
-singularity processing time: 1.3230093000000096
+singularity processing time: 1.5261619000000053
 # Model: difrancesco_noble_model_1985(difrancesco_noble_model_1985.cellml)
 No of piecewises: 5
 *U2*: 8.5 + 0.25 * membrane__V
@@ -900,7 +904,7 @@ transient_outward_current__i_to = ((fabs(10.0 + membrane__V) < 5.000000000005000
 ```
 
 # of singularities:  5
-singularity processing time: 1.0205686999999983
+singularity processing time: 1.0618106999999952
 # Model: dokos_model_1996(dokos_model_1996.cellml)
 No of piecewises: 0
 *U2*: -3.0869999999999997 - 0.089999999999999997 * membrane__E
@@ -955,7 +959,7 @@ hyperpolarising_activated_current_y_gate__beta_y = ((fabs(76.299999999999997 + m
 ```
 
 # of singularities:  3
-singularity processing time: 7.768174600000009
+singularity processing time: 8.167716200000001
 # Model: earm_noble_model_1990(earm_noble_model_1990.cellml)
 No of piecewises: 4
 *U2*: 3.7433890822745473 - 0.074867781645490947 * membrane__V
@@ -1010,7 +1014,7 @@ L_type_calcium_current__i_Ca_L_Na = ((fabs(-50.0 + membrane__V) < 2.671376065965
 ```
 
 # of singularities:  3
-singularity processing time: 0.6571517
+singularity processing time: 0.735880899999998
 # Model: espinosa_model_1998(espinosa_model_1998_normal.cellml)
 No of piecewises: 7
 *U2*: 3.7433890822745473 - 0.074867781645490947 * membrane__V
@@ -1065,7 +1069,7 @@ L_type_Ca_channel__i_Ca_L_Na_ds = ((fabs(-50.0 + membrane__V) < 2.67137606596579
 ```
 
 # of singularities:  3
-singularity processing time: 0.9466249000000033
+singularity processing time: 0.8839432999999985
 # Model: faber_rudy_2000(faber_rudy_2000.cellml)
 No of piecewises: 15
 *U2*: 0.074871767015605231 * cell__V
@@ -1182,6 +1186,8 @@ singularity point: -30.000000000000000
 *V for 1e-07 range* 
 `-29.999999324324325 - -30.000000675675675`
 singularity point: -30.000000000000000
+
+`Two part eq with same singularity. range used: -30.000001455604075 - -29.999998544395925`
 ## Equation 7:
 ```
 slow_delayed_rectifier_potassium_current_xs1_gate__tau_xs1 = 1 / (0.00013100000000000001 * (30.0 + cell__V) / (-1.0 + exp(2.0609999999999999 + 0.068699999999999997 * cell__V)) + 7.1899999999999999e-5 * (30.0 + cell__V) / (1.0 - exp(-4.4399999999999995 - 0.14799999999999999 * cell__V)))
@@ -1192,7 +1198,7 @@ slow_delayed_rectifier_potassium_current_xs1_gate__tau_xs1 = 1 / (0.000131000000
 ```
 ## New Eq:
 ```
-slow_delayed_rectifier_potassium_current_xs1_gate__tau_xs1 = ((fabs(30.0 + cell__V) < 1.455604075689676e-6) ? (572.83278764737304 + 5.1628844994572827 * cell__V) : ((fabs(30.0 + cell__V) < 6.7567567568760367e-7) ? (572.77257882806907 + 5.160877538707906 * cell__V) : (1 / (0.00013100000000000001 * (30.0 + cell__V) / (-1.0 + exp(2.0609999999999999 + 0.068699999999999997 * cell__V)) + 7.1899999999999999e-5 * (30.0 + cell__V) / (1.0 - exp(-4.4399999999999995 - 0.14799999999999999 * cell__V))))))
+slow_delayed_rectifier_potassium_current_xs1_gate__tau_xs1 = ((fabs(30.0 + cell__V) < 1.455604075689676e-6) ? (572.83278764737304 + 5.1628844994572827 * cell__V) : (1 / (0.00013100000000000001 * (30.0 + cell__V) / (-1.0 + exp(2.0609999999999999 + 0.068699999999999997 * cell__V)) + 7.1899999999999999e-5 * (30.0 + cell__V) / (1.0 - exp(-4.4399999999999995 - 0.14799999999999999 * cell__V)))))
 ```
 
 *U2*: 2.0609999999999999 + 0.068699999999999997 * cell__V
@@ -1203,6 +1209,8 @@ singularity point: -30.000000000000000
 *V for 1e-07 range* 
 `-29.999999324324325 - -30.000000675675675`
 singularity point: -30.000000000000000
+
+`Two part eq with same singularity. range used: -30.000001455604075 - -29.999998544395925`
 ## Equation 8:
 ```
 slow_delayed_rectifier_potassium_current_xs2_gate__tau_xs2 = 4.0 / (0.00013100000000000001 * (30.0 + cell__V) / (-1.0 + exp(2.0609999999999999 + 0.068699999999999997 * cell__V)) + 7.1899999999999999e-5 * (30.0 + cell__V) / (1.0 - exp(-4.4399999999999995 - 0.14799999999999999 * cell__V)))
@@ -1213,11 +1221,11 @@ slow_delayed_rectifier_potassium_current_xs2_gate__tau_xs2 = 4.0 / (0.0001310000
 ```
 ## New Eq:
 ```
-slow_delayed_rectifier_potassium_current_xs2_gate__tau_xs2 = ((fabs(30.0 + cell__V) < 1.455604075689676e-6) ? (2291.3311505894922 + 20.651537997829131 * cell__V) : ((fabs(30.0 + cell__V) < 6.7567567568760367e-7) ? (2291.0903153122763 + 20.643510154831624 * cell__V) : (4.0 / (0.00013100000000000001 * (30.0 + cell__V) / (-1.0 + exp(2.0609999999999999 + 0.068699999999999997 * cell__V)) + 7.1899999999999999e-5 * (30.0 + cell__V) / (1.0 - exp(-4.4399999999999995 - 0.14799999999999999 * cell__V))))))
+slow_delayed_rectifier_potassium_current_xs2_gate__tau_xs2 = ((fabs(30.0 + cell__V) < 1.455604075689676e-6) ? (2291.3311505894922 + 20.651537997829131 * cell__V) : (4.0 / (0.00013100000000000001 * (30.0 + cell__V) / (-1.0 + exp(2.0609999999999999 + 0.068699999999999997 * cell__V)) + 7.1899999999999999e-5 * (30.0 + cell__V) / (1.0 - exp(-4.4399999999999995 - 0.14799999999999999 * cell__V)))))
 ```
 
-# of singularities:  11
-singularity processing time: 2.4694755000000015
+# of singularities:  9
+singularity processing time: 2.6112129999999922
 # Model: fink_noble_giles_model_2008(fink_noble_giles_model_2008.cellml)
 No of piecewises: 4
 *U2*: -1.1230167246823641 + 0.074867781645490947 * cell__V
@@ -1238,7 +1246,7 @@ ICaL__i_CaL = ((fabs(-15.0 + cell__V) < 1.3356880329828957e-6) ? ((-5615083.1234
 ```
 
 # of singularities:  1
-singularity processing time: 1.4098089999999956
+singularity processing time: 1.5056684999999845
 # Model: fox_model_2001(fox_mcharg_gilmour_2002.cellml)
 No of piecewises: 0
 *U2*: -4.7130000000000001 - 0.10000000000000001 * membrane__V
@@ -1314,7 +1322,7 @@ L_type_Ca_current__i_CaK = ((fabs(membrane__V) < 2.6708186528497407e-6) ? ((0.5 
 ```
 
 # of singularities:  5
-singularity processing time: 1.7024629000000004
+singularity processing time: 1.5040275000000065
 # Model: grandi_pasqualini_bers_2010(grandi_pasqualini_bers_2010_ss.cellml)
 No of piecewises: 6
 *U2*: -0.83333333333333337 - 0.16666666666666666 * membrane_potential__V_m
@@ -1420,7 +1428,7 @@ I_Ca__ibarna_sl = ((fabs(membrane_potential__V_m) < 9.9999999999999995e-8 * fabs
 ```
 
 # of singularities:  6
-singularity processing time: 3.446839699999998
+singularity processing time: 2.6836176000000194
 # Model: grandi_pasqualini_bers_2010(grandi_pasqualini_bers_2010_ss_endo.cellml)
 No of piecewises: 6
 *U2*: -0.83333333333333337 - 0.16666666666666666 * membrane_potential__V_m
@@ -1526,7 +1534,7 @@ I_Ca__ibarna_sl = ((fabs(membrane_potential__V_m) < 2.6712338705498262e-6) ? (0.
 ```
 
 # of singularities:  6
-singularity processing time: 2.1432809000000077
+singularity processing time: 2.493187599999999
 # Model: hilgemann_noble_model_1987(hilgemann_noble_model_1987.cellml)
 No of piecewises: 4
 *U2*: 3.7433890822745473 - 0.074867781645490947 * membrane__V
@@ -1581,11 +1589,11 @@ second_inward_calcium_current__i_siNa = ((fabs(-50.0 + membrane__V) < 2.67137606
 ```
 
 # of singularities:  3
-singularity processing time: 0.7623973999999976
+singularity processing time: 0.8969807000000003
 # Model: hodgkin_huxley_squid_axon_model_1952_modified(hodgkin_huxley_squid_axon_model_1952_modified.cellml)
 No of piecewises: 2
 # of singularities:  0
-singularity processing time: 0.027497600000003786
+singularity processing time: 0.03720649999999637
 # Model: HundRudy2004_units(hund_rudy_2004.cellml)
 No of piecewises: 7
 *U2*: -1.1230765052339999 + 0.074871767015599999 * cell__V
@@ -1716,7 +1724,7 @@ Ito2__Ito2_max = ((fabs(cell__V) < 2.671233870550013e-6) ? (0.03859399807032593 
 ```
 
 # of singularities:  9
-singularity processing time: 2.012814100000014
+singularity processing time: 2.5263751999999897
 # Model: iribe_model_2006(iribe_model_2006.cellml)
 No of piecewises: 5
 *U2*: 3.7433890822745473 - 0.074867781645490947 * membrane_potential__V
@@ -1771,7 +1779,7 @@ L_type_Ca_channel__i_Ca_L_Na = ((fabs(-50.0 + membrane_potential__V) < 2.6713760
 ```
 
 # of singularities:  3
-singularity processing time: 1.3085903999999857
+singularity processing time: 0.8707062000000008
 # Model: IyerMazhariWinslow2004(iyer_2004.cellml)
 No of piecewises: 1
 *U2*: 0.074874401101778759 * COMPUTE_CONCENTRATION_AND_VOLTAGE_DERIVATIVES__V
@@ -1843,7 +1851,7 @@ COMPUTE_INa_IKr_IKs_Ito1_IK1_INab_IKp__IKv14_Na = ((fabs(COMPUTE_CONCENTRATION_A
 ```
 
 # of singularities:  4
-singularity processing time: 1.0817449999999837
+singularity processing time: 1.0539349999999956
 # Model: iyer_model_2007(iyer_model_2007.cellml)
 No of piecewises: 7
 *U2*: 0.03743720055088938 * COMPUTE_CONCENTRATION_AND_VOLTAGE_DERIVATIVES__V
@@ -1915,7 +1923,7 @@ COMPUTE_ICa_ICaK__ICaK = ((fabs(COMPUTE_CONCENTRATION_AND_VOLTAGE_DERIVATIVES__V
 ```
 
 # of singularities:  4
-singularity processing time: 1.0782956000000183
+singularity processing time: 1.1037029999999959
 # Model: jafri_rice_winslow_1998(jafri_rice_winslow_model_1998.cellml)
 No of piecewises: 4
 *U2*: 0.075146605522028176 * membrane__V
@@ -2004,7 +2012,7 @@ time_dependent_potassium_current_X_gate__beta_X = ((fabs(30.0 + membrane__V) < 1
 ```
 
 # of singularities:  5
-singularity processing time: 2.1955992000000037
+singularity processing time: 2.051385400000015
 # Model: kurata_model_2002(kurata_model_2002.cellml)
 No of piecewises: 0
 *U2*: -14.0 - 0.40000000000000002 * membrane__V
@@ -2046,7 +2054,7 @@ L_type_calcium_channel_current_d_gate__beta_d = ((fabs(-5.0 + membrane__V) < 2.5
 ```
 
 # of singularities:  3
-singularity processing time: 3.551889700000004
+singularity processing time: 3.6117315999999846
 # Model: lindblad_atrial_model_1996(lindblad_model_1996.cellml)
 No of piecewises: 0
 *U2*: -0.20798668885191349 * membrane__V
@@ -2139,7 +2147,7 @@ sodium_current__i_Na = ((fabs(membrane__V) < 2.6541413816729869e-6) ? ((0.5 + 18
 ```
 
 # of singularities:  6
-singularity processing time: 2.222932700000001
+singularity processing time: 1.8785986000000037
 # Model: LivshitzRudy2007(livshitz_rudy_2007.cellml)
 No of piecewises: 0
 *U2*: 0.074871767015605231 * cell__V
@@ -2239,6 +2247,8 @@ singularity point: -30.000000000000000
 *V for 1e-07 range* 
 `-29.999999324324325 - -30.000000675675675`
 singularity point: -30.000000000000000
+
+`Two part eq with same singularity. range used: -30.000001455604075 - -29.999998544395925`
 ## Equation 6:
 ```
 IKs__tauxs = 1 / (0.00013100000000000001 * (30.0 + cell__V) / (-1.0 + exp(2.0609999999999999 + 0.068699999999999997 * cell__V)) + 7.1899999999999999e-5 * (30.0 + cell__V) / (1.0 - exp(-4.4399999999999995 - 0.14799999999999999 * cell__V)))
@@ -2249,7 +2259,7 @@ IKs__tauxs = 1 / (0.00013100000000000001 * (30.0 + cell__V) / (-1.0 + 7.85381970
 ```
 ## New Eq:
 ```
-IKs__tauxs = ((fabs(30.0 + cell__V) < 1.455604075689676e-6) ? (572.83278764737304 + 5.1628844994572827 * cell__V) : ((fabs(30.0 + cell__V) < 6.7567567568760367e-7) ? (572.77257882806907 + 5.160877538707906 * cell__V) : (1 / (0.00013100000000000001 * (30.0 + cell__V) / (-1.0 + exp(2.0609999999999999 + 0.068699999999999997 * cell__V)) + 7.1899999999999999e-5 * (30.0 + cell__V) / (1.0 - exp(-4.4399999999999995 - 0.14799999999999999 * cell__V))))))
+IKs__tauxs = ((fabs(30.0 + cell__V) < 1.455604075689676e-6) ? (572.83278764737304 + 5.1628844994572827 * cell__V) : (1 / (0.00013100000000000001 * (30.0 + cell__V) / (-1.0 + exp(2.0609999999999999 + 0.068699999999999997 * cell__V)) + 7.1899999999999999e-5 * (30.0 + cell__V) / (1.0 - exp(-4.4399999999999995 - 0.14799999999999999 * cell__V)))))
 ```
 
 *U2*: -4.7130000000000001 - 0.10000000000000001 * cell__V
@@ -2269,8 +2279,8 @@ INa__am = 0.32000000000000001 * (47.130000000000003 + cell__V) / (1.0 - 0.008977
 INa__am = ((fabs(47.130000000000003 + cell__V) < 1.0000000000287557e-6) ? (10.740659346653775 + 0.15999701562995733 * cell__V) : (0.32000000000000001 * (47.130000000000003 + cell__V) / (1.0 - exp(-4.7130000000000001 - 0.10000000000000001 * cell__V))))
 ```
 
-# of singularities:  9
-singularity processing time: 3.4828981
+# of singularities:  8
+singularity processing time: 2.971150999999992
 # Model: Li_Mouse_2010(li_mouse_2010.cellml)
 No of piecewises: 3
 *U2*: -3.3919999999999999 - 0.128 * cell__V
@@ -2291,11 +2301,11 @@ slow_delayed_rectifier_K_I__alpha_n = ((fabs(26.5 + cell__V) < 7.812499999981792
 ```
 
 # of singularities:  1
-singularity processing time: 1.3285134999999855
+singularity processing time: 1.2187681999999995
 # Model: luo_rudy_1991(luo_rudy_1991.cellml)
 No of piecewises: 7
 # of singularities:  0
-singularity processing time: 0.6624959000000104
+singularity processing time: 0.6321967000000086
 # Model: luo_rudy_1994(luo_rudy_1994.cellml)
 No of piecewises: 5
 *U2*: 0.075146605522028176 * membrane__V
@@ -2418,11 +2428,11 @@ time_dependent_potassium_current_X_gate__beta_X = ((fabs(30.0 + membrane__V) < 1
 ```
 
 # of singularities:  7
-singularity processing time: 2.463643200000007
+singularity processing time: 2.4099243
 # Model: MahajanShiferaw2008_units(mahajan_shiferaw_2008.cellml)
 No of piecewises: 10
 # of singularities:  0
-singularity processing time: 2.540089999999992
+singularity processing time: 1.9318249000000094
 # Model: Maleckar(maleckar_model_2009.cellml)
 No of piecewises: 0
 *U2*: 0.037907445518581065 * membrane__V
@@ -2443,15 +2453,15 @@ sodium_current__i_Na = ((fabs(membrane__V) < 2.6380041870925613e-6) ? ((0.5 + 18
 ```
 
 # of singularities:  1
-singularity processing time: 1.6970527000000004
+singularity processing time: 1.6685566000000165
 # Model: maltsev_2009(maltsev_2009.cellml)
 No of piecewises: 2
 # of singularities:  0
-singularity processing time: 3.889926700000018
+singularity processing time: 3.494564700000012
 # Model: matsuoka_model_2003(matsuoka_model_2003.cellml)
 No of piecewises: 4
 # of singularities:  0
-singularity processing time: 3.7077964000000065
+singularity processing time: 3.261757899999992
 # Model: mcallister_noble_tsien_1975_modelB(mcallister_noble_tsien_1975_b.cellml)
 No of piecewises: 0
 *U2*: -4.7000000000000002 - 0.10000000000000001 * membrane__V
@@ -2540,7 +2550,7 @@ transient_chloride_current_q_gate__alpha_q = ((fabs(membrane__V) < 9.99999999999
 ```
 
 # of singularities:  5
-singularity processing time: 0.6634186
+singularity processing time: 0.6644632000000001
 # Model: noble_model_1962(noble_model_1962.cellml)
 No of piecewises: 0
 *U2*: -5.0 - 0.10000000000000001 * membrane__V
@@ -2595,7 +2605,7 @@ sodium_channel_m_gate__beta_m = ((fabs(8.0 + membrane__V) < 4.999999999970306e-7
 ```
 
 # of singularities:  3
-singularity processing time: 0.327257000000003
+singularity processing time: 0.2996086999999932
 # Model: noble_model_1991(noble_model_1991.cellml)
 No of piecewises: 4
 *U2*: 3.7433890822745473 - 0.074867781645490947 * membrane__V
@@ -2650,7 +2660,7 @@ L_type_Ca_channel__i_Ca_L_Na = ((fabs(-50.0 + membrane__V) < 2.6713760659657915e
 ```
 
 # of singularities:  3
-singularity processing time: 0.8427469000000087
+singularity processing time: 0.8078193000000056
 # Model: noble_model_1998(noble_model_1998.cellml)
 No of piecewises: 5
 *U2*: 3.7433890822745473 - 0.074867781645490947 * membrane__V
@@ -2705,7 +2715,7 @@ L_type_Ca_channel__i_Ca_L_Na_ds = ((fabs(-50.0 + membrane__V) < 2.67137606596579
 ```
 
 # of singularities:  3
-singularity processing time: 0.9179632000000026
+singularity processing time: 1.084295200000014
 # Model: noble_model_2001(noble_model_2001.cellml)
 No of piecewises: 5
 *U2*: 3.7433890822745473 - 0.074867781645490947 * membrane__V
@@ -2811,7 +2821,7 @@ L_type_Ca_channel__i_Ca_L_Na_ds = ((fabs(-50.0 + membrane__V) < 2.67137606596579
 ```
 
 # of singularities:  6
-singularity processing time: 1.2129285000000039
+singularity processing time: 0.993468799999988
 # Model: NN_SAN_model_1984(noble_noble_SAN_model_1984.cellml)
 No of piecewises: 7
 *U2*: 16.0 + 0.25 * membrane__V
@@ -2883,7 +2893,7 @@ second_inward_current__i_siNa = ((fabs(-50.0 + membrane__V) < 2.6713760659657915
 ```
 
 # of singularities:  4
-singularity processing time: 0.6176604999999995
+singularity processing time: 0.6644255999999871
 # Model: Noble_SAN_model_1989(noble_SAN_model_1989.cellml)
 No of piecewises: 4
 *U2*: 16.0 + 0.25 * membrane__V
@@ -2955,7 +2965,7 @@ second_inward_current__i_siNa = ((fabs(-50.0 + membrane__V) < 2.6713760659657915
 ```
 
 # of singularities:  4
-singularity processing time: 0.6366965999999934
+singularity processing time: 0.6385792000000379
 # Model: nygren_atrial_model_1998(nygren_atrial_model_1998.cellml)
 No of piecewises: 0
 *U2*: 0.037907445518581065 * membrane__V
@@ -2976,7 +2986,7 @@ sodium_current__i_Na = ((fabs(membrane__V) < 2.6380041870925613e-6) ? ((0.5 + 18
 ```
 
 # of singularities:  1
-singularity processing time: 1.6672897000000262
+singularity processing time: 1.4555715000000191
 # Model: ohara_rudy_2011_endo(ohara_rudy_2011_endo.cellml)
 No of piecewises: 16
 *U2*: membrane__v * physical_constants__F / (physical_constants__R * physical_constants__T)
@@ -3065,7 +3075,7 @@ INab__INab = ((fabs(membrane__v) < 9.9999999999999995e-8 * fabs(physical_constan
 ```
 
 # of singularities:  5
-singularity processing time: 83.19644929999998
+singularity processing time: 74.77393640000003
 # Model: ohara_rudy_2011_epi(ohara_rudy_2011_epi.cellml)
 No of piecewises: 16
 *U2*: membrane__v * physical_constants__F / (physical_constants__R * physical_constants__T)
@@ -3154,11 +3164,11 @@ INab__INab = ((fabs(membrane__v) < 9.9999999999999995e-8 * fabs(physical_constan
 ```
 
 # of singularities:  5
-singularity processing time: 85.13416589999997
+singularity processing time: 77.46862589999995
 # Model: ohara_rudy_cipa_v1_2017(ohara_rudy_cipa_v1_2017.cellml)
 No of piecewises: 21
 # of singularities:  0
-singularity processing time: 68.25543210000006
+singularity processing time: 72.22361540000003
 # Model: paci_hyttinen_aaltosetala_severi_atrialVersion(paci_hyttinen_aaltosetala_severi_atrialVersion.cellml)
 No of piecewises: 9
 *U2*: 23.209012310102192 * Membrane__Vm_converted / model_parameters__T
@@ -3179,7 +3189,7 @@ i_CaL__i_CaL = ((fabs(Membrane__Vm_converted) < 4.30867107414446e-9 * fabs(model
 ```
 
 # of singularities:  1
-singularity processing time: 2.41001940000001
+singularity processing time: 3.0847846000000345
 # Model: paci_hyttinen_aaltosetala_severi_ventricularVersion(paci_hyttinen_aaltosetala_severi_ventricularVersion.cellml)
 No of piecewises: 13
 *U2*: 23.209012310102192 * Membrane__Vm_converted / model_parameters__T
@@ -3200,7 +3210,7 @@ i_CaL__i_CaL = ((fabs(Membrane__Vm_converted) < 4.30867107414446e-9 * fabs(model
 ```
 
 # of singularities:  1
-singularity processing time: 2.1617566999999553
+singularity processing time: 4.14694929999996
 # Model: pandit_clark_giles_demir_2001_version06_variant01(pandit_clark_giles_demir_2001_endocardial_cell.cellml)
 No of piecewises: 2
 *U2*: -4.7130000000000001 - 0.10000000000000001 * membrane__V
@@ -3221,7 +3231,7 @@ sodium_current_m_gate__tau_m = ((fabs(47.130000000000003 + membrane__V) < 1.0000
 ```
 
 # of singularities:  1
-singularity processing time: 1.91678330000002
+singularity processing time: 2.5048084999999674
 # Model: pandit_clark_giles_demir_2001(pandit_clark_giles_demir_2001_epicardial_cell.cellml)
 No of piecewises: 2
 *U2*: -4.7130000000000001 - 0.10000000000000001 * membrane__V
@@ -3242,7 +3252,7 @@ sodium_current_m_gate__tau_m = ((fabs(47.130000000000003 + membrane__V) < 1.0000
 ```
 
 # of singularities:  1
-singularity processing time: 1.9726709999999912
+singularity processing time: 4.132006899999965
 # Model: pasek_simurda_christe_2006(pasek_simurda_christe_2006.cellml)
 No of piecewises: 0
 *U2*: -14.168000000000001 - 0.22 * Vms__Vms
@@ -3297,7 +3307,7 @@ i_Cas__i_Cas = ((fabs(Vms__Vms) < 1.2701813471502589e-6) ? ((0.5 + 393644.577698
 ```
 
 # of singularities:  3
-singularity processing time: 2.3496233000000757
+singularity processing time: 2.8253071999999975
 # Model: pasek_model_2008(pasek_simurda_orchard_christe_2008.cellml)
 No of piecewises: 0
 *U2*: 5.6404999999999994 + 0.14499999999999999 * Vm_s__Vm_s
@@ -3329,6 +3339,8 @@ singularity point: -30.000000000000000
 *V for 1e-07 range* 
 `-29.999999324324325 - -30.000000675675675`
 singularity point: -30.000000000000000
+
+`Two part eq with same singularity. range used: -30.000001455604075 - -29.999998544395925`
 ## Equation 2:
 ```
 i_Ks_s_xs_gate__tau_xs = 0.001 / (0.00013100000000000001 * (30.0 + Vm_s__Vm_s) / (-1.0 + exp(2.0609999999999999 + 0.068699999999999997 * Vm_s__Vm_s)) + 7.1899999999999999e-5 * (30.0 + Vm_s__Vm_s) / (1.0 - exp(-4.4399999999999995 - 0.14799999999999999 * Vm_s__Vm_s)))
@@ -3339,7 +3351,7 @@ i_Ks_s_xs_gate__tau_xs = 0.001 / (0.00013100000000000001 * (30.0 + Vm_s__Vm_s) /
 ```
 ## New Eq:
 ```
-i_Ks_s_xs_gate__tau_xs = ((fabs(30.0 + Vm_s__Vm_s) < 1.455604075689676e-6) ? (0.57283278764504919 + 0.0051628844993798191 * Vm_s__Vm_s) : ((fabs(30.0 + Vm_s__Vm_s) < 6.7567567568760367e-7) ? (0.57277257883161203 + 0.0051608775388260067 * Vm_s__Vm_s) : (0.001 / (0.00013100000000000001 * (30.0 + Vm_s__Vm_s) / (-1.0 + exp(2.0609999999999999 + 0.068699999999999997 * Vm_s__Vm_s)) + 7.1899999999999999e-5 * (30.0 + Vm_s__Vm_s) / (1.0 - exp(-4.4399999999999995 - 0.14799999999999999 * Vm_s__Vm_s))))))
+i_Ks_s_xs_gate__tau_xs = ((fabs(30.0 + Vm_s__Vm_s) < 1.455604075689676e-6) ? (0.57283278764504919 + 0.0051628844993798191 * Vm_s__Vm_s) : (0.001 / (0.00013100000000000001 * (30.0 + Vm_s__Vm_s) / (-1.0 + exp(2.0609999999999999 + 0.068699999999999997 * Vm_s__Vm_s)) + 7.1899999999999999e-5 * (30.0 + Vm_s__Vm_s) / (1.0 - exp(-4.4399999999999995 - 0.14799999999999999 * Vm_s__Vm_s)))))
 ```
 
 *U2*: 0.07491945188463181 * Vm_s__Vm_s
@@ -3410,12 +3422,12 @@ i_nsNa_s__i_nsNa_s = 3.2045734132626158e-8 * (-105.0 + 0.75 * ion_concentrations
 i_nsNa_s__i_nsNa_s = ((fabs(Vm_s__Vm_s) < 2.6695336787564767e-6) ? ((0.5 + 187298.62971157953 * Vm_s__Vm_s) * (8.5547162249638204e-7 * (-105.0 + 0.75000007500000376 * ion_concentrations__Na_i) / (1.0 + 1.5625000000000003e-8 / pow(ion_concentrations__Ca_i, 3)) - 8.5547170804937289e-7 * (-105.0 + 0.74999992500000379 * ion_concentrations__Na_i) / (1.0 + 1.5625000000000003e-8 / pow(ion_concentrations__Ca_i, 3))) + 8.5547170804937289e-7 * (-105.0 + 0.74999992500000379 * ion_concentrations__Na_i) / (1.0 + 1.5625000000000003e-8 / pow(ion_concentrations__Ca_i, 3))) : (pow(model_parameters__F, 2) * (-0.75 * model_parameters__Na_e + 0.75 * ion_concentrations__Na_i * exp(Vm_s__Vm_s * model_parameters__F / (model_parameters__R * model_parameters__T))) * Vm_s__Vm_s * membrane_permeabilities__P_nsNa_s / ((1.0 + 1.5625000000000003e-8 / pow(ion_concentrations__Ca_i, 3)) * (-1.0 + exp(Vm_s__Vm_s * model_parameters__F / (model_parameters__R * model_parameters__T))) * model_parameters__R * model_parameters__T)))
 ```
 
-# of singularities:  8
-singularity processing time: 4.839216699999952
+# of singularities:  7
+singularity processing time: 6.584308999999962
 # Model: priebe_beuckelmann_1998(priebe_beuckelmann_1998.cellml)
 No of piecewises: 21
 # of singularities:  0
-singularity processing time: 1.3522403000000622
+singularity processing time: 1.353304699999967
 # Model: ramirez_2000(ramirez_nattel_courtemanche_2000.cellml)
 No of piecewises: 4
 *U2*: -4.7130000000000001 - 0.10000000000000001 * membrane__V
@@ -3521,7 +3533,7 @@ slow_delayed_rectifier_K_current_xs_gate__beta_xs = ((fabs(28.5 + membrane__V) <
 ```
 
 # of singularities:  6
-singularity processing time: 1.3024590999999646
+singularity processing time: 1.285752699999989
 # Model: sachse_model_2007(sachse_moreno_abildskov_2008_b.cellml)
 No of piecewises: 0
 *U2*: -11.612515042117931 * membrane__Vm / model_parameters__T
@@ -3542,7 +3554,7 @@ I_Shkr__I_Shkr = ((fabs(membrane__Vm) < 8.6113989637305703e-9 * fabs(model_param
 ```
 
 # of singularities:  1
-singularity processing time: 0.19076560000007703
+singularity processing time: 0.15887039999995523
 # Model: sakmann_model_2000_epi(sakmann_model_2000_epi.cellml)
 No of piecewises: 5
 *U2*: 3.7433890822745473 - 0.074867781645490947 * membrane__V
@@ -3625,6 +3637,8 @@ singularity point: -30.000000000000000
 *V for 1e-07 range* 
 `-29.999999324324325 - -30.000000675675675`
 singularity point: -30.000000000000000
+
+`Two part eq with same singularity. range used: -30.000001455604075 - -29.999998544395925`
 ## Equation 5:
 ```
 slow_delayed_rectifier_potassium_current_xs_gate__tau_xs = 0.001 / (0.00013100000000000001 * (30.0 + membrane__V) / (-1.0 + exp(2.0609999999999999 + 0.068699999999999997 * membrane__V)) + 7.1899999999999999e-5 * (30.0 + membrane__V) / (1.0 - exp(-4.4399999999999995 - 0.14799999999999999 * membrane__V)))
@@ -3635,11 +3649,11 @@ slow_delayed_rectifier_potassium_current_xs_gate__tau_xs = 0.001 / (0.0001310000
 ```
 ## New Eq:
 ```
-slow_delayed_rectifier_potassium_current_xs_gate__tau_xs = ((fabs(30.0 + membrane__V) < 1.455604075689676e-6) ? (0.57283278764504919 + 0.0051628844993798191 * membrane__V) : ((fabs(30.0 + membrane__V) < 6.7567567568760367e-7) ? (0.57277257883161203 + 0.0051608775388260067 * membrane__V) : (0.001 / (0.00013100000000000001 * (30.0 + membrane__V) / (-1.0 + exp(2.0609999999999999 + 0.068699999999999997 * membrane__V)) + 7.1899999999999999e-5 * (30.0 + membrane__V) / (1.0 - exp(-4.4399999999999995 - 0.14799999999999999 * membrane__V))))))
+slow_delayed_rectifier_potassium_current_xs_gate__tau_xs = ((fabs(30.0 + membrane__V) < 1.455604075689676e-6) ? (0.57283278764504919 + 0.0051628844993798191 * membrane__V) : (0.001 / (0.00013100000000000001 * (30.0 + membrane__V) / (-1.0 + exp(2.0609999999999999 + 0.068699999999999997 * membrane__V)) + 7.1899999999999999e-5 * (30.0 + membrane__V) / (1.0 - exp(-4.4399999999999995 - 0.14799999999999999 * membrane__V)))))
 ```
 
-# of singularities:  7
-singularity processing time: 1.3580441999999948
+# of singularities:  6
+singularity processing time: 1.169917000000055
 # Model: shannon_wang_puglisi_weber_bers_2004_model_updated(shannon_wang_puglisi_weber_bers_2004.cellml)
 No of piecewises: 4
 *U2*: -2.4166666666666665 - 0.16666666666666666 * cell__V
@@ -3688,6 +3702,8 @@ singularity point: -30.000000000000000
 *V for 1e-07 range* 
 `-29.999999324324325 - -30.000000675675675`
 singularity point: -30.000000000000000
+
+`Two part eq with same singularity. range used: -30.000001455604075 - -29.999998544395925`
 ## Equation 3:
 ```
 IKs_Xs_gate__tau_Xs = 1 / (0.00013100000000000001 * (30.0 + cell__V) / (-1.0 + exp(2.0609999999999999 + 0.068699999999999997 * cell__V)) + 7.1899999999999999e-5 * (30.0 + cell__V) / (1.0 - exp(-4.4399999999999995 - 0.14799999999999999 * cell__V)))
@@ -3698,7 +3714,7 @@ IKs_Xs_gate__tau_Xs = 1 / (0.00013100000000000001 * (30.0 + cell__V) / (-1.0 + 7
 ```
 ## New Eq:
 ```
-IKs_Xs_gate__tau_Xs = ((fabs(30.0 + cell__V) < 1.455604075689676e-6) ? (572.83278764737304 + 5.1628844994572827 * cell__V) : ((fabs(30.0 + cell__V) < 6.7567567568760367e-7) ? (572.77257882806907 + 5.160877538707906 * cell__V) : (1 / (0.00013100000000000001 * (30.0 + cell__V) / (-1.0 + exp(2.0609999999999999 + 0.068699999999999997 * cell__V)) + 7.1899999999999999e-5 * (30.0 + cell__V) / (1.0 - exp(-4.4399999999999995 - 0.14799999999999999 * cell__V))))))
+IKs_Xs_gate__tau_Xs = ((fabs(30.0 + cell__V) < 1.455604075689676e-6) ? (572.83278764737304 + 5.1628844994572827 * cell__V) : (1 / (0.00013100000000000001 * (30.0 + cell__V) / (-1.0 + exp(2.0609999999999999 + 0.068699999999999997 * cell__V)) + 7.1899999999999999e-5 * (30.0 + cell__V) / (1.0 - exp(-4.4399999999999995 - 0.14799999999999999 * cell__V)))))
 ```
 
 *U2*: -4.7130000000000001 - 0.10000000000000001 * cell__V
@@ -3803,8 +3819,8 @@ ICaL__i_CaL_Na_jct = 6.0749999999999998e-9 * pow(1.8, (-31.0 + 0.100000000000000
 ICaL__i_CaL_Na_jct = ((fabs(cell__V) < 9.9999999999999995e-8 * fabs(model_parameters__R * model_parameters__T / model_parameters__F)) ? (5000000.0 * (9.9999999999999995e-8 * model_parameters__R * model_parameters__T / model_parameters__F + cell__V) * (6.0749996996904067e-9 * pow(1.8, (-31.0 + 0.10000000000000001 * model_parameters__T)) * (1.0 - ICaL_fCa_gate__fCaB_jct) * (0.75000007500000376 * Na_buffer__Na_jct - 0.75 * model_parameters__Nao) * ICaL_d_gate__d * ICaL_f_gate__f * model_parameters__F - 6.0750003067048464e-9 * pow(1.8, (-31.0 + 0.10000000000000001 * model_parameters__T)) * (1.0 - ICaL_fCa_gate__fCaB_jct) * (0.74999992500000379 * Na_buffer__Na_jct - 0.75 * model_parameters__Nao) * ICaL_d_gate__d * ICaL_f_gate__f * model_parameters__F) * model_parameters__F / (model_parameters__R * model_parameters__T) + 6.0750003067048464e-9 * pow(1.8, (-31.0 + 0.10000000000000001 * model_parameters__T)) * (1.0 - ICaL_fCa_gate__fCaB_jct) * (0.74999992500000379 * Na_buffer__Na_jct - 0.75 * model_parameters__Nao) * ICaL_d_gate__d * ICaL_f_gate__f * model_parameters__F) : ((-ICaL__gamma_Nao * model_parameters__Nao + ICaL__gamma_Nai * Na_buffer__Na_jct * exp(cell__V * model_parameters__F / (model_parameters__R * model_parameters__T))) * ICaL__Fx_ICaL_jct * ICaL__PNa * ICaL__temp * ICaL_fCa_gate__fCa_jct / (-1.0 + exp(cell__V * model_parameters__F / (model_parameters__R * model_parameters__T)))))
 ```
 
-# of singularities:  11
-singularity processing time: 2.5079481000000214
+# of singularities:  10
+singularity processing time: 3.5071786999999404
 # Model: stewart_zhang_model_2008(stewart_zhang_model_2008_ss.cellml)
 No of piecewises: 4
 *U2*: -1.1230167246823641 + 0.074867781645490947 * membrane__V
@@ -3825,7 +3841,7 @@ L_type_Ca_current__i_CaL = ((fabs(-15.0 + membrane__V) < 1.3356880329828957e-6) 
 ```
 
 # of singularities:  1
-singularity processing time: 1.3634062999999514
+singularity processing time: 1.505769799999939
 # Model: tentusscher_model_2004_endo(ten_tusscher_model_2004_endo.cellml)
 No of piecewises: 7
 *U2*: 0.074867781645490947 * membrane__V
@@ -3846,11 +3862,11 @@ L_type_Ca_current__i_CaL = ((fabs(membrane__V) < 1.3356880329847825e-6) ? ((0.5 
 ```
 
 # of singularities:  1
-singularity processing time: 1.3736573000001044
+singularity processing time: 1.4784674999999652
 # Model: tentusscher_model_2004_epi(ten_tusscher_model_2004_epi.cellml)
 No of piecewises: 8
 # of singularities:  0
-singularity processing time: 1.483830199999943
+singularity processing time: 1.4204668999999512
 # Model: tentusscher_model_2004_M(ten_tusscher_model_2004_M.cellml)
 No of piecewises: 7
 *U2*: 0.074867781645490947 * membrane__V
@@ -3871,19 +3887,19 @@ L_type_Ca_current__i_CaL = ((fabs(membrane__V) < 1.3356880329847825e-6) ? ((0.5 
 ```
 
 # of singularities:  1
-singularity processing time: 1.3250064000000066
+singularity processing time: 1.5722644999999602
 # Model: tentusscher_model_2006_endo(ten_tusscher_model_2006_endo.cellml)
 No of piecewises: 5
 # of singularities:  0
-singularity processing time: 1.6670334000000366
+singularity processing time: 1.5066600999999764
 # Model: tentusscher_model_2006_epi(ten_tusscher_model_2006_epi.cellml)
 No of piecewises: 5
 # of singularities:  0
-singularity processing time: 1.8601172999999562
+singularity processing time: 1.9807800999999472
 # Model: tentusscher_model_2006_M(ten_tusscher_model_2006_M.cellml)
 No of piecewises: 5
 # of singularities:  0
-singularity processing time: 1.448416199999997
+singularity processing time: 1.771971399999984
 # Model: Tomek_model13endo(ToRORd_fkatp_endo.cellml)
 No of piecewises: 21
 *U2*: membrane__v * physical_constants__F / (physical_constants__R * physical_constants__T)
@@ -4023,7 +4039,7 @@ INab__INab = ((fabs(membrane__v) < 9.9999999999999995e-8 * fabs(physical_constan
 ```
 
 # of singularities:  8
-singularity processing time: 89.96175210000001
+singularity processing time: 101.42864009999994
 # Model: Tomek_model13epi(ToRORd_fkatp_epi.cellml)
 No of piecewises: 21
 *U2*: membrane__v * physical_constants__F / (physical_constants__R * physical_constants__T)
@@ -4163,7 +4179,7 @@ INab__INab = ((fabs(membrane__v) < 9.9999999999999995e-8 * fabs(physical_constan
 ```
 
 # of singularities:  8
-singularity processing time: 89.61398580000002
+singularity processing time: 78.27116020000005
 # Model: Trovato2020(Trovato2020.cellml)
 No of piecewises: 2
 *U2*: membrane__v * physical_constants__F / (physical_constants__R * physical_constants__T)
@@ -4252,7 +4268,7 @@ INab__INab = ((fabs(membrane__v) < 9.9999999999999995e-8 * fabs(physical_constan
 ```
 
 # of singularities:  5
-singularity processing time: 84.94252069999993
+singularity processing time: 75.04274609999993
 # Model: viswanathan_model_1999_epi(viswanathan_model_1999_epi.cellml)
 No of piecewises: 15
 *U2*: 0.074871767015605231 * membrane__V
@@ -4335,6 +4351,8 @@ singularity point: -30.000000000000000
 *V for 1e-07 range* 
 `-29.999999324324325 - -30.000000675675675`
 singularity point: -30.000000000000000
+
+`Two part eq with same singularity. range used: -30.000001455604075 - -29.999998544395925`
 ## Equation 5:
 ```
 slow_delayed_rectifier_potassium_current_xs1_gate__tau_xs1 = 0.001 / (0.00013100000000000001 * (30.0 + membrane__V) / (-1.0 + exp(2.0609999999999999 + 0.068699999999999997 * membrane__V)) + 7.1899999999999999e-5 * (30.0 + membrane__V) / (1.0 - exp(-4.4399999999999995 - 0.14799999999999999 * membrane__V)))
@@ -4345,7 +4363,7 @@ slow_delayed_rectifier_potassium_current_xs1_gate__tau_xs1 = 0.001 / (0.00013100
 ```
 ## New Eq:
 ```
-slow_delayed_rectifier_potassium_current_xs1_gate__tau_xs1 = ((fabs(30.0 + membrane__V) < 1.455604075689676e-6) ? (0.57283278764504919 + 0.0051628844993798191 * membrane__V) : ((fabs(30.0 + membrane__V) < 6.7567567568760367e-7) ? (0.57277257883161203 + 0.0051608775388260067 * membrane__V) : (0.001 / (0.00013100000000000001 * (30.0 + membrane__V) / (-1.0 + exp(2.0609999999999999 + 0.068699999999999997 * membrane__V)) + 7.1899999999999999e-5 * (30.0 + membrane__V) / (1.0 - exp(-4.4399999999999995 - 0.14799999999999999 * membrane__V))))))
+slow_delayed_rectifier_potassium_current_xs1_gate__tau_xs1 = ((fabs(30.0 + membrane__V) < 1.455604075689676e-6) ? (0.57283278764504919 + 0.0051628844993798191 * membrane__V) : (0.001 / (0.00013100000000000001 * (30.0 + membrane__V) / (-1.0 + exp(2.0609999999999999 + 0.068699999999999997 * membrane__V)) + 7.1899999999999999e-5 * (30.0 + membrane__V) / (1.0 - exp(-4.4399999999999995 - 0.14799999999999999 * membrane__V)))))
 ```
 
 *U2*: 2.0609999999999999 + 0.068699999999999997 * membrane__V
@@ -4356,6 +4374,8 @@ singularity point: -30.000000000000000
 *V for 1e-07 range* 
 `-29.999999324324325 - -30.000000675675675`
 singularity point: -30.000000000000000
+
+`Two part eq with same singularity. range used: -30.000001455604075 - -29.999998544395925`
 ## Equation 6:
 ```
 slow_delayed_rectifier_potassium_current_xs2_gate__tau_xs2 = 0.0040000000000000001 / (0.00013100000000000001 * (30.0 + membrane__V) / (-1.0 + exp(2.0609999999999999 + 0.068699999999999997 * membrane__V)) + 7.1899999999999999e-5 * (30.0 + membrane__V) / (1.0 - exp(-4.4399999999999995 - 0.14799999999999999 * membrane__V)))
@@ -4366,11 +4386,11 @@ slow_delayed_rectifier_potassium_current_xs2_gate__tau_xs2 = 0.00400000000000000
 ```
 ## New Eq:
 ```
-slow_delayed_rectifier_potassium_current_xs2_gate__tau_xs2 = ((fabs(30.0 + membrane__V) < 1.455604075689676e-6) ? (2.2913311505801968 + 0.020651537997519277 * membrane__V) : ((fabs(30.0 + membrane__V) < 6.7567567568760367e-7) ? (2.2910903153264481 + 0.020643510155304027 * membrane__V) : (0.0040000000000000001 / (0.00013100000000000001 * (30.0 + membrane__V) / (-1.0 + exp(2.0609999999999999 + 0.068699999999999997 * membrane__V)) + 7.1899999999999999e-5 * (30.0 + membrane__V) / (1.0 - exp(-4.4399999999999995 - 0.14799999999999999 * membrane__V))))))
+slow_delayed_rectifier_potassium_current_xs2_gate__tau_xs2 = ((fabs(30.0 + membrane__V) < 1.455604075689676e-6) ? (2.2913311505801968 + 0.020651537997519277 * membrane__V) : (0.0040000000000000001 / (0.00013100000000000001 * (30.0 + membrane__V) / (-1.0 + exp(2.0609999999999999 + 0.068699999999999997 * membrane__V)) + 7.1899999999999999e-5 * (30.0 + membrane__V) / (1.0 - exp(-4.4399999999999995 - 0.14799999999999999 * membrane__V)))))
 ```
 
-# of singularities:  9
-singularity processing time: 3.2145909000000756
+# of singularities:  7
+singularity processing time: 2.7130284999999503
 # Model: wang_model_2008(wang_sobie_2008.cellml)
 No of piecewises: 4
 *U2*: 0.038949423064193495 * membrane__V
@@ -4425,7 +4445,7 @@ slow_delayed_rectifier_potassium_current__alpha_n = ((fabs(26.5 + membrane__V) <
 ```
 
 # of singularities:  3
-singularity processing time: 1.3194197000000258
+singularity processing time: 1.1434653000000026
 # Model: winslow_model_1999(winslow_model_1999.cellml)
 No of piecewises: 6
 *U2*: -0.68699999999999994 + 0.068699999999999997 * membrane__V
@@ -4484,7 +4504,7 @@ L_type_Ca_current__i_Ca_K = ((fabs(membrane__V) < 2.671376065969565e-6) ? ((0.5 
 ```
 
 # of singularities:  4
-singularity processing time: 1.4412664999999834
+singularity processing time: 1.353144000000043
 # Model: zhang_SAN_model_2000_0D_capable(zhang_SAN_model_2000_0D_capable.cellml)
 No of piecewises: 0
 *U2*: -14.0 - 0.40000000000000002 * membrane__V
@@ -4543,5 +4563,5 @@ L_type_Ca_channel_f_gate__alpha_f_L = ((fabs(28.0 + membrane__V) < 4.00000000011
 ```
 
 # of singularities:  4
-singularity processing time: 1.7581347999999934
-average processing time:8.004863618987345
+singularity processing time: 1.4673769999999422
+average processing time:7.789310387341766
