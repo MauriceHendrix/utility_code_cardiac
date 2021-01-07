@@ -16,7 +16,7 @@ from sympy import *
 
 from chaste_codegen import (DATA_DIR, ChastePrinter,
                             load_model_with_conversions)
-from chaste_codegen._math_functions import exp_, subs_math_func_placeholders, MATH_FUNC_SYMPY_MAPPING
+from chaste_codegen._math_functions import exp_
 from chaste_codegen.model_with_conversions import (_get_modifiable_parameters,
                                                    get_equations_for)
 from cellmlmanip.model import Variable
@@ -35,6 +35,8 @@ Sing_no = 0#
 
 printer = ChastePrinter(lambda var: str(var).lstrip('_').replace('$', '__'),
                         lambda deriv: str(deriv).lstrip('_').replace('$', '__'))
+
+exp_function = exp_
 
 def draw_graph(rhs, point, model, vs, ve, U, vardefs, vardefs_offset, deriv_eqs_dict, draw_points=2000):
     prev_rhs = None
@@ -124,10 +126,10 @@ def get_U(expr, V):
         for denom, num in ((denominator, numerator), (numerator, denominator)):
             found_on_top = False
             for d in denom:
-                if d.has(exp):
-                    find_U = d.match(exp(X) * -Z + 1.0)
+                if d.has(exp_function):
+                    find_U = d.match(exp_function(X) * -Z + 1.0)
                     if not check_bottom_match(find_U):
-                        find_U = d.match(exp(X) * Z - 1.0)
+                        find_U = d.match(exp_function(X) * Z - 1.0)
                     if check_bottom_match(find_U):
                         u = (find_U[X] + log(find_U[Z]))
                         sp = tuple(filter(lambda s: not s.has(I), solveset(u, V)))
@@ -143,13 +145,13 @@ def get_U(expr, V):
                             match = n.match(Z * V - Z * Y)
                             found_on_top = match is not None and Z in match and Z != 0 and (sp == match[Y] or (isinstance(sp, Float) and isinstance(match[Y], Float) and math.isclose(match[Y], sp)))
                             if not found_on_top:
-                                match = n.match(exp(Z * V - Z * Y))
+                                match = n.match(exp_function(Z * V - Z * Y))
                                 found_on_top = match is not None and Z in match and Z != 0 and (sp == match[Y] or (isinstance(sp, Float) and isinstance(match[Y], Float) and math.isclose(match[Y], sp)))
                                 if not found_on_top:
                                     match = n.match(Z * V - Z * sp)
                                     found_on_top = match is not None and Z in match and Z != 0
                                     if not found_on_top:
-                                        match = n.match(exp(Z * V - Z * sp))
+                                        match = n.match(exp_function(Z * V - Z * sp))
                                         found_on_top = match is not None and Z in match and Z != 0
                             if found_on_top:
                                 break
@@ -160,61 +162,11 @@ def get_U(expr, V):
                 (vs, ve, U, sp) = None, None, None, None
     return (vs, ve, U, sp)
 
-def get_new_expr_parts_sp(expr, expr_part_eval, V):
-    def f(Vx):
-        return expr.xreplace({V:Vx})
-
-    singularity_piecewise_parts = []
-    singularity_points = []
-    if isinstance(expr_part_eval, Mul): # 1 * A --> A
-        expr_part_eval = Mul(*[a for a in expr_part_eval.args if not a==1.0])
-
-    if expr_part_eval.has(exp):
-        if isinstance(expr_part_eval, Add): # A+B
-#            print('A+B ' + printer.doprint(expr_part_eval))
-            for a in expr_part_eval.args:
-                if a.has(exp):
-                    point, part = get_new_expr_parts_sp(expr, a, V)
-                    singularity_points.extend(point)
-                    singularity_piecewise_parts.extend(part)
-
-            range = [item for (vs, ve, _) in singularity_points for item in (vs, ve, _, _)]
-            if len(singularity_points) > 1 and len(set([sp for (_, _, sp) in singularity_points])) == 1 and all(isinstance(b, Float) for b in range): # if thre are multiple parts and they have the same singularity points
-                sp = singularity_points[0][2]
-                vs, ve = min(range), max(range)
-                singularity_piecewise_parts = [(f(vs) + ((V - vs) / (ve - vs)) * (f(ve) - f(vs)), Abs(V-sp) < Abs((ve-vs)/2))]
-                singularity_points = [(vs, ve, sp)]
-                print()
-                print('`Two part eq with same singularity. range used: '+ printer.doprint(vs) +' - ' + printer.doprint(ve)  +'`')
-
-        elif isinstance(expr_part_eval, Pow) and expr_part_eval.args[1] == -1.0 and len(expr_part_eval.args) == 2:  # 1/A
-#            print('1/A ' + printer.doprint(expr_part_eval))
-            singularity_points, singularity_piecewise_parts = get_new_expr_parts_sp(expr, expr_part_eval.args[0], V)
-
-        elif isinstance(expr_part_eval, Mul):
-            (vs, ve, U, sp) = get_U(expr_part_eval, V)
-            if vs is not None:
-#                print('MUL ' + printer.doprint(expr_part_eval))
-                print('*U2*: ' + printer.doprint(U))
-                print("*V for " + str(U_offset) + " range* ")
-                print("`" +printer.doprint(vs) + " - "+ printer.doprint(ve) +"`")
-                print('singularity point: ' + str(sp))
-                singularity_piecewise_parts = [(f(vs) + ((V - vs) / (ve - vs)) * (f(ve) - f(vs)), Abs(V-sp) < Abs((ve-vs)/2))]
-                singularity_points = [(vs, ve, sp)]
-            else:
-#                print(str(type(expr_part_eval)) + 'else ' + printer.doprint(expr_part_eval) + '  --  ' + str(expr_part_eval.args))
-                for a in expr_part_eval.args:
-                    if a.has(exp):
-                        point, part = get_new_expr_parts_sp(expr, a, V)
-                        singularity_points.extend(point)
-                        singularity_piecewise_parts.extend(part)
-    return singularity_points, singularity_piecewise_parts
-
 def get_new_expr_parts(expr, V):
-    def f(Vx, exp):
-        return exp.xreplace({V:Vx})
+    def f(Vx, e):
+        return e.xreplace({V:Vx})
 
-    if not expr.has(exp):
+    if not expr.has(exp_function):
         return [(None, None, None, expr, False)]
     singularity_points = []##name singularity points?
     
@@ -279,7 +231,7 @@ def get_new_expr(expr, V):
     def f(Vx, ex):
         return ex.xreplace({V:Vx})
 
-    if not expr.has(exp):
+    if not expr.has(exp_function):
         return False, expr
     expr_parts = []
     singularity_points = get_new_expr_parts(expr, V)
@@ -291,85 +243,85 @@ def get_new_expr(expr, V):
     return has_piecewise, ex
 
 proc_times = []
-for file_name in ('aslanidi_atrial_model_2009.cellml',
+for file_name in (#'aslanidi_atrial_model_2009.cellml',
                   'aslanidi_Purkinje_model_2009.cellml',
-                  'beeler_reuter_model_1977.cellml',
-                  'benson_epicardial_2008.cellml',
-                  'bernus_wilders_zemlin_verschelde_panfilov_2002.cellml',
-                  'bondarenko_szigeti_bett_kim_rasmusson_2004_apical.cellml',
-                  'bondarenko_szigeti_bett_kim_rasmusson_2004_septal.cellml',
-                  'bueno_2007_endo.cellml',
-                  'bueno_2007_epi.cellml',
-                  'carro_2011_endo.cellml',
-                  'carro_2011_epi.cellml',
-                  'clancy_rudy_2002.cellml',
-                  'corrias_purkinje_2011.cellml',
-                  'courtemanche_ramirez_nattel_1998.cellml',
-                  'davies_isap_2012.cellml',
-                  'decker_2009.cellml',
-                  'demir_model_1994.cellml',
-                  'difrancesco_noble_model_1985.cellml',
-                  'dokos_model_1996.cellml',
-                  'earm_noble_model_1990.cellml',
-                  'espinosa_model_1998_normal.cellml',
-                  'faber_rudy_2000.cellml',
-                  'fink_noble_giles_model_2008.cellml',
-                  'fox_mcharg_gilmour_2002.cellml',
-                  'grandi_pasqualini_bers_2010_ss.cellml',
-                  'grandi_pasqualini_bers_2010_ss_endo.cellml',
-                  'hilgemann_noble_model_1987.cellml',
-                  'hodgkin_huxley_squid_axon_model_1952_modified.cellml',
-                  'hund_rudy_2004.cellml',
-                  'iribe_model_2006.cellml',
-                  'iyer_2004.cellml',
-                  'iyer_model_2007.cellml',
-                  'jafri_rice_winslow_model_1998.cellml',
-                  'kurata_model_2002.cellml',
-                  'lindblad_model_1996.cellml',
-                  'livshitz_rudy_2007.cellml',
-                  'li_mouse_2010.cellml',
-                  'luo_rudy_1991.cellml',
-                  'luo_rudy_1994.cellml',
-                  'mahajan_shiferaw_2008.cellml',
-                  'maleckar_model_2009.cellml',
-                  'maltsev_2009.cellml',
-                  'matsuoka_model_2003.cellml',
-                  'mcallister_noble_tsien_1975_b.cellml',
-                  'noble_model_1962.cellml',
-                  'noble_model_1991.cellml',
-                  'noble_model_1998.cellml',
-                  'noble_model_2001.cellml',
-                  'noble_noble_SAN_model_1984.cellml',
-                  'noble_SAN_model_1989.cellml',
-                  'nygren_atrial_model_1998.cellml',
-                  'ohara_rudy_2011_endo.cellml',
-                  'ohara_rudy_2011_epi.cellml',
-                  'ohara_rudy_cipa_v1_2017.cellml',
-                  'paci_hyttinen_aaltosetala_severi_atrialVersion.cellml',
-                  'paci_hyttinen_aaltosetala_severi_ventricularVersion.cellml',
-                  'pandit_clark_giles_demir_2001_endocardial_cell.cellml',
-                  'pandit_clark_giles_demir_2001_epicardial_cell.cellml',
-                  'pasek_simurda_christe_2006.cellml',
-                  'pasek_simurda_orchard_christe_2008.cellml',
-                  'priebe_beuckelmann_1998.cellml',
-                  'ramirez_nattel_courtemanche_2000.cellml',
-                  'sachse_moreno_abildskov_2008_b.cellml',
-                  'sakmann_model_2000_epi.cellml',
-                  'shannon_wang_puglisi_weber_bers_2004.cellml',
-                  'stewart_zhang_model_2008_ss.cellml',
-                  'ten_tusscher_model_2004_endo.cellml',
-                  'ten_tusscher_model_2004_epi.cellml',
-                  'ten_tusscher_model_2004_M.cellml',
-                  'ten_tusscher_model_2006_endo.cellml',
-                  'ten_tusscher_model_2006_epi.cellml',
-                  'ten_tusscher_model_2006_M.cellml',
-                  'ToRORd_fkatp_endo.cellml',
-                  'ToRORd_fkatp_epi.cellml',
-                  'Trovato2020.cellml',
-                  'viswanathan_model_1999_epi.cellml',
-                  'wang_sobie_2008.cellml',
-                  'winslow_model_1999.cellml',
-                  'zhang_SAN_model_2000_0D_capable.cellml'
+                  # 'beeler_reuter_model_1977.cellml',
+                  # 'benson_epicardial_2008.cellml',
+                  # 'bernus_wilders_zemlin_verschelde_panfilov_2002.cellml',
+                  # 'bondarenko_szigeti_bett_kim_rasmusson_2004_apical.cellml',
+                  # 'bondarenko_szigeti_bett_kim_rasmusson_2004_septal.cellml',
+                  # 'bueno_2007_endo.cellml',
+                  # 'bueno_2007_epi.cellml',
+                  # 'carro_2011_endo.cellml',
+                  # 'carro_2011_epi.cellml',
+                  # 'clancy_rudy_2002.cellml',
+                  # 'corrias_purkinje_2011.cellml',
+                  # 'courtemanche_ramirez_nattel_1998.cellml',
+                  # 'davies_isap_2012.cellml',
+                  # 'decker_2009.cellml',
+                  # 'demir_model_1994.cellml',
+                  # 'difrancesco_noble_model_1985.cellml',
+                  # 'dokos_model_1996.cellml',
+                  # 'earm_noble_model_1990.cellml',
+                  # 'espinosa_model_1998_normal.cellml',
+                  # 'faber_rudy_2000.cellml',
+                  # 'fink_noble_giles_model_2008.cellml',
+                  # 'fox_mcharg_gilmour_2002.cellml',
+                  # 'grandi_pasqualini_bers_2010_ss.cellml',
+                  # 'grandi_pasqualini_bers_2010_ss_endo.cellml',
+                  # 'hilgemann_noble_model_1987.cellml',
+                  # 'hodgkin_huxley_squid_axon_model_1952_modified.cellml',
+                  # 'hund_rudy_2004.cellml',
+                  # 'iribe_model_2006.cellml',
+                  # 'iyer_2004.cellml',
+                  # 'iyer_model_2007.cellml',
+                  # 'jafri_rice_winslow_model_1998.cellml',
+                  # 'kurata_model_2002.cellml',
+                  # 'lindblad_model_1996.cellml',
+                  # 'livshitz_rudy_2007.cellml',
+                  # 'li_mouse_2010.cellml',
+                  # 'luo_rudy_1991.cellml',
+                  # 'luo_rudy_1994.cellml',
+                  # 'mahajan_shiferaw_2008.cellml',
+                  # 'maleckar_model_2009.cellml',
+                  # 'maltsev_2009.cellml',
+                  # 'matsuoka_model_2003.cellml',
+                  # 'mcallister_noble_tsien_1975_b.cellml',
+                  # 'noble_model_1962.cellml',
+                  # 'noble_model_1991.cellml',
+                  # 'noble_model_1998.cellml',
+                  # 'noble_model_2001.cellml',
+                  # 'noble_noble_SAN_model_1984.cellml',
+                  # 'noble_SAN_model_1989.cellml',
+                  # 'nygren_atrial_model_1998.cellml',
+                  # 'ohara_rudy_2011_endo.cellml',
+                  # 'ohara_rudy_2011_epi.cellml',
+                  # 'ohara_rudy_cipa_v1_2017.cellml',
+                  # 'paci_hyttinen_aaltosetala_severi_atrialVersion.cellml',
+                  # 'paci_hyttinen_aaltosetala_severi_ventricularVersion.cellml',
+                  # 'pandit_clark_giles_demir_2001_endocardial_cell.cellml',
+                  # 'pandit_clark_giles_demir_2001_epicardial_cell.cellml',
+                  # 'pasek_simurda_christe_2006.cellml',
+                  # 'pasek_simurda_orchard_christe_2008.cellml',
+                  # 'priebe_beuckelmann_1998.cellml',
+                  # 'ramirez_nattel_courtemanche_2000.cellml',
+                  # 'sachse_moreno_abildskov_2008_b.cellml',
+                  # 'sakmann_model_2000_epi.cellml',
+                  # 'shannon_wang_puglisi_weber_bers_2004.cellml',
+                  # 'stewart_zhang_model_2008_ss.cellml',
+                  # 'ten_tusscher_model_2004_endo.cellml',
+                  # 'ten_tusscher_model_2004_epi.cellml',
+                  # 'ten_tusscher_model_2004_M.cellml',
+                  # 'ten_tusscher_model_2006_endo.cellml',
+                  # 'ten_tusscher_model_2006_epi.cellml',
+                  # 'ten_tusscher_model_2006_M.cellml',
+                  # 'ToRORd_fkatp_endo.cellml',
+                  # 'ToRORd_fkatp_epi.cellml',
+                  # 'Trovato2020.cellml',
+                  # 'viswanathan_model_1999_epi.cellml',
+                  # 'wang_sobie_2008.cellml',
+                  # 'winslow_model_1999.cellml',
+                  # 'zhang_SAN_model_2000_0D_capable.cellml'
                   ):
     tic = time.perf_counter()
     model = load_model_with_conversions(os.path.join(DATA_DIR, '..', '..', '..', 'cellml', 'cellml', file_name), quiet=True)
@@ -387,36 +339,18 @@ for file_name in ('aslanidi_atrial_model_2009.cellml',
     tic2 = time.perf_counter()
     for eq in model.derivative_equations:
         if not isinstance(eq.rhs, Piecewise):
-            rhs = subs_math_func_placeholders(eq.rhs)
-            unprocessed_eqs[eq.lhs] = optimize(rhs.xreplace(unprocessed_eqs), (_POW_OPT,) )
-
-            #oints, singularity_piecewise_parts = get_new_expr_parts_sp(unprocessed_eqs[eq.lhs], unprocessed_eqs[eq.lhs], model.membrane_voltage_var)
+            unprocessed_eqs[eq.lhs] = optimize(eq.rhs.xreplace(unprocessed_eqs), (_POW_OPT,) )
             changed, alt_new = get_new_expr(unprocessed_eqs[eq.lhs], model.membrane_voltage_var)
-            #assert (len(singularity_piecewise_parts) > 0) == changed
-            #if len(singularity_piecewise_parts) > 0:
             if changed:
                 eq_no+=1
                 print("## Equation "+ str(eq_no) + ":")
                 print("```")
-                print(printer.doprint(eq.lhs) + " = " + printer.doprint(eq.rhs))
-                print("```")
-                print("### Partially evaluated to: ")
-                print("```")
                 print(printer.doprint(eq.lhs) + " = " + printer.doprint(unprocessed_eqs[eq.lhs]))
                 print("```")
-#                num_sing += len(singularity_piecewise_parts)
                 num_sing += len(alt_new.atoms(Piecewise))
-#                singularity_piecewise_parts.append((eq.rhs, True))
-#                singularity_piecewise_parts.append((unprocessed_eqs[eq.lhs], True))
-#                new_expr = Piecewise(*singularity_piecewise_parts)
-#                alt_new = get_new_expr(unprocessed_eqs[eq.lhs], model.membrane_voltage_var)[1]
                 unprocessed_eqs.pop(eq.lhs)
                 print("## New Eq:")
                 print("```")
-#                print(printer.doprint(eq.lhs) + " = " + printer.doprint(new_expr))
-#                print("```")
-#                print("## Alternative New Eq:")
-#                print("```")
                 print(printer.doprint(eq.lhs) + " = " + printer.doprint(alt_new))
                 print("```")
                 print()
