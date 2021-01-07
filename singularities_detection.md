@@ -81,7 +81,13 @@
 |zhang_SAN_model_2000_0D_capable                                         |0  |0  |0  |4  |4  |0  |True |
 
 
-# Model: maltsev_2009
+<code>*</code>  PW = Number os Piecewise (in the set of derivative equations, secluding state variables and parameters)
+
+** Sing = Number of (equation swith) singularities
+
+#Causing a false due to not having a 3way piecewise:
+
+## Model: maltsev_2009
 - Same issue as above:
     - *U*: -14.0 - 0.40000000000000002 * Vm__Vm
         - *V for 1e-07 range* `-34.999999750000001 - -35.000000249999999`
@@ -94,5 +100,40 @@ i_CaL_dL_gate__alpha_dL = -0.028389999999999999 * (35.0 + Vm__Vm) / (-1.0 + exp(
 ```
 ## New Eq:
 ```
-i_CaL_dL_gate__alpha_dL = ((fabs(35.0 + Vm__Vm) < 2.5000000000718892e-7) ? (0.58229457863580991 + 0.014551258213141278 * Vm__Vm) : ((fabs(Vm__Vm) < 4.7999999999999996e-7) ? (1.4011708262480853 + 0.070842583268076562 * Vm__Vm) : (-0.028389999999999999 * (35.0 + Vm__Vm) / (-1.0 + exp(-14.0 - 0.40000000000000002 * Vm__Vm)) - 0.084900000000000003 * Vm__Vm / (-1.0 + exp(-0.20833333333333334 * Vm__Vm)))))
+i_CaL_dL_gate__alpha_dL = ((fabs(35.0 + Vm__Vm) < 2.5000000000718892e-7) ? (0.56751493979330747 + 0.014186855422657128 * Vm__Vm) : (-0.028389999999999999 * (35.0 + Vm__Vm) / (-1.0 + 8.3152871910356788e-7 * exp(-0.40000000000000002 * Vm__Vm)))) + ((fabs(Vm__Vm) < 4.7999999999999996e-7) ? (0.4075199999988865 + 0.042452890160678214 * Vm__Vm) : (-0.084900000000000003 * Vm__Vm / (-1.0 + exp(-0.20833333333333334 * Vm__Vm))))
+```
+
+#Previously causing issues but now fixed:
+
+## Model: Corrias_rabbit_purkinje_model(corrias_purkinje_2011.cellml)
+- Identifies the singularity (-30.0) twice but with a different U and V range. We fixed this by picking the wider range. 
+- ve & vs are U solved for -1e-7 and 1e-7
+    - *U*: 2.0609999999999999 + 0.068699999999999997 * membrane__Vm
+        - *V for 1e-07 range* `-30.000001455604075 - -29.999998544395925`
+        - singularity point: -30.000000000000000
+    - *U*: -4.4399999999999995 - 0.14799999999999999 * membrane__Vm
+        - *V for 1e-07 range* `-29.999999324324325 - -30.000000675675675`
+        - singularity point: -30.000000000000000
+```
+x_ks__tau_x_ks = 1 / (0.00013100000000000001 * (30.0 + membrane__Vm) / (-1.0 + 7.8538197044216602 * exp(0.068699999999999997 * membrane__Vm)) + 7.1899999999999999e-5 * (30.0 + membrane__Vm) / (1.0 - 0.011795938519751569 * exp(-0.14799999999999999 * membrane__Vm)))
+```
+## New Eq:
+```
+x_ks__tau_x_ks = ((fabs(30.0 + membrane__Vm) < 1.455604075689676e-6) ? (1 / (0.0015059601445400555 - 2.9556400180392201e-5 * membrane__Vm)) : (1 / (0.00013100000000000001 * (30.0 + membrane__Vm) / (-1.0 + 7.8538197044216602 * exp(0.068699999999999997 * membrane__Vm)) + 7.1899999999999999e-5 * (30.0 + membrane__Vm) / (1.0 - 0.011795938519751569 * exp(-0.14799999999999999 * membrane__Vm)))))
+```
+
+## Model: MahajanShiferaw2008_units
+- Same issue as above:
+        - *U: 2.0609999999999999 + 0.068699999999999997 * cell__V
+            - *V for 1e-07 range*  `-30.000001455604075 - -29.999998544395925`
+            - singularity point: -30.000000000000000
+        -*U*: -4.4399999999999995 - 0.14799999999999999 * cell__V
+            -*V for 1e-07 range* `-29.999999324324325 - -30.000000675675675`
+            - singularity point: -30.000000000000000
+```
+IKs__tauxs1 = 1 / (0.00013100000000000001 * (30.0 + cell__V) / (-1.0 + 7.8538197044216602 * exp(0.068699999999999997 * cell__V)) + 7.1899999999999999e-5 * (30.0 + cell__V) / (1.0 - 0.011795938519751569 * exp(-0.14799999999999999 * cell__V)))
+```
+## New Eq:
+```
+IKs__tauxs1 = ((fabs(30.0 + cell__V) < 1.455604075689676e-6) ? (1 / (0.0015059601445400555 - 2.9556400180392201e-5 * cell__V)) : (1 / (0.00013100000000000001 * (30.0 + cell__V) / (-1.0 + 7.8538197044216602 * exp(0.068699999999999997 * cell__V)) + 7.1899999999999999e-5 * (30.0 + cell__V) / (1.0 - 0.011795938519751569 * exp(-0.14799999999999999 * cell__V)))))
 ```

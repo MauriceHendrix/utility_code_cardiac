@@ -160,43 +160,18 @@ def get_U(expr, V):
                 (vs, ve, U, sp) = None, None, None, None
     return (vs, ve, U, sp)
 
-# def get_new_expr_parts(expr, expr_part_eval, V):
-    # def f(Vx):
-# #        return expr_part_eval.xreplace({V:Vx})
-        # return expr.xreplace({V:Vx})
-
-    # singularity_piecewise_parts = []
-    # if expr_part_eval.has(exp):
-        # if isinstance(expr_part_eval, Add): # A+B
-            # for a in expr_part_eval.args:
-                # if a.has(exp):
-                    # singularity_piecewise_parts.extend(get_new_expr_parts(expr, a, V))
-        # elif isinstance(expr_part_eval, Pow) and expr_part_eval.args[1] == -1.0 and len(expr_part_eval.args) == 2:  # 1/A
-            # singularity_piecewise_parts = get_new_expr_parts(expr, expr_part_eval.args[0], V)
-        # elif isinstance(expr_part_eval, Mul): #and len(expr_part_eval.atoms(exp)) > 0:
-            # (vs, ve, U, sp) = get_U(expr_part_eval, V)
-            # if vs is not None:
-               # print('*U2*: ' + printer.doprint(U))
-               # print("*V for " + str(U_offset) + " range* ")
-               # print("`" +printer.doprint(vs) + " - "+ printer.doprint(ve) +"`")
-               # print('singularity point: ' + str(sp))
-               # #(rhs, model, vardefs, vardefs_offset, deriv_eqs_dict) = draw_graph_params
-               # #draw_graph(rhs, sp, model, vs, ve, U, vardefs, vardefs_offset, deriv_eqs_dict)
-               # singularity_piecewise_parts = [(f(vs) + ((V - vs) / (ve - vs)) * (f(ve) - f(vs)), Abs(V-sp) < Abs((ve-vs)/2))]
-            # else:
-                # for a in expr_part_eval.args:
-                    # if a.has(exp):
-                        # singularity_piecewise_parts.extend(get_new_expr_parts(expr, a, V))
-    # return singularity_piecewise_parts
-
 def get_new_expr_parts_sp(expr, expr_part_eval, V):
     def f(Vx):
         return expr.xreplace({V:Vx})
 
     singularity_piecewise_parts = []
     singularity_points = []
+    if isinstance(expr_part_eval, Mul): # 1 * A --> A
+        expr_part_eval = Mul(*[a for a in expr_part_eval.args if not a==1.0])
+
     if expr_part_eval.has(exp):
         if isinstance(expr_part_eval, Add): # A+B
+#            print('A+B ' + printer.doprint(expr_part_eval))
             for a in expr_part_eval.args:
                 if a.has(exp):
                     point, part = get_new_expr_parts_sp(expr, a, V)
@@ -213,13 +188,13 @@ def get_new_expr_parts_sp(expr, expr_part_eval, V):
                 print('`Two part eq with same singularity. range used: '+ printer.doprint(vs) +' - ' + printer.doprint(ve)  +'`')
 
         elif isinstance(expr_part_eval, Pow) and expr_part_eval.args[1] == -1.0 and len(expr_part_eval.args) == 2:  # 1/A
-            point, part = get_new_expr_parts_sp(expr, expr_part_eval.args[0], V)
-            singularity_points.extend(point)
-            singularity_piecewise_parts.extend(part)
+#            print('1/A ' + printer.doprint(expr_part_eval))
+            singularity_points, singularity_piecewise_parts = get_new_expr_parts_sp(expr, expr_part_eval.args[0], V)
 
-        elif isinstance(expr_part_eval, Mul): #and len(expr_part_eval.atoms(exp)) > 0:
+        elif isinstance(expr_part_eval, Mul):
             (vs, ve, U, sp) = get_U(expr_part_eval, V)
             if vs is not None:
+#                print('MUL ' + printer.doprint(expr_part_eval))
                 print('*U2*: ' + printer.doprint(U))
                 print("*V for " + str(U_offset) + " range* ")
                 print("`" +printer.doprint(vs) + " - "+ printer.doprint(ve) +"`")
@@ -227,12 +202,93 @@ def get_new_expr_parts_sp(expr, expr_part_eval, V):
                 singularity_piecewise_parts = [(f(vs) + ((V - vs) / (ve - vs)) * (f(ve) - f(vs)), Abs(V-sp) < Abs((ve-vs)/2))]
                 singularity_points = [(vs, ve, sp)]
             else:
+#                print(str(type(expr_part_eval)) + 'else ' + printer.doprint(expr_part_eval) + '  --  ' + str(expr_part_eval.args))
                 for a in expr_part_eval.args:
                     if a.has(exp):
                         point, part = get_new_expr_parts_sp(expr, a, V)
                         singularity_points.extend(point)
                         singularity_piecewise_parts.extend(part)
     return singularity_points, singularity_piecewise_parts
+
+def get_new_expr_parts(expr, V):
+    def f(Vx, exp):
+        return exp.xreplace({V:Vx})
+
+    if not expr.has(exp):
+        return [(None, None, None, expr, False)]
+    singularity_points = []##name singularity points?
+    
+    if isinstance(expr, Mul): # 1 * A --> A
+        expr = Mul(*[a for a in expr.args if not a==1.0])
+
+    if isinstance(expr, Add): # A+B
+        for a in expr.args:
+            singularity_points.extend(get_new_expr_parts(a, V))
+
+        range = [item for (vs, ve, _, _, _) in singularity_points for item in (vs, ve)]
+        if len(singularity_points) > 1 and len(set([sp for (_, _, sp, _, _) in singularity_points])) == 1 and all(isinstance(b, Float) for b in range): # if thre are multiple parts and they have the same singularity points
+            sp = singularity_points[0][2]
+            vs, ve = min(range), max(range)
+            singularity_points = [(vs, ve, sp, expr, True)]
+
+        expr_parts = []
+        is_piecewise = False
+        for vs, ve, sp, ex, has_piecewise in singularity_points:
+            if vs is None:
+                is_piecewise = is_piecewise or has_piecewise
+                expr_parts.append(ex)
+            else: # generate piecewise
+                is_piecewise = True
+                piecewise = Piecewise(*[(f(vs, ex) + ((V - vs) / (ve - vs)) * (f(ve, ex) - f(vs, ex)), Abs(V-sp) < Abs((ve-vs)/2)), (ex, True)])
+                expr_parts.append(piecewise)
+        singularity_points = [(None, None, None, Add(*expr_parts), is_piecewise)]
+
+    elif isinstance(expr, Pow) and expr.args[1] == -1.0 and len(expr.args) == 2:  # 1/A
+        #print('1/A')
+        singularity_points = get_new_expr_parts(expr.args[0], V)
+        assert len(singularity_points) == 1
+        vs, ve, sp, ex, has_piecewise = singularity_points[0]
+        assert vs is None
+        singularity_points = [(None, None, None, 1.0/ex, has_piecewise)]
+
+                
+    elif isinstance(expr, Mul):
+        (vs, ve, U, sp) = get_U(expr, V)
+        if vs is not None:
+            singularity_points = [(vs, ve, sp, expr, True)]
+        else:
+            expr_parts = []
+            is_piecewise = False
+            for sub_ex in expr.args:
+                for vs, ve, sp, ex, has_piecewise in get_new_expr_parts(sub_ex, V):
+                    if vs is None:
+                        is_piecewise = is_piecewise or has_piecewise
+                        expr_parts.append(ex)
+                    else: # generate piecewise
+                        is_piecewise = True
+                        piecewise = Piecewise(*[(f(vs, ex) + ((V - vs) / (ve - vs)) * (f(ve, ex) - f(vs, ex)), Abs(V-sp) < Abs((ve-vs)/2)), (ex, True)])
+                        expr_parts.append(piecewise)
+            singularity_points = [(None, None, None, Mul(*expr_parts), is_piecewise)]
+    else:
+        return [(None, None, None, expr, False)]
+
+
+    return singularity_points
+
+def get_new_expr(expr, V):
+    def f(Vx, ex):
+        return ex.xreplace({V:Vx})
+
+    if not expr.has(exp):
+        return False, expr
+    expr_parts = []
+    singularity_points = get_new_expr_parts(expr, V)
+    assert len(singularity_points) == 1
+    (vs, ve, sp, ex, has_piecewise) = singularity_points[0]
+    if vs is not None: # create piecewise
+        has_piecewise = True
+        ex = Piecewise(*[(f(vs, ex) + ((V - vs) / (ve - vs)) * (f(ve, ex) - f(vs, ex)), Abs(V-sp) < Abs((ve-vs)/2)), (ex, True)])
+    return has_piecewise, ex
 
 proc_times = []
 for file_name in ('aslanidi_atrial_model_2009.cellml',
@@ -334,10 +390,11 @@ for file_name in ('aslanidi_atrial_model_2009.cellml',
             rhs = subs_math_func_placeholders(eq.rhs)
             unprocessed_eqs[eq.lhs] = optimize(rhs.xreplace(unprocessed_eqs), (_POW_OPT,) )
 
-#            singularity_piecewise_parts = get_new_expr_parts(unprocessed_eqs[eq.lhs], unprocessed_eqs[eq.lhs], model.membrane_voltage_var)
-            points, singularity_piecewise_parts = get_new_expr_parts_sp(unprocessed_eqs[eq.lhs], unprocessed_eqs[eq.lhs], model.membrane_voltage_var)
-
-            if len(singularity_piecewise_parts) > 0:
+            #oints, singularity_piecewise_parts = get_new_expr_parts_sp(unprocessed_eqs[eq.lhs], unprocessed_eqs[eq.lhs], model.membrane_voltage_var)
+            changed, alt_new = get_new_expr(unprocessed_eqs[eq.lhs], model.membrane_voltage_var)
+            #assert (len(singularity_piecewise_parts) > 0) == changed
+            #if len(singularity_piecewise_parts) > 0:
+            if changed:
                 eq_no+=1
                 print("## Equation "+ str(eq_no) + ":")
                 print("```")
@@ -347,16 +404,22 @@ for file_name in ('aslanidi_atrial_model_2009.cellml',
                 print("```")
                 print(printer.doprint(eq.lhs) + " = " + printer.doprint(unprocessed_eqs[eq.lhs]))
                 print("```")
-                num_sing += len(singularity_piecewise_parts)
-                singularity_piecewise_parts.append((eq.rhs, True))
-                new_expr = Piecewise(*singularity_piecewise_parts)
+#                num_sing += len(singularity_piecewise_parts)
+                num_sing += len(alt_new.atoms(Piecewise))
+#                singularity_piecewise_parts.append((eq.rhs, True))
+#                singularity_piecewise_parts.append((unprocessed_eqs[eq.lhs], True))
+#                new_expr = Piecewise(*singularity_piecewise_parts)
+#                alt_new = get_new_expr(unprocessed_eqs[eq.lhs], model.membrane_voltage_var)[1]
                 unprocessed_eqs.pop(eq.lhs)
                 print("## New Eq:")
                 print("```")
-                print(printer.doprint(eq.lhs) + " = " + printer.doprint(new_expr))
+#                print(printer.doprint(eq.lhs) + " = " + printer.doprint(new_expr))
+#                print("```")
+#                print("## Alternative New Eq:")
+#                print("```")
+                print(printer.doprint(eq.lhs) + " = " + printer.doprint(alt_new))
                 print("```")
                 print()
-
     toc2 = time.perf_counter()
     proc_times.append(toc2-tic2)
     print('# of singularities: ', num_sing)
