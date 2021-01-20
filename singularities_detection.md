@@ -79,3 +79,22 @@
 |wang_model_2008                                                         |4  |4  |0  |3  |3  |0  |True |
 |winslow_model_1999                                                      |6  |5  |1  |3  |4  |1  |True |
 |zhang_SAN_model_2000_0D_capable                                         |0  |0  |0  |4  |4  |0  |True |
+
+<code>*</code>  PW = Number os Piecewise (in the set of derivative equations, secluding state variables and parameters)
+
+** Sing = Number of (equation swith) singularities
+
+#Causing a false due to not having a 3way piecewise:
+
+## Model: maltsev_2009
+- Singularity point: -35.000000000000000
+- Singularity point: 0
+```
+i_CaL_dL_gate__alpha_dL = -0.028389999999999999 * (35.0 + Vm__Vm) / (-1.0 + exp(-14.0 - 0.40000000000000002 * Vm__Vm)) - 0.084900000000000003 * Vm__Vm / (-1.0 + exp(-0.20833333333333334 * Vm__Vm))
+```
+## New Eq:
+```
+i_CaL_dL_gate__alpha_dL = ((fabs(35.0 + Vm__Vm) < 2.5000000000718892e-7) ? (-7.0975000009920736e-9 / (-1.0 + exp(-1.000000000139778e-7)) - 1999999.9999424887 * (34.999999750000001 + Vm__Vm) * (7.0975000009920736e-9 / (-1.0 + exp(-1.000000000139778e-7)) + 7.0974999994161126e-9 / (-1.0 + exp(9.9999999991773334e-8)))) : (-0.028389999999999999 * (35.0 + Vm__Vm) / (-1.0 + exp(-14.0 - 0.40000000000000002 * Vm__Vm)))) + ((fabs(Vm__Vm) < 4.7999999999999996e-7) ? (-4.0752e-8 / (-1.0 + exp(-9.9999999999999995e-8)) - 1041666.6666666667 * (-4.7999999999999996e-7 + Vm__Vm) * (4.0752e-8 / (-1.0 + exp(9.9999999999999995e-8)) + 4.0752e-8 / (-1.0 + exp(-9.9999999999999995e-8)))) : (-0.084900000000000003 * Vm__Vm / (-1.0 + exp(-0.20833333333333334 * Vm__Vm))))
+```
+```
+
