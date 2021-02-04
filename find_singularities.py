@@ -206,7 +206,7 @@ for file_name in ('aslanidi_atrial_model_2009.cellml',
     fixes_model = load_model_with_conversions(os.path.join(DATA_DIR, '..', '..', '..', 'cellml', 'cellml', file_name), quiet=True, fix_singularities=True)
      
     print("# Model: " + model.name + '('+file_name+')')
-    print("No of piecewises: " + str(sum([len(eq.rhs.atoms(Piecewise)) for eq in model.equations])) )
+    print("Number of piecewises: " + str(sum([len(eq.rhs.atoms(Piecewise)) for eq in model.equations])) )
     
     vardefs = {e: get_initial_value(e, model) for e in _get_modifiable_parameters(model) | (model.state_vars - set([model.membrane_voltage_var]))}
     vardefs_offset = {e: val + 1e-7  for e, val in vardefs.items()}
@@ -244,6 +244,6 @@ for file_name in ('aslanidi_atrial_model_2009.cellml',
                 draw_graphs(eq_no, file_name, fixed_eq[0].rhs, eq.rhs, fixes_model.membrane_voltage_var, model.membrane_voltage_var, vardefs, vardefs_offset, vardefs_fixed, vardefs_offset_fixed)
                 print()
     #toc = time.perf_counter()
-    print('# of singularities: ', num_sing)
+    print('Number of singularities: ', num_sing)
     #print("singularity processing time: "+str(toc-tic))
 #print('average processing time:' + str(sum(proc_times) / len(proc_times)))
