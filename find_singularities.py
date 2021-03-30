@@ -29,7 +29,6 @@ from chaste_codegen.model_with_conversions import (_get_modifiable_parameters,
 printer = ChastePrinter(lambda var: str(var).lstrip('_').replace('$', '__'),
                         lambda deriv: str(deriv).lstrip('_').replace('$', '__'))
 
-U_offset = 1e-7
 exp_function = exp_
 script_type = 'no_singularity_fixes'
 
@@ -85,13 +84,6 @@ def draw_graphs(eq_no, file_name, new_ex, original_eq, new_V, original_V, vardef
             ax1 = fig.add_subplot(111)
             x, y, x2, y2 = [], [], [], []
 
-            A = original_eq.xreplace({original_V:ve})
-            B = original_eq.xreplace({original_V:vs})
-
-            ymin = min(A, B)
-            ymax = max(A, B)
-
-            ydiff = ymax-ymin if ymax-ymin != 0 else ve - vs
             plt.xlim(float(vs - (ve - vs)), float(ve + (ve - vs)))
             plt.axvspan(vs, ve, color='gold', alpha=0.125)
             
@@ -202,8 +194,8 @@ for file_name in ('aslanidi_atrial_model_2009.cellml',
                   'winslow_model_1999.cellml',
                   'zhang_SAN_model_2000_0D_capable.cellml'
                   ):
-    model = load_model_with_conversions(os.path.join(DATA_DIR, '..', '..', '..', 'cellml', 'cellml', file_name), quiet=True, fix_singularities=False)
-    fixes_model = load_model_with_conversions(os.path.join(DATA_DIR, '..', '..', '..', 'cellml', 'cellml', file_name), quiet=True, fix_singularities=True)
+    model = load_model_with_conversions(os.path.join(DATA_DIR, '..', '..', '..', 'cellml', 'cellml', file_name), quiet=True, skip_singularity_fixes=True)
+    fixes_model = load_model_with_conversions(os.path.join(DATA_DIR, '..', '..', '..', 'cellml', 'cellml', file_name), quiet=True, skip_singularity_fixes=False)
      
     print("# Model: " + model.name + '('+file_name+')')
     print("Number of piecewises: " + str(sum([len(eq.rhs.atoms(Piecewise)) for eq in model.equations])) )
