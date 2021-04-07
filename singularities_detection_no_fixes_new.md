@@ -8,9 +8,9 @@ L_type_Ca_channel_d_L_gate__alpha_d_L = -50.0 * L_type_Ca_channel_d_L_gate__E10 
 ```
 L_type_Ca_channel_d_L_gate__alpha_d_L = ((fabs(10.0 + membrane__V) < 4.8080000000089163e-7) ? (2.4040000000391526e-5 / (-1.0 + exp(1.0000000000162864e-7)) + 1039933.4442576389 * (10.000000480800001 + membrane__V) * (-2.4040000000391526e-5 / (-1.0 + exp(1.0000000000162864e-7)) - 2.4039999999697637e-5 / (-1.0 + exp(-9.9999999998742257e-8)))) : (-50.0 * (10.0 + membrane__V) / (-1.0 + exp(-2.0798668885191347 - 0.20798668885191349 * membrane__V)))) + ((fabs(45.0 + membrane__V) < 2.5000000000718892e-7) ? (4.1799999996561256e-6 / (-1.0 + exp(9.9999999991773334e-8)) + 1999999.9999424887 * (45.000000249999999 + membrane__V) * (-4.1800000005842713e-6 / (-1.0 + exp(-1.000000000139778e-7)) - 4.1799999996561256e-6 / (-1.0 + exp(9.9999999991773334e-8)))) : (-16.719999999999999 * (45.0 + membrane__V) / (-1.0 + exp(-18.0 - 0.40000000000000002 * membrane__V))))
 ```
-## Singularity point: -10.000000000000000
-![Singularity](diagrams/no_singularity_fixes/aslanidi_atrial_model_2009/1_0.png)
 ## Singularity point: -45.000000000000000
+![Singularity](diagrams/no_singularity_fixes/aslanidi_atrial_model_2009/1_0.png)
+## Singularity point: -10.000000000000000
 ![Singularity](diagrams/no_singularity_fixes/aslanidi_atrial_model_2009/1_1.png)
 
 ## Equation 2:
@@ -199,9 +199,9 @@ IKr__tauxr = 1 / (0.00029999999999999997 * (38.360799999999998 + cell__V) / (-1.
 ```
 IKr__tauxr = 1 / (((fabs(38.360799999999998 + cell__V) < 6.5703022339436146e-7) ? (1.9710906701830842e-10 / (-1.0 + exp(1.0000000000062181e-7)) - 760999.99999526795 * (38.360799342969777 + cell__V) * (-1.9710906701830842e-10 / (-1.0 + exp(1.0000000000062181e-7)) - 1.9710906701830842e-10 / (-1.0 + exp(-1.0000000000062181e-7)))) : (0.00029999999999999997 * (38.360799999999998 + cell__V) / (-1.0 + exp(5.8385137599999997 + 0.1522 * cell__V)))) + ((fabs(-1.7383999999999999 + cell__V) < 7.352941176468758e-7) ? (-4.4117647058812543e-10 / (1.0 - exp(9.9999999999975114e-8)) + 680000.00000016927 * (-1.7383992647058824 + cell__V) * (4.4117647058812543e-10 / (1.0 - exp(9.9999999999975114e-8)) + 4.4117647058812543e-10 / (1.0 - exp(-9.9999999999975114e-8)))) : (0.00059999999999999995 * (-1.7383999999999999 + cell__V) / (1.0 - exp(0.2364224 - 0.13600000000000001 * cell__V)))))
 ```
-## Singularity point: 1.7383999999999999
-![Singularity](diagrams/no_singularity_fixes/benson_epicardial_2008/3_0.png)
 ## Singularity point: -38.360799999999998
+![Singularity](diagrams/no_singularity_fixes/benson_epicardial_2008/3_0.png)
+## Singularity point: 1.7383999999999999
 ![Singularity](diagrams/no_singularity_fixes/benson_epicardial_2008/3_1.png)
 
 ## Equation 4:
@@ -212,9 +212,9 @@ IKs__tauxs = 1 / (7.6100000000000007e-5 * (44.600000000000001 + cell__V) / (1.0 
 ```
 IKs__tauxs = 1 / (((fabs(-0.55000000000000004 + cell__V) < 7.8124999999948028e-7) ? (2.8124999999996902e-10 / (-1.0 + exp(9.9999999999988984e-8)) - 640000.00000042573 * (-0.55000078125000007 + cell__V) * (-2.8124999999996902e-10 / (-1.0 + exp(9.9999999999988984e-8)) - 2.8124999999965681e-10 / (-1.0 + exp(-9.999999999987797e-8)))) : (0.00036000000000000002 * (-0.55000000000000004 + cell__V) / (-1.0 + exp(-0.070400000000000004 + 0.128 * cell__V)))) + ((fabs(44.600000000000001 + cell__V) < 1.0030090258350555e-8) ? (-7.6328986866047728e-13 / (1.0 - exp(9.9999999875755032e-8)) + 49850000.061936118 * (44.600000010030094 + cell__V) * (7.6328986866047728e-13 / (1.0 - exp(9.9999999875755032e-8)) + 7.6328986866047728e-13 / (1.0 - exp(-9.9999999875755032e-8)))) : (7.6100000000000007e-5 * (44.600000000000001 + cell__V) / (1.0 - exp(-444.66200000000003 - 9.9700000000000006 * cell__V)))))
 ```
-## Singularity point: -44.600000000000001
-![Singularity](diagrams/no_singularity_fixes/benson_epicardial_2008/4_0.png)
 ## Singularity point: 0.55000000000000004
+![Singularity](diagrams/no_singularity_fixes/benson_epicardial_2008/4_0.png)
+## Singularity point: -44.600000000000001
 ![Singularity](diagrams/no_singularity_fixes/benson_epicardial_2008/4_1.png)
 
 ## Equation 5:
@@ -681,9 +681,9 @@ IKr_xr_gate__tau_xr = 1 / (0.00029999999999999997 * (38.360799999999998 + membra
 ```
 IKr_xr_gate__tau_xr = 1 / (((fabs(38.360799999999998 + membrane__Vm) < 6.5703022339436146e-7) ? (1.9710906701830842e-10 / (-1.0 + exp(1.0000000000062181e-7)) - 760999.99999526795 * (38.360799342969777 + membrane__Vm) * (-1.9710906701830842e-10 / (-1.0 + exp(1.0000000000062181e-7)) - 1.9710906701830842e-10 / (-1.0 + exp(-1.0000000000062181e-7)))) : (0.00029999999999999997 * (38.360799999999998 + membrane__Vm) / (-1.0 + exp(5.8385137599999997 + 0.1522 * membrane__Vm)))) + ((fabs(-1.7383999999999999 + membrane__Vm) < 7.352941176468758e-7) ? (-4.4117647058812543e-10 / (1.0 - exp(9.9999999999975114e-8)) + 680000.00000016927 * (-1.7383992647058824 + membrane__Vm) * (4.4117647058812543e-10 / (1.0 - exp(9.9999999999975114e-8)) + 4.4117647058812543e-10 / (1.0 - exp(-9.9999999999975114e-8)))) : (0.00059999999999999995 * (-1.7383999999999999 + membrane__Vm) / (1.0 - exp(0.2364224 - 0.13600000000000001 * membrane__Vm)))))
 ```
-## Singularity point: -38.360799999999998
-![Singularity](diagrams/no_singularity_fixes/decker_2009/1_0.png)
 ## Singularity point: 1.7383999999999999
+![Singularity](diagrams/no_singularity_fixes/decker_2009/1_0.png)
+## Singularity point: -38.360799999999998
 ![Singularity](diagrams/no_singularity_fixes/decker_2009/1_1.png)
 
 ## Equation 2:
@@ -1778,9 +1778,9 @@ COMPUTE_ICa_ICaK__ICaK = COMPUTE_DERIVATIVES_OF_LTYPE_CHANNEL_STATES__Open * COM
 COMPUTE_ICa_ICaK__ICaK = ((fabs(COMPUTE_CONCENTRATION_AND_VOLTAGE_DERIVATIVES__V) < 2.6711398963730566e-6) ? (-187186.0027544469 * (-2.6711398963730566e-6 + COMPUTE_CONCENTRATION_AND_VOLTAGE_DERIVATIVES__V) * (-3.0897370000000001e-8 * (-COMPUTE_CONCENTRATION_AND_VOLTAGE_DERIVATIVES__Ko + COMPUTE_CONCENTRATION_AND_VOLTAGE_DERIVATIVES__Ki * exp(9.9999999999999995e-8)) * COMPUTE_DERIVATIVES_OF_LTYPE_CHANNEL_STATES__Open * COMPUTE_DERIVATIVES_OF_LTYPE_CHANNEL_STATES__yCa / ((1.0 - 3.773584905660377 * COMPUTE_ICa_ICaK__Icabar) * (-1.0 + exp(9.9999999999999995e-8))) - 3.0897370000000001e-8 * (-COMPUTE_CONCENTRATION_AND_VOLTAGE_DERIVATIVES__Ko + COMPUTE_CONCENTRATION_AND_VOLTAGE_DERIVATIVES__Ki * exp(-9.9999999999999995e-8)) * COMPUTE_DERIVATIVES_OF_LTYPE_CHANNEL_STATES__Open * COMPUTE_DERIVATIVES_OF_LTYPE_CHANNEL_STATES__yCa / ((1.0 - 3.773584905660377 * COMPUTE_ICa_ICaK__Icabar) * (-1.0 + exp(-9.9999999999999995e-8)))) + 3.0897370000000001e-8 * (-COMPUTE_CONCENTRATION_AND_VOLTAGE_DERIVATIVES__Ko + COMPUTE_CONCENTRATION_AND_VOLTAGE_DERIVATIVES__Ki * exp(9.9999999999999995e-8)) * COMPUTE_DERIVATIVES_OF_LTYPE_CHANNEL_STATES__Open * COMPUTE_DERIVATIVES_OF_LTYPE_CHANNEL_STATES__yCa / ((1.0 - 3.773584905660377 * COMPUTE_ICa_ICaK__Icabar) * (-1.0 + exp(9.9999999999999995e-8)))) : (0.01156711037185033 * (-COMPUTE_CONCENTRATION_AND_VOLTAGE_DERIVATIVES__Ko + COMPUTE_CONCENTRATION_AND_VOLTAGE_DERIVATIVES__Ki * exp(0.03743720055088938 * COMPUTE_CONCENTRATION_AND_VOLTAGE_DERIVATIVES__V)) * COMPUTE_CONCENTRATION_AND_VOLTAGE_DERIVATIVES__V * COMPUTE_DERIVATIVES_OF_LTYPE_CHANNEL_STATES__Open * COMPUTE_DERIVATIVES_OF_LTYPE_CHANNEL_STATES__yCa / ((1.0 - 3.773584905660377 * COMPUTE_ICa_ICaK__Icabar) * (-1.0 + exp(0.03743720055088938 * COMPUTE_CONCENTRATION_AND_VOLTAGE_DERIVATIVES__V)))))
 ```
 ## Singularity point: 0
-![Singularity](diagrams/no_singularity_fixes/iyer_model_2007/4_0.png)
-## Singularity point: 0
 ![Singularity](diagrams/no_singularity_fixes/iyer_model_2007/4_1.png)
+## Singularity point: 0
+![Singularity](diagrams/no_singularity_fixes/iyer_model_2007/4_2.png)
 
 Number of singularities:  4
 # Model: jafri_rice_winslow_1998(jafri_rice_winslow_model_1998.cellml)
@@ -1875,9 +1875,9 @@ L_type_calcium_channel_current_d_gate__alpha_d = -0.028389999999999999 * (35.0 +
 ```
 L_type_calcium_channel_current_d_gate__alpha_d = ((fabs(membrane__V) < 4.8079999999999991e-7) ? (4.0819919999999999e-8 / (-1.0 + exp(9.9999999999999995e-8)) + 1039933.4442595674 * (4.8079999999999991e-7 + membrane__V) * (-4.0819919999999999e-8 / (-1.0 + exp(9.9999999999999995e-8)) - 4.0819919999999999e-8 / (-1.0 + exp(-9.9999999999999995e-8)))) : (-0.084900000000000003 * membrane__V / (-1.0 + exp(-0.20798668885191349 * membrane__V)))) + ((fabs(35.0 + membrane__V) < 2.5000000000718892e-7) ? (7.0974999994161126e-9 / (-1.0 + exp(9.9999999991773334e-8)) + 1999999.9999424887 * (35.000000249999999 + membrane__V) * (-7.0975000009920736e-9 / (-1.0 + exp(-1.000000000139778e-7)) - 7.0974999994161126e-9 / (-1.0 + exp(9.9999999991773334e-8)))) : (-0.028389999999999999 * (35.0 + membrane__V) / (-1.0 + exp(-14.0 - 0.40000000000000002 * membrane__V))))
 ```
-## Singularity point: 0
-![Singularity](diagrams/no_singularity_fixes/kurata_model_2002/1_0.png)
 ## Singularity point: -35.000000000000000
+![Singularity](diagrams/no_singularity_fixes/kurata_model_2002/1_0.png)
+## Singularity point: 0
 ![Singularity](diagrams/no_singularity_fixes/kurata_model_2002/1_1.png)
 
 ## Equation 2:
@@ -1902,9 +1902,9 @@ L_type_Ca_channel_d_L_gate__alpha_d_L = -50.0 * membrane__V / (-1.0 + exp(-0.207
 ```
 L_type_Ca_channel_d_L_gate__alpha_d_L = ((fabs(membrane__V) < 4.8079999999999991e-7) ? (2.4039999999999997e-5 / (-1.0 + exp(9.9999999999999995e-8)) + 1039933.4442595674 * (4.8079999999999991e-7 + membrane__V) * (-2.4039999999999997e-5 / (-1.0 + exp(9.9999999999999995e-8)) - 2.4039999999999997e-5 / (-1.0 + exp(-9.9999999999999995e-8)))) : (-50.0 * membrane__V / (-1.0 + exp(-0.20798668885191349 * membrane__V)))) + ((fabs(35.0 + membrane__V) < 2.5000000000718892e-7) ? (4.1799999996561256e-6 / (-1.0 + exp(9.9999999991773334e-8)) + 1999999.9999424887 * (35.000000249999999 + membrane__V) * (-4.1800000005842713e-6 / (-1.0 + exp(-1.000000000139778e-7)) - 4.1799999996561256e-6 / (-1.0 + exp(9.9999999991773334e-8)))) : (-16.719999999999999 * (35.0 + membrane__V) / (-1.0 + exp(-14.0 - 0.40000000000000002 * membrane__V))))
 ```
-## Singularity point: 0
-![Singularity](diagrams/no_singularity_fixes/lindblad_model_1996/1_0.png)
 ## Singularity point: -35.000000000000000
+![Singularity](diagrams/no_singularity_fixes/lindblad_model_1996/1_0.png)
+## Singularity point: 0
 ![Singularity](diagrams/no_singularity_fixes/lindblad_model_1996/1_1.png)
 
 ## Equation 2:
@@ -2006,9 +2006,9 @@ IKr__tauxr = 1 / (0.00060999999999999997 * (38.899999999999999 + cell__V) / (-1.
 ```
 IKr__tauxr = 1 / (((fabs(38.899999999999999 + cell__V) < 6.896551724422384e-7) ? (4.2068965520669629e-10 / (-1.0 + exp(1.0000000000814911e-7)) - 724999.99997009686 * (38.899999310344825 + cell__V) * (-4.2068965517283451e-10 / (-1.0 + exp(-1.000000000001e-7)) - 4.2068965520669629e-10 / (-1.0 + exp(1.0000000000814911e-7)))) : (0.00060999999999999997 * (38.899999999999999 + cell__V) / (-1.0 + exp(5.6404999999999994 + 0.14499999999999999 * cell__V)))) + ((fabs(14.199999999999999 + cell__V) < 8.1300813007528783e-7) ? (-1.1219512194943214e-9 / (1.0 - exp(9.9999999998406912e-8)) + 615000.00000454858 * (14.200000813008129 + cell__V) * (1.1219512194943214e-9 / (1.0 - exp(9.9999999998406912e-8)) + 1.1219512195134727e-9 / (1.0 - exp(-1.0000000000011388e-7)))) : (0.0013799999999999999 * (14.199999999999999 + cell__V) / (1.0 - exp(-1.7465999999999999 - 0.123 * cell__V)))))
 ```
-## Singularity point: -14.199999999999999
-![Singularity](diagrams/no_singularity_fixes/livshitz_rudy_2007/5_0.png)
 ## Singularity point: -38.899999999999999
+![Singularity](diagrams/no_singularity_fixes/livshitz_rudy_2007/5_0.png)
+## Singularity point: -14.199999999999999
 ![Singularity](diagrams/no_singularity_fixes/livshitz_rudy_2007/5_1.png)
 
 ## Equation 6:
@@ -2317,9 +2317,9 @@ background_Kpl_current__i_Kpl = (3.0 + membrane__Vm) * background_Kpl_current__P
 ```
 background_Kpl_current__i_Kpl = ((fabs(3.0 + membrane__Vm) < 1.3000000000009532e-6) ? (384615.38461510261 * (3.0000013000000001 + membrane__Vm) * (1.0918250039632722e-10 * pow(external_ion_concentrations__Ko, 0.16) * constant_field_equations__CF_K / (1.0 - exp(-9.9999999999939883e-8)) + 1.091825003966186e-10 * pow(external_ion_concentrations__Ko, 0.16) * constant_field_equations__CF_K / (1.0 - exp(1.0000000000020676e-7))) - 1.091825003966186e-10 * pow(external_ion_concentrations__Ko, 0.16) * constant_field_equations__CF_K / (1.0 - exp(1.0000000000020676e-7))) : (8.3986538766456042e-5 * pow(external_ion_concentrations__Ko, 0.16) * (3.0 + membrane__Vm) * constant_field_equations__CF_K / (1.0 - exp(-0.23076923076923078 - 0.076923076923076927 * membrane__Vm))))
 ```
-## Singularity point: -3.0000000000000000
-![Singularity](diagrams/no_singularity_fixes/matsuoka_model_2003/3_0.png)
 ## Singularity point: 0
+![Singularity](diagrams/no_singularity_fixes/matsuoka_model_2003/3_0.png)
+## Singularity point: -3.0000000000000000
 ![Singularity](diagrams/no_singularity_fixes/matsuoka_model_2003/3_1.png)
 
 ## Equation 4:
@@ -3114,6 +3114,8 @@ i_CaL__i_CaL = 4.0 * pow(model_parameters__F, 2) * (-0.34100000000000003 * model
 ```
 i_CaL__i_CaL = ((fabs(Membrane__Vm) < 4.3086710741444596e-12 * fabs(model_parameters__T)) ? (-116045061550.51096 * (-4.3086710741444596e-12 * model_parameters__T + Membrane__Vm) * (-0.019297068299999998 * (-0.34100000000000003 * model_parameters__Cao + calcium_dynamics__Cai * exp(9.9999999999999995e-8)) * i_CaL__g_CaL * i_CaL_d_gate__d * i_CaL_f1_gate__f1 * i_CaL_f2_gate__f2 * i_CaL_fCa_gate__fCa / (-1.0 + exp(9.9999999999999995e-8)) - 0.019297068299999998 * (-0.34100000000000003 * model_parameters__Cao + calcium_dynamics__Cai * exp(-9.9999999999999995e-8)) * i_CaL__g_CaL * i_CaL_d_gate__d * i_CaL_f1_gate__f1 * i_CaL_f2_gate__f2 * i_CaL_fCa_gate__fCa / (-1.0 + exp(-9.9999999999999995e-8))) / model_parameters__T + 0.019297068299999998 * (-0.34100000000000003 * model_parameters__Cao + calcium_dynamics__Cai * exp(9.9999999999999995e-8)) * i_CaL__g_CaL * i_CaL_d_gate__d * i_CaL_f1_gate__f1 * i_CaL_f2_gate__f2 * i_CaL_fCa_gate__fCa / (-1.0 + exp(9.9999999999999995e-8))) : (4478658957.2358274 * (-0.34100000000000003 * model_parameters__Cao + calcium_dynamics__Cai * exp(23209.012310102189 * Membrane__Vm / model_parameters__T)) * Membrane__Vm * i_CaL__g_CaL * i_CaL_d_gate__d * i_CaL_f1_gate__f1 * i_CaL_f2_gate__f2 * i_CaL_fCa_gate__fCa / ((-1.0 + exp(23209.012310102189 * Membrane__Vm / model_parameters__T)) * model_parameters__T)))
 ```
+## Singularity point: 0
+![Singularity](diagrams/no_singularity_fixes/paci_hyttinen_aaltosetala_severi_atrialVersion/1_0.png)
 
 Number of singularities:  1
 # Model: paci_hyttinen_aaltosetala_severi_ventricularVersion(paci_hyttinen_aaltosetala_severi_ventricularVersion.cellml)
@@ -3126,6 +3128,8 @@ i_CaL__i_CaL = 4.0 * pow(model_parameters__F, 2) * (-0.34100000000000003 * model
 ```
 i_CaL__i_CaL = ((fabs(Membrane__Vm) < 4.3086710741444596e-12 * fabs(model_parameters__T)) ? (-116045061550.51096 * (-4.3086710741444596e-12 * model_parameters__T + Membrane__Vm) * (-0.019297068299999998 * (-0.34100000000000003 * model_parameters__Cao + calcium_dynamics__Cai * exp(9.9999999999999995e-8)) * i_CaL__g_CaL * i_CaL_d_gate__d * i_CaL_f1_gate__f1 * i_CaL_f2_gate__f2 * i_CaL_fCa_gate__fCa / (-1.0 + exp(9.9999999999999995e-8)) - 0.019297068299999998 * (-0.34100000000000003 * model_parameters__Cao + calcium_dynamics__Cai * exp(-9.9999999999999995e-8)) * i_CaL__g_CaL * i_CaL_d_gate__d * i_CaL_f1_gate__f1 * i_CaL_f2_gate__f2 * i_CaL_fCa_gate__fCa / (-1.0 + exp(-9.9999999999999995e-8))) / model_parameters__T + 0.019297068299999998 * (-0.34100000000000003 * model_parameters__Cao + calcium_dynamics__Cai * exp(9.9999999999999995e-8)) * i_CaL__g_CaL * i_CaL_d_gate__d * i_CaL_f1_gate__f1 * i_CaL_f2_gate__f2 * i_CaL_fCa_gate__fCa / (-1.0 + exp(9.9999999999999995e-8))) : (4478658957.2358274 * (-0.34100000000000003 * model_parameters__Cao + calcium_dynamics__Cai * exp(23209.012310102189 * Membrane__Vm / model_parameters__T)) * Membrane__Vm * i_CaL__g_CaL * i_CaL_d_gate__d * i_CaL_f1_gate__f1 * i_CaL_f2_gate__f2 * i_CaL_fCa_gate__fCa / ((-1.0 + exp(23209.012310102189 * Membrane__Vm / model_parameters__T)) * model_parameters__T)))
 ```
+## Singularity point: 0
+![Singularity](diagrams/no_singularity_fixes/paci_hyttinen_aaltosetala_severi_ventricularVersion/1_0.png)
 
 Number of singularities:  1
 # Model: pandit_clark_giles_demir_2001_version06_variant01(pandit_clark_giles_demir_2001_endocardial_cell.cellml)
@@ -3449,9 +3453,9 @@ rapid_delayed_rectifier_potassium_current_xr_gate__tau_xr = 0.001 / (0.000609999
 ```
 rapid_delayed_rectifier_potassium_current_xr_gate__tau_xr = 0.001 / (((fabs(38.899999999999999 + membrane__V) < 6.896551724422384e-7) ? (4.2068965520669629e-10 / (-1.0 + exp(1.0000000000814911e-7)) - 724999.99997009686 * (38.899999310344825 + membrane__V) * (-4.2068965517283451e-10 / (-1.0 + exp(-1.000000000001e-7)) - 4.2068965520669629e-10 / (-1.0 + exp(1.0000000000814911e-7)))) : (0.00060999999999999997 * (38.899999999999999 + membrane__V) / (-1.0 + exp(5.6404999999999994 + 0.14499999999999999 * membrane__V)))) + ((fabs(14.199999999999999 + membrane__V) < 8.1300813007528783e-7) ? (-1.1219512194943214e-9 / (1.0 - exp(9.9999999998406912e-8)) + 615000.00000454858 * (14.200000813008129 + membrane__V) * (1.1219512194943214e-9 / (1.0 - exp(9.9999999998406912e-8)) + 1.1219512195134727e-9 / (1.0 - exp(-1.0000000000011388e-7)))) : (0.0013799999999999999 * (14.199999999999999 + membrane__V) / (1.0 - exp(-1.7465999999999999 - 0.123 * membrane__V)))))
 ```
-## Singularity point: -14.199999999999999
-![Singularity](diagrams/no_singularity_fixes/sakmann_model_2000_epi/8_0.png)
 ## Singularity point: -38.899999999999999
+![Singularity](diagrams/no_singularity_fixes/sakmann_model_2000_epi/8_0.png)
+## Singularity point: -14.199999999999999
 ![Singularity](diagrams/no_singularity_fixes/sakmann_model_2000_epi/8_1.png)
 
 ## Equation 9:
@@ -3487,9 +3491,9 @@ IKr_Xr_gate__tau_Xr = 1 / (0.00060999999999999997 * (10.0 + cell__V) / (-1.0 + e
 ```
 IKr_Xr_gate__tau_Xr = 1 / (((fabs(10.0 + cell__V) < 6.8965517241448282e-7) ? (4.2068965517283451e-10 / (-1.0 + exp(1.000000000001e-7)) - 724999.99999927497 * (9.9999993103448279 + cell__V) * (-4.2068965517283451e-10 / (-1.0 + exp(1.000000000001e-7)) - 4.2068965517283451e-10 / (-1.0 + exp(-1.000000000001e-7)))) : (0.00060999999999999997 * (10.0 + cell__V) / (-1.0 + exp(1.45 + 0.14499999999999999 * cell__V)))) + ((fabs(7.0 + cell__V) < 8.1300813008222672e-7) ? (-1.1219512195134727e-9 / (1.0 - exp(1.0000000000011388e-7)) + 614999.99999929965 * (7.0000008130081302 + cell__V) * (1.1219512195134727e-9 / (1.0 - exp(1.0000000000011388e-7)) + 1.1219512195134727e-9 / (1.0 - exp(-1.0000000000011388e-7)))) : (0.0013799999999999999 * (7.0 + cell__V) / (1.0 - exp(-0.86099999999999999 - 0.123 * cell__V)))))
 ```
-## Singularity point: -10.000000000000000
-![Singularity](diagrams/no_singularity_fixes/shannon_wang_puglisi_weber_bers_2004/2_0.png)
 ## Singularity point: -7.0000000000000000
+![Singularity](diagrams/no_singularity_fixes/shannon_wang_puglisi_weber_bers_2004/2_0.png)
+## Singularity point: -10.000000000000000
 ![Singularity](diagrams/no_singularity_fixes/shannon_wang_puglisi_weber_bers_2004/2_1.png)
 
 ## Equation 3:
@@ -4096,9 +4100,9 @@ L_type_Ca_channel_d_gate__alpha_d_L = -28.390000000000001 * (35.0 + membrane__V)
 ```
 L_type_Ca_channel_d_gate__alpha_d_L = ((fabs(35.0 + membrane__V) < 2.5000000000718892e-7) ? (7.0974999994161125e-6 / (-1.0 + exp(9.9999999991773334e-8)) + 1999999.9999424887 * (35.000000249999999 + membrane__V) * (-7.0974999994161125e-6 / (-1.0 + exp(9.9999999991773334e-8)) - 7.097500000992074e-6 / (-1.0 + exp(-1.000000000139778e-7)))) : (-28.390000000000001 * (35.0 + membrane__V) / (-1.0 + exp(-14.0 - 0.40000000000000002 * membrane__V)))) + ((fabs(membrane__V) < 4.8076923076923074e-7) ? (4.0817307692307694e-5 / (-1.0 + exp(9.9999999999999995e-8)) + 1040000.0 * (4.8076923076923074e-7 + membrane__V) * (-4.0817307692307694e-5 / (-1.0 + exp(9.9999999999999995e-8)) - 4.0817307692307694e-5 / (-1.0 + exp(-9.9999999999999995e-8)))) : (-84.900000000000006 * membrane__V / (-1.0 + exp(-0.20799999999999999 * membrane__V))))
 ```
-## Singularity point: -35.000000000000000
-![Singularity](diagrams/no_singularity_fixes/zhang_SAN_model_2000_0D_capable/1_0.png)
 ## Singularity point: 0
+![Singularity](diagrams/no_singularity_fixes/zhang_SAN_model_2000_0D_capable/1_0.png)
+## Singularity point: -35.000000000000000
 ![Singularity](diagrams/no_singularity_fixes/zhang_SAN_model_2000_0D_capable/1_1.png)
 
 ## Equation 2:

@@ -48,7 +48,8 @@ def get_initial_value(var, model):
 def draw_graphs(eq_no, file_name, new_ex, original_eq, new_V, original_V, vardefs, vardefs_offset, vardefs_fixed, vardefs_offset_fixed):
     draw_points=2000
     SP = Wild('SP', real=True)
-    R = Wild('R', real=True)
+    R = Wild('R')#Wild('R', real=True)
+    Q = Wild('Q', real=True)#Wild('R', real=True)
     file_name = file_name.replace('.cellml', '')
     
     # subsitute in parameters in both euqations so we can draw them
@@ -75,6 +76,8 @@ def draw_graphs(eq_no, file_name, new_ex, original_eq, new_V, original_V, vardef
     Piecewises = new_ex.atoms(Piecewise)
     for pw_index, pw in enumerate(Piecewises):
         match = pw.args[0][1].match(Abs(new_V - SP) < R)
+        if not match:
+            match = pw.args[0][1].match(Abs(new_V - SP) * Q < R)           
         if match and SP in match and R in match:
             sp = match[SP]
             vs = sp - match[R]
@@ -235,7 +238,4 @@ for file_name in ('aslanidi_atrial_model_2009.cellml',
                 print("```")
                 draw_graphs(eq_no, file_name, fixed_eq[0].rhs, eq.rhs, fixes_model.membrane_voltage_var, model.membrane_voltage_var, vardefs, vardefs_offset, vardefs_fixed, vardefs_offset_fixed)
                 print()
-    #toc = time.perf_counter()
     print('Number of singularities: ', num_sing)
-    #print("singularity processing time: "+str(toc-tic))
-#print('average processing time:' + str(sum(proc_times) / len(proc_times)))
