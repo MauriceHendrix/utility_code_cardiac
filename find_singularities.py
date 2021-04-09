@@ -2,7 +2,7 @@
 
 # todo:
 # We probably want to limit the search to -150 to +100mV ish
-
+import multiprocessing as mp
 import os
 import time
 
@@ -28,7 +28,7 @@ from chaste_codegen.model_with_conversions import (_get_modifiable_parameters,
                                                    get_equations_for)
 printer = ChastePrinter(lambda var: str(var).lstrip('_').replace('$', '__'),
                         lambda deriv: str(deriv).lstrip('_').replace('$', '__'))
-
+               
 exp_function = exp_
 script_type = 'no_singularity_fixes'
 
@@ -46,10 +46,11 @@ def get_initial_value(var, model):
     return initial_value
 
 def draw_graphs(eq_no, file_name, new_ex, original_eq, new_V, original_V, vardefs, vardefs_offset, vardefs_fixed, vardefs_offset_fixed):
+    graph_text = ''
     draw_points=2000
     SP = Wild('SP', real=True)
-    R = Wild('R')#Wild('R', real=True)
-    Q = Wild('Q', real=True)#Wild('R', real=True)
+    R = Wild('R')
+    Q = Wild('Q', real=True)
     file_name = file_name.replace('.cellml', '')
     
     # subsitute in parameters in both euqations so we can draw them
@@ -82,7 +83,7 @@ def draw_graphs(eq_no, file_name, new_ex, original_eq, new_V, original_V, vardef
             sp = match[SP]
             vs = sp - match[R]
             ve = sp + match[R]
-            print("## Singularity point: " +str(sp))
+            graph_text += "## Singularity point: " +str(sp)+"\n"
             fig = plt.figure()
             ax1 = fig.add_subplot(111)
             x, y, x2, y2 = [], [], [], []
@@ -110,98 +111,21 @@ def draw_graphs(eq_no, file_name, new_ex, original_eq, new_V, original_V, vardef
             image_dir = 'diagrams/' + script_type + '/' + file_name
             os.makedirs(image_dir, exist_ok=True)
             image_name = image_dir + '/' + str(eq_no) + '_' + str(pw_index)+ '.png'
-            print("![Singularity](%s)" % image_name)
+            graph_text += "![Singularity]("+image_name+")\n"
 
             plt.savefig(image_name)
             #plt.show()
             plt.close('all')
+    return graph_text
 
-proc_times = []
-for file_name in ('aslanidi_atrial_model_2009.cellml',
-                  'aslanidi_Purkinje_model_2009.cellml',
-                  'beeler_reuter_model_1977.cellml',
-                  'benson_epicardial_2008.cellml',
-                  'bernus_wilders_zemlin_verschelde_panfilov_2002.cellml',
-                  'bondarenko_szigeti_bett_kim_rasmusson_2004_apical.cellml',
-                  'bondarenko_szigeti_bett_kim_rasmusson_2004_septal.cellml',
-                  'bueno_2007_endo.cellml',
-                  'bueno_2007_epi.cellml',
-                  'carro_2011_endo.cellml',
-                  'carro_2011_epi.cellml',
-                  'clancy_rudy_2002.cellml',
-                  'corrias_purkinje_2011.cellml',
-                  'courtemanche_ramirez_nattel_1998.cellml',
-                  'davies_isap_2012.cellml',
-                  'decker_2009.cellml',
-                  'demir_model_1994.cellml',
-                  'difrancesco_noble_model_1985.cellml',
-                  'dokos_model_1996.cellml',
-                  'earm_noble_model_1990.cellml',
-                  'espinosa_model_1998_normal.cellml',
-                  'faber_rudy_2000.cellml',
-                  'fink_noble_giles_model_2008.cellml',
-                  'fox_mcharg_gilmour_2002.cellml',
-                  'grandi_pasqualini_bers_2010_ss.cellml',
-                  'grandi_pasqualini_bers_2010_ss_endo.cellml',
-                  'hilgemann_noble_model_1987.cellml',
-                  'hodgkin_huxley_squid_axon_model_1952_modified.cellml',
-                  'hund_rudy_2004.cellml',
-                  'iribe_model_2006.cellml',
-                  'iyer_2004.cellml',
-                  'iyer_model_2007.cellml',
-                  'jafri_rice_winslow_model_1998.cellml',
-                  'kurata_model_2002.cellml',
-                  'lindblad_model_1996.cellml',
-                  'livshitz_rudy_2007.cellml',
-                  'li_mouse_2010.cellml',
-                  'luo_rudy_1991.cellml',
-                  'luo_rudy_1994.cellml',
-                  'mahajan_shiferaw_2008.cellml',
-                  'maleckar_model_2009.cellml',
-                  'maltsev_2009.cellml',
-                  'matsuoka_model_2003.cellml',
-                  'mcallister_noble_tsien_1975_b.cellml',
-                  'noble_model_1962.cellml',
-                  'noble_model_1991.cellml',
-                  'noble_model_1998.cellml',
-                  'noble_model_2001.cellml',
-                  'noble_noble_SAN_model_1984.cellml',
-                  'noble_SAN_model_1989.cellml',
-                  'nygren_atrial_model_1998.cellml',
-                  'ohara_rudy_2011_endo.cellml',
-                  'ohara_rudy_2011_epi.cellml',
-                  'ohara_rudy_cipa_v1_2017.cellml',
-                  'paci_hyttinen_aaltosetala_severi_atrialVersion.cellml',
-                  'paci_hyttinen_aaltosetala_severi_ventricularVersion.cellml',
-                  'pandit_clark_giles_demir_2001_endocardial_cell.cellml',
-                  'pandit_clark_giles_demir_2001_epicardial_cell.cellml',
-                  'pasek_simurda_christe_2006.cellml',
-                  'pasek_simurda_orchard_christe_2008.cellml',
-                  'priebe_beuckelmann_1998.cellml',
-                  'ramirez_nattel_courtemanche_2000.cellml',
-                  'sachse_moreno_abildskov_2008_b.cellml',
-                  'sakmann_model_2000_epi.cellml',
-                  'shannon_wang_puglisi_weber_bers_2004.cellml',
-                  'stewart_zhang_model_2008_ss.cellml',
-                  'ten_tusscher_model_2004_endo.cellml',
-                  'ten_tusscher_model_2004_epi.cellml',
-                  'ten_tusscher_model_2004_M.cellml',
-                  'ten_tusscher_model_2006_endo.cellml',
-                  'ten_tusscher_model_2006_epi.cellml',
-                  'ten_tusscher_model_2006_M.cellml',
-                  'ToRORd_fkatp_endo.cellml',
-                  'ToRORd_fkatp_epi.cellml',
-                  'Trovato2020.cellml',
-                  'viswanathan_model_1999_epi.cellml',
-                  'wang_sobie_2008.cellml',
-                  'winslow_model_1999.cellml',
-                  'zhang_SAN_model_2000_0D_capable.cellml'
-                  ):
+
+def process_model(file_name):
+    model_result_text = ""
     model = load_model_with_conversions(os.path.join(DATA_DIR, '..', '..', '..', 'cellml', 'cellml', file_name), quiet=True, skip_singularity_fixes=True)
     fixes_model = load_model_with_conversions(os.path.join(DATA_DIR, '..', '..', '..', 'cellml', 'cellml', file_name), quiet=True, skip_singularity_fixes=False)
      
-    print("# Model: " + model.name + '('+file_name+')')
-    print("Number of piecewises: " + str(sum([len(eq.rhs.atoms(Piecewise)) for eq in model.equations])) )
+    model_result_text += "# Model: " + model.name + '('+file_name+')'
+    model_result_text += "Number of piecewises: " + str(sum([len(eq.rhs.atoms(Piecewise)) for eq in model.equations]))
     
     vardefs = {e: get_initial_value(e, model) for e in _get_modifiable_parameters(model) | (model.state_vars - set([model.membrane_voltage_var]))}
     vardefs_offset = {e: val + 1e-7  for e, val in vardefs.items()}
@@ -227,15 +151,109 @@ for file_name in ('aslanidi_atrial_model_2009.cellml',
         if not isinstance(eq.rhs, Piecewise):
             if (len(fixed_eq) > 0 and printer.doprint(fixed_eq[0].rhs) != printer.doprint(eq.rhs)):
                 eq_no+=1
-                print("## Equation "+ str(eq_no) + ":")
-                print("```")
-                print(printer.doprint(eq.lhs) + " = " + printer.doprint(eq.rhs))
-                print("```")
+                model_result_text += "## Equation "+ str(eq_no) + ":\n"
+                model_result_text += "```\n"
+                model_result_text += printer.doprint(eq.lhs) + " = " + printer.doprint(eq.rhs) +"\n"
+                model_result_text += "```\n"
                 num_sing += len(fixed_eq[0].rhs.atoms(Piecewise))
-                print("## New Eq:")
-                print("```")
-                print(printer.doprint(eq.lhs) + " = " + printer.doprint(fixed_eq[0].rhs))
-                print("```")
-                draw_graphs(eq_no, file_name, fixed_eq[0].rhs, eq.rhs, fixes_model.membrane_voltage_var, model.membrane_voltage_var, vardefs, vardefs_offset, vardefs_fixed, vardefs_offset_fixed)
-                print()
-    print('Number of singularities: ', num_sing)
+                model_result_text += "## New Eq:\n"
+                model_result_text += "```\n"
+                model_result_text += printer.doprint(eq.lhs) + " = " + printer.doprint(fixed_eq[0].rhs) +"\n"
+                model_result_text += "```\n"
+                model_result_text += draw_graphs(eq_no, file_name, fixed_eq[0].rhs, eq.rhs, fixes_model.membrane_voltage_var, model.membrane_voltage_var, vardefs, vardefs_offset, vardefs_fixed, vardefs_offset_fixed)
+                model_result_text += "\n\n"
+    model_result_text += "Number of singularities: " + str(num_sing)
+    model_result_text += "\n\n"
+    return {file_name: model_result_text}
+
+
+
+file_names = ['aslanidi_atrial_model_2009.cellml',
+              'aslanidi_Purkinje_model_2009.cellml',
+              'beeler_reuter_model_1977.cellml',
+              'benson_epicardial_2008.cellml',
+              'bernus_wilders_zemlin_verschelde_panfilov_2002.cellml',
+              'bondarenko_szigeti_bett_kim_rasmusson_2004_apical.cellml',
+              'bondarenko_szigeti_bett_kim_rasmusson_2004_septal.cellml',
+              'bueno_2007_endo.cellml',
+              'bueno_2007_epi.cellml',
+              'carro_2011_endo.cellml',
+              'carro_2011_epi.cellml',
+              'clancy_rudy_2002.cellml',
+              'corrias_purkinje_2011.cellml',
+              'courtemanche_ramirez_nattel_1998.cellml',
+              'davies_isap_2012.cellml',
+              'decker_2009.cellml',
+              'demir_model_1994.cellml',
+              'difrancesco_noble_model_1985.cellml',
+              'dokos_model_1996.cellml',
+              'earm_noble_model_1990.cellml',
+              'espinosa_model_1998_normal.cellml',
+              'faber_rudy_2000.cellml',
+              'fink_noble_giles_model_2008.cellml',
+              'fox_mcharg_gilmour_2002.cellml',
+              'grandi_pasqualini_bers_2010_ss.cellml',
+              'grandi_pasqualini_bers_2010_ss_endo.cellml',
+              'hilgemann_noble_model_1987.cellml',
+              'hodgkin_huxley_squid_axon_model_1952_modified.cellml',
+              'hund_rudy_2004.cellml',
+              'iribe_model_2006.cellml',
+              'iyer_2004.cellml',
+              'iyer_model_2007.cellml',
+              'jafri_rice_winslow_model_1998.cellml',
+              'kurata_model_2002.cellml',
+              'lindblad_model_1996.cellml',
+              'livshitz_rudy_2007.cellml',
+              'li_mouse_2010.cellml',
+              'luo_rudy_1991.cellml',
+              'luo_rudy_1994.cellml',
+              'mahajan_shiferaw_2008.cellml',
+              'maleckar_model_2009.cellml',
+              'maltsev_2009.cellml',
+              'matsuoka_model_2003.cellml',
+              'mcallister_noble_tsien_1975_b.cellml',
+              'noble_model_1962.cellml',
+              'noble_model_1991.cellml',
+              'noble_model_1998.cellml',
+              'noble_model_2001.cellml',
+              'noble_noble_SAN_model_1984.cellml',
+              'noble_SAN_model_1989.cellml',
+              'nygren_atrial_model_1998.cellml',
+              'ohara_rudy_2011_endo.cellml',
+              'ohara_rudy_2011_epi.cellml',
+              'ohara_rudy_cipa_v1_2017.cellml',
+              'paci_hyttinen_aaltosetala_severi_atrialVersion.cellml',
+              'paci_hyttinen_aaltosetala_severi_ventricularVersion.cellml',
+              'pandit_clark_giles_demir_2001_endocardial_cell.cellml',
+              'pandit_clark_giles_demir_2001_epicardial_cell.cellml',
+              'pasek_simurda_christe_2006.cellml',
+              'pasek_simurda_orchard_christe_2008.cellml',
+              'priebe_beuckelmann_1998.cellml',
+              'ramirez_nattel_courtemanche_2000.cellml',
+              'sachse_moreno_abildskov_2008_b.cellml',
+              'sakmann_model_2000_epi.cellml',
+              'shannon_wang_puglisi_weber_bers_2004.cellml',
+              'stewart_zhang_model_2008_ss.cellml',
+              'ten_tusscher_model_2004_endo.cellml',
+              'ten_tusscher_model_2004_epi.cellml',
+              'ten_tusscher_model_2004_M.cellml',
+              'ten_tusscher_model_2006_endo.cellml',
+              'ten_tusscher_model_2006_epi.cellml',
+              'ten_tusscher_model_2006_M.cellml',
+              'ToRORd_fkatp_endo.cellml',
+              'ToRORd_fkatp_epi.cellml',
+              'Trovato2020.cellml',
+              'viswanathan_model_1999_epi.cellml',
+              'wang_sobie_2008.cellml',
+              'winslow_model_1999.cellml',
+              'zhang_SAN_model_2000_0D_capable.cellml'
+              ]
+
+if __name__ == '__main__':
+#    for file in file_names:
+#        print(process_model(file))
+    pool = mp.Pool(mp.cpu_count())
+    results  = pool.map(process_model, file_names)
+    results.sort(key=lambda m: file_names.index(list(m.keys())[0]) )
+    for res in results:
+        print(list(res.values())[0])
