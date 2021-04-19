@@ -250,8 +250,6 @@ file_names = ['aslanidi_atrial_model_2009.cellml',
               ]
 
 if __name__ == '__main__':
-#    for file in file_names:
-#        print(process_model(file))
     pool = mp.Pool(mp.cpu_count())
     results  = pool.map(process_model, file_names)
     results.sort(key=lambda m: file_names.index(list(m.keys())[0]) )
