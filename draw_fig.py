@@ -15,11 +15,14 @@ Ca_i = 0.000223768331231758
 ICab = (-0.34100000000000003 * Ca_o + Ca_i * exp(2.0 * FonRT * V)) * F * FonRT * GCab * V / (-1.0 + exp(2.0 * FonRT * V))
 fix = (-374358.83507800003 * (-1.3356169352750065e-6 + V) * (-0.0048242499999999995 * (-0.34100000000000003 * Ca_o + Ca_i * exp(9.9999999999999995e-8)) * GCab / (-1.0 + exp(9.9999999999999995e-8)) - 0.0048242499999999995 * (-0.34100000000000003 * Ca_o + Ca_i * exp(-9.9999999999999995e-8)) * GCab / (-1.0 + exp(-9.9999999999999995e-8))) + 0.0048242499999999995 * (-0.34100000000000003 * Ca_o + Ca_i * exp(9.9999999999999995e-8)) * GCab / (-1.0 + exp(9.9999999999999995e-8)))
 
+B = 2*FonRT
+A = GCab*F*FonRT*(Ca_i*exp(2*V*FonRT)-0.341*Ca_o)/B
+
 fig, (ax1, ax2) = plt.subplots(1, 2)
 fig.tight_layout(pad=0.5)
 
 
-x, y, x2, y2 = [], [], [], []
+x, y, x2, y2, x3, y3 = [], [], [], [], [], []
 current = -80
 while current < 80 and current < Vmin:
     x.append(current)
@@ -46,6 +49,8 @@ while current <= Vmax:
     if (0.0748717670156 * current>= -9.9999999999999995e-8) and (0.0748717670156 *current <= 9.9999999999999995e-8):
         x2.append(current)
         y2.append(fix.replace(V, current))
+        x3.append(current)
+        y3.append(Float(A.replace(V, current)))
     current += (Vmax - Vmin) / 10000
     
 current = Vmax
@@ -56,15 +61,16 @@ while current < 80:
 
 
 ax1.plot(x,y, color="blue")
-ax1.plot(x2,y2, color="red")
+ax2.plot(x3,y3, color="black", linewidth=3.0)
+ax1.plot(x2,y2, color="red", linewidth=3.0)
 ax1.set_ylim(-0.15, 0.005)
 ax1.set_ylabel('$I_{Ca,b}$ (A / F)', fontsize=25)
 ax1.set_xlabel('V (mV)', fontsize=25)
 
 
 ax2.plot(x,y, color="blue")
-ax2.plot(x2,y2, color="red")
-#ax2.set_ylim(-0.023622155965-1e-9, -0.023622153531+1e-9)
+ax2.plot(x3,y3, color="black", linewidth=3.0)
+ax2.plot(x2,y2, color="red", linewidth=5.0)
 ax2.ticklabel_format( axis='y', useOffset=False)
 ax2.set_ylim(-0.023622155965-1e-9, -0.023622153531+1e-9)
 ax2.set_xlim(-1.5*1e-6, 1.5*1e-6)
